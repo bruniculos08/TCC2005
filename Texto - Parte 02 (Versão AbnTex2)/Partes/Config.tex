@@ -1,0 +1,51 @@
+% ---- Arquivo com as configurações do PDF
+
+% Alteração para fonte de capítulos:
+\renewcommand{\ABNTEXchapterfont}{\normalfont}
+\renewcommand{\ABNTEXchapterfont}{\bfseries}
+
+% Definindo a cor azul em RGB:
+\definecolor{blue}{RGB}{41,5,195}
+
+% Informações do PDF:
+\makeatletter
+\hypersetup{
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={Bruno Rafael dos Santos},
+		pdfkeywords={Algoritmo \textit{RESSOL}}{Algoritmo de Tonelli-Shanks}{Lei de Reciprocidade Quadrática}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,
+    	linkcolor=blue,
+    	citecolor=blue,
+    	filecolor=magenta,
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+
+% Posiciona figuras e tabelas no topo da página quando adicionadas sozinhas em uma página em branco (ver https://github.com/abntex/abntex2/issues/170):
+\makeatletter
+\setlength{\@fptop}{5pt} 
+\makeatother
+
+% Possibilita criação de Quadros e Lista de quadros (ver https://github.com/abntex/abntex2/issues/176):
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+% Configurações para atender às regras da ABNT
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+
+\setfloatlocations{quadro}{hbtp} % Ver https://github.com/abntex/abntex2/issues/176
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
