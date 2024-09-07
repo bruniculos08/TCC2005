@@ -28,7 +28,7 @@ Module inverse.
         Compute (@inv_mulz 8 2 7). *)
 
         (* Notação para inverso multiplicativo: *)
-        Notation "a ^ -1 = m %[mod n ]" := (@inv_mulz m a n) (at level 30) : int_scope.
+        Notation "a ^ -1 == m %[mod n ]" := (@inv_mulz m a n) (at level 30) : int_scope.
 
         Lemma reflect_modz (a b n : int) :
             reflect (a = b %[mod n]) (a == b %[mod n]).
@@ -36,14 +36,8 @@ Module inverse.
             apply eqP.
         Qed.
 
-        Lemma eq_modz (a b n : int) : 
-            (a = b %[mod n]) <-> (a == b %[mod n]).
-        Proof.
-            by apply: Bool.reflect_iff ; apply: reflect_modz.
-        Qed.
-
         Lemma aux1 (a b n : int) :
-            a * b = 1  %[mod n] -> exists uv, ((fst uv) * b + (snd uv) *  n)%R = 1%R.
+            a * b = 1  %[mod n] -> exists uv, ((fst uv) * b + (snd uv) * n)%R = 1%R.
         Proof.
             move=> /eqP. rewrite eqz_mod_dvd. move=> Hmod.
             apply divzK in Hmod. remember ((a * b - 1) %/ n)%Z as q.
@@ -56,28 +50,53 @@ Module inverse.
             by rewrite GRing.subrKA GRing.addr0.
         Qed.
 
-        Lemma cond_inv (a n : int) :
-            (exists b, @inv_mulz b a n) -> ((gcdz a n) == 1).
+        Lemma dvdz_add (a b n : int) :
+            (n %| a)%Z -> (n %| b)%Z -> (n %| (a + b)%R).
         Proof.
-                move=> [b] H. rewrite /inv_mulz in H.
-                move: H. move=> /eqP H.
-                apply aux1 in H.
-                case: H => w.
-                case: w => [x y]. rewrite /fst /snd.
-                move=> Heq. 
-                move: (Bezoutz a n) => [x1 H].
-                case: H => x2 H.
-                apply/eqP. 
-                have He1: 1 = 1%R.
-                    by [].
-                rewrite He1. rewrite -Heq.
-                symmetry.
-                rewrite -Heq.
+            move=> /dvdzP Ha /dvdzP Hb. case: Ha => q1 Ha.
+            case: Hb => q2 Hb. rewrite Ha Hb. rewrite GRing.mulrC.
+            rewrite [X in _ %| (_ * _ + X)%R]GRing.mulrC.
+            rewrite -GRing.mulrDr. rewrite dvdz_mulr //.
+        Qed.
 
-                move=> [y] Hbz. rewrite eqz_mod_dvd in H.
-                (* Search (_ %| _).  *)
-                apply divzK in H.
-                pose q := ((a * b - 1) %/ n)%Z.
+        Lemma aux2 (a b c : int) :
+            (exists (x y : int), (a * x + b * y)%R == c%R) <-> (gcdz a b %| c).
+        Proof.
+            split.
+                {
+                    move=> Heq. case: Heq => [x Heq].
+                    case: Heq => [y Heq]. move: Heq.
+                    move=> /eqP Heq.
+                    have Ha : gcdz a b %| (a * x)%R.
+                        rewrite dvdz_mulr // dvdz_gcdl //.
+                    have Hb : gcdz a b %| (b * y)%R.
+                        rewrite dvdz_mulr // dvdz_gcdr //.
+                    rewrite -Heq.
+                    rewrite dvdz_add //. 
+                }
+            move=> /dvdzP H. case : H => [q Hq].
+            pose proof (Bezoutz a b).
+            case: H => u H. case: H => v Huv.
+            rewrite Hq. exists (q * u)%R. exists (q * v)%R.
+            rewrite GRing.mulrC.
+            rewrite -[X in (_ + X)%R == _]GRing.mulrC.
+            rewrite -!GRing.mulrA -GRing.mulrDr Huv //=.
+        Qed.
+        
+        Lemma cond_inv (a n : int) :
+            (exists b : int, a ^ -1 == b %[mod n]) -> ((gcdz a n)%R == 1%R).
+        Proof.
+            rewrite /inv_mulz /eqP. move=> Hab.
+            case : Hab => b Hab. rewrite GRing.mulrC in Hab.
+            move: Hab. move=> /reflect_modz Hab. 
+            apply aux1 in Hab. case: Hab => w. case: w => x y.
+            rewrite //=. move=> Hbn.
+            have : exists x y : int, (a * x + n * y)%R == 1.
+                exists x. exists y. rewrite GRing.mulrC.
+                rewrite (GRing.mulrC n). apply/eqP. move=> //.
+            move=> H. clear Hbn.
+            apply aux2 in H. rewrite dvdz1 in H.
+            move=> //.
 
     Close Scope int_scope.
 End inverse.
