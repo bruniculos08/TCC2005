@@ -97,6 +97,7 @@ Module inverse.
             move=> H. clear Hbn.
             apply aux2 in H. rewrite dvdz1 in H.
             move=> //.
+        Qed.
 
     Close Scope int_scope.
 End inverse.
