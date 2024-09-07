@@ -83,20 +83,33 @@ Module inverse.
             rewrite -!GRing.mulrA -GRing.mulrDr Huv //=.
         Qed.
         
+        (* Lema 4 do TCC: *)
         Lemma cond_inv (a n : int) :
-            (exists b : int, a ^ -1 == b %[mod n]) -> ((gcdz a n)%R == 1%R).
+            (exists b : int, a ^ -1 == b %[mod n]) <-> ((gcdz a n)%R == 1%R).
         Proof.
-            rewrite /inv_mulz /eqP. move=> Hab.
-            case : Hab => b Hab. rewrite GRing.mulrC in Hab.
-            move: Hab. move=> /reflect_modz Hab. 
-            apply aux1 in Hab. case: Hab => w. case: w => x y.
-            rewrite //=. move=> Hbn.
-            have : exists x y : int, (a * x + n * y)%R == 1.
-                exists x. exists y. rewrite GRing.mulrC.
-                rewrite (GRing.mulrC n). apply/eqP. move=> //.
-            move=> H. clear Hbn.
-            apply aux2 in H. rewrite dvdz1 in H.
-            move=> //.
+            split.
+            {
+                rewrite /inv_mulz /eqP. move=> Hab.
+                case : Hab => b Hab. rewrite GRing.mulrC in Hab.
+                move: Hab. move=> /reflect_modz Hab. 
+                apply aux1 in Hab. case: Hab => w. case: w => x y.
+                rewrite //=. move=> Hbn.
+                have : exists x y : int, (a * x + n * y)%R == 1.
+                    exists x. exists y. rewrite GRing.mulrC.
+                    rewrite (GRing.mulrC n). apply/eqP. move=> //.
+                move=> H. clear Hbn.
+                apply aux2 in H. rewrite dvdz1 in H.
+                move=> //.
+            }
+            move=> /eqP gcdE1. move: (Bezoutz a n) => Bz.
+            case: Bz => x Bz. case: Bz => y Bz. rewrite /inv_mulz.
+            exists x. rewrite eqz_mod_dvd. apply/dvdzP.
+            exists (-y)%R. rewrite -gcdE1. rewrite -Bz.
+            rewrite GRing.mulrC.
+            rewrite -{1}(GRing.addr0 (x * a)%R).
+            rewrite [X in (X - _)%R = _]GRing.addrC.
+            rewrite GRing.addrKA GRing.add0r.
+            rewrite -!mulrzz -mulNrz //.
         Qed.
 
     Close Scope int_scope.
