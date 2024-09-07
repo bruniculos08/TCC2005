@@ -83,7 +83,7 @@ Module inverse.
             rewrite -!GRing.mulrA -GRing.mulrDr Huv //=.
         Qed.
         
-        (* Lema 4 do TCC: *)
+        (* Lema 6 do TCC: *)
         Lemma cond_inv (a n : int) :
             (exists b : int, a ^ -1 == b %[mod n]) <-> ((gcdz a n)%R == 1%R).
         Proof.
