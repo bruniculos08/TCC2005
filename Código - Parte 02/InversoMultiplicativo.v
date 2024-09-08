@@ -1,6 +1,8 @@
 From HB Require Import structures.
-From mathcomp Require Import ssreflect eqtype all_algebra ssrbool ssrint ssralg intdiv.
+From mathcomp Require Import ssreflect eqtype all_algebra ssrbool ssrint ssralg intdiv seq prime order.
+Import Order.Theory.
 From Coq Require Import Logic.Decidable.
+
 
 Set Implicit Arguments.     
 Unset Strict Implicit.
@@ -111,6 +113,55 @@ Module inverse.
             rewrite GRing.addrKA GRing.add0r.
             rewrite -!mulrzz -mulNrz //.
         Qed.
+
+    Compute (iota 1 11).
+
+    Lemma prime_gcdz1 (a p : int):
+        (prime `|p|) -> ~~ (div.dvdn `|p| `|a|) -> gcdz p a == 1.
+    Proof.
+        move=> Hp. apply (prime_coprime `|a|) in Hp as Hpa.
+        move=> Ha. rewrite -Hpa in Ha. rewrite /gcdz.
+        rewrite /div.coprime in Ha. move=>//.
+    Qed. 
+
+    Check (forall (a : int), (1 <= a)%R).
+
+    (* Lema 7 do TCC: *)
+    Lemma inv_modp (a p : int):
+        (prime `|p|) -> (1 < a)%R && (a <= `|p| - 1)%R -> 
+            exists (k : int), (0 < k <= (`|p| - 1))%R && ((a * k)%R == 1 %[mod `|p|]).
+    Proof.
+        move=> Hprime /andP [Ha1 Hap].
+        have : (0 < a)%R.
+            move: Ha1. apply: lt_trans. rewrite //=. 
+        move=> Ha0. apply gtz0_abs in Ha0.
+        have: gcdz a `|p| == 1.
+            {
+                rewrite gcdzC. apply prime_gcdz1.
+                rewrite absz_nat Hprime //.
+                rewrite absz_nat. apply negbLR.
+                rewrite //=. apply div.gtnNdvd.
+                    rewrite -Ha0 in Ha1. move=> //.
+                rewrite -Ha0 in Hap.
+                rewrite // in Hap.
+                rewrite -ltz_nat.
+                rewrite -ltzD1 in Hap.
+                move: Ha1. apply lt_trans. rewrite //=.
+                rewrite -ltz_nat.
+                have: (`|p| - 1 < `|p|)%R.
+                    case H : `|p| => [|k].   
+                        rewrite H // in Hprime.
+                        rewrite //=.
+                        rewrite H.
+                        rewrite [X in X < _]ssrnat.subn0 //.
+                move=> Hp. rewrite !abszE.
+                move: Hap Hp.
+                apply le_lt_trans.
+            }
+
+        move: (cond_inv a `|p|) => Hinv.
+
+        
 
     Close Scope int_scope.
 End inverse.
