@@ -126,40 +126,48 @@ Module inverse.
 
     Check (forall (a : int), (1 <= a)%R).
 
-    (* Lema 7 do TCC: *)
-    Lemma inv_modp (a p : int):
-        (prime `|p|) -> (1 < a)%R && (a <= `|p| - 1)%R -> 
-            exists (k : int), (0 < k <= (`|p| - 1))%R && ((a * k)%R == 1 %[mod `|p|]).
+    Lemma aux3 (a b : int):
+        a != 0 -> (`|a| < `|b|)%R  -> (b %| a) = false.
     Proof.
-        move=> Hprime /andP [Ha1 Hap].
-        have : (0 < a)%R.
-            move: Ha1. apply: lt_trans. rewrite //=. 
-        move=> Ha0. apply gtz0_abs in Ha0.
-        have: gcdz a `|p| == 1.
-            {
-                rewrite gcdzC. apply prime_gcdz1.
-                rewrite absz_nat Hprime //.
-                rewrite absz_nat. apply negbLR.
-                rewrite //=. apply div.gtnNdvd.
-                    rewrite -Ha0 in Ha1. move=> //.
-                rewrite -Ha0 in Hap.
-                rewrite // in Hap.
-                rewrite -ltz_nat.
-                rewrite -ltzD1 in Hap.
-                move: Ha1. apply lt_trans. rewrite //=.
-                rewrite -ltz_nat.
-                have: (`|p| - 1 < `|p|)%R.
-                    case H : `|p| => [|k].   
-                        rewrite H // in Hprime.
-                        rewrite //=.
-                        rewrite H.
-                        rewrite [X in X < _]ssrnat.subn0 //.
-                move=> Hp. rewrite !abszE.
-                move: Hap Hp.
-                apply le_lt_trans.
-            }
+        move=> Ha0.
+        apply contraTF.
+        move=> /dvdzP [q Hab].
+        have {}Hab: (`|a|)%R = `|(q * b)%R|.
+            rewrite Hab //.
+        case Hq : `|q| => [|k].
+            rewrite abszM in Hab.
+            rewrite Hq in Hab.
+            rewrite ssrnat.mul0n in Hab.
+            move: Hab. move=> /eqP Hab.
+            rewrite -absz_eq0 absz_id absz_eq0 in Hab.
+            move: Hab. move=> /eqP Hab. rewrite Hab // in Ha0.
+        move: Hab. 
+        move=> Hab. rewrite -abszE in Hab.
+        rewrite [X in ~~ (X < _)%R]Hab.
+        rewrite -abszE. rewrite ltz_nat.
+        rewrite abszM Hq.
+        rewrite ssrnat.mulSn -ssrnat.addSn.
+        rewrite -ssrnat.ltnNge ssrnat.leq_addr //.
+    Qed.
+            
+    Lemma aux4 p (a : int):
+        prime p -> (0 < a)%R && (a <= p%:Z - 1)%R -> coprimez a p.
+    Proof.
+        move=> Hprime /andP Hap.
+        case: Hap => Ha0 Hap. rewrite coprimezE.
+        have Ha : a = `|a|.
+            symmetry. apply: gtz0_abs. move=>//.
+        Search (div.dvdn _ _ = false).
 
-        move: (cond_inv a `|p|) => Hinv.
+
+    (* Lema 7 do TCC: *)
+    Lemma inv_modp p (a : int):
+        (prime p) -> (1 < a)%R && (a <= p%:Z - 1)%R -> 
+            exists (k : int), (0 < k <= (p%:Z - 1))%R && ((a * k)%R == 1 %[mod p]).
+    Proof.
+        move=> Hprime Hap.
+        have : coprimez a p.
+
 
         
 
