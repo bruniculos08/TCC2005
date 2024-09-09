@@ -154,11 +154,29 @@ Module inverse.
         prime p -> (0 < a)%R && (a <= p%:Z - 1)%R -> coprimez a p.
     Proof.
         move=> Hprime /andP Hap.
-        case: Hap => Ha0 Hap. rewrite coprimezE.
-        have Ha : a = `|a|.
-            symmetry. apply: gtz0_abs. move=>//.
-        Search (div.dvdn _ _ = false).
-
+        case: Hap => Ha0 Hap.
+        have Had0 : a != 0.
+            rewrite neq_lt Ha0 orbC //=.
+        have {}Habs : (`|a| < `|p%:Z|)%R.
+            have : ((p%:Z - 1) < p%:Z)%R.
+                rewrite -lezD1. 
+                rewrite -[X in (_ + X <= _)%R]GRing.addr0 GRing.subrKA.
+                rewrite GRing.addr0. rewrite lez_nat ssrnat.leqnn //.
+            move=> Hp. apply gtz0_abs in Ha0. rewrite -Ha0 in Hap.
+            move: (absz_nat p) => Hpp.
+            rewrite -Hpp in Hp.
+            rewrite -ltzD1 in Hap.
+            rewrite -[X in (_ < _ + X)%R]GRing.addr0 in Hap.
+            rewrite GRing.subrKA GRing.addr0 in Hap.
+            move=>//.
+        move: (aux3 Had0 Habs) => Hpda.
+        rewrite dvdzE in Hpda.
+        (* Search (prime).
+        Search (div.coprime _ _ = div.coprime _ _). *)
+        rewrite coprimezE div.coprime_sym prime_coprime.
+        rewrite Hpda //=.
+        move=>//. 
+    Qed.
 
     (* Lema 7 do TCC: *)
     Lemma inv_modp p (a : int):
