@@ -49,3 +49,18 @@
 
 % Controle do espaçamento entre um parágrafo e outro:
 \setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% Configurações adicionadas por Bruno:
+	% Teoremas e etc:
+	\newtheorem{definição}{Definição}
+	\newtheorem{teorema}{Teorema}
+	\newtheorem{lema}{Lema}
+	% Operadores:
+	\usepackage{amsmath, amsfonts, amssymb}
+	\usepackage{mathtools}
+	\DeclareMathOperator{\mdc}{mdc}
+	\DeclareMathOperator{\mmc}{mmc}
+	\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+	% \DeclareMathOperator{\ndiv}{$\hspace{-4pt}\not|\hspace{2pt}$}
+	\usepackage{proof}
+	\usepackage{mathpartir}

@@ -178,12 +178,22 @@ Module inverse.
         move=>//. 
     Qed.
 
+    Print GRing.sqrrN.
+
+    HB.about int.
+    HB.about nat.
+    HB.about eqType.
+    HB.about GRing.Ring.
+    HB.about GRing.SemiRing.
+    HB.about GRing.Zmodule.
+    HB.about GRing.addNr.
+
     (* Lema 7 do TCC: *)
     Lemma inv_modp p (a : int):
         (prime p) -> (0 < a)%R && (a <= p%:Z - 1)%R -> 
             exists (k : int), (0 < k <= (p%:Z - 1))%R && ((a * k)%R == 1 %[mod p]).
     Proof.
-        move=> Hprime Hap. move: (aux4 Hprime Hap) => Hcp. 
+        move=> Hprime Hap. move: (aux4 Hprime Hap) => Hcp.
     Admitted.
 
         

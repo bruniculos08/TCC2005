@@ -5,19 +5,79 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.7 }
 
-\bibitem[Brochero Martinez Carlos Gustavo T. de A.~Moreira 2013]{book:2399854}
-\abntrefinfo{Brochero Martinez Carlos Gustavo T. de A.~Moreira}{BROCHERO
-  MARTINEZ CARLOS GUSTAVO T. DE A.~MOREIRA}{2013}
-{BROCHERO MARTINEZ CARLOS GUSTAVO T. DE A.~MOREIRA, N. C. S. E.~T. F.~E.
-  \emph{Teoria dos Números: um passeio com primos e outros números familiares
-  pelo mundo inteiro}. 3. ed. Rio de Janeiro : IMPA: IMPA, 2013.  (Projeto
-  Euclides).
+\bibitem[Appel e Haken 1976]{bams/1183538218}
+\abntrefinfo{Appel e Haken}{APPEL; HAKEN}{1976}
+{APPEL, K.; HAKEN, W. {Every planar map is four colorable}.
+\emph{Bulletin of the American Mathematical Society}, American Mathematical Society, v.~82, n.~5, p. 711--712, 1976.}
+
+\bibitem[Brochero et al. 2013]{book:2399854}
+\abntrefinfo{Brochero et al.}{BROCHERO et al.}{2013}
+{BROCHERO, F.~E. et al. \emph{Teoria dos Números: um passeio com primos e outros números familiares pelo mundo inteiro}. 3. ed. Rio de Janeiro : IMPA: IMPA, 2013.  (Projeto Euclides).
 ISBN 978-85-2444-0312-5.}
+
+\bibitem[Gonthier 2023]{gonthier:hal-04034866}
+\abntrefinfo{Gonthier}{GONTHIER}{2023}
+{GONTHIER, G. \emph{A computer-checked proof of the Four Color Theorem}.
+[S.l.], 2023. Dispon{\'\i}vel em: \url{https://inria.hal.science/hal-04034866/file/FINALA\%20computer-checked\%20proof\%20of\%20the\%20four\%20color\%20theorem\%20-\%20HAL.pdf}.}
+
+\bibitem[Huynh 2021]{Huynh1581080}
+\abntrefinfo{Huynh}{HUYNH}{2021}
+{HUYNH, E.
+\emph{Rabin's Cryptosystem}.
+39~p. Monografia (Bachelor) --- Linnaeus University, Department of Mathematics, Suécia, 2021.}
+
+\bibitem[Kumar 2020]{kumar2021algorithm}
+\abntrefinfo{Kumar}{KUMAR}{2020}
+{KUMAR, R. \emph{An algorithm for finding square root modulo p}. 2020.
+Dispon{\'\i}vel em: \url{https://doi.org/10.48550/arXiv.2008.11814}. Acesso em: 15 de maio de 2024.}
+
+\bibitem[Li, Dong e Cao 2014]{7133812}
+\abntrefinfo{Li, Dong e Cao}{LI; DONG; CAO}{2014}
+{LI, Z.; DONG, X.; CAO, Z. Generalized cipolla-lehmer root computation in finite fields. In:  ICINS 2014 - 2014 INTERNATIONAL CONFERENCE ON INFORMATION AND NETWORK SECURITY, CP657. \emph{ICINS 2014 - 2014 International Conference on Information and Network Security}. Pequim, China, 2014. p. 163--168.}
+
+\bibitem[Mahboubi e Tassi 2022]{assia_mahboubi_2022_7118596}
+\abntrefinfo{Mahboubi e Tassi}{MAHBOUBI; TASSI}{2022}
+{MAHBOUBI, A.; TASSI, E. \emph{Mathematical Components}. Zenodo, 2022. Dispon{\'\i}vel em: \url{https://doi.org/10.5281/zenodo.7118596}.}
+
+\bibitem[Maheswari e Durairaj 2017]{Maheswari}
+\abntrefinfo{Maheswari e Durairaj}{MAHESWARI; DURAIRAJ}{2017}
+{MAHESWARI, A.~U.; DURAIRAJ, P. An algorithm to find square roots of quadratic residues modulo p (p being an odd prime), p $\equiv$ 1 (mod 4).
+\emph{Global Journal of Pure and Applied Mathematics}, v.~13, n.~4, p. 1223--1239, 2017.}
+
+\bibitem[Neeman 2002]{Neeman2002}
+\abntrefinfo{Neeman}{NEEMAN}{2002}
+{NEEMAN, A. A counterexample to a 1961 “theorem” in homological algebra.
+\emph{Inventiones Mathematicae}, v.~148, n.~2, p. 397--420, maio 2002.
+Dispon{\'\i}vel em: \url{http://dx.doi.org/10.1007/s002220100197}. Acesso em: 15 de jun. de 2024.}
+
+\bibitem[Niven e Zuckerman 1991]{Niven1915}
+\abntrefinfo{Niven e Zuckerman}{NIVEN; ZUCKERMAN}{1991}
+{NIVEN, I.; ZUCKERMAN, H.~S. \emph{An introduction to the theory of numbers}. Estados Unidos da América: John Wiley \& Sons, Inc, 1991.}
+
+\bibitem[Paulin-Mohring 2015]{paulinmohring:hal-01094195}
+\abntrefinfo{Paulin-Mohring}{PAULIN-MOHRING}{2015}
+{PAULIN-MOHRING, C. Introduction to the calculus of inductive constructions. In:  PALEO, B.~W.; DELAHAYE, D. (Ed.). \emph{All about Proofs, Proofs for All}. College Publications, 2015,  (Studies in Logic (Mathematical logic and foundations), v.~55).
+Dispon{\'\i}vel em: \url{https://inria.hal.science/hal-01094195}.}
+
+\bibitem[Sarkar 2024]{PalashSarkar2024AdvancesinMathematicsofCommunications}
+\abntrefinfo{Sarkar}{SARKAR}{2024}
+{SARKAR, P. Computing square roots faster than the tonelli-shanks/bernstein algorithm.
+\emph{Advances in Mathematics of Communications}, v.~18, n.~1, p. 141--162, 2024.
+Dispon{\'\i}vel em: \url{https://www.aimsciences.org/article/id/6212ee892d80b75aa4a24c21}.}
+
+\bibitem[Shanks 1972]{danielShanks}
+\abntrefinfo{Shanks}{SHANKS}{1972}
+{SHANKS, D. Five number theoretical algorithms. In:  MANITOBA CONFERENCE ON NUMERICAL MATHEMATICS, 2. \emph{Proceedings of the Second Manitoba Conference on Numerical Mathematics}. Winnipeg: Utilitas Mathematica Pub., 1972.}
+
+\bibitem[Tonelli 1891]{Tonelli1891}
+\abntrefinfo{Tonelli}{TONELLI}{1891}
+{TONELLI, A. Bemerkung über die auflösung quadratischer congruenzen.
+\emph{Nachrichten von der Königl. Gesellschaft der Wissenschaften und der Georg-Augusts-Universität zu Göttingen}, v.~30, n.~1, p. 344--346, 1891.
+Dispon{\'\i}vel em: \url{http://eudml.org/doc/180329}.}
 
 \bibitem[Wood 1999]{casasonolenta}
 \abntrefinfo{Wood}{WOOD}{1999}
-{WOOD, A. \emph{A Casa Sonolenta}. Original. Estados Unidos América: Editora
-  Ática, 1999.  (Abracadabra).
+{WOOD, A. \emph{A Casa Sonolenta}. Original. Estados Unidos da América: Editora Ática, 1999.  (Abracadabra).
 ISBN 9788508032761.}
 
 \end{thebibliography}

@@ -4,7 +4,7 @@
 % Disponível em: https://github.com/abntex/abntex2/blob/master/doc/latex/abntex2/examples/abntex2-modelo-trabalho-academico.tex
 
 % Configurações do documento:
-\documentclass[12pt, openright, twoside, a4paper, english, french, spanish, brazil]{abntex2}
+\documentclass[12pt, openright, twoside, a4paper, english, french, spanish, brazil, english]{AbnTex/abntex2}
 
 % Pacotes básicos:
 \usepackage{lmodern}
@@ -20,7 +20,7 @@
 
 % Pacotes de citações:
 \usepackage[brazilian,hyperpageref]{backref}
-\usepackage[alf]{abntex2cite}
+\usepackage[alf]{AbnTex/abntex2cite}
 
 % Configurações do pacote backref:
 \renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
@@ -39,21 +39,26 @@
 \include{Partes/Capa}
 % Outras configurações:
 \include{Partes/Config}
-
 % Compilar índice:
 \makeindex
 
+% Início do documento:
 \begin{document}
 \selectlanguage{brazil}
 \frenchspacing 
+	% Elementos pré-textuais:
 	\pretextual
+	% Capa:
 	\imprimircapa
+	% Folha de rosto (o '*' indica que haverá a ficha bibliográfica):
 	\imprimirfolhaderosto*{}
+	% Ficha Catalográfica:
+	\include{Partes/Ficha}
+
 	% \include{Partes/Ficha}
 	\include{Partes/Pre-texto}
 	\textual
 	\input{Partes/Introducao}
-
 
 	\bibliography{referencias}
 \end{document}
