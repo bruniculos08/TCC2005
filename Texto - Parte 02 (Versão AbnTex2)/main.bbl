@@ -35,6 +35,11 @@ Dispon{\'\i}vel em: \url{https://doi.org/10.48550/arXiv.2008.11814}. Acesso em: 
 \abntrefinfo{Li, Dong e Cao}{LI; DONG; CAO}{2014}
 {LI, Z.; DONG, X.; CAO, Z. Generalized cipolla-lehmer root computation in finite fields. In:  ICINS 2014 - 2014 INTERNATIONAL CONFERENCE ON INFORMATION AND NETWORK SECURITY, CP657. \emph{ICINS 2014 - 2014 International Conference on Information and Network Security}. Pequim, China, 2014. p. 163--168.}
 
+\bibitem[Mahboubi e Tassi 2013]{10.1007/978-3-642-39634-2_5}
+\abntrefinfo{Mahboubi e Tassi}{MAHBOUBI; TASSI}{2013}
+{MAHBOUBI, A.; TASSI, E. Canonical structures for the working coq user. In:  BLAZY, S.; PAULIN-MOHRING, C.; PICHARDIE, D. (Ed.). \emph{Interactive Theorem Proving}. Berlin, Heidelberg: Springer Berlin Heidelberg, 2013. p. 19--34.
+ISBN 978-3-642-39634-2.}
+
 \bibitem[Mahboubi e Tassi 2022]{assia_mahboubi_2022_7118596}
 \abntrefinfo{Mahboubi e Tassi}{MAHBOUBI; TASSI}{2022}
 {MAHBOUBI, A.; TASSI, E. \emph{Mathematical Components}. Zenodo, 2022. Dispon{\'\i}vel em: \url{https://doi.org/10.5281/zenodo.7118596}.}
@@ -68,6 +73,11 @@ Dispon{\'\i}vel em: \url{https://www.aimsciences.org/article/id/6212ee892d80b75a
 \bibitem[Shanks 1972]{danielShanks}
 \abntrefinfo{Shanks}{SHANKS}{1972}
 {SHANKS, D. Five number theoretical algorithms. In:  MANITOBA CONFERENCE ON NUMERICAL MATHEMATICS, 2. \emph{Proceedings of the Second Manitoba Conference on Numerical Mathematics}. Winnipeg: Utilitas Mathematica Pub., 1972.}
+
+\bibitem[Team 2024]{coqteam2022manual}
+\abntrefinfo{Team}{TEAM}{2024}
+{TEAM, T. C.~D. \emph{The Coq Reference Manual}.
+France, 2024.}
 
 \bibitem[Tonelli 1891]{Tonelli1891}
 \abntrefinfo{Tonelli}{TONELLI}{1891}

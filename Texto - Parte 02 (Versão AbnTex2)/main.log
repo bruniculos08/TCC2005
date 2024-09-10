@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2024.9.9)  9 SEP 2024 23:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2024.9.9)  10 SEP 2024 00:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -837,7 +837,7 @@ Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 \@LowerPart=\box63
 \@LabelPart=\box64
 \ResultBox=\box65
-)) (/usr/share/texlive/texmf-dist/tex/latex/mathpartir/mathpartir.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/mathpartir/mathpartir.sty
 Package: mathpartir 2016/02/24 version 1.3.2 Math Paragraph for Typesetting Inference Rules
 \mpr@andskip=\skip268
 \mpr@lista=\toks38
@@ -845,7 +845,29 @@ Package: mathpartir 2016/02/24 version 1.3.2 Math Paragraph for Typesetting Infe
 \mpr@hlist=\box66
 \mpr@vlist=\box67
 \mpr@right=\box68
-)
+)) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count373
+\lst@gtempboxa=\box69
+\lst@token=\toks40
+\lst@length=\count374
+\lst@currlwidth=\dimen299
+\lst@column=\count375
+\lst@pos=\count376
+\lst@lostspace=\dimen300
+\lst@width=\dimen301
+\lst@newlines=\count377
+\lst@lineno=\count378
+\lst@maxwidth=\dimen302
+ (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
+\c@lstnumber=\count379
+\lst@skipnumbers=\count380
+\lst@framebox=\box70
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2023/02/27 1.9 listings configuration
+))
+Package: listings 2023/02/27 1.9 (Carsten Heinz)
+ (./Estilos/coq.sty) (./Estilos/coq-error.sty)
 \main@idxfile=\write4
 \openout4 = `main.idx'.
 
@@ -875,21 +897,21 @@ LaTeX Font Info:    ... okay on input line 46.
 Package hyperref Info: Link coloring ON on input line 46.
 LaTeX Info: Redefining \degres on input line 46.
 LaTeX Info: Redefining \up on input line 46.
-\myptabbox=\box69
+\myptabbox=\box71
 \myptabboxwidth=\skip269
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count373
-\scratchdimen=\dimen299
-\scratchbox=\box70
-\nofMPsegments=\count374
-\nofMParguments=\count375
-\everyMPshowfont=\toks40
-\MPscratchCnt=\count376
-\MPscratchDim=\dimen300
-\MPnumerator=\count377
-\makeMPintoPDFobject=\count378
-\everyMPtoPDFconversion=\toks41
+\scratchcounter=\count381
+\scratchdimen=\dimen303
+\scratchbox=\box72
+\nofMPsegments=\count382
+\nofMParguments=\count383
+\everyMPshowfont=\toks41
+\MPscratchCnt=\count384
+\MPscratchDim=\dimen304
+\MPnumerator=\count385
+\makeMPintoPDFobject=\count386
+\everyMPtoPDFconversion=\toks42
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -914,7 +936,9 @@ Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
  (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
-) [1
+)
+\c@lstlisting=\count387
+ [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}] [2
 
@@ -1044,34 +1068,53 @@ Underfull \hbox (badness 10000) in paragraph at lines 73--73
  \T1/lmr/m/n/10 (+20) 261109249151ce5651da62077c255a5c76b4941e / Mathlib / NumberTheory / LegendreSymbol /
  []
 
-) (./main.bbl (./main.brf)
+) (./Partes/Cap2.tex [10]
+<Figuras/ssreflect.png, id=158, 947.54pt x 782.925pt>
+File: Figuras/ssreflect.png Graphic file (type png)
+<use Figuras/ssreflect.png>
+Package pdftex.def Info: Figuras/ssreflect.png  used on input line 15.
+(pdftex.def)             Requested size: 273.00278pt x 225.57301pt.
+ [11
+
+ <./Figuras/ssreflect.png>]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 27.
+ (/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 27.
+ [12] [13] [14]) (./main.bbl (./main.brf)
 \tf@brf=\write5
 \openout5 = `main.brf'.
 
- [10]
-bibitemlist
-[11
+ [15] [16
 
-]) [12] (./main.aux (./Partes/Ficha.aux) (./Partes/Pre-texto.aux))
+]
+bibitemlist
+[17]) [18] (./main.aux (./Partes/Ficha.aux) (./Partes/Pre-texto.aux))
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: D2D456184446C0A9A412EB677B4B938A;1147.
+(rerunfilecheck)             Checksum: E3DF2018A78B3E354C3607AAA5F62350;1871.
  ) 
 Here is how much of TeX's memory you used:
- 21133 strings out of 476034
- 341152 string characters out of 5792855
- 1866388 words of memory out of 6000000
- 41028 multiletter control sequences out of 15000+600000
- 596230 words of font info for 162 fonts, out of 8000000 for 9000
+ 23083 strings out of 476034
+ 369087 string characters out of 5792855
+ 1880388 words of memory out of 6000000
+ 42847 multiletter control sequences out of 15000+600000
+ 608141 words of font info for 187 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 90i,13n,90p,1355b,714s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (14 pages, 286202 bytes).
+ 90i,18n,90p,1355b,1316s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (20 pages, 390302 bytes).
 PDF statistics:
- 282 PDF objects out of 1000 (max. 8388607)
- 233 compressed objects within 3 object streams
- 45 named destinations out of 1000 (max. 500000)
- 45097 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 443 PDF objects out of 1000 (max. 8388607)
+ 383 compressed objects within 4 object streams
+ 111 named destinations out of 1000 (max. 500000)
+ 51798 words of extra memory for PDF output out of 61914 (max. 10000000)
 
