@@ -194,6 +194,9 @@ Module inverse.
             exists (k : int), (0 < k <= (p%:Z - 1))%R && ((a * k)%R == 1 %[mod p]).
     Proof.
         move=> Hprime Hap. move: (aux4 Hprime Hap) => Hcp.
+        have int_mulrAC := @GRing.mulrAC int.
+        rewrite /ssrfun.right_commutative in int_mulrAC.
+        rewrite 
     Admitted.
 
         
