@@ -149,7 +149,7 @@ Module inverse.
         rewrite ssrnat.mulSn -ssrnat.addSn.
         rewrite -ssrnat.ltnNge ssrnat.leq_addr //.
     Qed.
-            
+
     Lemma aux4 p (a : int):
         prime p -> (0 < a)%R && (a <= p%:Z - 1)%R -> coprimez a p.
     Proof.
@@ -178,15 +178,59 @@ Module inverse.
         move=>//. 
     Qed.
 
-    Print GRing.sqrrN.
+    Lemma divz_abs (a d : int):
+        (d %| a) = (d %| `|a|%:Z).
+    Proof.
+        by rewrite !dvdzE absz_id.
+    Qed.
 
-    HB.about int.
-    HB.about nat.
-    HB.about eqType.
-    HB.about GRing.Ring.
-    HB.about GRing.SemiRing.
-    HB.about GRing.Zmodule.
-    HB.about GRing.addNr.
+    Check (`|5| <= `|7|).
+    Check ((`|5| <= `|7|)%R).
+
+    Lemma divz_le_abs (a d : int):
+        (a != 0) -> (d %| a) -> (`|d| <= `|a|)%R.
+    Proof.
+        move=> Ha0.
+        rewrite !dvdzE.
+        have: (ssrnat.leq 1 `|a|).
+            rewrite -absz_gt0 -lez_nat in Ha0.
+            move=>//.
+        move=> Hle Hdvd.
+        rewrite lez_nat.
+        apply (div.dvdn_leq Hle Hdvd).
+    Qed.
+
+    Lemma modz_neq0 (a b d : int):
+        (0 < `|b| < d)%R -> (a == b %[mod d]) -> (a != 0).
+    Proof.
+        move=> /andP [Hb0 Hbd]. apply: contraL. move=> /eqP Ha.
+        apply/eqP. rewrite /not. move=> /eqP Hab.
+        rewrite Ha eqz_mod_dvd in Hab.
+        rewrite GRing.sub0r in Hab.
+        rewrite divz_abs abszN in Hab.
+        have Hd0: (0 < d)%R.
+            apply (lt_trans Hb0 Hbd).
+        apply Num.Theory.gtr0_norm in Hd0.
+        rewrite -Hd0 in Hab.
+        have : `|b|%:Z != 0.
+            rewrite -absz_gt0. rewrite -ltz_nat.
+            move=>//.
+        move=> Hbneq0.
+        move: (divz_le_abs Hbneq0 Hab).
+        rewrite Hd0. rewrite [X in (_ <= `|X|)%R -> _]abszE.
+        rewrite -[X in (_ <= `|X|)%R -> _]abszE.
+        rewrite -[X in (_ <= X)%R -> _]abszE absz_id.
+        rewrite [X in (_ <= X)%R -> _]abszE.
+        rewrite -Hd0 in Hbd.
+        move=> Hdb.
+        clear Ha Hb0 Hd0 Hbneq0 Hab.
+        rewrite ltz_nat in Hbd.    
+        rewrite lez_nat in Hdb.     
+        Search (ssrnat.leq _ _ = ~~ _).    
+        rewrite ssrnat.ltnNge in Hbd.
+        apply negbTE in Hbd.
+        rewrite Hbd in Hdb. move=>//. 
+    Qed.
 
     (* Lema 7 do TCC: *)
     Lemma inv_modp p (a : int):
@@ -194,9 +238,41 @@ Module inverse.
             exists (k : int), (0 < k <= (p%:Z - 1))%R && ((a * k)%R == 1 %[mod p]).
     Proof.
         move=> Hprime Hap. move: (aux4 Hprime Hap) => Hcp.
-        have int_mulrAC := @GRing.mulrAC int.
-        rewrite /ssrfun.right_commutative in int_mulrAC.
-        rewrite 
+        rewrite /coprimez in Hcp.
+        move: (Bezoutz a p) => Bz.
+        case: Bz => x Bz. 
+        case: Bz => y Bz.
+        move: Hcp => /eqP Hcp.
+        rewrite Hcp in Bz. 
+        have : (p%:Z %| ((x * a) - 1)%R). 
+            have : (x * a - 1)%R = ((-y) * p)%R.
+                {
+                    rewrite -Bz.
+                    (* Search ((_ - (_ + _))%R). *)
+                    rewrite -[X in (X - _)%R = _]GRing.add0r.
+                    rewrite GRing.addrKA GRing.sub0r.
+                    rewrite GRing.mulNr //.
+                }
+            move=> H'. apply/dvdzP. exists (-y)%R.
+            move=>//.
+        move=> Hpd. rewrite -eqz_mod_dvd in Hpd.
+        move: (modzMmr a x p) => Hmod.
+        rewrite GRing.mulrC (GRing.mulrC a) in Hmod.
+        move: Hpd => /eqP Hpd. rewrite Hpd in Hmod.
+        exists (x %% p). apply/andP. split.
+            apply/andP. split.
+            move: Hpd => /eqP Hpd.
+            have: (0 < `|1|).
+                rewrite //=.
+            have: `|1| < p.
+                rewrite //=.
+                move: Hap => /andP [Ha0 Hap].
+                rewrite gtz0_ge1 in Ha0.
+                have: 
+                
+                
+                
+                
     Admitted.
 
         
