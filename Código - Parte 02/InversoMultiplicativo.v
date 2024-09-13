@@ -85,7 +85,7 @@ Module inverse.
         rewrite -!GRing.mulrA -GRing.mulrDr Huv //=.
     Qed.
         
-        (* Lema 6 do TCC: *)
+    (* Lema 6 do TCC: *)
     Lemma cond_inv (a n : int) :
         (exists b : int, a ^ -1 == b %[mod n]) <-> ((gcdz a n)%R == 1%R).
     Proof.
@@ -187,6 +187,12 @@ Module inverse.
     Check (`|5| <= `|7|).
     Check ((`|5| <= `|7|)%R).
 
+    (* 
+    Explicação do uso de '%R':
+        - É como se uma determinada notação service apenas
+        para eqType...
+    *)
+
     Lemma divz_le_abs (a d : int):
         (a != 0) -> (d %| a) -> (`|d| <= `|a|)%R.
     Proof.
@@ -264,11 +270,28 @@ Module inverse.
             move: Hpd => /eqP Hpd.
             have: (0 < `|1|).
                 rewrite //=.
-            have: `|1| < p.
+            have: (`|1| < p%:Z)%R.
                 rewrite //=.
                 move: Hap => /andP [Ha0 Hap].
                 rewrite gtz0_ge1 in Ha0.
-                have: 
+                have Hp1 : (1 <= (p%:Z - 1)%R)%R.
+                    apply: (le_trans Ha0 Hap).
+                    rewrite -ltzD1 in Hp1.
+                    rewrite -(GRing.add0r (p%:Z - 1)%R) in Hp1.
+                    rewrite (GRing.addrC 0) in Hp1.
+                    rewrite -abszE //=.
+                    rewrite -GRing.addrA (GRing.addrC 0) GRing.subrKA GRing.subr0 in Hp1.
+                    move=>//.
+                move=> H1p H01.
+                have Hp : (0%Z < `|1| < p%:Z)%R.
+                    apply/andP. split.
+                        move=>//.   
+                        move=>//.
+                move: (modz_neq0 Hp Hpd) => Hxa0.
+                clear Hprime Hap Hcp Bz Hmod.
+                Search ((_ * _) != 0).
+                    
+                    
                 
                 
                 

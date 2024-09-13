@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2024.9.9)  10 SEP 2024 00:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2024.9.9)  12 SEP 2024 22:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1087,34 +1087,43 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 27.
- [12] [13] [14]) (./main.bbl (./main.brf)
+ [12] [13] [14] [15]
+Overfull \hbox (13.45143pt too wide) in paragraph at lines 196--197
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[16] [17] [18] [19] [20]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 396.
+ (/usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [21{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [22]) (./main.bbl (./main.brf)
 \tf@brf=\write5
 \openout5 = `main.brf'.
 
- [15] [16
+ [23] [24
 
 ]
 bibitemlist
-[17]) [18] (./main.aux (./Partes/Ficha.aux) (./Partes/Pre-texto.aux))
+[25]) [26] (./main.aux (./Partes/Ficha.aux) (./Partes/Pre-texto.aux))
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: E3DF2018A78B3E354C3607AAA5F62350;1871.
+(rerunfilecheck)             Checksum: 2D7BAE6B972E0FD55D859652DDE226F9;2012.
  ) 
 Here is how much of TeX's memory you used:
- 23083 strings out of 476034
- 369087 string characters out of 5792855
- 1880388 words of memory out of 6000000
- 42847 multiletter control sequences out of 15000+600000
- 608141 words of font info for 187 fonts, out of 8000000 for 9000
+ 23401 strings out of 476034
+ 373886 string characters out of 5792855
+ 1889388 words of memory out of 6000000
+ 42950 multiletter control sequences out of 15000+600000
+ 618917 words of font info for 207 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 90i,18n,90p,1355b,1316s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,25n,90p,1355b,1318s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (20 pages, 390302 bytes).
+Output written on main.pdf (28 pages, 427321 bytes).
 PDF statistics:
- 443 PDF objects out of 1000 (max. 8388607)
- 383 compressed objects within 4 object streams
- 111 named destinations out of 1000 (max. 500000)
- 51798 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 702 PDF objects out of 1000 (max. 8388607)
+ 630 compressed objects within 7 object streams
+ 285 named destinations out of 1000 (max. 500000)
+ 57966 words of extra memory for PDF output out of 61914 (max. 10000000)
 

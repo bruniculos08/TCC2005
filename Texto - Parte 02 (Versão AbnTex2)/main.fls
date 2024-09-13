@@ -1185,6 +1185,14 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmsy10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmr6.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmri8.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmri7.tfm
+INPUT /usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ts1-lmr10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT ./main.bbl
 INPUT main.bbl
 INPUT ./main.bbl
