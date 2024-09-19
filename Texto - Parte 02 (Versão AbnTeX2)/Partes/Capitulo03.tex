@@ -1,0 +1,772 @@
+\chapter{Base Teórica}
+\label{cap:base}
+
+Para que se realizem as implementações serão necessários diversos teoremas, lemas e funções, dos quais, parte, já estão implementados na biblioteca Mathematical Components. Sendo assim, o presente capítulo busca trazer a descrição da maioria destes itens, colocando também suas respectivas implementações disponíveis na biblioteca (se houver). 
+
+A maior parte do conteúdo deste capítulo se baseia no livro \cite{book:2399854}, que foi amplamente estudado para realização deste trabalho. Sendo assim, as provas não apresentadas aqui se encontram nesse livro.
+
+\section{Máximo Divisor Comum}
+Tendo sido apresentado os conceitos de módulo e divisibilidade, outro pilar fundamental da Teoria dos Números é o conceito de $\mdc$ (máximo divisor comum). A princípio, a definição seria auto-explicativa, mas parte de diversos teoremas importantes a utiliza e portanto é interessante que se tenha uma definição equivalente específica para facilitar provas futuras. Para se obter tal definição alternativa, observe que, formalmente, a definição de $\mdc$ é:
+    \begin{equation*}
+        \forall a, b, n \in \mathbb{Z},  \mdc(a, b) = n \Leftrightarrow (n \mid a) \land (n \mid b) \land (\forall k \in \mathbb{Z}, (k \mid a) \land (k \mid b) \rightarrow k \leq n)
+    \end{equation*}
+Analisando a proposição:
+    \begin{equation*}
+        \forall k \in \mathbb{Z}, (k \mid a) \land (k \mid b) \rightarrow k \leq n
+    \end{equation*}
+Pode-se verificar os seguintes casos:
+    \begin{enumerate}
+        \item $|k| = |n|$, isto é, $k = n$ ou $k = -n$. Em ambos estes casos $k \mid n$.
+
+        \item $|k| < |n|$, assim, como $n \mid a$ e $n \mid b$, então, $\exists q_a, q_b \in \mathbb{Z}, (a = q_a \cdot n \land b = q_b \cdot n) $, onde $\mdc(q_a, q_b) = 1$ (caso contrário $n$ não seria $\mdc(a,b)$, pois haveria o divisor $\mdc(q_a, q_b) \cdot n$ que é maior que $n$, se $n > 1$). Portanto, como $k \mid a$ e $k \mid b$, então $k \mid q_a \cdot n$ e $k \mid q_b \cdot n$, mas sabe-se que $k \nmid q_a$ e $k \nmid q_b$, logo, $k \mid n$.
+    \end{enumerate}
+Olhando o que acontece quando $k \mid n$, é fácil notar que $|k| \leq |n|$, logo, no contexto em que $k \mid a$ e $k \mid b$, as afirmações $k \leq n$ e $k \mid n$ são equivalentes. Sendo assim tem-se a seguinte definição alternativa:
+\begin{equation*}
+        \forall k \in \mathbb{Z}, (k \mid a) \land (k \mid b) \rightarrow k \mid n
+\end{equation*}    
+
+\section{Algoritmo de Euclides}
+\label{sec:algoritmo-de-euclides}
+
+O algoritmo de Euclides é um método de computar o $\mdc$ entre dois números inteiros $a$ e $b$, tendo a seguinte descrição (algoritmo \ref{algo:euclides}):
+
+        \begin{algorithm}[!htbp]
+                \SetAlgoLined
+                \vspace{3mm}
+                \Entrada{$a, b \in \mathbb{Z}$}
+                \Saida{inteiro $n$.}
+                \Se{$a = 0$}
+                {\Retorna{$b$}}
+                \SeN
+                {\Retorna{\hyperref[algo:euclides]{\textsc{Euclides}}($b$, $a\bmod b$)}}
+                \caption{\textsc{Euclides}}\label{algo:euclides}
+        \end{algorithm}
+
+\noindent
+Este algoritmo se baseia no seguinte lema:
+\begin{lema} \label{lema:euclides}
+    $\forall a, b \in \mathbb{Z}$, seja $a = b \cdot q  + r$, onde $0 \leq r < |b|$, então:
+    \begin{equation*}
+        \mdc(a, b) = \mdc(b, r)
+    \end{equation*}
+\end{lema}
+    % \begin{proof}
+\noindent
+\textit{Demonstração}: inicialmente deve-se notar que, provar tal lema equivale a demonstrar:
+        \begin{equation} \label{eq : 1}
+            \forall n \in \mathbb{Z}, (\mdc(a, b) = n \leftrightarrow \mdc(b, r) = n)
+        \end{equation}
+        Além disso, deve-se considerar o seguinte lema trivial que versa sobre combinações lineares:
+        \begin{lema}[\textit{Divisibilidade e combinações lineares}]
+            \begin{equation*}
+                \forall a, b, n \in \mathbb{Z}, (n \mid a) \land (n \mid b) \rightarrow \forall c_1, c_2 \in \mathbb{Z}, n \mid (c_1 \cdot a + c_2 \cdot b)
+            \end{equation*}
+        \end{lema}
+        Dados esses adendos, prova-se inicialmente a volta da bi-implicação \ref{eq : 1}. Para isso, observe que, se $x = \mdc(b, r)$ então $x \mid b$ e $x \mid r$, e como $r = a - b \cdot q$ então $x \mid (a - b \cdot q)$. Pode-se então fazer uma combinação linear escolhendo $c_1 = q$ e $c_2 = 1$, donde se chega em:
+        \begin{equation*}
+                x \mid q \cdot b + 1 \cdot (a - b \cdot q)
+        \end{equation*}
+        \begin{equation*}
+                x \mid q \cdot b + a - b \cdot q
+        \end{equation*}
+        \begin{equation*}
+                x \mid a
+        \end{equation*}
+        Resta então provar que:
+        \begin{equation*}
+            \forall y \in \mathbb{Z}, (y \mid a) \land (y \mid b) \rightarrow (y \mid x) 
+        \end{equation*}
+        Da hipótese tem-se que
+        \begin{equation*}
+            \forall y \in \mathbb{Z}, (y \mid b) \land (y \mid r) \rightarrow (y \mid x) 
+        \end{equation*}
+        Se $y \mid a$ e $y \mid b$, como $a = b \cdot q + r$ então
+        $y \mid (b \cdot q + r)$. Utilizando o teorema sobre combinação linear novamente, com $c_1 = -q$ e $c_2 = 1$:
+        \begin{equation*}
+            y \mid -q \cdot b + 1 \cdot (b \cdot q + r) 
+        \end{equation*}
+        \begin{equation*}
+            y \mid - b \cdot q + b \cdot q + r 
+        \end{equation*}
+        \begin{equation*}
+            y \mid r 
+        \end{equation*}
+        Como $y \mid b$ e $y \mid r$, da hipótese temos que $y \mid x$ portanto se provou o que restava. Para a ida da bi-implicação a prova é semelhante. \qed
+    % \end{proof}
+% \end{lema}
+
+O algoritmo \hyperref[algo:euclides]{\textsc{Euclides}} é implementado da seguinte forma na biblioteca Mathematical Components (em sua versão para números naturais):
+\begin{lstlisting}[language = coq]
+    Fixpoint gcdn m n :=
+        let n' := n %% m in if n' is 0 then m else
+        if m - n'.-1 is m'.+1 then gcdn (m' %% n') n' else n'.
+\end{lstlisting}
+A versão para números inteiros é basicamente \lstinline[language = coq]{gcdn} aplicada sobre o valor absoluto dos números inteiros de entrada.
+% \begin{lstlisting}[language = coq]
+%     Definition gcdz m n := (gcdn `|m| `|n|)%:Z.
+% \end{lstlisting}
+Sobre a notação \lstinline[language = coq]{%%} essa representa a operação de resto da divisão, que, para números naturais é definida por:
+\begin{lstlisting}[language = coq]
+    Definition modn_rec d := 
+        fix loop m := if m - d is m'.+1 then loop m' else m.
+    Definition modn m d := if d > 0 then modn_rec d.-1 m else m.
+    Notation "m %% d" := (modn m d) : nat_scope.
+\end{lstlisting}
+E utilizando a função 
+\lstinline[language = coq]{divz} para divisão entre números inteiros, é implementada da seguinte forma (para inteiros):
+\begin{lstlisting}[language = coq]
+    Definition modz (m d : int) : int := m - divz m d * d.
+    Infix "%%" := modz : int_scope.
+\end{lstlisting}
+
+\section{Teorema Bachet-Bézout}
+
+Uma das consequências teóricas da definição de $\mdc$ é o Teorma Bachet-Bézout. Este por sua vez traz uma aplicação do conceito de $\mdc$ na resolução de equações. O seu enunciado é dado por:
+\begin{teorema}[\textit{Bachet-Bézout}] \label{teorema : bachetbezout}
+    $\forall a, b \in \mathbb{Z}, \exists x, y \in \mathbb{Z}$ tal que
+    \begin{equation*}
+        a \cdot x + b \cdot y = \mdc(a, b)
+    \end{equation*}
+\end{teorema}
+\noindent
+Como exemplo de consequências deste teorema têm-se:
+\begin{enumerate}
+    \item $\forall c \in \mathbb{Z}, c \mid a \land c \mid b \Rightarrow c \mid \mdc(a, b)$, ou seja, caso $c$ divida tanto $a$ quanto $b$ então $c$ divide $\mdc(a, b)$.
+    \item $\forall c \in \mathbb{Z}, (\exists x, y \in \mathbb{Z}, a \cdot x + b \cdot y = c) \Longleftrightarrow \mdc(a, b) \mid c $, ou seja, a equação $a \cdot x + b \cdot y = c$ tem solução se e somente se $\mdc(a, b)$ divide $c$.
+\end{enumerate}
+A prova manual do Teorema \ref{teorema : bachetbezout} e das consequências mencionadas se encontra em \cite{book:2399854}.
+
+    Em relação à biblioteca Mathematical Components e se tratando do Teorema \ref{teorema : bachetbezout}, essa possui a implementação de um algoritmo
+    % do algoritmo conhecido como "algoritmo de Euclides extendido" (
+    que encontra os coeficientes $x$ e $y$ e o valor de $\mdc(a,b)$. Este algoritmo possui duas versões, sendo identificado na biblioteca como \lstinline[language = coq]{egcdn} para naturais e \lstinline[language = coq]{egcdz} para inteiros. Além disso, existem os lemas \lstinline[language = coq]{egcdn_spec} e \lstinline[language = coq]{egcdz_spec}, tratando da corretude desses algoritmos (respectivamente) e para o caso dos números inteiros, há o lema \lstinline[language = coq]{Bezoutz} que é equivalente ao Teorema \ref{teorema : bachetbezout}.
+
+\section{Propriedades de Congruência}
+As propriedade da relação de congruência serão usadas com muita frequência (e de maneira implícita) no decorrer desse documento. Por essa razão, nesta seção serão listadas essas propriedades. Recomenda-se então ao leitor consultar o conteúdo aqui apresentado em caso de dúvidas no desenvolvimento de equações modulares.
+    
+    Seguindo para as propriedades, para todo $a,b, c, d, n \in \mathbb{Z}$ têm-se:
+\begin{enumerate}
+    \item (\textit{Reflexividade}) $a \equiv a \pmod{n}$
+    \item (\textit{Simetria}) $a \equiv b \pmod{n} \Longrightarrow b \equiv a \pmod{n}$
+    \item (\textit{Transitividade}) $a \equiv b \pmod{n} \land b \equiv c \pmod{n} \Longrightarrow a \equiv c \pmod{n}$
+    \item (\textit{Compatibilidade com a soma})
+    \begin{equation*}
+        a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a + c \equiv b + d \pmod{n}
+    \end{equation*}
+    \item (\textit{Compatibilidade com a diferença})
+    \begin{equation*}
+        a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a - c \equiv b - d \pmod{n}
+    \end{equation*}
+    \item \label{item:propcong6-produto} (\textit{Compatibilidade com o produto})
+    \begin{equation*}
+        a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a \cdot c \equiv b \cdot d \pmod{n}
+    \end{equation*}
+    A partir dessa propriedade, note que, para todo $k \in \mathbb{N}$:
+    \begin{equation*}
+        a \equiv b \pmod{n} \Longrightarrow a^k \equiv b^k \pmod{n}
+    \end{equation*}
+    \item \label{item:propcong7-cancelamento} (\textit{Cancelamento}) $\mdc(c, n) = 1 \Longrightarrow (a \cdot c \equiv b \cdot c \pmod{n} \Longleftrightarrow a \equiv b \pmod{n})$   
+\end{enumerate}
+
+Na biblioteca Mathematical Components, as relações de módulo são definidas pelas seguintes notações:
+\begin{lstlisting}[language = coq]
+    Notation "m = n %[mod d ]" := (modz m d = modz n d) : int_scope.
+    Notation "m == n %[mod d ]" := (modz m d == modz n d) : int_scope.
+    Notation "m <> n %[mod d ]" := (modz m d <> modz n d) : int_scope.
+    Notation "m != n %[mod d ]" := (modz m d != modz n d) : int_scope.
+\end{lstlisting}
+Deve-se observar que existem duas igualdades, sendo a primeira a de Leibniz e a segunda uma função booleana. O mesmo ocorre com as desigualdades (na mesma ordem).
+
+Tais definições são equivalentes a definição apresentada por \cite{book:2399854}, conforme é mostrado pelo lema \lstinline[language = coq]{eqz_mod_dvd} implementado na biblioteca \footnote{O operador 
+\lstinline[language = coq]{\%Z} serve para indicar o escopo da operação dentro do parênteses}:
+\begin{lstlisting}[language = coq]
+    Lemma eqz_mod_dvd d m n : (m == n %[mod d])%Z = (d %| m - n)%Z.
+\end{lstlisting}
+
+Quanto a implementação das propriedades apresentadas nesta seção, a biblioteca não as implementa, apesar de fazer isso para lemas semelhantes a algumas destas propriedades. A exemplo tem-se:
+\begin{lstlisting}[language = coq]
+    Lemma modzDm m n q : ((m %% q)%Z + (n %% q)%Z = m + n %[mod q])%Z.
+\end{lstlisting}
+Este lema se assemelha a propriedade de \textit{compatibilidade com a soma}, no sentido de que, considerando a existência do seguinte lema:
+\begin{lstlisting}[language = coq]
+    Lemma modz_mod m d : ((m %% d)%Z = m %[mod d])%Z.
+\end{lstlisting}
+possuem a mesma utilidade. 
+
+% Outro detalhe importante de se mencionar aqui é que também é possível trabalhar com esta relação (módulo) de outras maneiras usando implementações disponíveis na biblioteca. Uma destas é por meio de estruturas implementadas no módulo \textit{generic\_quotient} \footnote{\url{https://math-comp.github.io/htmldoc_2_2_0/mathcomp.ssreflect.generic_quotient.html}}.
+
+\section{Anel de Inteiros Módulo $n$}
+
+Uma estrutura que será utilizada no presente trabalho, e que pode ser implementada usando elementos disponíveis na biblioteca Mathcomp, são os anéis de inteiros módulo $n$. De acordo com \cite{book:2399854}, dada a relação $\sim$ sobre um conjunto $X$, se esta relação é uma relação de equivalência, isto é, possui as seguintes propriedades:
+\begin{enumerate}
+    \item \textbf{\textit{reflexividade}}: $\forall x \in X, x \sim x$
+    \item \textbf{\textit{transitividade}}: $\forall x, y, z \in X, x \sim y \land y \sim z \rightarrow x \sim z$
+    \item \textbf{\textit{simetria}}: $\forall x y \in X, x \sim y \leftrightarrow y \sim x$
+\end{enumerate}
+Como exposto em \cite{book:2399854}, estabelecer uma relação de equivalência sobre um conjunto $X$ é o mesmo que definir um partição sobre o mesmo, isto é, dividir $X$ em subconjuntos, em que, sendo cada subconjunto identifica como $X_\lambda$ onde $\lambda$ pertence a um conjunto $\Lambda$, então
+\begin{equation*}
+    X = \bigcup_{\lambda \in \Lambda} X_{\lambda}
+\end{equation*}
+Particionando $X$ por meio da relação $\sim$, tem-se que, dados $x, y \in X$, então $x, y \in X_\lambda$ se e somente se $x \sim y$. Além disso pode-se definir a \textit{classe de equivalência} $\overline{x}$ em que:
+\begin{equation*}
+    \overline{x} = \{y \in X \mid y \sim x \}
+\end{equation*}
+O conjunto de classes de equivalência $\{\overline{x} \mid x \in X\}$ é denominado quociente de $X$ por $\sim$ e é representado por $X/\sim$.
+
+Particionando $\mathbb{Z}$ por meio da relação $\equiv \mod n$ para algum $n \in \mathbb{Z} - \{0\}$, tem-se um conjunto de \textit{classes de equivalência} denominado \textit{anel de inteiros módulo $n$}, que costuma ser representado por $\mathbb{Z}/(n)$, onde então:
+\begin{equation*}
+    \mathbb{Z}/(n) = \{\overline{0}, ..., \overline{n - 1}\}
+\end{equation*}
+Note que, no entanto, as classes de equivalência podem ser denotadas por diferentes números, desde que tenha o mesmo resto na divisão inteira por $n$. A exemplo disso observe que:
+\begin{equation*}
+    \overline{0} = \overline{n}
+\end{equation*}
+pois
+\begin{equation}
+    0 \equiv n \pmod{n}
+\end{equation}
+Portanto, para quaisquer $a, b \in \mathbb{Z}$, se $\overline{a}, \overline{b} \in \mathbb{Z}/(n)$ tem-se:
+\begin{equation*}
+    \overline{a} = \overline{b} \Longleftrightarrow a \equiv b \pmod{n}
+\end{equation*}
+Com isso, dada que as seguintes propriedades são válidas para as relações de congruência, com quaisquer $a, b, c, d \in \mathbb{Z}$:
+\begin{itemize}
+    \item $a \equiv b \mod n \land c \equiv d \pmod{n} \Rightarrow a + c \equiv b + d \pmod{n}$
+    \item $a \equiv b \mod n \land c \equiv d \pmod{n} \Rightarrow a - c \equiv b - d \pmod{n}$
+    \item $a \equiv b \mod n \land c \equiv d \pmod{n} \Rightarrow a \cdot c \equiv b \cdot d \pmod{n}$
+\end{itemize}
+Se define então as operações de soma, subtração e multiplicação em $\mathbb{Z}/(n)$, das seguintes formas para todo $\overline{a}, \overline{b} \in \mathbb{Z}/(n)$
+\begin{itemize}
+    \item $\overline{a} + \overline{b} = \overline{a + b}$
+    \item $\overline{a} - \overline{b} = \overline{a - b}$
+    \item $\overline{a} \cdot \overline{b} = \overline{a \cdot b}$
+\end{itemize}
+Como explicado por explicado por \cite{book:2399854} e devido a estas operações, o nome \textit{anel de inteiros módulo $n$} é justificado pela definição de \textit{anel}: qualquer conjunto $A$ com duas operações binárias $+$ e $\cdot$, de modo que $A$ satisfaz as seguintes propriedades:
+% é um \textit{grupo abeliano}, isto é, um grupo que além das condições para ser um grupo, é comutativo, ou seja, se $A$ é um grupo por meio da operação binária $\cdot$, então:
+% \begin{equation*}
+%     \forall a, b \in A, a \cdot b = b \otimes a
+% \end{equation*}
+% Além desta condição, devem ser também satisfeitas as seguintes \cite{book:2399854}:
+\begin{itemize}
+    \item $(A, +)$ é um \textit{grupo abeliano}, isto é, um grupo que possui a propriedade de \textit{comutatividade} por meio da operação binária $+$, ou seja:
+    \begin{equation*}
+        \forall a, b \in A, a + b = b + a
+    \end{equation*}
+    com elemento neutro $0$ (neste caso $0$ é um elemento quaisquer, e não necessariamente o número $0$).
+    % \item \textit{\textbf{Associatividade do produto}}: $\forall a, b, c \in A, (a \cdot b) \cdot c = a \cdot (b \cdot c)$
+    % \item \textit{\textbf{Elemento neutro do produto:}} $\forall a \in A, \exists 1 \in A, (a \cdot 1 = 1 \cdot a)$ (semelhante a primeira condição, $1$ é um elemento quaisquer, e não necessariamente o número 1)
+    % \item \textit{\textbf{Distributividade}}: $\forall a, b, c \in A, a \cdot (b + c) = a \cdot b + a \cdot c \land (b + c) \cdot a = b \cdot a + c \cdot a$
+    \item $(A, \cdot)$ é um monoide com elemento neutro $1$.
+\end{itemize}
+Com esta definição de \textit{anel} chega-se em outras também importantes:
+\begin{itemize}
+    \item se $\forall a, b \in A, a \cdot b = b \cdot a$ então $A$ é um \textit{anel comutativo}.
+
+    \item se $A$ é um \textit{anel comutativo} em que os elementos neutros deste são diferentes ($0 \neq 1$) e $\forall a, b \in A, a \cdot b = 0 \Rightarrow a = 0 \lor b = 0$ então $A$ é um \textit{domínio}.
+
+    \item se $A$ é um \textit{anel comutativo} em que os elementos neutros deste são diferentes ($0 \neq 1$) e todo elemento diferente de $0$ em $A$ possui inverso na operação $\cdot$, isto é, $(A - \{0\}, \cdot)$ é um grupo então $A$ é um \textit{corpo}.
+\end{itemize}
+Relacionados a \textit{corpos}, tem-se os seguintes lemas importantes apresentados em \cite{book:2399854}:
+\begin{lema}
+    $\forall a, n \in \mathbb{Z}, n > 0 \Rightarrow \exists b \in \mathbb{Z}$ tal que $a \cdot b \equiv 1 \pmod n$ se, e somente se, $\mdc(a, n) = 1$.
+\end{lema}
+
+\begin{lema}
+    $\forall n \in \mathbb{Z}, \mathbb{Z}/(n)$ é um corpo se e somente se $n$ é primo. 
+\end{lema}
+
+Note que, pelo Lema 4, em um \textit{anel de inteiros módulo $n$}, só há inverso multiplicativo para um determinada \textit{classe de equivalência} $\overline{a}$ se $\mdc(a, n) = 1$, pois só assim existirá outra \textit{classe de equivalência} $\overline{b}$ tal que $\overline{a} \cdot \overline{b} = \overline{a \cdot b} = \overline{1}$ ($\overline{1}$ é o elemento neutro da operação $\cdot$).
+
+Outro conceito importante originado a partir da definição de \textit{anéis de inteiros módulo $n$} é a definição de \textit{grupo de unidades}, denotado por $(\mathbb{Z}/(n))^{\times}$. Esse é um subconjunto formado pelas \textit{classes de equivalência} invertíveis de $\mathbb{Z}/(n)$, ou seja:
+\begin{equation} \label{def:totientset}
+    (\mathbb{Z}/(n))^{\times} = \{\overline{a} \in \mathbb{Z}/(n) | \mdc(a, n) = 1\}
+\end{equation}
+
+Sobre a implementação de \textit{anéis de inteiros módulo $n$} na biblioteca Mathematical Components, conforme é apresentado em \cite{assia_mahboubi_2022_7118596}, essa implementação envolve o tipo \lstinline[language = coq]{ordinal}. Este é idêntico ao \textit{record} \lstinline[language = coq]{smaller} (usado como exemplo na subseção \ref{subsection:coercion}), porém é declarado da seguinte forma (junto de sua notação e \textit{coercion} relacionada):
+\begin{lstlisting}[language = coq]
+    Inductive ordinal n := Ordinal m of m < n.
+    Notation "'I_' n" := (ordinal n).
+    Coercion nat_of_ord n (i : 'I_n) := let: @Ordinal _ m _ := i in m.
+\end{lstlisting}
+Com isso, para simular os \textit{inteiros módulo $n$} (ainda não tendo provadas as propriedades que fazem destes conjuntos anéis), se utiliza o seguinte código:
+\begin{lstlisting}[language = coq]
+    Variable p' : nat.
+    Local Notation p := p'.+1.
+    Implicit Types x y z : 'I_p.
+    Definition inZp i := @Ordinal p (i %% p) (ltn_pmod i (ltn0Sn p')).
+\end{lstlisting}
+Em que o comando \lstinline[language = coq]{Variable} declara um variável no contexto de quaisquer declarações a partir daquela linha, o que é equivalente a utilizar nessas \lstinline[language = coq]{\forall (p' : nat)} (e é o que é considerado nas declarações fora da \lstinline[language = coq]{Section} em que foi declarada a variável). Sobre o comando \lstinline[language = coq]{Local Notation}, esse cria um notação válida apenas para o módulo em que ela é declarada (assim, importar o módulo não importará a notação), e quanto ao comando \lstinline[language = coq]{Implicit Types}, esse faz com que nas declarações a seguir, se forem utilizadas variáveis com tipos implícitos e de nome \lstinline[language = coq]{x}, \lstinline[language = coq]{y} ou \lstinline[language = coq]{z}, o \textit{Coq} infira como tipo dessas \lstinline[language = coq]{'I_p}.
+
+    Em relação a definição \lstinline[language = coq]{InZp}, esta utiliza $2$ lemas, cujas proposições são:
+\begin{lstlisting}[language = coq]
+    Lemma ltn_pmod m d : 0 < d → m %% d < d.
+    Lemma ltn0Sn n : 0 < n.+1.
+\end{lstlisting}
+Portanto note que a expressão \lstinline[language = coq]{ltn_pmod i (ltn0Sn p')} constrói uma prova de que \lstinline[language = coq]{i %% p < p}, assim construindo um objeto do tipo \lstinline[language = coq]{'I_p}. 
+
+São então definidas as classes de equivalência $\overline{0}$ e $\overline{1}$ e operações para instâncias de \lstinline[language = coq]{inZp} da seguinte maneira:
+\begin{lstlisting}[language = coq]
+    Definition Zp0 : ’I_p := ord0.
+    Definition Zp1 := inZp 1.
+    Definition Zp_opp x := inZp (p - x).
+    Definition Zp_add x y := inZp (x + y).
+    Definition Zp_mul x y := inZp (x * y).
+\end{lstlisting}
+A partir disso podem ser provados os teoremas que tornam \lstinline[language = coq]{inZp} um \textit{anel}:
+\begin{lstlisting}[language = coq]
+    Lemma Zp_add0z : left_id Zp0 Zp_add. (* Elemento neutro da operacao "+" *)
+    Lemma Zp_addC : commutative Zp_add. (* Comutatividade da operacao "+" *)
+    Lemma Zp_mulz1 : right_id Zp1 Zp_mul. (* Elemento neutro do produto a direita *)
+    Lemma Zp_mul1z : left_id Zp1 Zp_mul. (* Elemento neutro do produto a esquerda *)
+    Lemma Zp_mulA : associative Zp_mul. (* Associatividade do produto *)
+    Lemma Zp_mul_addr : right_distributive Zp_mul Zp_add. (* Distributividade a direita *)
+    Lemma Zp_mul_addl : left_distributive Zp_mul Zp_add. (* Distributividade a esquerda *)
+\end{lstlisting}
+    Por fim, vale aqui ressaltar que o desenvolvimento deste tipo na biblioteca vai muito além do que foi apresentado aqui, envolvendo detalhes relacionados a interfaces de anéis e outros conceitos tratados na biblioteca.
+\section{Função $\varphi$ de Euler}
+Uma função muito presente em grande parte dos conteúdos de teoria dos números é a função $\varphi$ de Euler. Essa também é conhecida como função totiente de Euler e conforme \cite{book:2399854}, para quaisquer $n$ inteiro positivo, é definida como:
+\begin{equation} \label{def:phi}
+    \varphi(n) = |(\mathbb{Z}/(n))^{\times}|
+\end{equation}
+e essa possui algumas propriedades importantes a serem destacadas:
+%(estas são apresentadas em \cite{book:2399854} \textcolor{red}{e maior parte das provas não apresentadas aqui se encontram neste livro}):
+\begin{enumerate}
+    \item $\varphi(1) = \varphi(2) = 1$
+    \item \label{item:prop-phi-2} $\forall n, n > 2 \Rightarrow 1 < \varphi(n) < n$
+    \item \label{item:prop-phi-3} $\forall p,$ se $p$ é primo então $\forall k \in \mathbb{N} - \{0\}, \varphi(p^k) = p^k - p^{k-1}$, portanto, $\varphi(p) = p - 1$
+    \item \label{item:prop-phi-4} $\forall n, m \in \mathbb{N} - \{0\}, \mdc(n, m) = 1 \Rightarrow \varphi(n \cdot m) = \varphi(n) \cdot \varphi(m) $
+    \item \label{item:prop-phi-5} $\forall n \in \mathbb{N} - \{0\}$, se a fatoração de $n$ em potências de primos distintos é dada por $n = p_{1}^{\alpha_{1}} \cdot ... \cdot p_{k}^{\alpha_{k}}$, então:
+    \begin{equation} \label{lema:phi-formula}
+        \varphi(n) = \prod_{1 \leq i \leq k} \varphi(p_{i}^{\alpha_{i}}) = \prod_{1 \leq i \leq k} p_{i}^{\alpha_{i}} - p_{i}^{\alpha_{i} - 1} = n \cdot \prod_{1 \leq i \leq k} \left( 1 - \frac{1}{p_{i}} \right)
+    \end{equation}
+\end{enumerate}
+
+Além dessas propriedade existem dois teoremas apresentados em \cite{book:2399854} que devem ser notados, que são eles:
+
+\begin{teorema}[\textit{Teorema de Euler-Fermat}]
+\label{eq : euler-fermat}
+$\forall a, m \in \mathbb{Z},$ se  $ m > 0$  e $\mdc(a,m) = 1$ então:
+    \begin{equation*}
+        a^{\varphi(m)} \equiv 1 \pmod{m}
+    \end{equation*}
+\end{teorema}
+
+\noindent
+\textit{Demonstração}: seja $R = \{r_1, r_2, ..., r_{\varphi(m)}\}$ o conjunto de valores no intervalo $[1, m-1]$ em que $\mdc(r_i, m) = 1$ para $i \in [1, \varphi(m)]$ (por isso $|R| = |\varphi(m)|$), observe que o conjunto $A = \{a \cdot r_1, a \cdot r_2, ..., a \cdot r_{\varphi(m)}\}$ é composto apenas de valores tais que para $i \in [1, \varphi(m)]$, $\mdc(a \cdot r_i, m) = 1$. Além disso, note que cada elemento do conjunto $A$, assim como cada um do conjunto $R$, é único, pois se $a \cdot r_i \equiv a \cdot r_j \pmod{m}$, então pelo Item \ref{item:propcong7-cancelamento}, $r_i \equiv r_j \pmod{m}$, logo como $r_i, r_j \in [1, m-1]$, $r_i = r_j$ (ou seja, $i = j$). Como $A$ possui a mesma quantidade de elementos que $R$, sendo todos distintos módulo $m$, então para cada elemento $a \cdot r_i \in A$ existe um elemento em $r_j \in R$ tal que $a \cdot r_i \equiv r_j \pmod{m}$. Essa última afirmação pode ser provada por absurdo, pois supondo que não exista tal $r_j$, então $a \cdot r_i \equiv r \pmod{m}$, tal que $r \not\in R \land r \in [1, m-1] \land \mdc(r, m) = 1$ (pelo Lema \ref{lema:euclides}), mas se esse for o caso então $R$ não é o conjunto de valores no intervalo $[1, m-1]$ em que $\mdc(r_i, m) = 1$ para $i \in [1, \varphi(m)]$, como definido inicialmente, logo, tem-se um absurdo.
+Por meio dos pares congruentes módulo $m$, de forma $a \cdot r_i \equiv r_j \pmod{m}$, tem-se pelo Item \ref{item:propcong6-produto}:
+\begin{align*}
+    \prod_{i = 1}^{\varphi(m)} a \cdot r_i \equiv \prod_{i = 1}^{\varphi(m)} r_i \pmod{m}
+\end{align*}
+manipulando a equação:
+\begin{align*}
+    \prod_{i = 1}^{\varphi(m)} a \cdot r_i \equiv \prod_{i = 1}^{\varphi(m)} r_i \pmod{m}
+    \\
+    \Longleftrightarrow a^{\varphi(m)} \cdot \prod_{i = 1}^{\varphi(m)} r_i \equiv \prod_{i = 1}^{\varphi(m)} r_i \pmod{m}
+\end{align*}
+e como:
+\begin{equation*}
+    \mdc\left(\prod_{i = 1}^{\varphi(m)} r_i, m\right) = 1
+\end{equation*}
+pelo Item \ref{item:propcong7-cancelamento} tem-se:
+\begin{align*}
+    a^{\varphi(m)} \cdot \prod_{i = 1}^{\varphi(m)} r_i & \equiv \prod_{i = 1}^{\varphi(m)} r_i \pmod{m}
+    \\
+    \Longleftrightarrow a^{\varphi(m)} & \equiv 1 \pmod{m} 
+\end{align*} \qed
+
+\begin{teorema}[\textit{Pequeno Teorema de Fermat}]
+\label{eq : pequeno-fermat}
+$\forall a \in \mathbb{N} - \{0\}$, dado um número primo $p$, tem-se que:
+    \begin{equation*}
+        a^p \equiv a \pmod{p}
+    \end{equation*}
+\end{teorema}
+
+\noindent
+\textit{Demonstração}: pelo Teorema \ref{eq : euler-fermat} tem-se que:
+\begin{equation*}
+    a^{\varphi(p)} \equiv 1 \pmod{p}
+\end{equation*}
+e pelo Item \ref{item:prop-phi-3}:
+\begin{align*}
+    a^{\varphi(p)} \equiv 1 \pmod{p}
+    \\
+    \Longleftrightarrow a^{p-1} \equiv 1 \pmod{p}
+\end{align*}
+assim utilizando-se da propriedade descrita no Item \ref{item:propcong6-produto} tem-se:
+\begin{align*}
+    a^{p-1} \equiv 1 \pmod{p}
+    \\
+    \Longleftrightarrow a^{p} \equiv a \pmod{p}
+\end{align*} \qed
+
+Na biblioteca Mathematical Components, a função $\varphi$ de Euler é implementada da seguinte maneira:
+\begin{lstlisting}[language = coq]
+    Definition totient n := 
+        foldr add_totient_factor (n > 0) (prime_decomp n).
+\end{lstlisting}
+Em que por meio de uma \textit{coercion} de \lstinline[language = coq]{bool} para \lstinline[language = coq]{nat} o valor retornado por \lstinline[language = coq]{n > 0} é convertido para $0$ (se for \lstinline[language = coq]{false}) ou $1$ (se for \lstinline[language = coq]{true}) e a função \lstinline[language = coq]{add_totient_factor} é definida como:
+\begin{lstlisting}[language = coq]
+    Definition add_totient_factor f m := 
+        let: (p, e) := f in p.-1 * p ^ e.-1 * m.
+\end{lstlisting}
+e \lstinline[language = coq]{prime_decomp} é uma função que recebe um número $n$ qualquer e retorna uma lista de tuplas $k$ da forma $(p_i, e_i)$ em que:
+    \begin{equation*}
+        n = p_1^{e_1} \cdot p_2^{e_2} \cdot ... \cdot p_k^{e_k}
+    \end{equation*}
+ou seja, retorna a fatoração de $n$ em primos, o que é garantido pelo seguinte lema \lstinline[language = coq]{prime_decomp_correct} disponível na biblioteca (cuja proposição não será apresentada aqui devido a sua extensão).
+
+Além disso, tem-se na biblioteca, lemas sobre algumas das propriedades aqui expostas. Iniciando pela propriedade \ref{item:prop-phi-3}, tem-se:
+\begin{lstlisting}[language = coq]
+    Lemma totient_pfactor p e :
+      prime p -> e > 0 -> totient (p ^ e) = p.-1 * p ^ e.-1.
+\end{lstlisting}
+Também há um lema equivalente a propriedade \ref{item:prop-phi-4} (em que a condição de maior divisor comum igual a $1$ é dada por \lstinline[language = coq]{coprime}, que é por sua vez uma função booleana que recebe dois números e retorna \lstinline[language = coq]{true} se o $\mdc$ desses for $1$ e \lstinline[language = coq]{false} caso contrário):
+\begin{lstlisting}[language = coq]
+    Lemma totient_coprime m n :
+        coprime m n -> totient (m * n) = totient m * totient n.
+\end{lstlisting}
+Por último, há também um lema que estabelece a equivalência entre a definição da função $\varphi$ de Euler exposta em \cite{book:2399854} (definição \ref{def:phi}) e a definição da biblioteca baseada na equação \ref{lema:phi-formula}\footnote{Vale aqui observar que novamente há uma \textit{coercion} de \lstinline[language = coq]{bool} para \lstinline[language = coq]{nat} sobre o retorna da função \lstinline[language = coq]{coprime} (a \textit{coercion} converte \lstinline[language = coq]{false} para $0$ e \lstinline[language = coq]{true} para $1$), dado que o somatório requer valores numéricos.}%colocar aqui q retorna 0 se false e 1 se true?
+\begin{lstlisting}[language = coq]
+    Lemma totient_count_coprime n : 
+        totient n = \sum_(0 <= d < n) coprime n d.
+\end{lstlisting} 
+
+\section{Congruência de Grau 2 e Símbolos de Legendre}
+Sendo um técnica muito eficiente para verificar se um número é um resíduo quadrático em relação a um outro número primo, os símbolos de Legendre, além de serem um objetivo de implementação deste trabalho, são diretamente utilizados no algoritmo RESSOL. Entretanto para se explicar o que são esses, é necessário uma breve introdução sobre congruências de grau 2 (ou quadráticas).
+Como motivação para se tratar deste assunto, note que, sendo $p > 2$ um número primo e $a, b, c \in \mathbb{Z}$, em que $a$ não é divisível por $p$, suponha que se deseje resolver a seguinte equação:
+\begin{equation} \label{eq : ax2bxc}
+    a \cdot x^2 + b \cdot x + c \equiv 0 \pmod p
+\end{equation}
+Manipulando essa equação com objetivo de obter um resultado semelhante ao da fórmula de Bhãskara, tem-se (multiplicando ambos os lados por $4$):
+\begin{equation*}
+    4 \cdot a^2 \cdot x^2 + 4 \cdot a \cdot b \cdot x + 4 \cdot a \cdot c \equiv 0 \pmod p
+\end{equation*}
+e como 
+\begin{equation*}
+    b^2 - 4 \cdot a \cdot c \equiv b^2 - 4 \cdot a \cdot c \pmod p
+\end{equation*}
+pode-se adicionar esses valor em ambos os lados:
+\begin{equation*}
+    4 \cdot a^2 \cdot x^2 + 4 \cdot a \cdot b \cdot x + b^2 \equiv b^2 - 4 \cdot a \cdot c \pmod p
+\end{equation*}
+assim, finalmente se chega ao resultado desejado:
+\begin{equation} \label{eq : bhaskara}
+    (2 \cdot a \cdot x + b)^2 \equiv b^2 - 4 \cdot a \cdot c \pmod p
+\end{equation}
+Pode se verificar que resolver a equação \ref{eq : ax2bxc}  é equivalente a resolver \ref{eq : bhaskara}. Rescrevendo com $X = 2 \cdot a \cdot x + b$ e $d = b^2 - 4 \cdot a \cdot c$, obtêm-se:
+\begin{equation} \label{eq : quadcong}
+    X^2 \equiv d \pmod p
+\end{equation}
+Com isso, note que um problema mais complexo (equação \ref{eq : ax2bxc}) foi transformado em um problema mais simples (equação \ref{eq : quadcong}). Sobre esse último, se possui solução, isto é, $d$ é um quadrado perfeito em $\mathbb{Z}/(p)$, então, se diz que $d$ é um \textit{resíduo quadrático} módulo $p$. Além disso, conforme \cite{book:2399854}, existem precisamente $\frac{p+1}{2}$ resíduos quadráticos módulo $p$ (valores de $d$ menores que $p$ para os quais \ref{eq : quadcong} tem solução), que são neste caso:
+\begin{equation} \label{eq : listquadres}
+    0^2 \bmod{p}, 1^2 \bmod{p}, 2^2 \bmod{p}, 3^2 \bmod{p}, ..., \left(\frac{p -1}{2} \right)^2 \bmod{p} 
+\end{equation}
+O motivo desse fato é que para todo $x \in \mathbb{Z}$ existe algum $i$ no intervalo $\left[0, \frac{p-1}{2}\right]$ tal que $x \equiv i \pmod p $ ou $ x \equiv -i \pmod p$.
+Tal afirmação pode ser inferida facilmente, visto que tem-se todos os restos até $\frac{p-1}{2}$ 
+com $i$, e para qualquer resto $r > \frac{p-1}{2}$ basta escolher $i = p - r$ (o que está obviamente dentro do intervalo de $i$), pois:
+\begin{align*}
+    (p - r) \equiv i \pmod p
+    &\begin{aligned}
+        \;\; \Longrightarrow \; -(p - r) \equiv -i \pmod p
+    \end{aligned} \\
+    &\begin{aligned}
+        \;\; \Longrightarrow \; r - p \equiv -i \pmod p
+    \end{aligned} \\
+    &\begin{aligned}
+        \;\; \Longrightarrow \; r \equiv -i \pmod p
+    \end{aligned}
+\end{align*}
+Logo, $x^2$ é congruente à um dos números da Lista \ref{eq : listquadres}, pois dado $y = \pm i$, ou seja, $y \in \left[- \frac{p-1}{2}, \frac{p-1}{2}\right]$:
+\begin{align*}
+    x \equiv y \pmod p
+    &\begin{aligned}
+        \;\; \Longrightarrow \; x^2 \equiv y^2 \pmod p
+    \end{aligned} \\
+    &\begin{aligned}
+        \;\; \Longrightarrow \; x^2 \equiv i^2 \pmod p
+    \end{aligned}
+\end{align*}
+e $i^2$ está na Lista \ref{eq : listquadres}.
+
+Outro fato interessante em relação a lista \ref{eq : listquadres} é que todos este números são distintos em módulo $p$, haja vista, para quaisquer $i, j \in \left[0, \frac{p-1}{2}\right]$:
+\begin{align}
+    i^2 \equiv j^2 \pmod p
+    &\begin{aligned}
+        \;\; \Longleftrightarrow p \mid (i^2 - j^2)
+    \end{aligned} \\
+    &\begin{aligned}
+        \;\; \Longleftrightarrow p \mid (i - j)\cdot(i + j)
+    \end{aligned} \\
+    &\begin{aligned} \label{eq : ordivp}
+        \;\; \Longleftrightarrow p \mid (i - j) \lor p \mid (i + j)
+    \end{aligned} 
+    % \\
+    % &\begin{aligned}
+    %     \;\; \Longleftrightarrow \; i \equiv j \pmod p \;\; \lor \;\; i \equiv -j \pmod p
+    % \end{aligned} \\
+\end{align}
+Dado que $i, j \in \left[0, \frac{p-1}{2}\right]$ então $0 \leq i + j \leq p - 1$, logo, existem as seguintes possibilidades:
+\begin{enumerate}
+    \item $i = j = 0$ e portanto $i \equiv j \pmod p$.
+    \item $0 < i + j \leq p-1$ (visto que $0 < i, j \leq \frac{p-1}{2}$) e portanto $p$ não divide $i + j$ (pois essa soma resulta em um valor menor que $p$ e maior que $0$), e então pela disjunção em \ref{eq : ordivp} resta apenas a possibilidade de $p \mid (i - j)$, o que equivale a $i \equiv j \pmod p$, ou seja, $i$ é igual $j$ módulo $p$ se e somente se seus quadrados também são.
+\end{enumerate}
+\noindent
+A partir destas conclusões expostas aqui é importante estabelecer o seguinte lema a ser utilizado futuramente:
+\begin{lema} \label{lema:existnonquadratic}
+    Seja $p > 2$ um número primo, existem exatamente $\frac{p+1}{2}$ resíduos quadráticos módulo $p$ e $\frac{p-1}{2}$ resíduos não quadráticos módulo $p$.
+\end{lema}
+\noindent
+\textit{Demonstração}: note que a seguinte lista contém todos os resíduos quadráticos módulo $p$
+\begin{equation*}
+    0^2 \bmod{p}, 1^2 \bmod{p}, 2^2 \bmod{p}, 3^2 \bmod{p}, ..., (p - 1)^2 \bmod{p}
+\end{equation*}
+No entanto, essa lista contém valores repetidos, pois
+\begin{align}
+    (p-x)^2 \equiv (p-x)^2 \pmod{p} & \Longleftrightarrow
+    (p-x)^2 \equiv p^2 - 2 \cdot p \cdot x + x^2 \pmod{p} 
+    \\
+    & \Longleftrightarrow (p-x)^2 \equiv x^2 \pmod{p} \label{eq:paresquad}
+\end{align}
+Assim, retirando os valores repetidos da lista (isto é, remover valores de modo que não hajam pares como em \ref{eq:paresquad}), tem-se:
+\begin{equation*}
+    0^2 \bmod{p}, 1^2 \bmod{p}, 2^2 \bmod{p}, 3^2 \bmod{p}, ..., \left(\frac{p -1}{2} \right)^2 \bmod{p} 
+\end{equation*}
+Cada um desses valores é um número em $[1, p-1]$ (são restos), porém existem apenas $\frac{p+1}{2}$ desses valores, logo existem números no mesmo intervalo que não são resíduos quadráticos, e quantidade desses é $p - \frac{p+1}{2} = \frac{2 \cdot p - p - 1}{2} = \frac{p - 1}{2}$. \qed
+
+% \begin{lema}
+%     Seja $p > 2$ um número primo e $a \in \mathbb{Z}$, a equação $x^2 \equiv a \pmod{p}$ possui exatamente $\frac{p-1}{2}$ soluções no intervalo $[1, p-1]$ e os números 
+% \end{lema}
+
+Apresentados estes conceitos sobre congruências quadráticas, dado um número primo $p > 2$ e $a \in \mathbb{Z}$, se define o \textit{símbolo de Legendre} por:
+\begin{equation*}
+    \left( \frac{a}{p} \right) = \begin{cases}
+        1 \text{, se $p \hspace{-4pt}\not|\hspace{2pt} a$ e $a$ é um resíduo quadrático módulo $p$}
+        \\
+        0 \text{, se $p \mid a$}
+        \\
+        -1 \text{, caso contrário ($a$ não é um resíduo quadrático)}
+        \end{cases}
+\end{equation*}
+Essa definição, por si só, não traz qualquer utilidade, no entanto há o então chamado \textit{Critério de Euler}, que apresenta uma maneira eficiente para computar o valor de um símbolo de Legendre. Esse critério afirma o seguinte:
+\begin{teorema}[\textit{Critério de Euler}] $\forall a \in \mathbb{Z}$, seja $p > 2$ um número primo, então: \label{teorema:criteriodeeuler}
+    \begin{equation*}
+        \left( \frac{a}{p} \right) \equiv a^{\frac{p-1}{2}} \pmod p
+    \end{equation*}
+\end{teorema}
+\noindent
+Logo, para se computar um símbolo de Legendre basta verificar se o resto da divisão inteira de $a^{\frac{p-1}{2}}$ por $p$ é igual a $1$, $0$ ou $-1 \bmod p$.
+
+Para se realizar a demonstração do \textit{Critério de Euler}, antes é necessário apresentar o conceito de inverso multiplicativo módulo $n$ e alguns lemas e teoremas envolvidos:
+
+\begin{definição}[\textit{Inverso multiplicativo módulo $n$}]
+Dados $a, m, n \in \mathbb{Z}$, se $a \cdot m \equiv 1 \pmod n$, se diz que $m$ é um \textit{inverso de $a$ módulo $n$}, e pode ser denotado por $a^{-1}$.
+\end{definição}
+
+\begin{lema} \label{lema : mdcinv}
+    Para todo $a, n \in \mathbb{Z}$, se $n > 0$, então, existe $b \in \mathbb{Z}$ tal que $a \cdot b \equiv 1 \pmod{n}$ se, e somente se, $\mdc(a, n) = 1$.
+\end{lema}
+\noindent
+\textit{Demonstração}: note que
+    \begin{align*}
+        a \cdot b \equiv 1 \pmod{n} & \Longleftrightarrow n \mid a \cdot b - 1
+        \\
+        & 
+        \Longleftrightarrow \exists q \in \mathbb{Z}, n \cdot q = a \cdot b - 1
+        \\
+        & 
+        \Longleftrightarrow \exists q \in \mathbb{Z},  a \cdot b - n \cdot 1  = 1
+    \end{align*}
+Por consequência do teorema \ref{teorema : bachetbezout}, só existe tal $q$ se $\mdc(a, n) = 1$, e portanto $b$ existe se e somente se isto ocorre.
+
+\begin{lema}[\textit{Unicidade de inverso multiplicativo módulo p}] Dado um número primo $p$, seja 
+$a \in [1, p-1]$, existe $k \in [1, p-1]$ tal que $ a \cdot k \equiv 1 \pmod p$ e $k$ é portanto o único inverso multiplicativo de  módulo $p$ de $a$ no intervalo $[1, p-1]$. \label{lema : invmod}
+\end{lema}
+\noindent
+\textit{Demonstração}: primeiramente, sabe-se que $k$ existe pelo lema \ref{lema : mdcinv} (pois $p$ é primo, logo $\mdc(a, p) = 1$). Assim, dado que $a \cdot k \equiv 1 \pmod p$, suponha que existe $k' \in [1, p-1]$ tal que $a \cdot k' \equiv 1 \pmod p$, então:
+\begin{align*}
+    a \cdot k \equiv a \cdot k' \pmod p \;
+    &\begin{aligned}
+        \Longleftrightarrow p \mid a \cdot k - a \cdot k'
+    \end{aligned} \\
+    &\begin{aligned}
+        \Longleftrightarrow p \mid a \cdot (k - k')
+    \end{aligned} \\
+    &\begin{aligned}
+        \Longleftrightarrow p \mid a \cdot (k - k')
+    \end{aligned}
+    \\
+    &\begin{aligned}
+        \Longleftrightarrow p \mid a \; \lor \; p \mid (k - k')
+    \end{aligned}
+\end{align*}
+Como $a \in [1, p-1]$, para que a disjunção seja válida deve ser o caso que $p | (k - k')$, e como $|k - k'| < p-1$, a única maneira disto ocorrer é se $k - k' = 0$, ou seja, $k = k'$. \qed
+\begin{lema} Seja $a \in [1, p-1]$ em que $p$ é um número primo maior que $2$, se $x^2 \equiv a \pmod p$ não tem solução, então para todo $h \in [1, p-1]$ existe $k \in [1, p-1]$, tal que: \label{lema : hkequivamodp}
+    \begin{equation*} 
+        h \neq k \land h \cdot k \equiv a \pmod p 
+    \end{equation*}
+\end{lema}
+\noindent \textit{Demonstração}: pelo lema \ref{lema : invmod}, sabe-se que existe $h^{-1} \in [1, p-1]$ tal que:
+\begin{equation*}
+    h^{-1} \cdot h \equiv 1 \pmod p
+\end{equation*}
+e têm-se:
+\begin{equation*}
+    a \equiv a \pmod p \Rightarrow h^{-1} \cdot a \equiv h^{-1} \cdot a \pmod p
+\end{equation*}
+Neste momento é importante notar que independentemente de ser o caso de $h^{-1} \cdot a > p - 1$ ou não, existe algum $r \in [1, p-1]$ tal que:
+\begin{equation*}
+    r \equiv a \cdot h^{-1} \pmod p
+\end{equation*}
+Seguindo então, pode-se obter o seguinte:
+\begin{equation*}
+    a \cdot (h^{-1} \cdot h) \equiv a \pmod p
+\end{equation*}
+pois $h^{-1} \cdot h \equiv 1 \pmod p$. Manipulando essa equação, se chega em:
+\begin{equation*}
+    (a \cdot h^{-1}) \cdot h \equiv a \pmod p \Longleftrightarrow r \cdot h \equiv a \pmod p
+\end{equation*}
+Como $r \in [1, p-1]$, resta apenas provar que $r \neq h$, o que é válido pela hipótese de que $x^2 \equiv a \pmod p$ não tem solução (se $r = h$ haveria solução e portanto se teria uma contradição). \qed
+
+\begin{lema} \label{lema : kk'modp}
+    Seja $a, h, k, k' \in [1, p-1]$, se $k \cdot h \equiv a \pmod{p}$ e $k' \cdot h \equiv a \pmod{p}$ então $k = k'$ ($k$ é único).
+\end{lema}
+\noindent
+\textit{Demonstração}: observe que, seguindo da hipótese:
+\begin{align*}
+    k \cdot h \equiv k' \cdot h \pmod{p} 
+    &
+        \Longleftrightarrow p \mid k \cdot h - k' \cdot h
+    \\
+    &
+        \Longleftrightarrow p \mid h \cdot (k - k')
+    \\
+    &
+        \Longleftrightarrow p \mid h \lor p \mid k - k'
+\end{align*}
+Como $p \nmid h$ (pois $|h| < p$) só pode ser o caso de que $p \mid k - k'$, porém $|k - k'| < p$, o que implica que $k - k' = 0$ e portanto $k = k'$. \qed
+
+\begin{lema} \label{lema : modp-1fat}
+    Seja $p > 2$ um número primo, para todo $a \in \mathbb{Z}$, se $\mdc(a, p) = 1$ e $x^2 \equiv a \pmod p$ não tem solução então:
+    \begin{equation*}
+        (p - 1)! \equiv a^{\frac{p-1}{2}} \pmod{p}
+    \end{equation*}
+    
+\end{lema}
+\noindent
+\textit{Demonstração}: pelos lemas \ref{lema : invmod}, \ref{lema : hkequivamodp} e \ref{lema : kk'modp}, pode-se escolher $\frac{p-1}{2}$ pares, utilizando todos os números no intervalo $[1, p-1]$, sem que qualquer número esteja em mais de um par (ou seja, se repita) e de modo que para cada par $(x_i, y_i)$, $x_i \cdot y_i \equiv a \pmod p$, logo:
+    \begin{equation*}
+        (x_1 \cdot y_1) \cdot (x_2 \cdot y_2) \cdot ... \cdot \left(x_{\frac{p-1}{2}} \cdot y_{\frac{p-1}{2}}\right) \equiv a^{\frac{p-1}{2}} \pmod{p}
+    \end{equation*}
+Note que o lado esquerdo da equação é uma multiplicação entre todos os valores no intervalo $[1, p-1]$ (sem repetição), o que é igual a $(p - 1)!$, portanto:
+    \begin{equation*}
+        (p - 1)! \equiv a^{\frac{p-1}{2}} \pmod{p}
+    \end{equation*}
+    \qed
+
+\begin{lema} Seja $p$ um número primo, então para quaisquer soluções de $x^2 \equiv 1 \pmod{p}$ têm-se que $x \equiv 1 \pmod{p}$ ou $x \equiv -1 \pmod{p}$. Portanto para qualquer outro valor $y$ que não é uma solução, $y \not\equiv y^{-1} \pmod{p}$.
+\label{lema : eq1modp}
+\end{lema}
+\noindent
+\textit{Demonstração}: se $x$ é uma solução então
+    \begin{align*}
+        x^2 \equiv 1 \pmod{p} &
+        \Longleftrightarrow p \mid (x^2 - 1)
+        \\
+        &
+        \Longleftrightarrow p \mid (x - 1) \cdot (x + 1)
+        \\
+        &
+        \Longleftrightarrow p \mid (x - 1) \lor p \mid (x + 1)
+        \\
+        &
+        \Longleftrightarrow x \equiv 1 \pmod{p} \lor x \equiv -1 \pmod{p}
+    \end{align*}
+Portanto, para qualquer valor $y$ tal que $y^2 \not\equiv 1 \pmod{p}$ tem-se que $y \not\equiv y^{-1} \pmod{p}$ (caso contrário $y$ seria uma solução). \qed
+
+\begin{teorema}[\textit{Teorema de Wilson}] \label{teorema : wilson}
+    Seja número composto um número que pode ser escrito como a multiplicação de dois outros números menores então, dado $n > 1$:
+    \begin{equation*}
+        (n - 1)! \equiv \begin{cases}
+                        -1 \pmod{n} \; \textit{se $n$ é primo} \\
+                        0 \pmod{n} \; \textit{se $n$ é composto e $n \neq 4$}
+                        \end{cases}
+    \end{equation*}
+\end{teorema}
+\noindent
+\textit{Demonstração}: têm-se os seguintes casos:
+\begin{enumerate}
+    \item Se $n$ é composto mas não é quadrado de um número primo, pode-se escrever $n = a \cdot b$ em que $1 < a < b < n$, então $a$ e $b$ são fatores de $(n-1)!$, portanto $n \mid (n-1)!$, ou seja, $(n-1)! \equiv 0 \pmod{n}$.
+
+    \item Se $n = p^2$ onde $p$ é um número primo maior que $2$ então $p$ e $2 \cdot p$ são fatores de $(n-1)!$, portanto, novamente $n \mid (n-1)!$, ou seja, $(n-1)! \equiv 0 \pmod{n}$.
+
+    \item Se $n$ é primo, como $n - 1 \equiv -1 \pmod{n}$ partindo de $(n-2)! \equiv (n-2)! \pmod{p}$ se obtém que $(n-1)! \equiv -(n-2)! \pmod{n}$, e agora, observe que do lado direito da equação, pelos lemas \ref{lema : mdcinv}, \ref{lema : hkequivamodp} e \ref{lema : eq1modp}, pode-se manipular a expressão de modo a organizá-la em $\frac{n-3}{2}$ pares $(x \cdot y)$ onde $x, y \in [2, n-2]$ e                      $x \cdot y \equiv 1 \pmod{n}$, portanto $(n-2)! \equiv 1 \pmod{p}$ e então $-(n-2)! \equiv -1 \pmod{p}$, logo $(n-1)! \equiv -1 \pmod{n}$.
+\qed
+\end{enumerate}
+
+Agora será então apresentada a demonstração do \textit{Critério de Euler}.
+% Demonstração do Critério de Euler
+\\
+\noindent
+\textit{Demonstração}: tem-se os seguintes casos
+\begin{enumerate}
+    \item se $a \equiv 0 \pmod p$, ou seja, $p \mid a$, pelas propriedades de módulo pode-se elevar ambos os lados por $\frac{p-1}{2}$, e
+    então se chega em $a^{\frac{p-1}{2}} \equiv 0 \pmod p$
+
+    \item se $p \nmid a$, então pelo teorema \ref{eq : euler-fermat} tem-se 
+\begin{align*}
+        a^{\varphi(p)} \equiv 1  \pmod p \; \Longleftrightarrow
+        &\begin{aligned}
+            \;\; a^{p - 1} \equiv 1  \pmod p 
+        \end{aligned} \\
+        &\begin{aligned}
+            \;\; a^{\frac{p-1}{2}} \cdot a^{\frac{p-1}{2}} \equiv 1  \pmod p 
+        \end{aligned}
+\end{align*}
+subtraindo 1 de ambos os lados:
+\begin{align*}
+        a^{\varphi(p)} \equiv 1  \pmod p \; \Longleftrightarrow
+        &\begin{aligned}
+            \;\; a^{\frac{p-1}{2}} \cdot a^{\frac{p-1}{2}} -1 \equiv 0  \pmod p 
+        \end{aligned} \\
+        \Longleftrightarrow
+        &\begin{aligned}
+            \;\; (a^{\frac{p-1}{2}} + 1) \cdot (a^{\frac{p-1}{2}} - 1) \equiv 0  \pmod p 
+        \end{aligned} \\
+        \Longleftrightarrow
+        &\begin{aligned}
+            \;\; p \mid (a^{\frac{p-1}{2}} + 1) (a^{\frac{p-1}{2}} - 1)
+        \end{aligned} \\
+        \Longleftrightarrow
+        &\begin{aligned}
+            \;\; p \mid (a^{\frac{p-1}{2}} + 1) \;\; \lor \;\; p \mid (a^{\frac{p-1}{2}} - 1)
+        \end{aligned} \\
+        \Longleftrightarrow
+        &\begin{aligned}
+            \;\; a^{\frac{p-1}{2}} \equiv -1 \pmod p \;\; \lor \;\; a^{\frac{p-1}{2}} \equiv 1 \pmod p
+        \end{aligned}
+\end{align*}
+Agora deve-se mostrar que o lado direito da disjunção é válido se e somente (bi-implicação) $a$ é um resíduo quadrático módulo $p$. Para isso, provando a volta da bi-implicação, suponha que $a$ é um resíduo quadrático, e portanto existe algum $i$ tal que
+$a \equiv i^2 \pmod p$. Podemos elevar ambos os lados por $\frac{p-1}{2}$, donde se obtêm:
+\begin{equation*}
+    a^{\frac{p-1}{2}} \equiv i^{p-1} \pmod p
+\end{equation*}
+pelo teorema \ref{eq : euler-fermat} (e pela transitividade da relação de módulo), ocorre o seguinte:
+\begin{align*}
+    i^{p-1} \equiv 1 \pmod p \;\; \Longrightarrow
+    &\begin{aligned}
+        \;\; a^{\frac{p-1}{2}} \equiv 1 \pmod p
+    \end{aligned}
+\end{align*}
+Assim está provada a volta. Agora, para provar a ida:
+\begin{equation*}
+    a^{\frac{p-1}{2}} \equiv 1 \pmod p \Longrightarrow \exists i, a \equiv i^2 \pmod p 
+\end{equation*}
+por contraposição, é equivalente provar que:
+\begin{equation} \label{eq : contrapos}
+    \forall i, a \not\equiv i^2  \pmod p \Longrightarrow a^{\frac{p-1}{2}} \not\equiv 1 \pmod p
+\end{equation}
+Pela hipótese e pelo lema \ref{lema : modp-1fat} tem-se que $a^{\frac{p-1}{2}} \equiv (p-1)! \pmod{p}$. Usando o teorema \ref{teorema : wilson}, por transitividade, $a^{\frac{p-1}{2}} \equiv -1 \pmod{p}$, então de fato $a^{\frac{p-1}{2}} \not\equiv 1 \pmod{p}$. \qed
+
+\end{enumerate}
+
+Quanto aos conceitos apresentados nessa sessão, a grande parte (se não todos) não estão implementados na biblioteca Mathematical Components. Sendo assim, apresentam um desafio considerável para que se complete o objetivo proposto neste trabalho, a ser apresentado com maiores detalhes no Capítulo \ref{cap:tonelli-shanks}.
