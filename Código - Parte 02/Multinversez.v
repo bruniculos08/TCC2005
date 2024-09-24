@@ -226,36 +226,98 @@ Module inversez.
         }
     Qed. 
 
-    Lemma absz_le_mod (a n : int):
+    Lemma absz_le_mul (a n : int):
         (((a %/ n)%Z * n)%R <= `|a|%R)%R.
     Proof.
-
+        rewrite absz_div_mul.
         case: a => a.
         (* caso: a = |a| *)
         {
-            elim/ltn_ind: a => x IH. 
+            rewrite -[X in (_ <= X)%R]abszE absz_nat divz_nat.
+            apply div.leq_trunc_div.
         }
+        (* caso: a = -|a| *)
+        {
+            rewrite NegzE.
+            rewrite [X in (_ <= X)%R]ltz0_abs; last by [].
+            rewrite -mulrN1z -[X in (_ <= X)%R]mulrN1z.
+            rewrite mulrN1z mulNrNz mulrzz mulr1.
+            case Hn : `|n| => [|k]. 
+                rewrite -[X in ((_ %/ X)%Z * X <= _)%R]abszE Hn //=.
+            rewrite divNz_nat; last by rewrite Hn //=.
+            rewrite mulrC -mulrzz mulrNz. rewrite Hn.
+            rewrite -abszE Hn mulrzz. 
+            case H : (k.+1 * (div.divn a k.+1).+1) => [|x].
+                move: H => /eqP H. rewrite -eqz_nat //= in H.
+            move: H => /eqP H. rewrite -eqz_nat //= in H.
+        }
+    Qed.
 
+    (* Set Printing Coercions. *)
 
-        (* 
-            Ideia:
-
-            - Indução forte em |a|:
-            forall m < |a| -> (a /  * m) <=  
-
-
-        *)
-
-
-        move: n.
-        elim/ltn_ind: (`|a|) => [k] Hk. 
-        
+    Lemma mulz_pos_nat (a b : nat):
+        ((Posz a)%Z * b)%R = a * b.
+    Proof.
+        by [].
+    Qed.
 
     Lemma absz_mod (a n : int):
         (n != 0)%Z -> (a %% n)%Z = `|(a %% n)%Z|.
     Proof.
-        move=> nD0. remember (`|a|%N) as x.
-        rewrite /modz.
+        rewrite /modz absz_div_mul.
+        case: a => a.
+        {
+            (* "Prova mais simples: " *)
+            (* rewrite abszE.
+            rewrite divz_nat.
+            rewrite subzn; last by rewrite div.leq_trunc_div.
+            rewrite -abszE. rewrite absz_nat. by []. *)
+            (* Da onde você estava *)
+            have Ha: a = `|a|.
+                by [].
+            case Hn : n => [k|k].
+                {
+                    move=> kD0.
+                    rewrite divz_nat.
+                    rewrite distnEl.
+                        { rewrite subzn. by rewrite -natz.
+                            have Hk : `|Posz k| = k.
+                                by [].
+                            rewrite Hk.
+                            by rewrite div.leq_trunc_div.
+                        }
+                    have Hk : `|Posz k| = k.
+                                by [].
+                    by rewrite Hk div.leq_trunc_div.
+                }
+                {   
+                    rewrite NegzE => Hk.
+                    (* rewrite -[X in (_ - (_ %/ `|X|)%Z * _)%R = _]intz.  *)
+                    rewrite -abszE abszN absz_nat.
+                    rewrite distnEl.
+                        rewrite divz_nat mul1n.
+                            rewrite -subzn. by rewrite -natz.
+                            by rewrite absz_nat div.leq_trunc_div.
+                        rewrite mul1n.                            
+                        by rewrite absz_nat div.leq_trunc_div.
+                }
+        }
+        {
+            rewrite NegzE.
+            (* Posso usar esse teorema pois n != 0: *)
+            rewrite divNz_nat. 
+            move=> nD0.
+            (* rewrite -[X in (_ - X)%R = _]mulrN1z. *)
+            rewrite -[X in (_ + X)%R = _]mulrN1z.
+            Set Printing Coercions.
+            rewrite abszE.
+            rewrite -[X in _ = `|(_ - X)|%R]mulrN1z.
+            rewrite mulNrNz mulrzz mulr1.
+        }
+
+    Qed.
+
+
         (* 
             Ideia: 
                 a %% n = |a %% n|
