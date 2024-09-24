@@ -304,17 +304,27 @@ Module inversez.
         }
         {
             rewrite NegzE.
+            move=> nD0.
             (* Posso usar esse teorema pois n != 0: *)
             rewrite divNz_nat. 
-            move=> nD0.
             (* rewrite -[X in (_ - X)%R = _]mulrN1z. *)
             rewrite -[X in (_ + X)%R = _]mulrN1z.
-            Set Printing Coercions.
             rewrite abszE.
             rewrite -[X in _ = `|(_ - X)|%R]mulrN1z.
             rewrite mulNrNz mulrzz mulr1.
+            rewrite -[X in _ = `|_ + X|%R]mulrN1z.
+            rewrite mulNrNz mulrzz mulr1.
+            rewrite -mulrz_nat mulrzz mulr1.
+            rewrite addrC. rewrite -abszE.
+            rewrite distnEl.
+            rewrite subzn. by rewrite -natz.
+            Search (div.divn).
+            rewrite mulnC div.ltn_ceil //=.
+            by rewrite absz_gt0.
+            rewrite mulnC div.ltn_ceil //=.
+            by rewrite absz_gt0.
+            by rewrite absz_gt0.
         }
-
     Qed.
 
 
