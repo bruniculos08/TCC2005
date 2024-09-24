@@ -201,9 +201,70 @@ Module inversez.
     Compute ((- 3) %% (0))%Z.
     Compute (div.modn 14 7).
 
+    Compute (modz (- 2) 8).
+    Compute (((- 2) %/ 8)).
+
+    Search (_ %% _).
+
+    Compute abszN.
+
+    (* Lemma auxn (n : nat):
+        `|(Negz n)|%R = `|(- (n.+1)%:Z)%R|.
+    Proof.
+        by [].
+    Qed. *)
+
+    Lemma absz_div_mul (a n : int):
+        ((a %/ n)%Z * n)%R = ((a %/ `|n|)%Z * `|n|)%R.
+    Proof.
+        case: n => n.
+        { by []. }
+        { 
+            rewrite NegzE divzN -mulrzz mulNrNz mulrzz.
+            rewrite [X in _ = ((_ %/ X)%Z * X)%R]ltz0_abs; last by [].
+            by rewrite -mulrN1z mulNrNz mulrzz mulr1.
+        }
+    Qed. 
+
+    Lemma absz_le_mod (a n : int):
+        (((a %/ n)%Z * n)%R <= `|a|%R)%R.
+    Proof.
+
+        case: a => a.
+        (* caso: a = |a| *)
+        {
+            elim/ltn_ind: a => x IH. 
+        }
+
+
+        (* 
+            Ideia:
+
+            - Indução forte em |a|:
+            forall m < |a| -> (a /  * m) <=  
+
+
+        *)
+
+
+        move: n.
+        elim/ltn_ind: (`|a|) => [k] Hk. 
+        
+
     Lemma absz_mod (a n : int):
         (n != 0)%Z -> (a %% n)%Z = `|(a %% n)%Z|.
     Proof.
+        move=> nD0. remember (`|a|%N) as x.
+        rewrite /modz.
+        (* 
+            Ideia: 
+                a %% n = |a %% n|
+            por inducao em |a|:
+                se |a| >= |n| então visto que (a %% n < |a|) temos
+                pela hipótese.
+                se |a| < |n| então (a/n * n)     
+        *)
+
         move=> n0. rewrite -{1}modz_abs.
         move: (modz_absm a n) => H.
         rewrite -modz_abs in H.
@@ -219,7 +280,8 @@ Module inversez.
             {
                 rewrite //= in Ha. rewrite NegzE.
                 rewrite NegzE in Ha. rewrite exprnP expr1z in Ha.
-                rewrite mulrC in Ha.
+                Search (_ < _). 
+                
             }
 
         rewrite  in H.
