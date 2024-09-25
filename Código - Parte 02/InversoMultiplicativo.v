@@ -270,11 +270,20 @@ Module inversez.
                 by rewrite absz_gt0.
                 by rewrite absz_gt0.    }
     Qed.
-    
-    Lemma mul_invz (a b c n : int):
-        (a ^ -1 == b %[mod n]) && ((a * b) == c %[mod n]) -> (a == c * b %[mod n]).
+
+    Lemma mulz_mod (a b c n : int):
+        (a == b %[mod n]) -> ((a * c)%R == (b * c)%R %[mod n]).
     Proof.
-        move=> /andP [Hinv Hmod]. rewrite /inv_mulz in Hinv.
+        rewrite !eqz_mod_dvd.
+        move=> Hn. rewrite -!mulrzz -mulrzBl mulrzz.
+        by apply dvdz_mulr.
+    Qed.
+
+    Lemma mulz_inv (a b c n : int):
+        (a ^ -1 == b %[mod n]) && ((a * b)%R == c %[mod n]) -> (a == (c * b)%R %[mod n]).
+    Proof.
+        move=> /andP [Hinv Hmod].
+         rewrite /inv_mulz in Hinv.
         Search (modz).
     Abort.
 
