@@ -204,16 +204,6 @@ Module inversez.
     Compute (modz (- 2) 8).
     Compute (((- 2) %/ 8)).
 
-    Search (_ %% _).
-
-    Compute abszN.
-
-    (* Lemma auxn (n : nat):
-        `|(Negz n)|%R = `|(- (n.+1)%:Z)%R|.
-    Proof.
-        by [].
-    Qed. *)
-
     Lemma absz_div_mul (a n : int):
         ((a %/ n)%Z * n)%R = ((a %/ `|n|)%Z * `|n|)%R.
     Proof.
@@ -253,61 +243,18 @@ Module inversez.
         }
     Qed.
 
-    (* Set Printing Coercions. *)
-
-    Lemma mulz_pos_nat (a b : nat):
-        ((Posz a)%Z * b)%R = a * b.
-    Proof.
-        by [].
-    Qed.
-
     Lemma absz_mod (a n : int):
         (n != 0)%Z -> (a %% n)%Z = `|(a %% n)%Z|.
     Proof.
         rewrite /modz absz_div_mul.
         case: a => a.
-        {
-            (* "Prova mais simples: " *)
-            (* rewrite abszE.
-            rewrite divz_nat.
-            rewrite subzn; last by rewrite div.leq_trunc_div.
-            rewrite -abszE. rewrite absz_nat. by []. *)
-            (* Da onde você estava *)
-            have Ha: a = `|a|.
-                by [].
-            case Hn : n => [k|k].
-                {
-                    move=> kD0.
-                    rewrite divz_nat.
-                    rewrite distnEl.
-                        { rewrite subzn. by rewrite -natz.
-                            have Hk : `|Posz k| = k.
-                                by [].
-                            rewrite Hk.
-                            by rewrite div.leq_trunc_div.
-                        }
-                    have Hk : `|Posz k| = k.
-                                by [].
-                    by rewrite Hk div.leq_trunc_div.
-                }
-                {   
-                    rewrite NegzE => Hk.
-                    (* rewrite -[X in (_ - (_ %/ `|X|)%Z * _)%R = _]intz.  *)
-                    rewrite -abszE abszN absz_nat.
-                    rewrite distnEl.
-                        rewrite divz_nat mul1n.
-                            rewrite -subzn. by rewrite -natz.
-                            by rewrite absz_nat div.leq_trunc_div.
-                        rewrite mul1n.                            
-                        by rewrite absz_nat div.leq_trunc_div.
-                }
-        }
-        {
-            rewrite NegzE.
-            move=> nD0.
-            (* Posso usar esse teorema pois n != 0: *)
+        {   (* caso a seja um número positivo: *)
+            rewrite abszE divz_nat subzn; 
+                last by rewrite div.leq_trunc_div.
+            by rewrite -abszE absz_nat. }
+        {   (* caso a seja um negativo: *)
+            rewrite NegzE => nD0.
             rewrite divNz_nat. 
-            (* rewrite -[X in (_ - X)%R = _]mulrN1z. *)
             rewrite -[X in (_ + X)%R = _]mulrN1z.
             rewrite abszE.
             rewrite -[X in _ = `|(_ - X)|%R]mulrN1z.
@@ -315,52 +262,15 @@ Module inversez.
             rewrite -[X in _ = `|_ + X|%R]mulrN1z.
             rewrite mulNrNz mulrzz mulr1.
             rewrite -mulrz_nat mulrzz mulr1.
-            rewrite addrC. rewrite -abszE.
-            rewrite distnEl.
-            rewrite subzn. by rewrite -natz.
-            Search (div.divn).
-            rewrite mulnC div.ltn_ceil //=.
-            by rewrite absz_gt0.
-            rewrite mulnC div.ltn_ceil //=.
-            by rewrite absz_gt0.
-            by rewrite absz_gt0.
-        }
+            rewrite addrC -abszE distnEl.
+                rewrite subzn. by rewrite -natz.
+                rewrite mulnC div.ltn_ceil //=.
+                by rewrite absz_gt0.
+                rewrite mulnC div.ltn_ceil //=.
+                by rewrite absz_gt0.
+                by rewrite absz_gt0.    }
     Qed.
-
-
-        (* 
-            Ideia: 
-                a %% n = |a %% n|
-            por inducao em |a|:
-                se |a| >= |n| então visto que (a %% n < |a|) temos
-                pela hipótese.
-                se |a| < |n| então (a/n * n)     
-        *)
-
-        move=> n0. rewrite -{1}modz_abs.
-        move: (modz_absm a n) => H.
-        rewrite -modz_abs in H.
-        rewrite -[X in _ = X]modz_abs in H.
-        rewrite -[X in _ * X = _ %[mod _]]modz_abs in H.
-        move: H n0. case: a => a Ha.
-            {
-                rewrite ltz_nat //= in Ha.
-                rewrite exprnP expr0z mul1r in Ha.
-                rewrite -[X in _ -> _ = Posz `|X|]modz_abs.
-                by rewrite modz_nat absz_nat.
-            }
-            {
-                rewrite //= in Ha. rewrite NegzE.
-                rewrite NegzE in Ha. rewrite exprnP expr1z in Ha.
-                Search (_ < _). 
-                
-            }
-
-        rewrite  in H.
-        Search (modz).
-
-        Search (_ %% _).
-
+    
     Lemma mul_invz (a b c n : int):
         (a ^ -1 == b %[mod n]) && ((a * b) == c %[mod n]) -> (a == c * b %[mod n]).
     Proof.
