@@ -113,6 +113,15 @@ Module primesz.
         rewrite lez_nat. rewrite ltz_nat in pL1.
         rewrite ltn_neqAle. by rewrite ltn_neqAle in pL1.
     Qed.
+
+    Lemma primez_ndiv1 (p : int):
+        (primez p) -> ~~(p %| 1).
+    Proof.
+        move=> pP. move: (primez_abs pP) => pabs.
+        apply/negP. move=> pD1. rewrite dvdz1 in pD1.
+        move: pD1 => /eqP pD1. rewrite pD1 in pabs.
+        rewrite pabs //= in pP.
+    Qed.
           
     Close Scope int_scope.
 End primesz.
@@ -158,8 +167,16 @@ Module inversez.
 
     Lemma dvdz_add (a b n : int) : (n %| a) -> (n %| b) -> (n %| (a + b)%R).
     Proof.
-        move=> /dvdzP[q1 ->] /dvdzP[q2 ->].
+        move=> /dvdzP [q1 ->] /dvdzP [q2 ->].
         by rewrite -GRing.mulrDl dvdz_mull.
+    Qed.
+
+    Lemma dvdz_sub (a b n : int) : (n %| a) -> (n %| b) -> (n %| (a - b)%R).
+    Proof.
+        (* Eu creio que a seta "->" realiza substituição no goal: *)
+        move=> /dvdzP [q1->] /dvdzP [q2->].
+        rewrite -mulN1r mulrA [X in _ %| (_ + X)%R]mulrC.
+        by rewrite mulN1r mulrC -GRing.mulrDl dvdz_mull.
     Qed.
 
     Lemma aux2 (a b c : int) :
@@ -279,8 +296,14 @@ Module inversez.
         by apply dvdz_mulr.
     Qed.
 
+    Lemma modz_mul (a b c d n : int):
+        (a == b %[mod n]) -> (c == d %[mod n]) -> (a * c == b * d %[mod n]).
+    Proof.
+        move=> /eqP aMb /eqP cMd. apply/eqP.
+    Abort.
+
     Lemma mulz_inv (a b c n : int):
-        (a ^ -1 == b %[mod n]) && ((a * b)%R == c %[mod n]) -> (a == (c * b)%R %[mod n]).
+        (a ^ -1 == b %[mod n]) && ((a * b)%R == c %[mod n]) -> (a == (c * a)%R %[mod n]).
     Proof.
         move=> /andP [Hinv Hmod].
          rewrite /inv_mulz in Hinv.
@@ -294,11 +317,12 @@ Module inversez.
         move: Ha. case: a.
             move=> n nN0.
             rewrite modz_nat. Search (div.modn).
-            Search (_ || _).
     Abort.
-
-    (* Lema 7 do TCC: *)
-    Lemma inv_modp (p a : int):
+    (*  Documentar o uso de "Set Printing Coercions." no TCC (no Capítulo
+        sobre a implementação.  )*)
+    
+    (*  Lema 7 do TCC (Parte 01: o número k existe):  *)
+    Lemma invz_modp (p a : int):
         (primesz.primez p) -> (0 < a < p)%R -> 
             exists (k : int), (0 < k < p)%R && ((a * k)%R == 1 %[mod p]).
     Proof.
@@ -312,23 +336,100 @@ Module inversez.
         move: (primesz.primez_coprime pP Habs) => Hc.
         rewrite /coprimez -cond_inv in Hc.
         case: Hc => [b Hb].
-        rewrite /inv_mulz in Hb.
-        rewrite -modzMmr in Hb.
+        rewrite /inv_mulz -modzMmr in Hb.
         exists (b %% p). apply/andP. split; last by [].
-        Search (coprimez).
-        Search (_ %% _).
+            rewrite absz_mod; last by apply (primesz.primez_neq0 pP).
+            case Hn: `|(b %% p)%Z|%N => [|n].
+                rewrite eqz_mod_dvd absz_mod in Hb; last by apply (primesz.primez_neq0 pP).
+                rewrite Hn mulr0 dvdzE //= subn0 in Hb.
+                have H1 : 1%N = `|1|.
+                    by [].
+                rewrite H1 -dvdzE in Hb.
+                by move: (primesz.primez_ndiv1 pP); rewrite Hb.
+                rewrite (primesz.primez_abs pP) -Hn -absz_mod;
+                last by apply (primesz.primez_neq0 pP).
+                rewrite ltz_mod; last by apply (primesz.primez_neq0 pP). 
+                rewrite absz_mod; last by apply (primesz.primez_neq0 pP). 
+                by rewrite Hn.
+    Qed.
+(* 
+    Lemma dvdzN_mul (n a b : int):
+        ~~(n %| a) -> ~~(n %| b) -> ~~(n %| (a * b)%R).
+    Proof.
+        rewrite !dvdzE abszM.   *)
 
-        have: (0 <= (b %% p)%Z)%R.
-            Search ((_ %% _)%Z).
+    Lemma dvdz_mul_or (n a b : int):
+        n %| (a * b)%R = (n %| a) || (n %| b).
+    Proof.
+        rewrite !dvdzE abszM.
+        elim/ltn_ind : `|a| => [k Hk].
+            move: Hk.
+            case: k => {}k.
+            {   by rewrite mul0n div.dvdn0. }
+            {   move=> Hk. rewrite -addn1 mulnDl mul1n.
+                case Hnb : (div.dvdn `|n| `|b|).
+                    rewrite Hnb in Hk. rewrite orbC //=.
+                    rewrite div.dvdn_addl.
+                    specialize (Hk k). rewrite orbC //= in Hk. apply Hk.
+                    by [].
+                    by [].
+                rewrite orbC //=.    
+                rewrite Hnb in Hk.
+                case HnSk: (div.dvdn `|n| (k + 1)).
+                    {   rewrite -[X in div.dvdn _ (_ + X) = _]mul1n -mulnDl.
+                        by apply div.dvdn_mulr. }
+                    {   specialize (Hk k). rewrite orbC //= in Hk.
+                        apply negbTE. apply negbT in Hnb.
+                        move: Hnb. apply contra.
+                        move=> HSkb.
+                        rewrite -[X in div.dvdn _ (_ + X)]mul1n -mulnDl in HSkb.
+                        apply negbT in HnSk.     }
 
-        exists (b %% p). apply/andP. split.
-            {
-                have {}Hb: (exists k : int, (b %% p)%Z ^ -1 == k %[mod p]).
-                    by exists a; rewrite /inv_mulz mulrC.
-                rewrite cond_inv in Hb.
-                    
-            }
-    Abort.
+
+
+                rewrite div.dvdn_addr. }
+
+
+
+
+
+            by rewrite div.dvdn0.
+            rewrite -addn1 mulnDl mul1n.
+            case Hc : (div.dvdn `|n| `|b|).
+                rewrite orbC //=. 
+                rewrite -[X in div.dvdn _ (_ + X)]mul1n. 
+                rewrite -mulnDl.
+                by apply div.dvdn_mull.
+            rewrite orbC //=.
+            rewrite -[X in div.dvdn _ (_ + X)]mul1n. 
+            rewrite -mulnDl.
+            rewrite Hc orbC //= in Hk.
+            rewrite div.dvdn_mulr. symmetry.
+
+            move: (div.dvdn_add_eq HSk) => H.
+            
+
+        case H : (div.dvdn `|n| (`|a| * `|b|)).
+            move: H => /div.dvdnP [q Hq].
+            
+            
+        
+
+    (*  Lema 7 do TCC (Parte 02: o número k é único):  *)
+    Lemma invz_modp_uniq (a k1 k2 p : int):
+        (primesz.primez p) -> (0 < k1 < p)%R && ((a * k1)%R == 1 %[mod p])
+        -> (0 < k2 < p)%R && ((a * k2)%R == 1 %[mod p]) -> k1 == k2.
+    Proof.
+        rewrite !eqz_mod_dvd => pP /andP [k1L Hk1] /andP [k2L Hk2].
+        move: (dvdz_sub Hk1 Hk2). rewrite -addrA. 
+        rewrite [X in p %| (_ + X)%R -> _]addrC. rewrite -mulrN1z mulrzBl.
+        rewrite intz. rewrite -[X in _ %| (_ + (_ + X + _))%R -> _]mulrN1z.
+        rewrite mulNrNz intz mulrN1z -addrA subrr addr0.
+        rewrite -mulrN1z mulrzz -mulrA mulrC [X in _ %| (_ + X)%R -> _]mulrC. rewrite -GRing.mulrDl -mulrzz mulrN1z mulrC.
+        Set Printing Coercions.
+        
+
+
 
     Close Scope int_scope.
 End inversez.
