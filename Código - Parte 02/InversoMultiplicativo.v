@@ -45,6 +45,23 @@ Module primesz.
         by move: pP; move=> /andP [pP p0].
     Qed.
 
+    Lemma primez_Ndvd (p a : int):
+        (primez p) -> (0 < a < p)%R -> ~~ (p %| a).
+    Proof.
+        move=> pP a0p.
+        have {}Habs : a = `|a|.
+            move: pP a0p. rewrite /primez => /andP [pL0 pP] /andP [aL0 aLp].
+            symmetry. by apply gtz0_abs.
+        rewrite Habs in a0p.
+        move: (primez_coprime pP a0p).
+        rewrite coprimezE dvdzE => apC.
+        apply/negP => /div.dvdnP [k pDa].
+        rewrite pDa /div.coprime div.gcdnC div.gcdnMl in apC.
+        move: apC => /eqP apC.
+        rewrite /primez apC in pP. move: pP => /andP [pL0 pP].
+        rewrite //= in pP.
+    Qed. 
+        
     Lemma mulr_modp_neq0 (a b p : int):
         primez p -> a * b = 1 %[mod p] -> b != 0.
     Proof.
@@ -122,7 +139,25 @@ Module primesz.
         move: pD1 => /eqP pD1. rewrite pD1 in pabs.
         rewrite pabs //= in pP.
     Qed.
-          
+
+    Lemma Euclidz_dvdM (a b p : int):
+        (primez p) -> (p %| (a * b)%R) = (p %| a) || (p %| b).
+    Proof.
+        rewrite /primez => /andP [pL0 pP]. rewrite !dvdzE abszM.
+        apply (prime.Euclid_dvdM _ _ pP).
+    Qed.
+
+    Lemma primez_1modp (p : int):
+        primez p -> 1 %% p = 1.
+    Proof.
+        move=> pP. move: (primez_lt1 pP) (primez_abs pP) => pL1 pabs.
+        rewrite pabs modz_small. by [].
+        apply /andP. split.
+            by [].
+            by rewrite -pabs.
+    Qed.
+
+
     Close Scope int_scope.
 End primesz.
 
@@ -307,7 +342,6 @@ Module inversez.
     Proof.
         move=> /andP [Hinv Hmod].
          rewrite /inv_mulz in Hinv.
-        Search (modz).
     Abort.
 
     Lemma ltz_mod0 (a b : int):
@@ -352,84 +386,116 @@ Module inversez.
                 rewrite absz_mod; last by apply (primesz.primez_neq0 pP). 
                 by rewrite Hn.
     Qed.
-(* 
-    Lemma dvdzN_mul (n a b : int):
-        ~~(n %| a) -> ~~(n %| b) -> ~~(n %| (a * b)%R).
-    Proof.
-        rewrite !dvdzE abszM.   *)
-
-    Lemma dvdz_mul_or (n a b : int):
-        n %| (a * b)%R = (n %| a) || (n %| b).
-    Proof.
-        rewrite !dvdzE abszM.
-        elim/ltn_ind : `|a| => [k Hk].
-            move: Hk.
-            case: k => {}k.
-            {   by rewrite mul0n div.dvdn0. }
-            {   move=> Hk. rewrite -addn1 mulnDl mul1n.
-                case Hnb : (div.dvdn `|n| `|b|).
-                    rewrite Hnb in Hk. rewrite orbC //=.
-                    rewrite div.dvdn_addl.
-                    specialize (Hk k). rewrite orbC //= in Hk. apply Hk.
-                    by [].
-                    by [].
-                rewrite orbC //=.    
-                rewrite Hnb in Hk.
-                case HnSk: (div.dvdn `|n| (k + 1)).
-                    {   rewrite -[X in div.dvdn _ (_ + X) = _]mul1n -mulnDl.
-                        by apply div.dvdn_mulr. }
-                    {   specialize (Hk k). rewrite orbC //= in Hk.
-                        apply negbTE. apply negbT in Hnb.
-                        move: Hnb. apply contra.
-                        move=> HSkb.
-                        rewrite -[X in div.dvdn _ (_ + X)]mul1n -mulnDl in HSkb.
-                        apply negbT in HnSk.     }
-
-
-
-                rewrite div.dvdn_addr. }
-
-
-
-
-
-            by rewrite div.dvdn0.
-            rewrite -addn1 mulnDl mul1n.
-            case Hc : (div.dvdn `|n| `|b|).
-                rewrite orbC //=. 
-                rewrite -[X in div.dvdn _ (_ + X)]mul1n. 
-                rewrite -mulnDl.
-                by apply div.dvdn_mull.
-            rewrite orbC //=.
-            rewrite -[X in div.dvdn _ (_ + X)]mul1n. 
-            rewrite -mulnDl.
-            rewrite Hc orbC //= in Hk.
-            rewrite div.dvdn_mulr. symmetry.
-
-            move: (div.dvdn_add_eq HSk) => H.
-            
-
-        case H : (div.dvdn `|n| (`|a| * `|b|)).
-            move: H => /div.dvdnP [q Hq].
-            
-            
-        
 
     (*  Lema 7 do TCC (Parte 02: o número k é único):  *)
     Lemma invz_modp_uniq (a k1 k2 p : int):
-        (primesz.primez p) -> (0 < k1 < p)%R && ((a * k1)%R == 1 %[mod p])
+        (primesz.primez p) -> (0 < a < p)%R -> (0 < k1 < p)%R && ((a * k1)%R == 1 %[mod p])
         -> (0 < k2 < p)%R && ((a * k2)%R == 1 %[mod p]) -> k1 == k2.
     Proof.
-        rewrite !eqz_mod_dvd => pP /andP [k1L Hk1] /andP [k2L Hk2].
+        rewrite !eqz_mod_dvd => pP Ha /andP [k1L Hk1] /andP [k2L Hk2].
         move: (dvdz_sub Hk1 Hk2). rewrite -addrA. 
-        rewrite [X in p %| (_ + X)%R -> _]addrC. rewrite -mulrN1z mulrzBl.
-        rewrite intz. rewrite -[X in _ %| (_ + (_ + X + _))%R -> _]mulrN1z.
+        rewrite [X in p %| (_ + X)%R -> _]addrC. 
+        rewrite -mulrN1z mulrzBl. rewrite intz. 
+        rewrite -[X in _ %| (_ + (_ + X + _))%R -> _]mulrN1z.
         rewrite mulNrNz intz mulrN1z -addrA subrr addr0.
-        rewrite -mulrN1z mulrzz -mulrA mulrC [X in _ %| (_ + X)%R -> _]mulrC. rewrite -GRing.mulrDl -mulrzz mulrN1z mulrC.
-        Set Printing Coercions.
-        
+        rewrite -mulrN1z mulrzz -mulrA mulrC.
+        rewrite [X in _ %| (_ + X)%R -> _]mulrC. 
+        rewrite -GRing.mulrDl -mulrzz mulrN1z mulrC.
+        rewrite (primesz.Euclidz_dvdM _ _ pP).
+        move: (primesz.primez_Ndvd pP Ha) => pDa Hor.
+        rewrite (negbTE pDa) //= -eqz_mod_dvd in Hor.
+        have: k1 = `|k1|.
+            move: k1L => /andP [k1L0 pLk1]. symmetry.
+            apply (gtz0_abs k1L0).
+        have: k2 = `|k2|.
+            move: k2L => /andP [k2L0 pLk2]. symmetry.
+            apply (gtz0_abs k2L0).
+        move=> k2abs k1abs.
+        rewrite !modz_small in Hor. move=>//.
+            apply /andP. split.
+                by rewrite k2abs.
+                by move: k2L => /andP [_ pLk2].
+            apply /andP. split.
+                by rewrite k1abs.
+                by move: k1L => /andP [_ pLk1].
+    Qed.
+    
+    (* Lema 8 do TCC: *)
+    Lemma invz_modp_mul (a p : int):
+        (primesz.primez p) -> (2 < p)%R -> (0 < a < p)%R -> ~ (exists x, x^2 == a %[mod p]) -> (forall h, (0 < h < p)%R -> exists k, (0 < k < p)%R && ((h != k) && ((h * k)%R == a %[mod p]))).
+    Proof.
+        move=> pP pL2 aL Hx h hL. move: (invz_modp pP hL) => [k Hh].
+        move: Hh => /andP [kL Hk].
+        have Hka : k * a == k * a %[mod p].
+            by [].
+        move: (mulz_mod h Hka) => {}Hka.
+        rewrite mulrC mulrA in Hka.
+        move: Hk => /eqP Hk. rewrite -{1}modzMml in Hka.
+        rewrite {1}Hk in Hka. rewrite (primesz.primez_1modp pP) mul1r in Hka.
+        rewrite -mulrA -modzMmr in Hka.
+        exists ((k * a) %% p). apply/andP. split.
+            apply/andP. split.
+            rewrite absz_mod.
+            case Hn : `|((k * a) %% p)| => [|n].
+                exfalso. apply Hx. exists 0.
+                move: Hn. move=> /eqP Hn. rewrite absz_eq0 in Hn.
+                move: Hn => /eqP Hn.
+                rewrite Hn mulr0 in Hka.
+                move: Hka => /eqP Hka.
+                rewrite Hka //=.
+            by [].
+            by rewrite (primesz.primez_neq0 pP).
+            rewrite (primesz.primez_abs pP).
+            apply ltz_pmod. 
+            rewrite -(primesz.primez_abs pP).
+            apply (primesz.primez_lt0 pP).
+        apply/andP. split.
+            apply/eqP. move=> H.
+            rewrite -H in Hka.
+            apply Hx. exists h. rewrite exprSz expr1z.
+            apply/eqP. symmetry. by apply/eqP.
+            apply/eqP. symmetry. by apply/eqP.
+    Qed.
+
+    (* Lema 9 do TCC: *)
+    Lemma invz_modp_mul_uniq (a h k1 k2 p : int):
+        primesz.primez p ->
+        (0 < a < p)%R -> (0 < h < p)%R -> (0 < k1 < p)%R -> (0 < k2 < p)%R
+        -> (k1 * h)%R == a %[mod p] -> (k2 * h)%R == a %[mod p] -> k1 == k2.
+    Proof.
+        move=> pP aL hL k1L k2L /eqP Hk1 /eqP Hk2. apply /eqP.
+        rewrite -Hk2 in Hk1. move: Hk1 => /eqP. rewrite eqz_mod_dvd.
+        rewrite [X in _ %| (X - _)%R-> _]mulrC.
+        rewrite [X in _ %| (_ - X)%R-> _]mulrC.
+        rewrite -!mulrzz -mulrNz !mulrzz -mulrDr. rewrite (primesz.Euclidz_dvdM  _ _ pP).
+        move: hL => /andP [hL0 pLh].
+        have habs: h = `|h|.
+            symmetry. by rewrite (gtz0_abs hL0).
+            rewrite dvdzE div.gtnNdvd //=.
+            rewrite -eqz_mod_dvd !modz_small.
+            by move=> /eqP.
+        apply /andP. split.
+            move: k2L => /andP [H _]. rewrite Num.Theory.le0r H orbC //=.
+            move: k2L => /andP [_ H]. by rewrite H.
+        apply /andP. split.
+            move: k1L => /andP [H _]. rewrite Num.Theory.le0r H orbC //=.
+            move: k1L => /andP [_ H]. by rewrite H.
+        rewrite habs in hL0. by [].
+        rewrite habs (primesz.primez_abs pP) in pLh. by [].
+    Qed.
+
+    (* Definindo fatorial para inteiros: *)
+    Definition factorialz (n : int) := nosimpl (fact_rec `|n|)%:Z.
+    Notation "n `!" := (factorialz n) (at level 2, format "n `!") : int_scope.
+
+    (* Lema 10 do TCC: *)
+    Lemma primez_fat_exp_modp (a p : int):
+        (primesz.primez p) -> (2 < p)%R -> (coprimez a p) -> ~ (exists x, x^2 == a %[mod p]) ->
+        ((p - 1)`!) == (a ^ ((p - 1) %/ 2 )%Z) %[mod p].
+    Proof.
+        (* ... *)
+    Abort.
 
 
-
-    Close Scope int_scope.
+    Close Scope int_scope`
 End inversez.
