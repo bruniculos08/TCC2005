@@ -1,6 +1,6 @@
 From HB Require Import structures.
-From mathcomp Require Import ssreflect eqtype all_algebra ssrbool
-                             ssrnat ssrint ssralg intdiv seq prime order.
+From mathcomp Require Import all_ssreflect ssreflect eqtype all_algebra
+ssrbool bigop ssrnat ssrint ssralg intdiv seq prime order.
 Import Order.Theory.
 From Coq Require Import Logic.Decidable.
 
@@ -157,11 +157,49 @@ Module primesz.
             by rewrite -pabs.
     Qed.
 
-
-    Close Scope int_scope.
 End primesz.
 
-(* Implementação de Inverso Multiplicativo em Coq *)
+(*  Implementações relacionados a função fatorial *)
+
+Module factorial.
+    (* Delimit Scope int_scope with Z.
+    Open Scope int_scope.
+
+    Local Notation "+%Z" := intZmod.addz (at level 0, only parsing).
+    Notation "\sum_ ( i <- r | P ) F" :=
+    (\big[+%Z/0%Z]_(i <- r | P%B) F%Z) : int_scope.
+    
+
+    Lemma prod_factorial (n : int): 
+        \prod_((1 <= i < n + 1)%R) i = n.
+    Proof.
+
+    Close Scope int_scope. *)
+
+    Delimit Scope nat_scope with N.
+    Open Scope nat_scope.
+        
+    Lemma aux4 (p h : nat): 
+        (0 < h < p) -> ((p - 1)`!) = (\prod_(i <- (rem h (index_iota 1 p))) i) * h. 
+    Proof.
+        elim: p.
+        {   
+            move=> /andP [_ kL0]. by []. 
+        }
+        move=> n H /andP[hL0 hLn]. 
+        rewrite -addn1 -addnBA; last by [].
+        rewrite subnn addn0.
+        move: hLn.
+        rewrite ltnS leq_eqVlt => /orP[hEn | hLn]. 
+        move: hEn => /eqP hEn.
+        rewrite hEn.
+        Search (rem _). 
+    Admitted.
+
+    Close Scope nat_scope.
+End factorial.
+
+(*  Implementação de Inverso Multiplicativo em Coq *)
 
 Module inversez.
     Delimit Scope int_scope with Z.
@@ -331,29 +369,10 @@ Module inversez.
         by apply dvdz_mulr.
     Qed.
 
-    Lemma modz_mul (a b c d n : int):
-        (a == b %[mod n]) -> (c == d %[mod n]) -> (a * c == b * d %[mod n]).
-    Proof.
-        move=> /eqP aMb /eqP cMd. apply/eqP.
-    Abort.
-
-    Lemma mulz_inv (a b c n : int):
-        (a ^ -1 == b %[mod n]) && ((a * b)%R == c %[mod n]) -> (a == (c * a)%R %[mod n]).
-    Proof.
-        move=> /andP [Hinv Hmod].
-         rewrite /inv_mulz in Hinv.
-    Abort.
-
-    Lemma ltz_mod0 (a b : int):
-        (b != 0) && (a != 0) -> (0 <= (a %% b)%Z)%R.
-    Proof.
-        move=> /andP [Hb Ha]. rewrite -modz_abs.
-        move: Ha. case: a.
-            move=> n nN0.
-            rewrite modz_nat. Search (div.modn).
-    Abort.
-    (*  Documentar o uso de "Set Printing Coercions." no TCC (no Capítulo
-        sobre a implementação.  )*)
+    (*  
+        Documentar o uso de "Set Printing Coercions." no TCC (no Capítulo
+        sobre a implementação).
+    *)
     
     (*  Lema 7 do TCC (Parte 01: o número k existe):  *)
     Lemma invz_modp (p a : int):
@@ -441,8 +460,7 @@ Module inversez.
                 move: Hn. move=> /eqP Hn. rewrite absz_eq0 in Hn.
                 move: Hn => /eqP Hn.
                 rewrite Hn mulr0 in Hka.
-                move: Hka => /eqP Hka.
-                rewrite Hka //=.
+                move: Hka => /eqP[<-] //=.
             by [].
             by rewrite (primesz.primez_neq0 pP).
             rewrite (primesz.primez_abs pP).
@@ -484,18 +502,167 @@ Module inversez.
         rewrite habs (primesz.primez_abs pP) in pLh. by [].
     Qed.
 
-    (* Definindo fatorial para inteiros: *)
-    Definition factorialz (n : int) := nosimpl (fact_rec `|n|)%:Z.
-    Notation "n `!" := (factorialz n) (at level 2, format "n `!") : int_scope.
+    Close Scope int_scope.
 
+    (* This should be part of the standard library *)
+
+    Local Lemma prime_modn_expSn p n : prime p -> n.+1 ^ p = (n ^ p).+1 %[mod p].
+    Proof.
+        case: p => // p pP.
+        rewrite -[(_ ^ _).+1]addn0.
+        rewrite (expnDn 1).
+        rewrite big_ord_recr /=.
+        rewrite big_ord_recl /=.
+        rewrite subnn binn exp1n !mul1n addnAC.
+        Print bump.
+        rewrite -modnDmr. congr ((_ + _) %% _).
+        apply/eqP/dvdn_sum => -[i ?] _; exact/dvdn_mulr/prime_dvd_bin. 
+    Qed. 
+
+    (* This should be part of the standard library *)
+
+    Local Lemma fermat_little a p : prime p -> a ^ p = a %[mod p].
+    Proof.
+    move=> pP.
+    elim: a => [|a IH]; first by rewrite exp0n // prime_gt0.
+    by rewrite prime_modn_expSn // -addn1 -modnDml IH modnDml addn1.
+    Qed.
+
+    (* This should be part of the standard library *)
+
+    Local Lemma fermat_little_pred a p : prime p -> ~(p %| a) -> a ^ p.-1 = 1 %[mod p].
+    Proof.
+    move=> Pp pNDa.
+    have a_gt0 : 0 < a by case: a pNDa.
+    have aCp : coprime a p by rewrite coprime_sym prime_coprime //; apply/negP.
+    have aE : (egcdn a p).1 * a = 1 %[mod p].
+    by case: egcdnP => //= km kn -> _; rewrite (eqP aCp) modnMDl.
+    rewrite -[_^ _]muln1 -modnMmr -[in LHS]aE // modnMmr.
+    rewrite mulnC -mulnA -expnS prednK ?prime_gt0 //.
+    by rewrite -modnMmr fermat_little // modnMmr aE.
+    Qed.
+
+    Delimit Scope int_scope with Z.
+    Open Scope int_scope.
+
+    Lemma fermatz_little (a p : int):
+        primesz.primez p -> ~(p %| a) -> a ^ (p - 1)%R == 1 %[mod p].
+    Proof.
+        move=> pP pDa.
+        move: (primesz.primez_abs pP) => pabs.
+        rewrite pabs.
+        have -> : (`|p| - 1)%R = `|p - 1|.
+            rewrite {2}pabs.
+            case Hp: `|p| => [|k].
+                move: pP => /andP[pL0 pP].
+                rewrite Hp //= in pP.
+            rewrite -abszE Hp.
+            Set Printing Coercions.
+            rewrite -predn_int.
+            by rewrite -subn1 -(addn0 1%N) addnC subSS subn0.
+            by [].
+        rewrite -exprnP -modzXm. 
+        rewrite (@absz_mod a (Posz `|p|)).
+            {
+                rewrite exprnP !abszE.
+                rewrite abszE in pabs.
+                rewrite {2}pabs.
+                rewrite -pabs -abszE pabs.
+                rewritegtz0_abs.
+            }
+        rewrite abszE in pabs.
+        by rewrite abszE -pabs (primesz.primez_neq0 pP).
+
+    
+
+
+
+    (* Definindo fatorial para inteiros: *)
+    (* Definition factorialz (n : int) := (`|n|`!)%:Z.
+    Notation "n `!" := (factorialz n) (at level 2, format "n `!") : int_scope. *)
+
+    Compute (\prod_(i <- (rem 1 (rem 2 (index_iota 1 7)))) i)%N.
+    Compute (index_iota 1 7).
+
+    Check (forall (a b : int), (a * b)%R = 0).
+    
+
+    Lemma primez_pred_exp_half (a p : int):
+        (2 < p)%R -> ()
+
+
+    Lemma prod_rem2 (a : int) (n : nat):
+        (0 < a < n.+1)%R ->
+        (\prod_(i <- (index_iota 1 n.+1)) i)%:Z == 
+        ((\prod_(i <- (rem `|a|%N (index_iota 1 n.+1))) i)%:Z * a)%R.
+    Proof.
+        move=> /andP [aL0 aLn]. move: (gtz0_abs aL0) => aEabs.
+        remember (index_iota 1 n.+1) as l.
+        move: Heql. elim: l => [|h t IH].
+            {
+                rewrite //=.
+            }
+            
+
+    (* Lemma primez_fat_even_exp_modp (a p : int):
+        (primesz.primez p) -> (2 < p)%R -> (0 < a < p)%R -> ~ (exists x, x^2 == a %[mod p]) -> (forall h, (0 < h < p)%R -> 
+        exists k, ((h != k) && (\prod_(i <- (index_iota 1)) (h * k)%R == a %[mod p]))). *)
+
+    (* Lemma primez_fat_even_exp_modp (a p : int) n (l : seq nat):
+        (n = size l) -> (~~ odd n) 
+        -> (forall i, i \in l -> exists j, (j \in l) && ((i * j) == a %[mod p])) ->
+        (\prod_(i <- l) i)%:Z == (a ^ (n %/ 2 )%Z) %[mod p].
+    Proof.
+        move: l.
+        elim/ltn_ind: n => [n IH].
+        move=> [|h t].
+        {
+            rewrite //=. move=> -> //= _ Hi.
+            rewrite div0z expr0z.
+            rewrite -foldrE //=.
+        }
+        move=> nsize oddn Hi.
+         *)
+
+
+        
     (* Lema 10 do TCC: *)
     Lemma primez_fat_exp_modp (a p : int):
         (primesz.primez p) -> (2 < p)%R -> (coprimez a p) -> ~ (exists x, x^2 == a %[mod p]) ->
-        ((p - 1)`!) == (a ^ ((p - 1) %/ 2 )%Z) %[mod p].
+        ((`|p| - 1)`!)%:Z == (a ^ ((p - 1) %/ 2 )%Z) %[mod p].
     Proof.
+        move=> pP pL2 aCp Hx.
+        rewrite fact_prod.
+        rewrite -[X in (\prod_(1 <= i < X)  i)%N  == _  %[mod p] ]addn1 subnK;
+        last by rewrite -ltz_nat -(primesz.primez_abs pP) (primesz.primez_lt0 pP).
+        rewrite {3}(primesz.primez_abs pP).
+        remember (index_iota )
+
+
+
+        have: `|(p - 1)%R|.+1 = `|p|.
+            move: (primesz.primez_abs pP) => pabs. rewrite {1}pabs.
+            rewrite distnEl. rewrite -addn1 subnK. by [].
+            move: (primesz.primez_lt0 pP). rewrite -ltz_nat {1}pabs //=.
+            move: (primesz.primez_lt0 pP). rewrite -ltz_nat {1}pabs //=.
+        move=> ->. apply/eqP.
+        (* 
+            k * h == a (mod p)
+
+            (p - 1)! = ((p - 1) * h) * (\prod i in [1, p-1] - {p - 1, h})
+                
+
+            (p - 1)! = a^((p-1)/2) (mod p)
+            (p - 1)! = a^((p-1)/2) (mod p)
+
+
+
+            2 * (sum 1 ... n - 1) = n * (n - 1)
+            (sum 1 ... n - 1 | i) + (sum 1 ... n - 1 | F i) = n * (n - 1)
+
+        *)
         (* ... *)
     Abort.
 
-
-    Close Scope int_scope`
+    Close Scope int_scope.
 End inversez.
