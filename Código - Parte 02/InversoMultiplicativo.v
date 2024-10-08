@@ -12,6 +12,107 @@ Unset Printing Implicit Defensive.
 
 (*  Algumas provas neste arquivo foram obtidas de https://github.com/thery/mathcomp-extra/ *)
 
+(*  Teoremas que deveriam estar na biblioteca: *)
+Module missing.
+    Lemma absz_div_mul (a n : int):
+        ((a %/ n)%Z * n)%R = ((a %/ `|n|)%Z * `|n|)%R.
+    Proof.
+    case: n => n.
+    { by []. }
+    { 
+        rewrite NegzE divzN -mulrzz mulNrNz mulrzz.
+        rewrite [X in _ = ((_ %/ X)%Z * X)%R]ltz0_abs; last by [].
+        by rewrite -mulrN1z mulNrNz mulrzz mulr1.
+    }
+    Qed. 
+
+    Lemma absz_le_mul (a n : int):
+        (((a %/ n)%Z * n)%R <= `|a|%R)%R.
+    Proof.
+    rewrite absz_div_mul.
+    case: a => a.
+    (* caso: a = |a| *)
+    {
+        rewrite -[X in (_ <= X)%R]abszE absz_nat divz_nat.
+        apply div.leq_trunc_div.
+    }
+    (* caso: a = -|a| *)
+    {
+        rewrite NegzE.
+        rewrite [X in (_ <= X)%R]ltz0_abs; last by [].
+        rewrite -mulrN1z -[X in (_ <= X)%R]mulrN1z.
+        rewrite mulrN1z mulNrNz mulrzz mulr1.
+        case Hn : `|n| => [|k]. 
+            rewrite -[X in ((_ %/ X)%Z * X <= _)%R]abszE Hn //=.
+        rewrite divNz_nat; last by rewrite Hn //=.
+        rewrite mulrC -mulrzz mulrNz. rewrite Hn.
+        rewrite -abszE Hn mulrzz. 
+        case H : (k.+1 * (div.divn a k.+1).+1) => [|x].
+            move: H => /eqP H. rewrite -eqz_nat //= in H.
+        move: H => /eqP H. rewrite -eqz_nat //= in H.
+    }
+    Qed.
+
+    Lemma absz_mod (a n : int):
+        (n != 0)%Z -> (a %% n)%Z = `|(a %% n)%Z|.
+    Proof.
+    rewrite /modz absz_div_mul.
+    case: a => a.
+    {   (* caso a seja um número positivo: *)
+        rewrite abszE divz_nat subzn; 
+            last by rewrite div.leq_trunc_div.
+        by rewrite -abszE absz_nat. }
+    {   (* caso a seja um negativo: *)
+        rewrite NegzE => nD0.
+        rewrite divNz_nat. 
+        rewrite -[X in (_ + X)%R = _]mulrN1z.
+        rewrite abszE.
+        rewrite -[X in _ = `|(_ - X)|%R]mulrN1z.
+        rewrite mulNrNz mulrzz mulr1.
+        rewrite -[X in _ = `|_ + X|%R]mulrN1z.
+        rewrite mulNrNz mulrzz mulr1.
+        rewrite -mulrz_nat mulrzz mulr1.
+        rewrite addrC -abszE distnEl.
+            rewrite subzn. by rewrite -natz.
+            rewrite mulnC div.ltn_ceil //=.
+            by rewrite absz_gt0.
+            rewrite mulnC div.ltn_ceil //=.
+            by rewrite absz_gt0.
+            by rewrite absz_gt0.    }
+    Qed.
+
+    Lemma dvdN_mod (p a : int):
+        ~ (p %| a)%Z -> ~ (p %| (a %% p))%Z.
+    Proof.
+    rewrite !dvdzE -modz_abs.
+    case: `|p| => {}p.
+    by rewrite //= modz0 ; rewrite //=.
+    have: `|(a %% p.+1)%Z| < `|p.+1|.
+        rewrite -ltz_nat -absz_mod.
+        by apply ltz_mod.
+        by rewrite //=.
+    rewrite //=. 
+    move=> xDSp SpNDa SpDx.
+    case Hx: `|(a %% p.+1)%Z| => [|x].
+    move: Hx => /eqP.
+    rewrite -eqz_nat -(absz_mod a).
+    move=> /eqP /dvdz_mod0P => SpDa.
+    rewrite dvdzE //= in SpDa. rewrite //=.
+    move: Hx => /eqP.
+    rewrite -eqz_nat -(absz_mod a).
+    move=> /eqP => Hx.
+    rewrite Hx in SpDx ; rewrite Hx in xDSp.
+    have: p.+1 <= x.+1.
+        apply dvdn_leq.
+        by [].
+        by [].
+    rewrite //= in xDSp ; rewrite //= in SpDx.
+    rewrite leqNgt xDSp //=. rewrite //=.
+    Qed.
+            
+End missing.
+(*  Fim dos teoremas que deveriam estar na biblioteca. *)
+
 (*  Módulo específico para primos inteiros: *)
 Module primesz.
     Delimit Scope int_scope with Z.
@@ -175,73 +276,6 @@ Module primesz.
     by rewrite addnC.
     Qed.
 
-    Lemma absz_div_mul (a n : int):
-        ((a %/ n)%Z * n)%R = ((a %/ `|n|)%Z * `|n|)%R.
-    Proof.
-        case: n => n.
-        { by []. }
-        { 
-            rewrite NegzE divzN -mulrzz mulNrNz mulrzz.
-            rewrite [X in _ = ((_ %/ X)%Z * X)%R]ltz0_abs; last by [].
-            by rewrite -mulrN1z mulNrNz mulrzz mulr1.
-        }
-    Qed. 
-
-    Lemma absz_le_mul (a n : int):
-        (((a %/ n)%Z * n)%R <= `|a|%R)%R.
-    Proof.
-        rewrite absz_div_mul.
-        case: a => a.
-        (* caso: a = |a| *)
-        {
-            rewrite -[X in (_ <= X)%R]abszE absz_nat divz_nat.
-            apply div.leq_trunc_div.
-        }
-        (* caso: a = -|a| *)
-        {
-            rewrite NegzE.
-            rewrite [X in (_ <= X)%R]ltz0_abs; last by [].
-            rewrite -mulrN1z -[X in (_ <= X)%R]mulrN1z.
-            rewrite mulrN1z mulNrNz mulrzz mulr1.
-            case Hn : `|n| => [|k]. 
-                rewrite -[X in ((_ %/ X)%Z * X <= _)%R]abszE Hn //=.
-            rewrite divNz_nat; last by rewrite Hn //=.
-            rewrite mulrC -mulrzz mulrNz. rewrite Hn.
-            rewrite -abszE Hn mulrzz. 
-            case H : (k.+1 * (div.divn a k.+1).+1) => [|x].
-                move: H => /eqP H. rewrite -eqz_nat //= in H.
-            move: H => /eqP H. rewrite -eqz_nat //= in H.
-        }
-    Qed.
-
-    Lemma absz_mod (a n : int):
-        (n != 0)%Z -> (a %% n)%Z = `|(a %% n)%Z|.
-    Proof.
-        rewrite /modz absz_div_mul.
-        case: a => a.
-        {   (* caso a seja um número positivo: *)
-            rewrite abszE divz_nat subzn; 
-                last by rewrite div.leq_trunc_div.
-            by rewrite -abszE absz_nat. }
-        {   (* caso a seja um negativo: *)
-            rewrite NegzE => nD0.
-            rewrite divNz_nat. 
-            rewrite -[X in (_ + X)%R = _]mulrN1z.
-            rewrite abszE.
-            rewrite -[X in _ = `|(_ - X)|%R]mulrN1z.
-            rewrite mulNrNz mulrzz mulr1.
-            rewrite -[X in _ = `|_ + X|%R]mulrN1z.
-            rewrite mulNrNz mulrzz mulr1.
-            rewrite -mulrz_nat mulrzz mulr1.
-            rewrite addrC -abszE distnEl.
-                rewrite subzn. by rewrite -natz.
-                rewrite mulnC div.ltn_ceil //=.
-                by rewrite absz_gt0.
-                rewrite mulnC div.ltn_ceil //=.
-                by rewrite absz_gt0.
-                by rewrite absz_gt0.    }
-    Qed.
-
     (*  A prova do seguinte lema se baseou na prova do lema "fermat_little" 
         disponível em: https://github.com/thery/mathcomp-extra/blob/640bc1a2634a609b8fd8a7c2023654ac3d9bc0a8/rsa.v  *)
     
@@ -251,16 +285,123 @@ Module primesz.
     move=> /andP[pL0 pP].
     clear pL0.
     rewrite absz_nat in pP.
-    rewrite /exprz -modzXm -{2}(modz_mod a) (absz_mod a);
+    rewrite /exprz -modzXm -{2}(modz_mod a) (missing.absz_mod a);
         last by apply/eqP; move=> p0; injection p0 => {}p0;
         rewrite p0 //= in pP.
-    Set Printing Coercions.
+    (* Set Printing Coercions. *)
     rewrite /exprz -rmorphXn //= natrXE !modz_nat. 
-    apply f_equal.
+    f_equal.
     elim: (`|(a %% Posz p)%Z|) => [|x IH]; first by rewrite exp0n // prime_gt0.
     by rewrite prime_modn_expSn // -addn1 -modnDml IH modnDml addn1.
     Qed.
 
+    Lemma fermatz_little_pred (a p : int) : primez p -> ~(p %| a) -> a ^ (p - 1) = 1 %[mod p].
+    Proof. 
+    case: p => // p /andP [_ pP].
+    rewrite absz_nat in pP.
+    move=> /negP /dvdz_mod0P /eqP pNDa.
+    rewrite missing.absz_mod in pNDa;
+        last by apply /eqP;
+        move=> pE0;
+        injection pE0 => {}pE0;
+        rewrite pE0 //= in pP.
+    rewrite subzn; last by apply (prime_gt0 pP).
+    (* Set Printing Coercions. *)
+    rewrite /exprz -modzXm (missing.absz_mod a);
+        last by apply /eqP;
+        move=> pE0;
+        injection pE0 => {}pE0;
+        rewrite pE0 //= in pP.
+    rewrite -rmorphXn !modz_nat natrXE; f_equal.
+    pose x := `|(a %% Posz p)%Z|.
+    have: ~ (p %| x)%N.
+        move=> pDx. rewrite -missing.absz_mod in pNDa.
+        move: (prime_gt0 pP) => pL0.
+        rewrite -ltz_nat in pL0.
+        move: (ltz_pmod a pL0).
+        rewrite missing.absz_mod.
+        rewrite ltz_nat.
+        rewrite /x in pDx.
+        rewrite ltz_nat in pL0.
+        rewrite missing.absz_mod in pNDa.
+        have: `|(a %% Posz p)%Z|%N > 0.
+            rewrite absz_gt0 missing.absz_mod //=.
+        apply/eqP => pD0.
+        injection pD0 => {}pD0.
+        rewrite pD0 //= in pL0.
+        move=> xL0 xLp.
+        move: (dvdn_leq xL0 pDx) => pLx.
+        rewrite ltn_geF // in xLp.
+    apply/eqP => pE0.
+    injection pE0 => {}pE0.
+    rewrite pE0 //= in pL0.
+    apply/eqP => pE0.
+    injection pE0 => {}pE0.
+    rewrite pE0 //= in pL0.
+    apply/eqP => pE0.
+    injection pE0 => {}pE0.
+    rewrite pE0 //= in pP.
+    clear pNDa.
+    move=> pNDa.
+    rewrite -/x.
+    have a_gt0 : 0 < x by case: x pNDa.
+    have aCp : coprime x p by rewrite coprime_sym prime_coprime //; apply/negP.
+    have aE : ((egcdn x p).1 * x = 1 %[mod p])%N.
+    by case: egcdnP => //= km kn -> _; rewrite (eqP aCp) modnMDl.
+    rewrite -[_^ _]muln1 -modnMmr -[in LHS]aE // modnMmr.
+    rewrite subn1 mulnC -mulnA -expnS prednK ?prime_gt0 //.
+    by rewrite -modnMmr fermat_little // modnMmr aE.
+    Qed.
+
+    Lemma pred_primez_half_mod (a p : int):
+        primez p -> ~(p %| a) -> (a ^ ((p - 1) %/ 2)%Z == 1 %[mod p]) || (a ^ ((p - 1) %/ 2)%Z == -1 %[mod p]).
+    Proof.
+    case: p => // p pP pDa.
+    move: (fermatz_little_pred pP pDa).
+    (* Set Printing Coercions. *)
+    rewrite -{1}(@mulzK (Posz p - 1) 2); last by rewrite //=.
+    rewrite !(@subzn p _); last by rewrite -ltz_nat (primez_lt0 pP).
+    move: pP => /andP[pL0 pP]. rewrite //= in pP.
+    move: (even_prime pP) => [pE2 | podd].
+        rewrite pE2 //=.
+    have: (2%Z %| Posz (p - 1)).
+        rewrite dvdzE //= dvdn2 -oddS -addn1 subnK //=.
+        by rewrite prime_gt0 //=.
+    move=> pD2. rewrite -(divz_mulAC); last by rewrite pD2.
+    rewrite divz_nat /exprz //= -!(modzXm _ a _) (missing.absz_mod a);
+    last by move: pDa pL0 pP podd pD2; case: p.
+    move: pDa pL0 pP podd pD2; case: p => {}p.
+    move=> pD2 podd pP pL0 pDa //=.
+    move=> pDa pL0 pP podd pD2.
+    move: (missing.dvdN_mod pDa) => pDamod.
+    rewrite dvdzE in pDamod.
+    rewrite -!rmorphXn //= !natrXE.
+    case Hx : `|a %% Posz p.+1| => [|x].
+        rewrite Hx //= in pDamod.
+    rewrite {1}modz_nat {1}(modz_nat 1 _) => xfermat.
+    injection xfermat => /eqP {}xfermat.
+    rewrite eqn_mod_dvd in xfermat.
+    rewrite -[X in (_ %| X)%N]subn0 in xfermat.
+    rewrite -eqn_mod_dvd expnM -{4}(exp1n 2%N) subn_sqr in xfermat.
+    rewrite eqn_mod_dvd //= subn0 Euclid_dvdM in xfermat.
+    rewrite -eqn_mod_dvd in xfermat.
+    apply/orP.
+    move: xfermat => /orP [xfermat|xfermat].
+        by left; rewrite !modz_nat.
+    by right; rewrite eqz_mod_dvd //=.
+    by rewrite expn_gt0.
+    by [].
+    by [].
+    by rewrite expn_gt0.
+    Qed.
+
+    Lemma EulerCriterionz (p a : int):
+        (primez p) -> ~(p %| a) -> 
+        (exists (x : int), x ^ 2 == a %[mod p])%R <-> 
+        (a ^ ((p - 1) %/ 2)%Z == 1 %[mod p]).
+    Proof. 
+
+    Close Scope int_scope.
 End primesz.
 
 (*  Implementações relacionados a função fatorial *)
