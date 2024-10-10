@@ -1,6 +1,6 @@
 From HB Require Import structures.
 From mathcomp Require Import all_ssreflect ssreflect eqtype all_algebra
-ssrbool bigop ssrnat ssrint ssralg intdiv seq prime order.
+ssrbool bigop ssrnat ssrint ssralg intdiv seq prime order perm zmodp.
 Import Order.Theory.
 From Coq Require Import Logic.Decidable.
 

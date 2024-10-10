@@ -1,13 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2024.9.9)  19 SEP 2024 11:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2024.10.10)  10 OCT 2024 16:38
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/bruno/√Årea de trabalho/Workspace/TCC2005/Texto - Parte 02/main"
-(/home/bruno/√Årea de trabalho/Workspace/TCC2005/Texto - Parte 02/main.tex
+**main
+(./main.tex
 LaTeX2e <2022-11-01> patch level 1
-L3 programming layer <2023-02-22> (./AbnTex/abntex2.cls
-Document Class: AbnTex/abntex2 2018/11/24 v-1.9.7 abnTeX2
+L3 programming layer <2023-02-22> (/usr/share/texlive/texmf-dist/tex/latex/abntex2/abntex2.cls
+Document Class: abntex2 2018/11/24 v-1.9.7 abnTeX2
 (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 ) (/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls
@@ -679,13 +678,9 @@ Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \l__lipsum_b_int=\count352
  (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/backref.sty
 Package: backref 2021/02/04 v1.41 Bibliographical back referencing
-) (./AbnTex/abntex2cite.sty
-
-LaTeX Warning: You have requested package `AbnTex/abntex2cite',
-               but the package provides `abntex2cite'.
-
+) (/usr/share/texlive/texmf-dist/tex/latex/abntex2/abntex2cite.sty
 Package: abntex2cite 2018/11/24 v-1.9.7 abnTeX2
-(./AbnTex/abntex2abrev.sty)
+ (/usr/share/texlive/texmf-dist/tex/latex/abntex2/abntex2abrev.sty)
 \minimumbiblabelwidth=\skip258
 \ABCIauxlen=\skip259
 \c@ABCIaux=\count353
@@ -703,11 +698,11 @@ LaTeX Info: Redefining \cite on input line 618.
 \ABCItoken=\toks32
 )
 
-LaTeX Warning: \include should only be used after \begin{document} on input line 39.
+LaTeX Warning: \include should only be used after \begin{document} on input line 40.
 
 (./Partes/Capa.tex)
 
-LaTeX Warning: \include should only be used after \begin{document} on input line 41.
+LaTeX Warning: \include should only be used after \begin{document} on input line 42.
 
 (./Partes/Config.tex
 Package color Info: Redefining color blue on input line 8.
@@ -793,45 +788,42 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-) (/usr/share/texlive/texmf-dist/tex/latex/cases/cases.sty
-Package: cases 2020/03/29 ver 3.2
-\numc@numwid=\dimen272
 ) (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
 Package: mathtools 2022/06/29 v1.29 mathematical typesetting tools
  (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
 \g_MT_multlinerow_int=\count372
-\l_MT_multwidth_dim=\dimen273
+\l_MT_multwidth_dim=\dimen272
 \origjot=\skip267
-\l_MT_shortvdotswithinadjustabove_dim=\dimen274
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen275
-\l_MT_above_intertext_sep=\dimen276
-\l_MT_below_intertext_sep=\dimen277
-\l_MT_above_shortintertext_sep=\dimen278
-\l_MT_below_shortintertext_sep=\dimen279
+\l_MT_shortvdotswithinadjustabove_dim=\dimen273
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen274
+\l_MT_above_intertext_sep=\dimen275
+\l_MT_below_intertext_sep=\dimen276
+\l_MT_above_shortintertext_sep=\dimen277
+\l_MT_below_shortintertext_sep=\dimen278
 \xmathstrut@box=\box61
-\xmathstrut@dim=\dimen280
+\xmathstrut@dim=\dimen279
 ) (/usr/share/texlive/texmf-dist/tex/latex/lkproof/proof.sty
-\inferLineSkip=\dimen281
-\inferLabelSkip=\dimen282
-\@LeftOffset=\dimen283
-\@RightOffset=\dimen284
-\@SavedLeftOffset=\dimen285
-\UpperWidth=\dimen286
-\LowerWidth=\dimen287
-\LowerHeight=\dimen288
-\UpperLeftOffset=\dimen289
-\UpperRightOffset=\dimen290
-\UpperCenter=\dimen291
-\LowerCenter=\dimen292
-\UpperAdjust=\dimen293
-\RuleAdjust=\dimen294
-\LowerAdjust=\dimen295
-\RuleWidth=\dimen296
-\HLabelAdjust=\dimen297
-\VLabelAdjust=\dimen298
-\WidthAdjust=\dimen299
+\inferLineSkip=\dimen280
+\inferLabelSkip=\dimen281
+\@LeftOffset=\dimen282
+\@RightOffset=\dimen283
+\@SavedLeftOffset=\dimen284
+\UpperWidth=\dimen285
+\LowerWidth=\dimen286
+\LowerHeight=\dimen287
+\UpperLeftOffset=\dimen288
+\UpperRightOffset=\dimen289
+\UpperCenter=\dimen290
+\LowerCenter=\dimen291
+\UpperAdjust=\dimen292
+\RuleAdjust=\dimen293
+\LowerAdjust=\dimen294
+\RuleWidth=\dimen295
+\HLabelAdjust=\dimen296
+\VLabelAdjust=\dimen297
+\WidthAdjust=\dimen298
 \@UpperPart=\box62
 \@LowerPart=\box63
 \@LabelPart=\box64
@@ -849,14 +841,14 @@ Package: mathpartir 2016/02/24 version 1.3.2 Math Paragraph for Typesetting Infe
 \lst@gtempboxa=\box69
 \lst@token=\toks40
 \lst@length=\count374
-\lst@currlwidth=\dimen300
+\lst@currlwidth=\dimen299
 \lst@column=\count375
 \lst@pos=\count376
-\lst@lostspace=\dimen301
-\lst@width=\dimen302
+\lst@lostspace=\dimen300
+\lst@width=\dimen301
 \lst@newlines=\count377
 \lst@lineno=\count378
-\lst@maxwidth=\dimen303
+\lst@maxwidth=\dimen302
  (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 \c@lstnumber=\count379
@@ -885,12 +877,12 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 \skiplength=\skip275
 \algomargin=\skip276
 \skipalgocfslide=\skip277
-\algowidth=\dimen304
-\inoutsize=\dimen305
-\inoutindent=\dimen306
-\interspacetitleruled=\dimen307
-\interspacealgoruled=\dimen308
-\interspacetitleboxruled=\dimen309
+\algowidth=\dimen303
+\inoutsize=\dimen304
+\inoutindent=\dimen305
+\interspacetitleruled=\dimen306
+\interspacealgoruled=\dimen307
+\interspacetitleboxruled=\dimen308
 \algocf@ruledwidth=\skip278
 \algocf@inoutbox=\box71
 \algocf@inputbox=\box72
@@ -918,42 +910,42 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 
 
 Writing index file main.idx 
-(./main.aux (./Partes/Ficha.aux) (./PreTextual/Pretexto.aux) (./PreTextual/Resumo.aux) (./PreTextual/Abstract.aux))
+(./main.aux (./Partes/Ficha.aux) (./PreTextual/Pretexto.aux) (./PreTextual/Resumo.aux) (./PreTextual/Abstract.aux) (./PreTextual/Sumario.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-Package hyperref Info: Link coloring ON on input line 46.
-LaTeX Info: Redefining \degres on input line 46.
-LaTeX Info: Redefining \up on input line 46.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+Package hyperref Info: Link coloring ON on input line 47.
+LaTeX Info: Redefining \degres on input line 47.
+LaTeX Info: Redefining \up on input line 47.
 \myptabbox=\box79
 \myptabboxwidth=\skip288
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count386
-\scratchdimen=\dimen310
+\scratchdimen=\dimen309
 \scratchbox=\box80
 \nofMPsegments=\count387
 \nofMParguments=\count388
 \everyMPshowfont=\toks41
 \MPscratchCnt=\count389
-\MPscratchDim=\dimen311
+\MPscratchDim=\dimen310
 \MPnumerator=\count390
 \makeMPintoPDFobject=\count391
 \everyMPtoPDFconversion=\toks42
@@ -963,19 +955,14 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Redefining \microtypecontext on input line 46.
-Package microtype Info: Applying patch `item' on input line 46.
-Package microtype Info: Applying patch `toc' on input line 46.
-Package microtype Info: Applying patch `eqnum' on input line 46.
-Package microtype Info: Applying patch `footnote' on input line 46.
-Package microtype Info: Applying patch `verbatim' on input line 46.
+LaTeX Info: Redefining \microtypecontext on input line 47.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 46.
+LaTeX Info: Redefining \showhyphens on input line 47.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -988,35 +975,35 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}] [2
 
 ]
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 54.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 55.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 54.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 55.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 54.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 55.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 54.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 55.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 54.
+(Font)              <12> on input line 55.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 54.
+(Font)              <8> on input line 55.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 54.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 54.
+(Font)              <6> on input line 55.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 55.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 54.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 55.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -1025,7 +1012,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.54 	\imprimirfolhaderosto*{}
+l.55 	\imprimirfolhaderosto*{}
                                [1
 
 
@@ -1073,20 +1060,24 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.56 	\include{Partes/Ficha}
+l.57 	\include{Partes/Ficha}
                              [2
 
-]
-\openout2 = `PreTextual/Pretexto.aux'.
-
- (./PreTextual/Pretexto.tex [3
-
+] [3
 
 
 
 ] [4
 
-] [5] [6
+]
+\openout2 = `PreTextual/Pretexto.aux'.
+
+ (./PreTextual/Pretexto.tex [5
+
+
+] [6
+
+] [7] [8
 
 ])
 \openout2 = `PreTextual/Resumo.aux'.
@@ -1100,42 +1091,58 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--7
 
  []
 
-[7
-
-
-
-] [8
-
-])
-\openout2 = `PreTextual/Abstract.aux'.
-
- (./PreTextual/Abstract.tex [9
+[9
 
 
 
 ] [10
 
-]) (./Partes/Introducao.tex [11
+])
+\openout2 = `PreTextual/Abstract.aux'.
+
+ (./PreTextual/Abstract.tex [11
 
 
 
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}] [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+] [12
+
+]) (./main.lof) [13
+
+
+] [14
+
+] [15
+
+] [16
+
+]
+\openout2 = `PreTextual/Sumario.aux'.
+
+ (./PreTextual/Sumario.tex (./main.toc) [17
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}] [18
+
+]) (./Partes/Introducao.tex [19
+
+
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}] [20] [21]
+Underfull \hbox (badness 10000) in paragraph at lines 74--74
  [][] [][][]\T1/lmr/m/n/10 (+20) ImplementaÁ„o em \T1/lmr/m/it/10 (+20) Lean\T1/lmr/m/n/10 (+20) : [][]$<[]https : / / github . com / leanprover-[]community / mathlib4 / blob /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 74--74
  \T1/lmr/m/n/10 (+20) 261109249151ce5651da62077c255a5c76b4941e / Mathlib / NumberTheory / LegendreSymbol /
  []
 
-) (./Partes/Capitulo02.tex [14]
-<Figuras/ssreflect.png, id=189, 947.54pt x 782.925pt>
+) (./Partes/Capitulo02.tex [22]
+<Figuras/ssreflect.png, id=276, 947.54pt x 782.925pt>
 File: Figuras/ssreflect.png Graphic file (type png)
 <use Figuras/ssreflect.png>
 Package pdftex.def Info: Figuras/ssreflect.png  used on input line 15.
 (pdftex.def)             Requested size: 273.00278pt x 225.57301pt.
- [15
+ [23
 
  <./Figuras/ssreflect.png>]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 27.
@@ -1148,18 +1155,18 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 27.
- [16] [17] [18] [19]
+ [24] [25] [26] [27]
 Overfull \hbox (13.45143pt too wide) in paragraph at lines 196--197
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[20] [21] [22] [23] [24]
+[28] [29] [30] [31] [32]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 396.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [25{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [26]) (./Partes/Capitulo03.tex [27] [28
+) [33{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [34]) (./Partes/Capitulo03.tex [35] [36
 
-] [29] [30] [31] [32]
+] [37] [38] [39] [40]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <17.28> on input line 197.
 
@@ -1171,12 +1178,12 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 197.
 
-[33] [34{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [35]
+[41] [42{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [43]
 Overfull \hbox (4.0905pt too wide) in paragraph at lines 304--305
 \T1/lmr/m/n/12 (-20) Portanto note que a ex-pres-s„o [][][][][][][][][][][][][][][][][][][] cons-trÛi uma prova de que [][][][][][][][][][][][][][][][][],
  []
 
-[36]
+[44]
 Overfull \hbox (5.45215pt too wide) in paragraph at lines 318--319
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1208,19 +1215,19 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 325.
 
-[37] [38] [39] [40] [41] [42]
-Overfull \hbox (1.2467pt too wide) in paragraph at lines 581--583
+[45] [46] [47] [48] [49] [50]
+Overfull \hbox (1.90671pt too wide) in paragraph at lines 581--583
 []\T1/lmr/m/it/12 (-20) Dado um n˙-mero primo
  []
 
-[43] [44] [45]) (./Partes/Capitulo04.tex [46] [47
+[51] [52] [53]) (./Partes/Capitulo04.tex [54] [55
 
-] [48]
+] [56]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 127.
 
-[49]
+[57]
 Overfull \hbox (19.07716pt too wide) detected at line 187
 []
  []
@@ -1228,7 +1235,7 @@ Overfull \hbox (19.07716pt too wide) detected at line 187
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [50]
+ [58]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 280.
@@ -1237,37 +1244,44 @@ LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 285.
 
-[51]) (./Partes/Capitulo05.tex [52]
+[59]) (./Partes/Capitulo05.tex [60]
 
 LaTeX Warning: Command \ss invalid in math mode on input line 23.
 
-[53
+[61
 
-] [54] [55] [56] [57] [58] [59] [60]) (./main.bbl (./main.brf)
+] [62] [63] [64] [65] [66] [67] [68]) (./main.bbl (./main.brf)
 \tf@brf=\write5
 \openout5 = `main.brf'.
 
- [61] [62
+ [69] [70
 
 ]
 bibitemlist
-[63]) [64] (./main.aux (./Partes/Ficha.aux) (./PreTextual/Pretexto.aux) (./PreTextual/Resumo.aux) (./PreTextual/Abstract.aux))
+[71]) [72]
+\tf@lof=\write6
+\openout6 = `main.lof'.
+
+\tf@toc=\write7
+\openout7 = `main.toc'.
+
+ (./main.aux (./Partes/Ficha.aux) (./PreTextual/Pretexto.aux) (./PreTextual/Resumo.aux) (./PreTextual/Abstract.aux) (./PreTextual/Sumario.aux))
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: 763F268AC1167D23F58584B122ACB678;2900.
+(rerunfilecheck)             Checksum: 9762E6D76F7A3158F2B4204642305010;2900.
  ) 
 Here is how much of TeX's memory you used:
- 25335 strings out of 476034
- 406795 string characters out of 5792855
+ 25328 strings out of 476034
+ 406518 string characters out of 5792853
  1889388 words of memory out of 6000000
- 44454 multiletter control sequences out of 15000+600000
- 644741 words of font info for 285 fonts, out of 8000000 for 9000
+ 44418 multiletter control sequences out of 15000+600000
+ 644891 words of font info for 286 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 90i,25n,90p,1459b,1318s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,25n,90p,1392b,1318s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (66 pages, 718351 bytes).
+Output written on main.pdf (74 pages, 723397 bytes).
 PDF statistics:
- 1389 PDF objects out of 1440 (max. 8388607)
- 1250 compressed objects within 13 object streams
- 540 named destinations out of 1000 (max. 500000)
- 74462 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 1474 PDF objects out of 1728 (max. 8388607)
+ 1326 compressed objects within 14 object streams
+ 558 named destinations out of 1000 (max. 500000)
+ 74494 words of extra memory for PDF output out of 89155 (max. 10000000)
 
