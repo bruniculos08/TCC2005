@@ -747,92 +747,18 @@ Module inversez.
         move: k1L => /andP [H _]. rewrite Num.Theory.le0r H orbC //=.
         move: k1L => /andP [_ H]. by rewrite H.
     Qed.
-    
-    (* Definindo fatorial para inteiros: *)
-    (* Definition factorialz (n : int) := (`|n|`!)%:Z.
-    Notation "n `!" := (factorialz n) (at level 2, format "n `!") : int_scope. *)
 
-    Compute (\prod_(i <- (rem 1 (rem 2 (index_iota 1 7)))) i)%N.
-    Compute (index_iota 1 7).
-
-    Check (forall (a b : int), (a * b)%R = 0).
-    
-
-    Lemma primez_pred_exp_half (a p : int):
-        (2 < p)%R -> ()
-
-
-    Lemma prod_rem2 (a : int) (n : nat):
-        (0 < a < n.+1)%R ->
-        (\prod_(i <- (index_iota 1 n.+1)) i)%:Z == 
-        ((\prod_(i <- (rem `|a|%N (index_iota 1 n.+1))) i)%:Z * a)%R.
-    Proof.
-        move=> /andP [aL0 aLn]. move: (gtz0_abs aL0) => aEabs.
-        remember (index_iota 1 n.+1) as l.
-        move: Heql. elim: l => [|h t IH].
-            {
-                rewrite //=.
-            }
-            
-
-    (* Lemma primez_fat_even_exp_modp (a p : int):
-        (primesz.primez p) -> (2 < p)%R -> (0 < a < p)%R -> ~ (exists x, x^2 == a %[mod p]) -> (forall h, (0 < h < p)%R -> 
-        exists k, ((h != k) && (\prod_(i <- (index_iota 1)) (h * k)%R == a %[mod p]))). *)
-
-    (* Lemma primez_fat_even_exp_modp (a p : int) n (l : seq nat):
-        (n = size l) -> (~~ odd n) 
-        -> (forall i, i \in l -> exists j, (j \in l) && ((i * j) == a %[mod p])) ->
-        (\prod_(i <- l) i)%:Z == (a ^ (n %/ 2 )%Z) %[mod p].
-    Proof.
-        move: l.
-        elim/ltn_ind: n => [n IH].
-        move=> [|h t].
-        {
-            rewrite //=. move=> -> //= _ Hi.
-            rewrite div0z expr0z.
-            rewrite -foldrE //=.
-        }
-        move=> nsize oddn Hi.
-         *)
-
-
-        
     (* Lema 10 do TCC: *)
     Lemma primez_fat_exp_modp (a p : int):
         (primesz.primez p) -> (2 < p)%R -> (coprimez a p) -> ~ (exists x, x^2 == a %[mod p]) ->
         ((`|p| - 1)`!)%:Z == (a ^ ((p - 1) %/ 2 )%Z) %[mod p].
     Proof.
-        move=> pP pL2 aCp Hx.
-        rewrite fact_prod.
-        rewrite -[X in (\prod_(1 <= i < X)  i)%N  == _  %[mod p] ]addn1 subnK;
-        last by rewrite -ltz_nat -(primesz.primez_abs pP) (primesz.primez_lt0 pP).
-        rewrite {3}(primesz.primez_abs pP).
-        remember (index_iota )
-
-
-
-        have: `|(p - 1)%R|.+1 = `|p|.
-            move: (primesz.primez_abs pP) => pabs. rewrite {1}pabs.
-            rewrite distnEl. rewrite -addn1 subnK. by [].
-            move: (primesz.primez_lt0 pP). rewrite -ltz_nat {1}pabs //=.
-            move: (primesz.primez_lt0 pP). rewrite -ltz_nat {1}pabs //=.
-        move=> ->. apply/eqP.
-        (* 
-            k * h == a (mod p)
-
-            (p - 1)! = ((p - 1) * h) * (\prod i in [1, p-1] - {p - 1, h})
-                
-
-            (p - 1)! = a^((p-1)/2) (mod p)
-            (p - 1)! = a^((p-1)/2) (mod p)
-
-
-
-            2 * (sum 1 ... n - 1) = n * (n - 1)
-            (sum 1 ... n - 1 | i) + (sum 1 ... n - 1 | F i) = n * (n - 1)
-
-        *)
-        (* ... *)
+    case: p => // p.
+    move=> pP pL2 aCp Hx.
+    rewrite fact_prod absz_nat.
+    rewrite -[X in (\prod_(1 <= i < X)  i)%N  == _  %[mod p] ]addn1. rewrite subnK; last by apply prime_gt0; rewrite //=.
+    rewrite {3}(primesz.primez_abs pP).
+    (* ... *)
     Abort.
 
     Close Scope int_scope.
