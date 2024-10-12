@@ -1,6 +1,6 @@
 From HB Require Import structures.
 From mathcomp Require Import all_ssreflect ssreflect eqtype all_algebra
-ssrbool bigop ssrnat ssrint ssralg intdiv seq prime order perm zmodp.
+ssrbool bigop ssrnat ssrint ssralg intdiv seq prime order perm zmodp all_solvable.
 Import Order.Theory.
 From Coq Require Import Logic.Decidable.
 
@@ -689,9 +689,9 @@ Module inversez.
     
     (* Lema 8 do TCC: *)
     Lemma invz_modp_mul (a p : int):
-        (primesz.primez p) -> (2 < p)%R -> (0 < a < p)%R -> ~ (exists x, x^2 == a %[mod p]) -> (forall h, (0 < h < p)%R -> exists k, (0 < k < p)%R && ((h != k) && ((h * k)%R == a %[mod p]))).
+        (primesz.primez p) -> (0 < a < p)%R -> ~ (exists x, x^2 == a %[mod p]) -> (forall h, (0 < h < p)%R -> exists k, (0 < k < p)%R && ((h != k) && ((h * k)%R == a %[mod p]))).
     Proof.
-    move=> pP pL2 aL Hx h hL. move: (invz_modp pP hL) => [k Hh].
+    move=> pP aL Hx h hL. move: (invz_modp pP hL) => [k Hh].
     move: Hh => /andP [kL Hk].
     have Hka : k * a == k * a %[mod p].
         by [].
@@ -748,6 +748,23 @@ Module inversez.
         move: k1L => /andP [_ H]. by rewrite H.
     Qed.
 
+    Lemma primez_prod_sqr (p a : int):
+        (primesz.primez p) -> (coprimez a p) -> 
+        ((`|p| - 1)`!)%:Z ^ 2 == a ^ (p - 1) %[mod p].
+    Proof.
+    case: p => // p.
+    move=> pP aCp.
+    rewrite absz_nat (primesz.fermatz_little_pred pP); last by apply /negP;
+    rewrite dvdzE -prime_coprime; last by [];
+    rewrite coprime_sym -coprimezE //=.
+    have : (Posz (p - 1)`!) == - 1 %[mod p].
+        rewrite eqz_mod_dvd -mulrN1z mulNrNz intz.
+        rewrite -PoszD dvdzE //= addn1 subn1 -Wilson //=.
+    move: pP; rewrite /primesz.primez //=; apply prime_gt1.
+    move=> /eqP fatE. 
+    rewrite -!exprnP addn1 expr2 -modzMml -modzMmr fatE modzMml modzMmr //=.
+    Qed.
+
     (* Lema 10 do TCC: *)
     Lemma primez_fat_exp_modp (a p : int):
         (primesz.primez p) -> (2 < p)%R -> (coprimez a p) -> ~ (exists x, x^2 == a %[mod p]) ->
@@ -758,7 +775,58 @@ Module inversez.
     rewrite fact_prod absz_nat.
     rewrite -[X in (\prod_(1 <= i < X)  i)%N  == _  %[mod p] ]addn1. rewrite subnK; last by apply prime_gt0; rewrite //=.
     rewrite {3}(primesz.primez_abs pP).
+    Set Printing Coercions.
+    
     (* ... *)
+    Abort.
+
+    Local Definition find_minv (p a h : nat) : nat :=
+        if prime p then
+            head 0%N (filter (fun k => ((h * k)%N == a %[mod p])%N) (index_iota 1 p))
+        else 0%N.
+    
+    Compute (find_minv 7 4 2).
+
+    Lemma find_minv_neq0 (p a h : int):
+        primesz.primez p -> 
+        ~ (exists x, x^2 == a %[mod p]) -> (0 < a < p)%R -> (0 < h < p)%R -> ((find_minv `|p| `|a| `|h|) != 0%N).
+    Proof.
+    case: p => // p.
+    case: a => // a.
+    case: h => // h.
+    rewrite !absz_nat /find_minv => pP Nx aL hL.
+    have -> : prime p by rewrite //=.
+    have : [seq k <- index_iota 1 p  | (h * k  == a  %[mod p])%N] != [::].
+        rewrite -has_filter. apply/hasP.
+        move: (invz_modp_mul pP aL Nx hL) => [k].
+        case: k => // k /andP [kL /andP [hNk Hk]].
+        exists k. rewrite mem_index_iota //=.
+        by rewrite -PoszM !modz_nat in Hk.
+    case Hxs : [seq k <- index_iota 1 p  | (h * k  == a  %[mod p])%N] => // [x xs].
+    move=> lNnil.
+    rewrite //=. apply /eqP => Hx.
+    pose l := [seq k <- index_iota 1 p  | (h * k  == a  %[mod p])%N].
+    have: x \in l.
+        rewrite /l Hxs mem_head //.
+        rewrite /l mem_filter mem_index_iota Hx andbC //=.
+    Qed.
+
+    Lemma find_minvP (p a h : int):
+        primesz.primez p -> 
+        ~ (exists x, x^2 == a %[mod p]) -> (0 < a < p)%R -> (0 < h < p)%R -> 
+        (h * (find_minv `|p| `|a| `|h|) == a %[mod p]).
+    Proof.
+    case: p => // p.
+    case: a => // a.
+    case: h => // h.
+    move=> pP Nx aL hL.
+    pose l := [seq k <- index_iota 1 p  | (h * k  == a  %[mod p])%N].
+    have : l != [::].
+        rewrite -has_filter. apply/hasP.
+        move: (invz_modp_mul pP aL Nx hL) => [k].
+        case: k => // k /andP [kL /andP [hNk Hk]].
+        exists k. rewrite mem_index_iota //=.
+        by rewrite -PoszM !modz_nat in Hk.
     Abort.
 
     Close Scope int_scope.
