@@ -435,45 +435,9 @@ Module primesz.
 
 End primesz.
 
-(*  Implementações relacionados a função fatorial *)
 
-Module factorial.
-    (* Delimit Scope int_scope with Z.
-    Open Scope int_scope.
-
-    Local Notation "+%Z" := intZmod.addz (at level 0, only parsing).
-    Notation "\sum_ ( i <- r | P ) F" :=
-    (\big[+%Z/0%Z]_(i <- r | P%B) F%Z) : int_scope.
-    
-
-    Lemma prod_factorial (n : int): 
-        \prod_((1 <= i < n + 1)%R) i = n.
-    Proof.
-
-    Close Scope int_scope. *)
-
-    Delimit Scope nat_scope with N.
-    Open Scope nat_scope.
-        
-    Lemma aux4 (p h : nat): 
-        (0 < h < p) -> ((p - 1)`!) = (\prod_(i <- (rem h (index_iota 1 p))) i) * h. 
-    Proof.
-    elim: p.
-    move=> /andP [_ kL0]. by []. 
-    move=> n H /andP[hL0 hLn]. 
-    rewrite -addn1 -addnBA; last by [].
-    rewrite subnn addn0.
-    move: hLn.
-    rewrite ltnS leq_eqVlt => /orP[hEn | hLn]. 
-    move: hEn => /eqP hEn.
-    rewrite hEn.
-    Abort.
-
-    Close Scope nat_scope.
-End factorial.
 
 (*  Implementação de Inverso Multiplicativo em Coq *)
-
 Module inversez.
     Delimit Scope int_scope with Z.
     Open Scope int_scope.
@@ -543,8 +507,6 @@ Module inversez.
     rewrite /inv_mulz; case: (egcdzP a n) => /= u v  <- _ /eqP <-.
     by exists u; rewrite mulrC -modzDmr modzMl addr0.
     Qed.
-
-    Check (forall (a : int), (1 <= a)%R).
 
     Lemma aux3 (a b : int): 
         a != 0 -> (`|a| < `|b|)%R  -> (b %| a) = false.
@@ -765,69 +727,250 @@ Module inversez.
     rewrite -!exprnP addn1 expr2 -modzMml -modzMmr fatE modzMml modzMmr //=.
     Qed.
 
+    Close Scope int_scope.
+
+    (*  O lema a seguir foi obtido em:
+        https://github.com/thery/mathcomp-extra/blob/master/euler.v *)
+    Lemma modn_prodm I r (P : pred I) F d :
+        \prod_(i <- r | P i) (F i %% d) = \prod_(i <- r | P i) F i %[mod d].
+    Proof.
+    apply/eqP; elim/big_rec2: _ => // i m n _ /eqP nEm.
+    by rewrite modnMml -modnMmr nEm modnMmr.
+    Qed.
+
+    (*  A definição a seguir foi obtid em:
+        https://github.com/thery/mathcomp-extra/blob/master/euler.v *)
+    Definition res_quad p a := has (fun i => i * i == a %[mod p]) (iota 0 p).
+
+
+    (*  O lema a seguir foi obtido em:
+        https://github.com/thery/mathcomp-extra/blob/master/euler.v *)
+    Lemma res_quadP a p : 
+    reflect (exists i : 'I_p, i * i = a %[mod p]) (res_quad p a).
+    Proof. 
+    apply: (iffP hasP) => [[x /[!mem_iota] [/andP[_ xLp] /eqP xxE]]|[x xxE]].
+    by exists (Ordinal xLp).
+    by exists (val x); [rewrite mem_iota /= | apply/eqP].
+    Qed.
+
+    (*  O lema a seguir foi obtido em:
+        https://github.com/thery/mathcomp-extra/blob/master/euler.v *)
+    Lemma res_quadPn a p : 
+    reflect (forall i : 'I_p, i * i != a %[mod p]) (~~ (res_quad p a)).
+    Proof.
+    apply: (iffP hasPn) => [xxE i| xxE i /[!mem_iota] /= iI].
+    by apply: xxE; rewrite mem_iota /=.
+    by apply: (xxE (Ordinal iI)).
+    Qed.
+
+    (*  O lema a seguir foi obtido em:
+        https://github.com/thery/mathcomp-extra/blob/master/euler.v *)
+    Lemma fact_sqr_exp a p :
+        prime p -> ~~ (p %| a) -> ~~ res_quad p a ->  (p.-1`!) = a ^ p.-1./2 %[mod p].
+    Proof.
+    move=> pP pNDa aR.
+    have -> : p.-1`! = \prod_(i in 'F_p | i != 0%R) i.
+    apply: etrans (_ : \prod_(i in 'F_p | i != 0 :> nat) i = _); last first.
+        by apply: eq_bigl => i.
+    rewrite /= Fp_cast //.
+    rewrite fact_prod big_add1 /= big_mkord.
+    case: p {pNDa aR}pP => //= p pP.
+    by rewrite [RHS]big_mkcond /= big_ord_recl /= mul1n.
+    pose a' : 'F_p := inZp a.
+    have a'E : a' = a %% p :> nat by rewrite /= Fp_cast.
+    have a'_neq0 : a' != 0%R.
+    apply/eqP/val_eqP; rewrite [val a']a'E /=.
+    by have /negPf := pNDa; rewrite /dvdn => ->.
+    rewrite -modnXm -a'E.
+    pose f (i : 'F_p) : 'F_p := (a' / i)%R.
+    have f_eq0 : f 0%R = 0%R by rewrite /f GRing.invr0 GRing.mulr0.
+    have fM (i : 'F_p) : i != ord0 -> (f i * i = a')%R.
+    by move=> i_neq0; rewrite /f GRing.divfK.
+    have fI (i : 'F_p) : f (f i) = i.
+    by rewrite /f GRing.invf_div GRing.mulrC GRing.divfK.
+    have fI_neq0 (i : 'F_p) : i != 0%R -> f i != i.
+    move=> i_neq0; apply/eqP => fiE.
+    have iL : i < p by rewrite -[X in _ < X]Fp_cast.
+    have /res_quadPn/(_ (Ordinal iL)) /= := aR.
+    have /val_eqP := fM _ i_neq0; rewrite fiE /=.
+    rewrite ![X in _ %% X]Fp_cast //= => /eqP->.
+    by rewrite Fp_cast // eqxx.
+    have fB : {on [pred i |  i != ord0],  bijective f}.
+    by exists f => j _; apply: fI.
+    pose can (i : 'F_p) :=  if i < (f i) then i else f i.
+    have -> : \prod_(i in 'F_p | i != 0%R) i =
+    \prod_(j in 'F_p | (j < f j))
+        \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i.
+    apply: partition_big => i /andP[iF i_neq0].
+    rewrite andTb /can; case: (leqP (S i) _) => //.
+    rewrite fI ltnS leq_eqVlt.
+    by have /eqP/val_eqP/negPf/=-> := fI_neq0 _ i_neq0.
+    apply: etrans (_ : \prod_(j in 'F_p | j < f j) (j * f j) = _ %[mod p]).
+    congr (_ %% _); apply: eq_bigr => j /andP[jF jLfj].
+    rewrite (bigD1 j); last first.
+        rewrite jF /can jLfj eqxx andTb andbT.
+        by apply/eqP=> j_eq0; rewrite j_eq0 f_eq0 ltnn in jLfj.
+    rewrite (bigD1 (f j)); last first.
+        rewrite inE /can ifN.
+        rewrite fI eqxx.
+        case: eqP => [fj_eq0|].
+            by rewrite fj_eq0 -[j]fI fj_eq0 f_eq0 ltnn in jLfj.
+        by case: eqP => [fj_eqj|//]; rewrite fj_eqj ltnn in jLfj.
+        by rewrite fI -leqNgt ltnW.
+    rewrite big1 /= ?muln1 // => i.
+    rewrite /can; case: leqP; last by case: (i =P j); rewrite andbF.
+    case: (f i =P j); rewrite ?andbF // => <-.
+    by rewrite fI eqxx andbF.
+    apply: etrans (_ : \prod_(j in 'F_p | j < f j) a' = _ %[mod p]).
+    rewrite -modn_prodm; congr (_ %% _); apply: eq_bigr => i /andP[_ iLfi].
+    have i_neq0 : i != 0%R.
+        by apply/eqP=> i_eq0; rewrite i_eq0 f_eq0 ltnn in iLfi.
+    rewrite -(fM i i_neq0) mulnC.
+    by congr (_ %% _); rewrite Fp_cast.
+    congr (_ %% _).
+    rewrite prod_nat_const.
+    congr (_ ^  _).
+    rewrite -[p in RHS](card_Fp pP).
+    rewrite [in RHS](cardD1 0%R) inE add1n -pred_Sn.
+    set A := [predD1 'F_p & 0%R].
+    pose B := [pred i |  (i : 'F_p) < f i].
+    rewrite -(cardID B A).
+    have <- : #|image f [predI A & B]| = #|[predD A & B]|.
+    apply: eq_card => i; rewrite !inE.
+    rewrite -[in LHS](fI i) mem_map; last first.
+        by move=> i1 j1 fiEfj; rewrite -[i1]fI fiEfj fI.
+    have -> : (f i  \in enum [predI A & B])  = ([predI A & B] (f i)).
+        have F (U : finType) (p1 : pred U) (x : U) : x \in enum p1 = p1 x.
+        by rewrite mem_enum .
+        by rewrite F.
+    rewrite [LHS]/= !inE fI.
+    case: (i =P 0%R) => [->|]; first by rewrite f_eq0.
+    case: (f i =P 0%R) => [fi0|/eqP fi_neq0 /eqP i_neq0].
+        by case; rewrite -(fI i) fi0 f_eq0.
+    case: ltngtP => // /eqP/val_eqP fiEi.
+    by have := fI_neq0 i i_neq0; rewrite fiEi eqxx.
+    rewrite card_image; last by move=> i j fiEfj; rewrite -[i]fI fiEfj fI.
+    rewrite addnn (half_bit_double _ false).
+    apply: eq_card => i; rewrite !inE.
+    by case: eqP => // ->; rewrite f_eq0 ltnn.
+    Qed.
+
+    Lemma euler_criterion a p : 
+        prime p -> ~~ (p %| a) -> 
+        a ^ p.-1./2 = (if res_quad p a then 1 else p.-1) %[mod p].
+    Proof.
+    move=> pP pNDa.
+    have p_gt0 : 0 < p by apply: prime_gt0.
+    have [/res_quadP[i Hi]|Hrn] := boolP (res_quad p a); last first.
+    rewrite -fact_sqr_exp //.
+    apply/eqP; rewrite -(eqn_modDr 1) !addn1 prednK //.
+    have /dvdnP[k->] : (p %| (p.-1)`!.+1) by rewrite -Wilson // prime_gt1.
+    by rewrite modnn modnMl.
+    rewrite -modnXm -Hi modnXm mulnn -expnM mul2n.
+    have [pO|/(prime_oddPn pP) pE2]:= boolP (odd p); last first.
+    by rewrite [in X in _ ^ X]pE2 /= expn0.
+    have i_gt0 : 0 < i.
+    case: i Hi pNDa => [] [] //= _.
+    by rewrite /dvdn => <- /[!mod0n].
+    rewrite even_halfK; last by case: (p) pP pO.
+    apply/eqP; rewrite eqn_mod_dvd //; last by rewrite expn_gt0 i_gt0.
+    rewrite -(Gauss_dvdr _ (_ : coprime _ i)); last first.
+    rewrite prime_coprime //; apply/negP => /dvdnP [k iE].
+    rewrite iE mulnA modnMl in Hi.
+    by case/negP: pNDa; rewrite /dvdn -Hi.
+    rewrite mulnBr muln1 -expnS prednK //.
+    rewrite -eqn_mod_dvd //; first by apply/eqP/fermat_little.
+    by apply: leq_pexp2l (_ : 1 <= p).
+    Qed.
+
+    Delimit Scope int_scope with Z.
+    Open Scope int_scope.
+
+    Definition legendre_symb {p : int} (H : primesz.primez p) (a : int) :=
+        if (a ^ ((p - 1) %/ 2)%Z == 1 %[mod p]) then 1%Z
+        else if (p %| a)%Z then 0%Z
+        else 1%Z.   
+
     (* Lema 10 do TCC: *)
     Lemma primez_fat_exp_modp (a p : int):
-        (primesz.primez p) -> (2 < p)%R -> (coprimez a p) -> ~ (exists x, x^2 == a %[mod p]) ->
+        (primesz.primez p) -> ~(p %| a) -> ~ (exists x, x^2 == a %[mod p]) ->
         ((`|p| - 1)`!)%:Z == (a ^ ((p - 1) %/ 2 )%Z) %[mod p].
     Proof.
     case: p => // p.
-    move=> pP pL2 aCp Hx.
-    rewrite fact_prod absz_nat.
-    rewrite -[X in (\prod_(1 <= i < X)  i)%N  == _  %[mod p] ]addn1. rewrite subnK; last by apply prime_gt0; rewrite //=.
-    rewrite {3}(primesz.primez_abs pP).
+    rewrite absz_nat => pP aCp nEx.
+    have pN0: (p != 0 :> int)%R.
+        apply/eqP => H; rewrite H //= in pP.
     Set Printing Coercions.
-    
-    (* ... *)
-    Abort.
-
-    Local Definition find_minv (p a h : nat) : nat :=
-        if prime p then
-            head 0%N (filter (fun k => ((h * k)%N == a %[mod p])%N) (index_iota 1 p))
-        else 0%N.
-    
-    Compute (find_minv 7 4 2).
-
-    Lemma find_minv_neq0 (p a h : int):
-        primesz.primez p -> 
-        ~ (exists x, x^2 == a %[mod p]) -> (0 < a < p)%R -> (0 < h < p)%R -> ((find_minv `|p| `|a| `|h|) != 0%N).
-    Proof.
-    case: p => // p.
-    case: a => // a.
-    case: h => // h.
-    rewrite !absz_nat /find_minv => pP Nx aL hL.
-    have -> : prime p by rewrite //=.
-    have : [seq k <- index_iota 1 p  | (h * k  == a  %[mod p])%N] != [::].
-        rewrite -has_filter. apply/hasP.
-        move: (invz_modp_mul pP aL Nx hL) => [k].
-        case: k => // k /andP [kL /andP [hNk Hk]].
-        exists k. rewrite mem_index_iota //=.
-        by rewrite -PoszM !modz_nat in Hk.
-    case Hxs : [seq k <- index_iota 1 p  | (h * k  == a  %[mod p])%N] => // [x xs].
-    move=> lNnil.
-    rewrite //=. apply /eqP => Hx.
-    pose l := [seq k <- index_iota 1 p  | (h * k  == a  %[mod p])%N].
-    have: x \in l.
-        rewrite /l Hxs mem_head //.
-        rewrite /l mem_filter mem_index_iota Hx andbC //=.
+    rewrite subzn; 
+    last by rewrite lt0n; apply/eqP => H; rewrite H //= in pP.
+    apply/eqP.
+    rewrite divz_nat -exprnP addn1 //= !modz_nat -modzXm (absz_mod a pN0).
+    rewrite -rmorphXn //= !modz_nat natrXE; f_equal.
+    pose b := (`|(a %% Posz p)%Z|). rewrite -/b.
+    rewrite subn1 divn2.
+    apply fact_sqr_exp.
+        move: pP => /andP [_ pP] //=.
+        rewrite -(subn0 b) -eqn_mod_dvd; last by [].
+        apply/eqP => bN0.
+        apply aCp.
+        rewrite -(subr0 a) -eqz_mod_dvd -(modz_mod a) (absz_mod a).
+        rewrite -/b !modz_nat bN0 //=.
+    apply/eqP => pE0; rewrite pE0 //= in pP.
+    apply/res_quadPn => [i].
+    case: i => i Hi //=.
+    apply/eqP => Hi2.
+    apply nEx. exists (Posz i).
+    rewrite -(modz_mod a) (absz_mod a pN0) -/b.
+    rewrite -/b -exprnP -rmorphXn //= addn1 natrXE -mulnn.
+    rewrite !modz_nat Hi2 //=.
     Qed.
 
-    Lemma find_minvP (p a h : int):
-        primesz.primez p -> 
-        ~ (exists x, x^2 == a %[mod p]) -> (0 < a < p)%R -> (0 < h < p)%R -> 
-        (h * (find_minv `|p| `|a| `|h|) == a %[mod p]).
-    Proof.
-    case: p => // p.
-    case: a => // a.
-    case: h => // h.
-    move=> pP Nx aL hL.
-    pose l := [seq k <- index_iota 1 p  | (h * k  == a  %[mod p])%N].
-    have : l != [::].
-        rewrite -has_filter. apply/hasP.
-        move: (invz_modp_mul pP aL Nx hL) => [k].
-        case: k => // k /andP [kL /andP [hNk Hk]].
-        exists k. rewrite mem_index_iota //=.
-        by rewrite -PoszM !modz_nat in Hk.
-    Abort.
-
     Close Scope int_scope.
+    
 End inversez.
+
+Module Legendre.
+
+    Definition legendre_symb {p : int} (pP : primesz.primez p) (pL2 : (2 < p)%R) (a : int) :=
+        if (a ^ ((p - 1) %/ 2)%Z == 1 %[mod p])%Z then 1%Z
+        else if (p %| a)%Z then 0%Z
+        else (-1)%Z.
+
+    Lemma eulerz_criterion {p : int} (a : int) (pP : primesz.primez p):
+        (a ^ ((p - 1) %/ 2)%Z = (legendre_symb pP a) %[mod p])%Z.
+    Proof.
+    case pDa : (p %| a)%Z.
+    move: pDa => /dvdz_mod0P pDa.
+    rewrite /legendre_symb.
+    move: pP pDa.
+    case: p => // p pP aE0.
+    Set Printing Coercions.
+    rewrite subzn.
+    rewrite natz /exprz //= mul1n.
+    rewrite -(modzXm _ a) aE0 exprnP.
+    rewrite /exprz -rmorphXn //= natrXE.
+    case H : ((p - 1) %/ 2) => [|k].
+        rewrite expn0 eqxx.
+        rewrite //=.
+    rewrite exp0n.
+    rewrite eqz_mod_dvd add0r.
+    rewrite !dvdzE //= Euclid_dvd1.
+    rewrite -(absz_nat p) -dvdzE -(subr0 a) -eqz_mod_dvd aE0 !mod0z //=.
+    move: pP => /andP [_ pP] //=.
+    rewrite //=.
+    apply prime_gt0.
+    move: pP => /andP [_ pP] //=.
+    rewrite /legendre_symb.
+    move: pP pDa.
+    case : p => // p pP pDa.
+    rewrite pDa.
+    apply negbT in pDa.
+    move: pDa => /negP pDa.
+    move: (primesz.pred_primez_half_mod pP pDa) => /orP H.
+    case: H => [H| /eqP H].
+        rewrite H. apply/eqP. rewrite H //=.
+        rewrite H. 
+
+
+
+End Legendre.
