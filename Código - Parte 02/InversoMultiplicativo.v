@@ -931,7 +931,7 @@ End inversez.
 
 Module Legendre.
 
-    Definition legendre_symb {p : int} (pP : primesz.primez p) (pL2 : (2 < p)%R) (a : int) :=
+    Definition legendre_symb {p : int} (pP : primesz.primez p) (a : int) :=
         if (a ^ ((p - 1) %/ 2)%Z == 1 %[mod p])%Z then 1%Z
         else if (p %| a)%Z then 0%Z
         else (-1)%Z.
@@ -944,17 +944,14 @@ Module Legendre.
     rewrite /legendre_symb.
     move: pP pDa.
     case: p => // p pP aE0.
-    Set Printing Coercions.
     rewrite subzn.
     rewrite natz /exprz //= mul1n.
-    rewrite -(modzXm _ a) aE0 exprnP.
-    rewrite /exprz -rmorphXn //= natrXE.
+    rewrite -(modzXm _ a) aE0 exprnP /exprz -rmorphXn //= natrXE.
     case H : ((p - 1) %/ 2) => [|k].
         rewrite expn0 eqxx.
         rewrite //=.
     rewrite exp0n.
-    rewrite eqz_mod_dvd add0r.
-    rewrite !dvdzE //= Euclid_dvd1.
+    rewrite eqz_mod_dvd add0r !dvdzE //= Euclid_dvd1.
     rewrite -(absz_nat p) -dvdzE -(subr0 a) -eqz_mod_dvd aE0 !mod0z //=.
     move: pP => /andP [_ pP] //=.
     rewrite //=.
@@ -969,8 +966,30 @@ Module Legendre.
     move: (primesz.pred_primez_half_mod pP pDa) => /orP H.
     case: H => [H| /eqP H].
         rewrite H. apply/eqP. rewrite H //=.
-        rewrite H. 
+    rewrite H.
+    move: pP => /andP [pL0 //= pP].
+    move: (even_prime pP) => [-> //= | podd].
+    rewrite -(eqz_modDl 1) //= subrr -PoszD addn1.
+    rewrite eqz_mod_dvd sub0r dvdzE //= (dvdn_prime2 pP); last by [].
+    have -> : (p == 2) = false.
+        apply/eqP => p2.
+        rewrite p2 //= in podd.
+    by [].
+    Qed.
 
+    (* 
+        Propriedades sobre Símbolo de Legendre a serem
+        provadas:
+
+        (i) se a = b %[mod p] então (a/p) = (b/p)
+
+        (ii) se ~~(p %| a) então (a²/p) = 1
+
+        (iii) (-1/p) = (-1)^(p.-1./2), ou seja, -1 é resíduo
+        quadrático módulo p se e somente se p = 1 %[mod p]
+
+        (iv) (a*b / p) = (a/p) * (b/p)
+    *)
 
 
 End Legendre.
