@@ -936,7 +936,7 @@ Module Legendre.
         else if (p %| a)%Z then 0%Z
         else (-1)%Z.
 
-    Lemma eulerz_criterion {p : int} (a : int) (pP : primesz.primez p):
+    Theorem eulerz_criterion {p : int} (a : int) (pP : primesz.primez p):
         (a ^ ((p - 1) %/ 2)%Z = (legendre_symb pP a) %[mod p])%Z.
     Proof.
     case pDa : (p %| a)%Z.
@@ -991,5 +991,24 @@ Module Legendre.
         (iv) (a*b / p) = (a/p) * (b/p)
     *)
 
+    Lemma legendre_symbE (p a b : int) (pP : primesz.primez p):
+        (a == b %[mod p])%Z = ((legendre_symb pP a) == (legendre_symb pP b)).
+    Proof.
+    Abort.
+
+    Lemma legendre_symb_Ndvd (p a b : int) (pP : primesz.primez p):
+        ~~(p %| a)%Z -> (legendre_symb pP (a^2)) == 1.
+    Proof.
+    Abort.
+
+    Lemma legendre_symb_Neg1 (p : int) (pP : primesz.primez p):
+        (legendre_symb pP (-1) == (-1)^((p - 1) %/ 2)%Z)%R = (p == 1 %[mod 4])%Z.
+    Proof.
+    Abort.
+
+    Lemma legendre_symb_mul (p a b : int) (pP : primesz.primez p):
+        (legendre_symb pP (a * b)%R) = ((legendre_symb pP a) * (legendre_symb pP b))%R.
+    Proof. 
+    Abort.
 
 End Legendre.
