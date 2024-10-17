@@ -6,6 +6,8 @@ A level-1 auxiliary file: PreTextual/Pretexto.aux
 A level-1 auxiliary file: PreTextual/Resumo.aux
 A level-1 auxiliary file: PreTextual/Abstract.aux
 A level-1 auxiliary file: PreTextual/Sumario.aux
+A level-1 auxiliary file: Partes/Capitulo04.aux
+A level-1 auxiliary file: Partes/Capitulo05.aux
 The style file: abntex2-alf.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -33,7 +35,7 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 +---------------------------------------------------------+
 You've used 21 entries,
             6714 wiz_defined-function locations,
-            1362 strings with 13381 characters,
+            1364 strings with 13423 characters,
 and the built_in function-call counts, 26561 in all, are:
 = -- 3018
 > -- 475
