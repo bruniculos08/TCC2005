@@ -114,7 +114,7 @@ End missing.
 (*  Fim dos teoremas que deveriam estar na biblioteca. *)
 
 (*  Módulo específico para primos inteiros: *)
-Module primesz.
+Module primez.
     Delimit Scope int_scope with Z.
     Open Scope int_scope.
 
@@ -197,7 +197,7 @@ Module primesz.
     rewrite gez0_abs //=.
     Qed.
 
-    Lemma primez_lt0 (p : int):
+    Lemma primez_gt0 (p : int):
         (primez p) -> (0 < p)%R.
     Proof.
     rewrite /primez => /andP [p0 pP].
@@ -208,11 +208,11 @@ Module primesz.
     move=> //=.
     Qed.
         
-    Lemma primez_lt1 (p : int):
+    Lemma primez_gt1 (p : int):
         (primez p) -> (1 < p)%R.
     Proof.
     move=> pP. move: (primez_abs pP) => Hp.
-    rewrite Hp. move: (primez_lt0 pP) => pL0.
+    rewrite Hp. move: (primez_gt0 pP) => pL0.
     rewrite Hp in pL0. rewrite ltz_nat.
     rewrite ltz_nat in pL0. rewrite ltn_neqAle.
     apply/andP. split.
@@ -225,13 +225,13 @@ Module primesz.
     Lemma primez_le2 (p : int):
         (primez p) -> (2 <= p)%R.
     Proof.
-    move=> pP. move: (primez_lt1 pP) => pL1.
+    move=> pP. move: (primez_gt1 pP) => pL1.
     apply primez_abs in pP. rewrite pP. rewrite pP in pL1.
     rewrite lez_nat. rewrite ltz_nat in pL1.
     rewrite ltn_neqAle. by rewrite ltn_neqAle in pL1.
     Qed.
 
-    Lemma primez_ndiv1 (p : int):
+    Lemma Euclidz_dvd1 (p : int):
         (primez p) -> ~~(p %| 1).
     Proof.
     move=> pP. move: (primez_abs pP) => pabs.
@@ -250,7 +250,7 @@ Module primesz.
     Lemma primez_1modp (p : int):
         primez p -> 1 %% p = 1.
     Proof.
-    move=> pP. move: (primez_lt1 pP) (primez_abs pP) => pL1 pabs.
+    move=> pP. move: (primez_gt1 pP) (primez_abs pP) => pL1 pabs.
     rewrite pabs modz_small. by [].
     apply /andP. split.
         by [].
@@ -260,7 +260,7 @@ Module primesz.
     (*  A prova do seguinte lema se baseou na prova do lema "prime_modn_expSn" 
         disponível em: https://github.com/thery/mathcomp-extra/blob/640bc1a2634a609b8fd8a7c2023654ac3d9bc0a8/rsa.v  *)
 
-    Lemma primez_modn_expSn (p n : int) : (0 <= n)%R -> primesz.primez p -> ((n + 1) ^ p)%R = ((n ^ p) + 1)%R %[mod p].
+    Lemma primez_modn_expSn (p n : int) : (0 <= n)%R -> primez.primez p -> ((n + 1) ^ p)%R = ((n ^ p) + 1)%R %[mod p].
     Proof.
     case: n => // n nL0.
     case: p => // p pP.
@@ -353,9 +353,8 @@ Module primesz.
     Proof.
     case: p => // p pP pDa.
     move: (fermatz_little_pred pP pDa).
-    (* Set Printing Coercions. *)
     rewrite -{1}(@mulzK (Posz p - 1) 2); last by rewrite //=.
-    rewrite !(@subzn p _); last by rewrite -ltz_nat (primez_lt0 pP).
+    rewrite !(@subzn p _); last by rewrite -ltz_nat (primez_gt0 pP).
     move: pP => /andP[pL0 pP]. rewrite //= in pP.
     move: (even_prime pP) => [pE2 | podd].
         rewrite pE2 //=.
@@ -413,7 +412,6 @@ Module primesz.
     Proof. 
     case: p => // p.
     move=> pP pNDa [x /eqP Hx].
-    (* Set Printing Coercions. *)
     rewrite subzn; last by rewrite prime_gt0.
     rewrite /exprz //= -modzXm addn1 mul1n.
     rewrite -Hx modzXm.
@@ -449,12 +447,10 @@ Module primesz.
 
     Close Scope int_scope.
 
-End primesz.
-
-
+End primez.
 
 (*  Implementação de Inverso Multiplicativo em Coq *)
-Module inversez.
+Module inversezmodp.
     Delimit Scope int_scope with Z.
     Open Scope int_scope.
 
@@ -462,7 +458,7 @@ Module inversez.
     HB.about int.
     HB.about nat.
     HB.about eqType.
-    HB.about GRing.Ring.
+    HB.about GRing.Ring.    
     HB.about GRing.SemiRing.
     HB.about GRing.Zmodule.
     HB.about GRing.addNr.
@@ -609,7 +605,7 @@ Module inversez.
     
     (*  Lema 7 do TCC (Parte 01: o número k existe):  *)
     Lemma invz_modp (p a : int):
-        (primesz.primez p) -> (0 < a < p)%R -> 
+        (primez.primez p) -> (0 < a < p)%R -> 
             exists (k : int), (0 < k < p)%R && ((a * k)%R == 1 %[mod p]).
     Proof.
     case: p => // p.
@@ -620,27 +616,27 @@ Module inversez.
         rewrite -abszE Habs. apply/andP.
         by split.
     move=> Habs.
-    move: (primesz.primez_coprime pP Habs) => Hc.
+    move: (primez.primez_coprime pP Habs) => Hc.
     rewrite /coprimez -cond_inv in Hc.
     case: Hc => [b Hb].
     rewrite /inv_mulz -modzMmr in Hb.
     exists (b %% p). apply/andP. split; last by [].
-    rewrite absz_mod; last by apply (primesz.primez_neq0 pP).
+    rewrite absz_mod; last by apply (primez.primez_neq0 pP).
     case Hn: `|(b %% p)%Z|%N => [|n].
-        rewrite eqz_mod_dvd absz_mod in Hb; last by apply (primesz.primez_neq0 pP).
+        rewrite eqz_mod_dvd absz_mod in Hb; last by apply (primez.primez_neq0 pP).
         rewrite Hn mulr0 dvdzE //= subn0 in Hb.
         rewrite -(absz_nat p) -(absz_nat 1) -dvdzE in Hb.
-        by move: (primesz.primez_ndiv1 pP); rewrite Hb.
-    rewrite (primesz.primez_abs pP) -Hn -absz_mod;
-    last by apply (primesz.primez_neq0 pP).
-    rewrite ltz_mod; last by apply (primesz.primez_neq0 pP). 
-    rewrite absz_mod; last by apply (primesz.primez_neq0 pP). 
+        by move: (primez.Euclidz_dvd1 pP); rewrite Hb.
+    rewrite (primez.primez_abs pP) -Hn -absz_mod;
+    last by apply (primez.primez_neq0 pP).
+    rewrite ltz_mod; last by apply (primez.primez_neq0 pP). 
+    rewrite absz_mod; last by apply (primez.primez_neq0 pP). 
     by rewrite Hn.
     Qed.
 
     (*  Lema 7 do TCC (Parte 02: o número k é único):  *)
     Lemma invz_modp_uniq (a k1 k2 p : int):
-        (primesz.primez p) -> (0 < a < p)%R -> (0 < k1 < p)%R && ((a * k1)%R == 1 %[mod p])
+        (primez.primez p) -> (0 < a < p)%R -> (0 < k1 < p)%R && ((a * k1)%R == 1 %[mod p])
         -> (0 < k2 < p)%R && ((a * k2)%R == 1 %[mod p]) -> k1 == k2.
     Proof.
     rewrite !eqz_mod_dvd => pP Ha.
@@ -653,8 +649,8 @@ Module inversez.
     rewrite -[X in _ %| (_ + (_ + X + _))%R -> _]mulrN1z.
     rewrite mulNrNz intz mulrN1z -addrA subrr addr0 -mulrN1z mulrzz -mulrA mulrC.
     rewrite [X in _ %| (_ + X)%R -> _]mulrC. 
-    rewrite -GRing.mulrDl -mulrzz mulrN1z mulrC (primesz.Euclidz_dvdM _ _ pP).
-    move: (primesz.primez_Ndvd pP Ha) => pDa Hor.
+    rewrite -GRing.mulrDl -mulrzz mulrN1z mulrC (primez.Euclidz_dvdM _ _ pP).
+    move: (primez.primez_Ndvd pP Ha) => pDa Hor.
     rewrite (negbTE pDa) //= -eqz_mod_dvd in Hor.
     rewrite !modz_small in Hor. move=>//.
         apply /andP. split.
@@ -667,7 +663,7 @@ Module inversez.
     
     (* Lema 8 do TCC: *)
     Lemma invz_modp_mul (a p : int):
-        (primesz.primez p) -> (0 < a < p)%R -> ~ (exists x, x^2 == a %[mod p]) -> (forall h, (0 < h < p)%R -> exists k, (0 < k < p)%R && ((h != k) && ((h * k)%R == a %[mod p]))).
+        (primez.primez p) -> (0 < a < p)%R -> ~ (exists x, x^2 == a %[mod p]) -> (forall h, (0 < h < p)%R -> exists k, (0 < k < p)%R && ((h != k) && ((h * k)%R == a %[mod p]))).
     Proof.
     move=> pP aL Hx h hL. move: (invz_modp pP hL) => [k Hh].
     move: Hh => /andP [kL Hk].
@@ -676,7 +672,7 @@ Module inversez.
     move: (mulz_mod h Hka) => {}Hka.
     rewrite mulrC mulrA in Hka.
     move: Hk => /eqP Hk. rewrite -{1}modzMml in Hka.
-    rewrite {1}Hk in Hka. rewrite (primesz.primez_1modp pP) mul1r in Hka.
+    rewrite {1}Hk in Hka. rewrite (primez.primez_1modp pP) mul1r in Hka.
     rewrite -mulrA -modzMmr in Hka.
     exists ((k * a) %% p). apply/andP. split.
         apply/andP. split.
@@ -688,11 +684,11 @@ Module inversez.
             rewrite Hn mulr0 in Hka.
             move: Hka => /eqP[<-] //=.
         by [].
-        by rewrite (primesz.primez_neq0 pP).
-        rewrite (primesz.primez_abs pP).
+        by rewrite (primez.primez_neq0 pP).
+        rewrite (primez.primez_abs pP).
         apply ltz_pmod. 
-        rewrite -(primesz.primez_abs pP).
-        apply (primesz.primez_lt0 pP).
+        rewrite -(primez.primez_abs pP).
+        apply (primez.primez_gt0 pP).
     apply/andP. split.
         apply/eqP. move=> H.
         rewrite -H in Hka.
@@ -703,7 +699,7 @@ Module inversez.
 
     (* Lema 9 do TCC: *)
     Lemma invz_modp_mul_uniq (a h k1 k2 p : int):
-        primesz.primez p ->
+        primez.primez p ->
         (0 < a < p)%R -> (0 < h < p)%R -> (0 < k1 < p)%R -> (0 < k2 < p)%R
         -> (k1 * h)%R == a %[mod p] -> (k2 * h)%R == a %[mod p] -> k1 == k2.
     Proof.
@@ -713,7 +709,7 @@ Module inversez.
     rewrite -Hk2 in Hk1. move: Hk1 => /eqP. rewrite eqz_mod_dvd.
     rewrite [X in _ %| (X - _)%R-> _]mulrC.
     rewrite [X in _ %| (_ - X)%R-> _]mulrC.
-    rewrite -!mulrzz -mulrNz !mulrzz -mulrDr. rewrite (primesz.Euclidz_dvdM  _ _ pP).
+    rewrite -!mulrzz -mulrNz !mulrzz -mulrDr. rewrite (primez.Euclidz_dvdM  _ _ pP).
     move: hL => /andP [hL0 pLh].
         rewrite dvdzE div.gtnNdvd //=.
         rewrite -eqz_mod_dvd !modz_small.
@@ -727,18 +723,18 @@ Module inversez.
     Qed.
 
     Lemma primez_prod_sqr (p a : int):
-        (primesz.primez p) -> (coprimez a p) -> 
+        (primez.primez p) -> (coprimez a p) -> 
         ((`|p| - 1)`!)%:Z ^ 2 == a ^ (p - 1) %[mod p].
     Proof.
     case: p => // p.
     move=> pP aCp.
-    rewrite absz_nat (primesz.fermatz_little_pred pP); last by apply /negP;
+    rewrite absz_nat (primez.fermatz_little_pred pP); last by apply /negP;
     rewrite dvdzE -prime_coprime; last by [];
     rewrite coprime_sym -coprimezE //=.
     have : (Posz (p - 1)`!) == - 1 %[mod p].
         rewrite eqz_mod_dvd -mulrN1z mulNrNz intz.
         rewrite -PoszD dvdzE //= addn1 subn1 -Wilson //=.
-    move: pP; rewrite /primesz.primez //=; apply prime_gt1.
+    move: pP; rewrite /primez.primez //=; apply prime_gt1.
     move=> /eqP fatE. 
     rewrite -!exprnP addn1 expr2 -modzMml -modzMmr fatE modzMml modzMmr //=.
     Qed.
@@ -902,14 +898,9 @@ Module inversez.
     Delimit Scope int_scope with Z.
     Open Scope int_scope.
 
-    Definition legendre_symb {p : int} (H : primesz.primez p) (a : int) :=
-        if (a ^ ((p - 1) %/ 2)%Z == 1 %[mod p]) then 1%Z
-        else if (p %| a)%Z then 0%Z
-        else 1%Z.   
-
     (* Lema 10 do TCC: *)
     Lemma primez_fat_exp_modp (a p : int):
-        (primesz.primez p) -> ~(p %| a) -> ~ (exists x, x^2 == a %[mod p]) ->
+        (primez.primez p) -> ~(p %| a) -> ~ (exists x, x^2 == a %[mod p]) ->
         ((`|p| - 1)`!)%:Z == (a ^ ((p - 1) %/ 2 )%Z) %[mod p].
     Proof.
     case: p => // p.
@@ -943,16 +934,58 @@ Module inversez.
 
     Close Scope int_scope.
     
-End inversez.
+End inversezmodp.
 
 Module Legendre.
 
-    Definition legendre_symb {p : int} (pL2 : (2 < p)%R) (pP : primesz.primez p) (a : int) :=
+    (* Definition legendre_symb {p : int} (pL2 : (2 < p)%R) (pP : primez.primez p) (a : int) :=
         if (a ^ ((p - 1) %/ 2)%Z == 1 %[mod p])%Z then 1%Z
         else if (p %| a)%Z then 0%Z
+        else (-1)%Z. *)
+
+    Definition legendre_symb {p : int} (pL2 : (2 < p)%R) (pP : primez.primez p) (a : int) :=
+        if (p %| a)%Z then 0%Z
+        else if (has (fun i => ((i * i)%:Z == a %[mod p])%Z) (iota 0%N `|p|%N)) then 1%Z
         else (-1)%Z.
 
-    Theorem eulerz_criterion {p : int} (a : int) (pL2 : (2 < p)%R) (pP : primesz.primez p):
+    Theorem eulerz_criterion {p : int} (a : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
+        (a ^ ((p - 1) %/ 2)%Z = (legendre_symb pL2 pP a) %[mod p])%Z.
+    Proof.
+    move: pL2 pP.
+    case: p => // p.
+    move=> pL2 pP.
+    rewrite subzn; last by rewrite prime_gt0.
+    rewrite divz_nat addn1 /exprz -modzXm.
+    case pDa : (p %| a)%Z.
+    rewrite /legendre_symb pDa.
+    move: pDa => /dvdz_mod0P ->. 
+    rewrite -rmorphXn //= natrXE exp0n //=.
+    rewrite divn2 subn1 half_gt0; by move: pL2 pP; case: p.
+    rewrite /legendre_symb pDa.
+    rewrite absz_nat.
+    case hasB: (has (fun i : nat => (i * i)%:Z  == a%Z  %[mod p])%Z (iota 0 `|p|)).
+    move: hasB => /hasP [x xiota /eqP hasB].
+    rewrite absz_nat mem_iota add0n in xiota.
+    Set Printing Coercions.
+    rewrite -hasB modzXm mulnn -rmorphXn //= subn1 divn2 natrXE.
+    rewrite -expnM mulnC muln2 even_halfK.
+    rewrite -natrXE rmorphXn //= exprnP -subn1 -subzn.
+    rewrite primez.fermatz_little_pred //=.
+    move=> /dvdz_mod0P pDx.
+    move: hasB. rewrite PoszM -modzMml pDx mul0r.
+    move=> /eqP H. move: H.
+    rewrite eqz_mod_dvd dvdzE sub0r abszN //= -(absz_nat p) -dvdzE pDa //=.
+    rewrite prime_gt0 //.
+    rewrite -oddS prednK; last by rewrite prime_gt0 //.
+    case : (@even_prime p) => //= [Hp].
+    rewrite Hp //= in pL2.
+    rewrite absz_nat in hasB.
+    
+    
+    
+    
+
+    Theorem eulerz_criterion {p : int} (a : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
         (a ^ ((p - 1) %/ 2)%Z = (legendre_symb pL2 pP a) %[mod p])%Z.
     Proof.
     case pDa : (p %| a)%Z.
@@ -981,7 +1014,7 @@ Module Legendre.
     rewrite pDa.
     apply negbT in pDa.
     move: pDa => /negP pDa.
-    move: (primesz.pred_primez_half_mod pP pDa) => /orP H.
+    move: (primez.pred_primez_half_mod pP pDa) => /orP H.
     case: H => [H| /eqP H].
         rewrite H. apply/eqP. rewrite H //=.
     rewrite H.
@@ -1011,7 +1044,7 @@ Module Legendre.
         (iv) (a*b / p) = (a/p) * (b/p)
     *)
 
-    Lemma legendre_symbE (p a b : int) (pL2 : (2 < p)%R) (pP : primesz.primez p):
+    Lemma legendre_symbE (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
         (a == b %[mod p])%Z -> ((legendre_symb pL2 pP a) == (legendre_symb pL2 pP b)).
     Proof.
     move: pP pL2.
@@ -1024,7 +1057,7 @@ Module Legendre.
     rewrite -(subr0 b) -eqz_mod_dvd -amodb !eqz_mod_dvd !subr0 //=.
     Qed.
 
-    Lemma legendre_symb_Ndvd (p a b : int) (pL2 : (2 < p)%R) (pP : primesz.primez p):
+    Lemma legendre_symb_Ndvd (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
         ~~(p %| a)%Z -> (legendre_symb pL2 pP (a^2)) == 1.
     Proof.
     rewrite /legendre_symb.
@@ -1032,7 +1065,7 @@ Module Legendre.
     case: p => // p pP pL2.
     rewrite !(@subzn p); last by move: pP pL2; case: p => [// | p].
     move=> /negP pDa.
-    move: (primesz.pred_primez_half_mod pP pDa).
+    move: (primez.pred_primez_half_mod pP pDa).
     rewrite !(@subzn p); last by move: pP pL2 pDa; case: p => [// | p].
     rewrite !divz_nat exprzAC /exprz //= addn1 => /orP [/eqP aexp |/eqP aexp].
     rewrite -(modzXm _ (a ^+ ((p - 1) %/ 2))) aexp modzXm !exprnP exp1rz eqz_mod_dvd subrr dvdz0 //=.
@@ -1040,7 +1073,7 @@ Module Legendre.
     rewrite exprSz expr1z -mulrzz mulNrNz intz eqz_mod_dvd subrr dvdz0 //=.
     Qed.
 
-    Lemma legendre_symb_Neg1 (p : int) (pL2 : (2 < p)%R) (pP : primesz.primez p):
+    Lemma legendre_symb_Neg1 (p : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
         ((legendre_symb pL2 pP (-1)) == 1) = (p == 1 %[mod 4])%Z.
     Proof.
     apply Bool.eq_true_iff_eq.
@@ -1100,7 +1133,7 @@ Module Legendre.
     rewrite muln2 odd_double //= expr0 eqxx //=.
     Qed.
 
-    Lemma legendre_symb_or (p a : int) (pL2 : (2 < p)%R) (pP : primesz.primez p):
+    Lemma legendre_symb_or (p a : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
         ((legendre_symb pL2 pP a) == 1)%Z || ((legendre_symb pL2 pP a) == -1)%Z || ((legendre_symb pL2 pP a) == 0)%Z.
     Proof.
     rewrite /legendre_symb.
@@ -1108,7 +1141,7 @@ Module Legendre.
     case: (p %| a)%Z => //=.
     Qed.
 
-    Lemma legendre_symb_mod (p a b : int) (pL2 : (2 < p)%R) (pP : primesz.primez p):
+    Lemma legendre_symb_mod (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
         ((legendre_symb pL2 pP a) == (legendre_symb pL2 pP b)) = ((legendre_symb pL2 pP a) == (legendre_symb pL2 pP b) %[mod p])%Z.
     Proof.
     move: (legendre_symb_or a pL2 pP) => /orP [/orP [/eqP ->|/eqP ->] |/eqP ->].
@@ -1159,7 +1192,7 @@ Module Legendre.
     rewrite !eqxx //=.
     Qed.
 
-    Lemma legendre_symb_mul (p a b : int) (pL2 : (2 < p)%R) (pP : primesz.primez p):
+    Lemma legendre_symb_mul (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
         (legendre_symb pL2 pP (a * b)%R) = ((legendre_symb pL2 pP a) * (legendre_symb pL2 pP b))%R.
     Proof.
     rewrite /legendre_symb. Set Printing Coercions.
@@ -1192,9 +1225,9 @@ Module Legendre.
         rewrite dvdzE //= pDa //.
     have {}pDb : ~ (p %| b)%Z.
         rewrite dvdzE //= pDb //.
-    move : (@primesz.pred_primez_half_mod b p pP pDb) => /orP [/eqP ->|/eqP ->].
+    move : (@primez.pred_primez_half_mod b p pP pDb) => /orP [/eqP ->|/eqP ->].
         rewrite eqxx modzMm !mulr1 //=.
-    move : (@primesz.pred_primez_half_mod a p pP pDa) => /orP [/eqP -> |/eqP ->].
+    move : (@primez.pred_primez_half_mod a p pP pDa) => /orP [/eqP -> |/eqP ->].
         rewrite modzMm !eqz_mod_dvd !dvdzE.
         have -> : ((1 * -1 - 1)%R = -2)%Z by rewrite //=.
         rewrite //= subnn dvdn0 mul1r //=.
