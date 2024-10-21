@@ -38,14 +38,14 @@ rewrite //= (dvdn_add pDa pDb) //.
 Qed.
 
 (* "Exemplo_smaller_axiom" *)
-Lemma Ex2 {n}:
+Lemma exemplo_multiple_axiom {n}:
         forall (a : multiple n), (n %| a).
 Proof.
 move=> [a H] //=.
 Qed.
 
 (* "Exemplo_aplicacao_f_mod" *)
-Lemma Ex3 {n}:
+Lemma exemplo_aplicacao_f_mul {n}:
         forall (f : nat -> nat) (a : multiple n), (n %| ((f a) * n)).
 Proof.
 move=> f a. rewrite dvdn_mull //.
@@ -82,7 +82,7 @@ Canonical f_mul_multiple (n : nat) (f : nat -> nat) (a : multiple n) :=
         (@Build n ((f a) * n) (@Ex3 n f a)).
 
 (* "Exemplo_a_provar" *)
-Lemma Ex4 {n}:
+Lemma exemplo_a_provar {n}:
         forall (a : multiple n), (n %| ((fun x => x + 8) (((fun x => 2 * x) a) * n)) * n).
 Proof.
 move=> a //=.
