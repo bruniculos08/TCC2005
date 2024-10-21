@@ -1,23 +1,32 @@
 From mathcomp Require Import all_ssreflect.
+From mathcomp Require Import ssreflect.ssrnat.
+Require Export Arith.
+Require Export Bool.
+Require Export PeanoNat.
 
 Unset Strict Implicit.
 Unset Printing Implicit Defensive.
 Set Printing Coercions.
 
 Record multiple (n : nat) : Type := Build
-{       x : nat;
-        axiom : (n %| x)        }.
+{       
+        x : nat;
+        axiom : (n %| x)%N        
+}.
 
-Definition multiple_to_nat {n} (a : multiple n) :=
+(* Definition multiple_to_nat {n} (a : multiple n) :=
 match a with
 | Build m _ => m
-end. 
+end.  *)
 
-Fail Check (forall (n : nat) (a : multiple n), a + 0 = a).
-Check (forall (n : nat) (a : multiple n), (x _ a) + 0 = (x _ a)).
+Definition multiple_nat (n : nat) (e : multiple n) : nat :=
+    let: @Build _ t _ := e in t.
 
-Coercion multiple_to_nat : multiple >-> nat.
-(* Coercion x : multiple >-> nat. *)
+(* Fail Check (forall (n : nat) (a : multiple n), a + 0 = a).
+Check (forall (n : nat) (a : multiple n), (x _ a) + 0 = (x _ a)). *)
+
+(* Coercion multiple_nat : multiple >-> nat. *)
+Coercion x : multiple >-> nat.
 
 Check (forall (n : nat) (a : multiple n), a + 0 = a).
 
@@ -42,12 +51,12 @@ Proof.
 move=> f a. rewrite dvdn_mull //.
 Qed.
 
-(* "Exemplo_a_provar" *)
+(* "Exemplo_a_provar"
 Lemma Ex4 {n}:
         forall (a : multiple n), n %| (((fun x => x + 8) (((fun x => 2 * x) a) * n)) * n).
 Proof.
 move=> a. rewrite dvdn_mull //=.
-Qed.
+Qed. *)
 
 Notation "X (*...*)" :=
 (let x := X in let y := _ in x) (at level 100, format "X (*...*)").
@@ -66,6 +75,26 @@ Fail Check (forall n (a : multiple n) (f : nat -> nat),
 
 Check (forall n (a : multiple n) (f : nat -> nat),
         let LHS := [LHS of Ex2 (@Build n ((f a) * n) (Ex3 f a))] in
+        let RDX := (n %| (f a) * n) in
+        [unify LHS with RDX]).
+
+Canonical f_mul_multiple (n : nat) (f : nat -> nat) (a : multiple n) := 
+        (@Build n ((f a) * n) (@Ex3 n f a)).
+
+(* "Exemplo_a_provar" *)
+Lemma Ex4 {n}:
+        forall (a : multiple n), (n %| ((fun x => x + 8) (((fun x => 2 * x) a) * n)) * n).
+Proof.
+move=> a //=.
+rewrite /is_true.
+rewrite addnC.
+rewrite Ex2.
+by [].
+Qed.
+
+(* Because of the last canonical the following works now: *)
+Check (forall n (a : multiple n) (f : nat -> nat),
+        let LHS := [LHS of Ex2 _] in
         let RDX := (n %| (f a) * n) in
         [unify LHS with RDX]).
 
@@ -115,6 +144,19 @@ Check (forall n (f : nat -> nat) (a : smaller n),
         let RDX := (((f a) %% n) < n) in
         [unify LHS with RDX]).
 
+Canonical f_mod_smaller {n} (f : nat -> nat) (a : smaller n) : smaller n := 
+        (Create n ((f a) %% n) (Exemplo_aplicacao_f_mod f a)).
+
+Example Exemplo_a_provar {n} :
+        forall (a : smaller n), ((fun x => x + 8)
+        ((( fun x => 2 * x) a) %% n)) %% n < n = (a < n).
+Proof.
+move=> a.
+rewrite Exemplo_smaller_axiom.
+rewrite addnC.
+rewrite Exemplo_smaller_axiom.
+by [].
+Qed.
 
 Definition limit {n} (x : smaller n) := n.
 
