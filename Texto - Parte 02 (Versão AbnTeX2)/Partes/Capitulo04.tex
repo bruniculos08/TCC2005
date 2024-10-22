@@ -37,8 +37,11 @@ que irá apresentar uma mensagem contendo, em parte dela, o seguinte conteúdo:
         - zero
 \end{lstlisting}
 Verificando as definições dos nomes apresentados nesta mensagem podemos notar que tal estrutura possui uma operação (\lstinline[language = coq]!add!), um elemento neutro à esquerda (\lstinline[language = coq]!zero! e \lstinline[language = coq]!add0r!) e as propriedades de comutatividade e associatividade para tal operação (\lstinline[language = coq]!addrC! e \lstinline[language = coq]!addrA!).
-Usando o mesmo comando (\lstinline[language = coq]!HB.about!) sobre o tipo \lstinline[language = coq]!int!, tem-se como resultado na mensagem apresentada as estruturas com as quais o tipo está ``equipado'', e dentre estas tem-se \lstinline[language = coq]!GRing.Nmodule! (para qual \lstinline[language=coq]!nmodType! é um sinônimo). Tal organização presente na biblioteca, ao ser conhecida pelo usuário, torna mais fácil e organizada a manipulação de diferentes tipos, e é portanto uma informação importante para leitores deste trabalho que desejam futuramente fazer uso da mesma biblioteca. 
-% Ainda da pra mexer nessa subseção, pra citar mais referências (apesar de eu não ter precisado tanto por que as informações são meio obvias após algum tempo de uso das ferramente acho q é interessante citar pra dar mais segurança ao leitor (e a mim mesmo também :) )
+Usando o mesmo comando (\lstinline[language = coq]!HB.about!) sobre o tipo \lstinline[language = coq]!int!, tem-se como resultado na mensagem apresentada as estruturas com as quais o tipo está ``equipado'', e dentre estas tem-se \lstinline[language = coq]!GRing.Nmodule! (para qual \lstinline[language=coq]!nmodType! é um sinônimo). 
+
+Tal organização presente na biblioteca, ao ser conhecida pelo usuário, torna mais fácil e organizada a manipulação de diferentes tipos, e é portanto uma informação importante para leitores deste trabalho que desejam futuramente fazer uso da mesma biblioteca. 
+
+\textcolor{red}{ Ainda da pra mexer nessa subseção, pra citar mais referências apesar de eu não ter precisado tanto por que as informações são meio obvias após algum tempo de uso da biblioteca, acho q é interessante citar pra dar mais segurança ao leitor (e a mim mesmo também)}
 % conforme apresentado em \cite{2023multipleinheritancehazardsdependentlytypedalgebraic}, são utilizadas para 
 
-\section{Hierarquias entre Estruturas Algébricas}
+\section{Implementações Anteriores}

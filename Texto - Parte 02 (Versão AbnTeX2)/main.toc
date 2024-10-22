@@ -33,7 +33,7 @@
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {4}\MakeUppercase []{Implementação}}{67}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Hierarquias entre Estruturas Algébricas}{67}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Hierarquias entre Estruturas Algébricas}{68}{section.4.2}%
+\contentsline {section}{\numberline {4.2}Implementações Anteriores}{68}{section.4.2}%
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \contentsline {chapter}{\MakeUppercase []{Refer\^encias}}{69}{section*.22}%
