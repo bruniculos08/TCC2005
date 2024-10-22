@@ -21,7 +21,7 @@ de tais módulos. A Figura \ref{fig:graph-mathcomp} apresenta uma parte desse gr
 Os módulos principais para o desenvolvimento da prova sobre o algoritmo Tonelli-Shanks (com base no conteúdo de Teoria dos Números que sustenta a lógica do mesmo) são: \textit{all\_ssreflect} (que contém diversos outros módulos), \textit{ring\_quotient}, \textit{zmodp} e \textit{intdiv}.
 
 \section{Igualdades}
-Na maior parte dos teoremas das bibliotecas nativas de \textit{Coq}, usa-se a igualdade de Leibniz. Por sua vez, essa definição de igualdade é dada pela seguinte proposição indutiva (de acordo com a documentação\footnote{\url{https://coq.inria.fr/doc/V8.18.0/refman/proofs/writing-proofs/equality.html}} \cite{coqteam2022manual}):
+Na maior parte dos teoremas das bibliotecas nativas de \textit{Coq}, usa-se uma definição indutiva de igualdade, que é por sua vez equivalente a igualdade de Leibniz (isto pode ser provado). Por sua vez, essa definição de igualdade é dada pela seguinte proposição indutiva (de acordo com a documentação\footnote{\url{https://coq.inria.fr/doc/V8.18.0/refman/proofs/writing-proofs/equality.html}} \cite{coqteam2022manual}):
 
 \begin{lstlisting}[language = coq]
     Inductive eq {A : Type} (x : A) : A -> Prop := eq_refl : eq x x.
@@ -112,7 +112,7 @@ o que nesse caso equivale a:
 Entretanto, o objetivo de criar o tipo \lstinline[language = coq]$eqType$ não é estabelecer essa possibilidade de computação para relações de comparação, mas sim construir definições, funções e provas genéricas para todos os tipos que pertencem ao campo \lstinline[language = coq]$sort$ de algum habitante de \lstinline[language = coq]$eqType$ e estabelecer \textit{overloading} de notações. Para exemplo de como alcançar este último objetivo, se define uma notação da seguinte forma:
 
 \begin{lstlisting}[language = coq]
-        Notation "x == y" := (@eq_op _ x y).
+    Notation "x == y" := (@eq_op _ x y).
 \end{lstlisting}
 porém havendo apenas esta definição, caso executado o comando \lstinline[language = coq]$Check (3 == 2)$ tem-se um falha. Ao se executar:
 \begin{lstlisting}[language = coq]
@@ -270,56 +270,57 @@ tem-se a mensagem:
 Em provas manuais costuma-se utilizar notações iguais para operações sobre diferentes tipos. Como exemplo, há o uso do símbolo $+$ para operação de soma sobre os conjuntos númericos $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$ , como operador lógico \textit{ou} e também como operação binária qualquer que forma um monoide genérico. Nessa aplicação cotidiana de \textit{overloading} de notações, as informações sobre tipos são inferidas pelo cérebro humano conforme o contexto em que se encontram \cite{10.1007/978-3-642-39634-2_5}. 
 Tomando isso em consideração e tendo em mente o conteúdo abordado na subseção anterior, pode-se dizer que o comando \lstinline[language = coq]$Canonical$ auxilia os usuários, tornando a escrita em \textit{Coq} mais semelhante a que se faz manualmente.
 
-Outro mecanismo relacionado a tipos em \textit{Coq}, e que de certa forma serve para esse mesmo propósito, é provido pelo comando \lstinline[language = coq]$Coercion$. Como motivação para o uso deste, suponha a declaração em \textit{Coq} de um tipo semelhante ao mencionado anteriormente (inicio da seção \ref{section:structs-e-records}) que contém todos os números naturais menores que $8$, porém ao invés de $8$, um número $n$ qualquer. Dessa forma o primeiro tipo citado será um caso específico deste tipo (em que $n = 8$). Utilizando \lstinline[language = coq]$Record$, temos então: 
+Outro mecanismo relacionado a tipos em \textit{Coq}, e que de certa forma serve para esse mesmo propósito, é provido pelo comando \lstinline[language = coq]$Coercion$. Como motivação para o uso deste, suponha a declaração em \textit{Coq} de um tipo que contenha todos os números naturais múltiplos de um número $n$. Utilizando \lstinline[language = coq]$Record$, temos então: 
 \begin{lstlisting}[language = coq]
-    Record smaller (n : nat) : Type := Build
-    {
-        x : nat;
-        axiom : x < n
-    }.
+Record multiple (n : nat) : Type := Build
+{       
+    x : nat;
+    axiom : (n %| x)        
+}.
 \end{lstlisting}
-Observe que para construir um habitante deste tipo é dado um elemento \lstinline[language = coq]$n$ de tipo \lstinline[language = coq]$nat$ e é necessário um elemento \lstinline[language = coq]$x$ de mesmo tipo, e além disso, uma prova\footnote{Há de maneira implícita a aplicação da função \lstinline[language = coq]$is_true$ no tipo do campo \lstinline[language = coq]$axiom$, portanto o que foi declarado como tipo deste campo, isto é, \lstinline[language = coq]$x < n$, é equivalente a \lstinline[language = coq]$x < n = true$.} de que \lstinline[language = coq]$x$ é menor que \lstinline[language = coq]$n$.
-Agora, com tal declaração, visto que o objetivo da mesma é representar qualquer conjunto de números menores que um determinado natural $n$, o usuário de \textit{Coq} provavelmente desejará que se possa escrever algo como:
+Observe que para construir um habitante deste tipo é dado um elemento \lstinline[language = coq]$n$ de tipo \lstinline[language = coq]$nat$ e é necessário um elemento \lstinline[language = coq]$x$ de mesmo tipo, e além disso, uma prova\footnote{Há de maneira implícita a aplicação da função \lstinline[language = coq]$is_true$ no tipo do campo \lstinline[language = coq]$axiom$, portanto o que foi declarado como tipo deste campo, isto é, \lstinline[language = coq]$n \%| x$, é equivalente a \lstinline[language = coq]$n \%| x = true$.} de que \lstinline[language = coq]$x$ é divisível por \lstinline[language = coq]$n$.
+Agora, com tal declaração, visto que o objetivo da mesma é representar qualquer conjunto de números divisíveis por um determinado natural $n$, o usuário de \textit{Coq} provavelmente desejará que se possa escrever algo como:
 \begin{lstlisting}[language = coq]
-    forall (n : nat) (a : smaller n), a + 0 = a.
+    forall (n : nat) (a : multiple n), a + 0 = a.
 \end{lstlisting}
-sem que o uso da operação de adição leve a um erro pela razão dessa possuir tipo \lstinline[language = coq]$nat -> nat -> nat$ enquanto o argumento \lstinline[language = coq]$a$ tem tipo \lstinline[language = coq]$smaller n$, quando a intenção do usuário é de que este último represente um número natural. Se for utilizado o comando \lstinline[language = coq]$Check$ na proposição acima:
+sem que o uso da operação de adição leve a um erro pela razão dessa possuir tipo \lstinline[language = coq]$nat -> nat -> nat$ enquanto o argumento \lstinline[language = coq]$a$ tem tipo \lstinline[language = coq]$multiple n$, quando a intenção do usuário é de que este último represente um número natural. Se for utilizado o comando \lstinline[language = coq]$Check$ na proposição acima:
 \begin{lstlisting}[language = coq]
-    Fail Check (forall (n : nat) (a : smaller n), a + 0 = a).
+    Fail Check (forall (n : nat) (a : multiple n), a + 0 = a).
 \end{lstlisting}
 tem-se a mensagem:
 \begin{lstlisting}[language = coq-error]
     The command has indeed failed with message:
     In environment
     n : nat
-    a : smaller n
-    The term "a" has type "smaller n" while it is
+    a : multiple n
+    The term "a" has type "multiple n" while it is
     expected to have type "nat".
 \end{lstlisting}
 Buscando solucionar este tipo de problema, sem que tenha que se escrever:
 \begin{lstlisting}[language = coq]
-    forall (n : nat) (a : smaller n), (x a) + 0 = (x a).
+    forall (n : nat) (a : multiple n), (x n a) + 0 = (x n a).
 \end{lstlisting}
-o que por sua vez não geraria erro algum pois \lstinline[language = coq]$(x a)$ tem tipo \lstinline[language = coq]$nat$\footnote{Lembre-se que \lstinline[language = coq]$x$, no contexto externo a declaração do seu respectivo \lstinline[language = coq]$Record$, é uma função que extrai o campo \lstinline[language = coq]$x$ de um elemento do tipo \lstinline[language = coq]$smaller n$ (para qualquer \lstinline[language = coq]$n$) e não o valor do campo em si. Portanto a seguinte definção poderia ser dada ser definida simplesmente como \lstinline[language = coq]$x$.}, defini-se uma função que retira o campo \lstinline[language = coq]$x$ de um elemento como \lstinline[language = coq]$a$:
+o que por sua vez não geraria erro algum pois \lstinline[language = coq]$(x n a)$ tem tipo \lstinline[language = coq]$nat$\footnote{Lembre-se que \lstinline[language = coq]$x$, no contexto externo a declaração do seu respectivo \lstinline[language = coq]$Record$, é uma função que extrai o campo \lstinline[language = coq]$x$ de um elemento do tipo \lstinline[language = coq]$multiple n$ (para qualquer \lstinline[language = coq]$n$) e não o valor do campo em si. Portanto a seguinte definção poderia ser dada simplesmente como \lstinline[language = coq]$x$.}, defini-se uma função que retira o campo \lstinline[language = coq]$x$ de um elemento como \lstinline[language = coq]$a$:
 \begin{lstlisting}[language = coq]
-    Definition smaller_nat (n : nat) (e : smaller n) : nat :=
+    Definition multiple_nat (n : nat) (e : multiple n) : nat :=
         let t := (x n e) in t.
 \end{lstlisting}
 e agora, para que o \textit{Coq} aplique esta função de maneira implícita, de modo a evitar erros de tipo, usa-se o comando \lstinline[language = coq]$Coercion$ da seguinte maneira:
 \begin{lstlisting}[language = coq]
-    Coercion smaller_nat : smaller >-> nat.
+    Coercion multiple_nat : multiple >-> nat.
 \end{lstlisting}
 Agora, realizando o comando \lstinline[language = coq]$Check$ como anteriormente:
 \begin{lstlisting}[language = coq]
-    Check (forall n (a : smaller n), a + 0 = 0).
+    Check (forall n (a : multiple n), a + 0 = 0).
 \end{lstlisting}
 é gerada a mensagem:
 \begin{lstlisting}[language = coq-error]
-    forall (n : nat) (a : smaller n), a + 0 = 0
+    forall (n : nat) (a : multiple n), a + 0 = 0
         : Prop
 \end{lstlisting}
 
 \subsection{Exemplo de Implementação de grupos}
+\label{sub:grupos}
 
 Um uso semelhante do mecanismo \textit{coercion}, junto ao \textit{canonical}, pode ser proposto com um tipo que representa grupos. Um grupo é uma estrutura algébrica dada por $(G, \otimes)$ onde:
 \begin{enumerate}
@@ -362,7 +363,7 @@ Usa-se então o comando \lstinline[language = coq]$Canonical$ para que o \textit
 \end{lstlisting}
 Com este conjunto de configurações passa a ser mais fácil a escrita e leitura de declarações relacionadas a grupos. Assim, torna-se então possível a formalização compacta de teoremas genéricos sobre quaisquer tipos presentes no campo \lstinline[language = coq]$sort$ de algum habitante de \lstinline[language = coq]$group$. Como exemplo, tem-se o seguinte teorema e sua respectiva prova:
 \begin{lstlisting}[language = coq]
-    Theorem Exemplo_sobre_grupos: 
+    Theorem exemplo_sobre_grupos: 
         \forall G : group, \forall a b : G, (a \otimes b) \otimes 0 = (a \otimes 0) \otimes b.
     Proof.
         intros. rewrite (neutral_right G). rewrite (neutral_right G).
@@ -371,37 +372,34 @@ Com este conjunto de configurações passa a ser mais fácil a escrita e leitura
 \end{lstlisting}
 Como este teorema serve para qualquer grupo \lstinline[language = coq]$G$, esse pode então ser usado na seguinte prova:
 \begin{lstlisting}[language = coq]
-    Theorem Exemplo_sobre_int:
+    Theorem exemplo_sobre_int:
         \forall a b : int, (a + b) + 0 = (a + 0) + b.
     Proof.
-        apply Ex9.
+        apply exemplo_sobre_grupos.
     Qed.
 \end{lstlisting}
 Tal prova exemplifica como o uso dos mecanismos em \textit{Coq}, que foram apresentados neste capítulo, podem ser utilizados para que seja mais fácil trabalhar com um vasta quantidade de tipos que apresentam propriedades em comum (como é o caso dos grupos).
 
 \subsection{Mantendo Informações de um Record ou Structure}
 
-Em meio as provas que envolvem tipos de \lstinline[language = coq]$Record$ ou \lstinline[language = coq]$Structure$, o usuário de \textit{Coq} pode se deparar com situações em que, ao se aplicar uma determinada função sobre uma variável relacionada a um desses comandos, que portanto apresenta um determinado conjunto de propriedades, o resultado da computação dessa função irá retornar um dado do tipo definido pela \textit{coercion}. Em algumas dessas ocasiões, no entanto, a função aplicada retornará um dado com o qual se poderia construir uma nova variável do mesmo tipo de \lstinline[language = coq]$Record$ (ou \lstinline[language = coq]$Structure$) do elemento do qual o argumento da função foi extraído. Manter o tipo do resultado como o mesmo \lstinline[language = coq]$Record$ ou \lstinline[language = coq]$Structure$ pode ser útil em algumas provas, e fazer isso é possível através do comando \lstinline[language = coq]$Canonical$. A exemplo disso, retomando ao tipo \lstinline[language = coq]$smaller$, note que é possível provar os dois seguintes teoremas:
+Em meio as provas que envolvem tipos de \lstinline[language = coq]$Record$ ou \lstinline[language = coq]$Structure$, o usuário de \textit{Coq} pode se deparar com situações em que, ao se aplicar uma determinada função sobre uma variável relacionada a um desses comandos, que portanto apresenta um determinado conjunto de propriedades, o resultado da computação dessa função irá retornar um dado do tipo definido pela \textit{coercion}. Em algumas dessas ocasiões, no entanto, a função aplicada retornará um dado com o qual se poderia construir uma nova variável do mesmo tipo de \lstinline[language = coq]$Record$ (ou \lstinline[language = coq]$Structure$) do elemento do qual o argumento da função foi extraído. Manter o tipo do resultado como o mesmo \lstinline[language = coq]$Record$ ou \lstinline[language = coq]$Structure$ pode ser útil em algumas provas, e fazer isso é possível através do comando \lstinline[language = coq]$Canonical$. A exemplo disso, retomando ao tipo \lstinline[language = coq]$multiple$, note que é possível provar os dois seguintes teoremas:
 \begin{lstlisting}[language = coq]
-    Theorem Exemplo_smaller_axiom {n} :
-        \forall (a : smaller n), a < n.
+    Theorem exemplo_multiple_axiom {n} :
+        \forall (a : multiple n), n %| a.
 
-    Theorem Exemplo_aplicacao_f_mod {n} :
-        \forall (f : nat -> nat) (a : smaller n), (f a) %% n < n.
+    Theorem exemplo_aplicacao_f_mul {n} :
+        \forall (f : nat -> nat) (a : multiple n), n %| (f a) * n.
 \end{lstlisting}
 onde \lstinline[language = coq]$%%$ é a operação de resto da divisão. Agora, imagine que se queira provar o seguinte:
 \begin{lstlisting}[language = coq]
-    Example Exemplo_a_provar {n} :
-        \forall  (a : smaller n), ((fun x => x + 8) 
-            (((fun x => 2 * x) a) %% n)) %% n < n = (a < n).
+    Example exemplo_a_provar {n} :
+        \forall (a : multiple n), (n %| ((fun x => x + 2) a) * n).
 \end{lstlisting}
-Note que, se tratando \lstinline[language = coq]!smaller n! como um conjunto de números naturais (apesar desse não ser precisamente isso) faria sentido poder utilizar o teorema 
-\lstinline[language = coq]!Exemplo_smaller_axiom!
-para reescrever o lado esquerdo da equação como \lstinline[language = coq]!true!, ao invés de ter que utilizar um teorema mais específico como \lstinline[language = coq]!Exemplo_aplicacao_f_mod!. Dado que se trata de uma sequência de funções em que a última função realizada é de resto da divisão por \lstinline[language = coq]!n!, é óbvio que o resultado da expressão:
+Note que, se tratando \lstinline[language = coq]!multiple n! como um conjunto de números naturais (apesar desse não ser precisamente isso) faria sentido poder utilizar o teorema \lstinline[language = coq]!exemplo_multiple_axiom! para reescrever o lado esquerdo da equação como \lstinline[language = coq]!true! (o operador  \lstinline[language = coq]!%|! tem tipo \lstinline[language = coq]!nat -> nat -> bool! portanto há uma \textit{coercion} \lstinline[language = coq]!is_true! na declaração do exemplo), ao invés de ter que utilizar um teorema mais específico como \lstinline[language = coq]!exemplo_aplicacao_f_mul!. Dado que se trata de uma aplicação de função em que após a aplicação o resultado é multiplicado por \lstinline[language = coq]!n!, é óbvio que o resultado da expressão:
 \begin{lstlisting}[language = coq]
-    ((fun x => x + 8) (((fun x => 2 * x) a) %% n)) %% n
+    (((fun x => x + 2) a) * n)
 \end{lstlisting} 
-é menor que \lstinline[language = coq]!n!. Entretanto, a reescrita desejada não é possível pois ocorre um problema de unificação ao tentar se usar a tática \lstinline[language = coq]!rewrite Exemplo_aplicacao_f_mod!. Para obter-se uma melhor noção sobre este problema é possível utilizar o seguinte código fornecido por \cite{assia_mahboubi_2022_7118596} (sobre o qual a explicação de seu funcionamento vai além do escopo do presente trabalho):
+é divisível por \lstinline[language = coq]!n!. Entretanto, a reescrita desejada não é possível pois ocorre um problema de unificação ao tentar se usar a tática \lstinline[language = coq]!rewrite exemplo_multiple_axiom!. Para obter-se uma melhor noção sobre este problema é possível utilizar o seguinte código fornecido por \cite{assia_mahboubi_2022_7118596} (sobre o qual a explicação de seu funcionamento vai além do escopo do presente trabalho):
 \begin{lstlisting}[language = coq]
     Notation "X (*...*)" :=
     (let x := X in let y := _ in x) (at level 100, format "X  (*...*)").
@@ -415,60 +413,60 @@ para reescrever o lado esquerdo da equação como \lstinline[language = coq]!tru
 \end{lstlisting} 
 Com isso, pode-se executar o seguinte comando:
 \begin{lstlisting}[language = coq]
-    Check (\forall n (f : nat -> nat) (a : smaller n),
-        let LHS := [LHS of Exemplo_aplicacao_f_mod _] in
-        let RDX := (((f a) %% n) < n) in
+    Fail Check (forall n (a : multiple n) (f : nat -> nat),
+        let LHS := [LHS of exemplo_multiple_axiom _] in
+        let RDX := (n %| (f a) * n) in
         [unify LHS with RDX]).
 \end{lstlisting}
-Este comando irá falhar apresentado uma mensagem, que em parte, apresenta o seguinte conteúdo:
+Este comando irá apresentar uma mensagem de confirmação da falha, que em parte, apresenta o seguinte conteúdo:
 \begin{lstlisting}[language = coq-error]
-    Error: In environment
-    n : nat
-    f : nat → nat
-    a : smaller n
-    LHS := [LHS of Exemplo_smaller_axiom ?a] : bool
-    RDX := f a %% n < n : bool
+    The command has indeed failed with message:
+    In environment
+    n :
+    nat
+    a : multiple n
+    f : nat -> nat
+    LHS := [LHS of exemplo_multiple_axiom ?a] : bool
+    RDX := n %| f (x n a) * n : bool
     The term "erefl LHS" has type "LHS = LHS"
     while it is expected to have type "LHS = RDX"
 \end{lstlisting} 
 Com isto, pode-se verificar que o problema de unificação encontrado é descobrir qual o valor da variável \lstinline[language = coq]!?a!. De modo mais específico, o problema está em encontrar um valor que torne equivalentes as seguintes expressões:
 \begin{lstlisting}[language = coq]
-    (x ?a) < n
+    n %| (x n ?a)
 \end{lstlisting} 
 e
 \begin{lstlisting}[language = coq]
-    (f x a %% n) < n
+    n %| ((f (x n a)) * n)
 \end{lstlisting}
  Para resolver este problema % e então simular tal tratamento de \lstinline[language = coq]!smaller n! como um conjunto (para este caso em específico) em \textit{Coq}, 
  usa-se o comando \lstinline[language = coq]!Canonical! junto ao teorema\\ 
- \lstinline[language = coq]!Exemplo_aplicacao_f_mod!, através do seguinte código:
+ \lstinline[language = coq]!exemplo_aplicacao_f_mul!, através do seguinte código:
 \begin{lstlisting}[language = coq]
-    Definition f_mod_smaller {n : nat} (f : nat -> nat) (a : smaller n) : smaller n := 
-        Build n ((f a) %% n) (Ex2 f a).
-    Canonical f_mod_smaller.
+    Canonical f_mul_multiple {n : nat} (f : nat -> nat) (a : multiple n) := 
+        (@Build n ((f a) * n) (@exemplo_aplicacao_f_mul n f a)).
 \end{lstlisting} 
     Retornando então a prova de motivação para introdução ao problema discutido\\
-    (\lstinline[language = coq]!Exemplo_a_provar!) e utilizando a sequência de táticas:
+    (\lstinline[language = coq]!exemplo_a_provar!) e utilizando a tática:
 \begin{lstlisting}[language = coq]
-    intros. rewrite Exemplo_smaller_axiom.
+    intros. simpl.
 \end{lstlisting} 
 O \textit{goal} da prova se torna:
 \begin{lstlisting}[language = coq]
-    (((2 * a) %% n + 8) %% n < n) = true
+    n %| (a + 2) * n
 \end{lstlisting}
-Agora, para que se possa aplicar novamente a tática \lstinline[language = coq]!rewrite Exemplo_smaller_axiom!, é necessário deixar o lado esquerdo do \textit{goal} escrito de modo que a expressão mais interna:
+Agora, para que se possa aplicar novamente a tática \lstinline[language = coq]!rewrite exemplo_smaller_axiom!, é necessário deixar o \textit{goal} escrito de modo que a expressão mais interna:
 \begin{lstlisting}[language = coq]
-    (((2 * a) %% n + 8)
+    (a + 2)
 \end{lstlisting}
-fique na forma de uma função aplicada sobre um elemento menor que \lstinline[language = coq]!n!.
-Isso é necessário para que o \textit{Coq} possa inferir um elemento do tipo \lstinline[language = coq]!smaller n! dado pela definição \lstinline[language = coq]!f_mod_smaller!, permitindo assim o uso do teorema  \lstinline[language = coq]!Exemplo_smaller_axiom!. Como \lstinline[language = coq]!8! é de tipo \lstinline[language = coq]!nat!, o \textit{Coq} não consegue construir um tipo \lstinline[language = coq]!smaller n! que resolva
-o problema de unificação. O que se pode então fazer é inverter a ordem da função de soma, realizando a tática \lstinline[language = coq]!rewrite AddnC!, em que \lstinline[language = coq]!AddnC! é um teorema de comutativa da soma. Assim, o \textit{goal} resultante será:
+fique na forma de uma função aplicada sobre um elemento múltiplo de \lstinline[language = coq]!n!.
+Isso é necessário para que o \textit{Coq} possa inferir um elemento do tipo \lstinline[language = coq]!multiple n! dado pela definição \lstinline[language = coq]!f_mul_multiple!, permitindo assim o uso do teorema \lstinline[language = coq]!exemplo_multiple_axiom!. Como \lstinline[language = coq]!2! é de tipo \lstinline[language = coq]!nat!, o \textit{Coq} não consegue construir um habitante do tipo \lstinline[language = coq]!multiple n! que resolva o problema de unificação. O que se pode então fazer é inverter a ordem da função de soma, realizando a tática \lstinline[language = coq]!rewrite addnC!, em que \lstinline[language = coq]!addnC! é um teorema de comutativa da soma. Assim, o \textit{goal} resultante será:
 \begin{lstlisting}[language = coq]
-    ((8 + (2 * a) %% n) %% n < n) = true
+    n %| ((2 + a) * n)
 \end{lstlisting}
-Agora, utilizando novamente a tática \lstinline[language = coq]!rewrite Exemplo_smaller_axiom!, tem-se:
+Agora, utilizando novamente a tática \lstinline[language = coq]!rewrite exemplo_multiple_axiom!, tem-se:
 \begin{lstlisting}[language = coq]
-    true = true
+    true
 \end{lstlisting}
 Com isso a prova pode ser finalizada com o uso de 
 \lstinline[language = coq]!reflexivity!.

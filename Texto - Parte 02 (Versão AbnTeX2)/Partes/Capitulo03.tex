@@ -28,7 +28,7 @@ Olhando o que acontece quando $k \mid n$, é fácil notar que $|k| \leq |n|$, lo
 \section{Algoritmo de Euclides}
 \label{sec:algoritmo-de-euclides}
 
-O algoritmo de Euclides é um método de computar o $\mdc$ entre dois números inteiros $a$ e $b$, tendo a seguinte descrição (algoritmo \ref{algo:euclides}):
+O algoritmo de Euclides é um método de computar o $\mdc$ entre dois números inteiros $a$ e $b$, tendo a seguinte descrição (Algoritmo \ref{algo:euclides}):
 
         \begin{algorithm}[!htbp]
                 \SetAlgoLined
@@ -281,7 +281,7 @@ Outro conceito importante originado a partir da definição de \textit{anéis de
     (\mathbb{Z}/(n))^{\times} = \{\overline{a} \in \mathbb{Z}/(n) | \mdc(a, n) = 1\}
 \end{equation}
 
-Sobre a implementação de \textit{anéis de inteiros módulo $n$} na biblioteca Mathematical Components, conforme é apresentado em \cite{assia_mahboubi_2022_7118596}, essa implementação envolve o tipo \lstinline[language = coq]{ordinal}. Este é idêntico ao \textit{record} \lstinline[language = coq]{smaller} (usado como exemplo na subseção \ref{subsection:coercion}), porém é declarado da seguinte forma (junto de sua notação e \textit{coercion} relacionada):
+Sobre a implementação de \textit{anéis de inteiros módulo $n$} na biblioteca Mathematical Components, conforme é apresentado em \cite{assia_mahboubi_2022_7118596}, essa implementação envolve o tipo \lstinline[language = coq]{ordinal}. Este é idêntico ao \textit{record} \lstinline[language = coq]{smaller} (usado como exemplo na Subseção \ref{subsection:coercion}), porém é declarado da seguinte forma (junto de sua notação e \textit{coercion} relacionada):
 \begin{lstlisting}[language = coq]
     Inductive ordinal n := Ordinal m of m < n.
     Notation "'I_' n" := (ordinal n).
@@ -425,7 +425,7 @@ Também há um lema equivalente a propriedade \ref{item:prop-phi-4} (em que a co
     Lemma totient_coprime m n :
         coprime m n -> totient (m * n) = totient m * totient n.
 \end{lstlisting}
-Por último, há também um lema que estabelece a equivalência entre a definição da função $\varphi$ de Euler exposta em \cite{book:2399854} (definição \ref{def:phi}) e a definição da biblioteca baseada na equação \ref{lema:phi-formula}\footnote{Vale aqui observar que novamente há uma \textit{coercion} de \lstinline[language = coq]{bool} para \lstinline[language = coq]{nat} sobre o retorna da função \lstinline[language = coq]{coprime} (a \textit{coercion} converte \lstinline[language = coq]{false} para $0$ e \lstinline[language = coq]{true} para $1$), dado que o somatório requer valores numéricos.}%colocar aqui q retorna 0 se false e 1 se true?
+Por último, há também um lema que estabelece a equivalência entre a definição da função $\varphi$ de Euler exposta em \cite{book:2399854} (Definição \ref{def:phi}) e a definição da biblioteca baseada na Equação \ref{lema:phi-formula}\footnote{Vale aqui observar que novamente há uma \textit{coercion} de \lstinline[language = coq]{bool} para \lstinline[language = coq]{nat} sobre o retorna da função \lstinline[language = coq]{coprime} (a \textit{coercion} converte \lstinline[language = coq]{false} para $0$ e \lstinline[language = coq]{true} para $1$), dado que o somatório requer valores numéricos.}%colocar aqui q retorna 0 se false e 1 se true?
 \begin{lstlisting}[language = coq]
     Lemma totient_count_coprime n : 
         totient n = \sum_(0 <= d < n) coprime n d.
@@ -453,11 +453,11 @@ assim, finalmente se chega ao resultado desejado:
 \begin{equation} \label{eq : bhaskara}
     (2 \cdot a \cdot x + b)^2 \equiv b^2 - 4 \cdot a \cdot c \pmod p
 \end{equation}
-Pode se verificar que resolver a equação \ref{eq : ax2bxc}  é equivalente a resolver \ref{eq : bhaskara}. Rescrevendo com $X = 2 \cdot a \cdot x + b$ e $d = b^2 - 4 \cdot a \cdot c$, obtêm-se:
+Pode se verificar que resolver a Equação \ref{eq : ax2bxc}  é equivalente a resolver \ref{eq : bhaskara}. Rescrevendo com $X = 2 \cdot a \cdot x + b$ e $d = b^2 - 4 \cdot a \cdot c$, obtêm-se:
 \begin{equation} \label{eq : quadcong}
     X^2 \equiv d \pmod p
 \end{equation}
-Com isso, note que um problema mais complexo (equação \ref{eq : ax2bxc}) foi transformado em um problema mais simples (equação \ref{eq : quadcong}). Sobre esse último, se possui solução, isto é, $d$ é um quadrado perfeito em $\mathbb{Z}/(p)$, então, se diz que $d$ é um \textit{resíduo quadrático} módulo $p$. Além disso, conforme \cite{book:2399854}, existem precisamente $\frac{p+1}{2}$ resíduos quadráticos módulo $p$ (valores de $d$ menores que $p$ para os quais \ref{eq : quadcong} tem solução), que são neste caso:
+Com isso, note que um problema mais complexo (Equação \ref{eq : ax2bxc}) foi transformado em um problema mais simples (Equação \ref{eq : quadcong}). Sobre esse último, se possui solução, isto é, $d$ é um quadrado perfeito em $\mathbb{Z}/(p)$, então, se diz que $d$ é um \textit{resíduo quadrático} módulo $p$. Além disso, conforme \cite{book:2399854}, existem precisamente $\frac{p+1}{2}$ resíduos quadráticos módulo $p$ (valores de $d$ menores que $p$ para os quais \ref{eq : quadcong} tem solução), que são neste caso:
 \begin{equation} \label{eq : listquadres}
     0^2 \bmod{p}, 1^2 \bmod{p}, 2^2 \bmod{p}, 3^2 \bmod{p}, ..., \left(\frac{p -1}{2} \right)^2 \bmod{p} 
 \end{equation}
@@ -476,7 +476,7 @@ com $i$, e para qualquer resto $r > \frac{p-1}{2}$ basta escolher $i = p - r$ (o
         \;\; \Longrightarrow \; r \equiv -i \pmod p
     \end{aligned}
 \end{align*}
-Logo, $x^2$ é congruente à um dos números da Lista \ref{eq : listquadres}, pois dado $y = \pm i$, ou seja, $y \in \left[- \frac{p-1}{2}, \frac{p-1}{2}\right]$:
+Logo, $x^2$ é congruente à um dos números da lista \ref{eq : listquadres}, pois dado $y = \pm i$, ou seja, $y \in \left[- \frac{p-1}{2}, \frac{p-1}{2}\right]$:
 \begin{align*}
     x \equiv y \pmod p
     &\begin{aligned}
@@ -576,13 +576,13 @@ Dados $a, m, n \in \mathbb{Z}$, se $a \cdot m \equiv 1 \pmod n$, se diz que $m$ 
         & 
         \Longleftrightarrow \exists q \in \mathbb{Z},  a \cdot b - n \cdot 1  = 1
     \end{align*}
-Por consequência do teorema \ref{teorema : bachetbezout}, só existe tal $q$ se $\mdc(a, n) = 1$, e portanto $b$ existe se e somente se isto ocorre.
+Por consequência do Teorema \ref{teorema : bachetbezout}, só existe tal $q$ se $\mdc(a, n) = 1$, e portanto $b$ existe se e somente se isto ocorre.
 
 \begin{lema}[\textit{Unicidade de inverso multiplicativo módulo p}] Dado um número primo $p$, seja 
 $a \in [1, p-1]$, existe $k \in [1, p-1]$ tal que $ a \cdot k \equiv 1 \pmod p$ e $k$ é portanto o único inverso multiplicativo de  módulo $p$ de $a$ no intervalo $[1, p-1]$. \label{lema : invmod}
 \end{lema}
 \noindent
-\textit{Demonstração}: primeiramente, sabe-se que $k$ existe pelo lema \ref{lema : mdcinv} (pois $p$ é primo, logo $\mdc(a, p) = 1$). Assim, dado que $a \cdot k \equiv 1 \pmod p$, suponha que existe $k' \in [1, p-1]$ tal que $a \cdot k' \equiv 1 \pmod p$, então:
+\textit{Demonstração}: primeiramente, sabe-se que $k$ existe pelo Lema \ref{lema : mdcinv} (pois $p$ é primo, logo $\mdc(a, p) = 1$). Assim, dado que $a \cdot k \equiv 1 \pmod p$, suponha que existe $k' \in [1, p-1]$ tal que $a \cdot k' \equiv 1 \pmod p$, então:
 \begin{align*}
     a \cdot k \equiv a \cdot k' \pmod p \;
     &\begin{aligned}
@@ -605,7 +605,7 @@ Como $a \in [1, p-1]$, para que a disjunção seja válida deve ser o caso que $
         h \neq k \land h \cdot k \equiv a \pmod p 
     \end{equation*}
 \end{lema}
-\noindent \textit{Demonstração}: pelo lema \ref{lema : invmod}, sabe-se que existe $h^{-1} \in [1, p-1]$ tal que:
+\noindent \textit{Demonstração}: pelo Lema \ref{lema : invmod}, sabe-se que existe $h^{-1} \in [1, p-1]$ tal que:
 \begin{equation*}
     h^{-1} \cdot h \equiv 1 \pmod p
 \end{equation*}
@@ -712,7 +712,7 @@ Agora será então apresentada a demonstração do \textit{Critério de Euler}.
     \item se $a \equiv 0 \pmod p$, ou seja, $p \mid a$, pelas propriedades de módulo pode-se elevar ambos os lados por $\frac{p-1}{2}$, e
     então se chega em $a^{\frac{p-1}{2}} \equiv 0 \pmod p$
 
-    \item se $p \nmid a$, então pelo teorema \ref{eq : euler-fermat} tem-se 
+    \item se $p \nmid a$, então pelo Teorema \ref{eq : euler-fermat} tem-se 
 \begin{align*}
         a^{\varphi(p)} \equiv 1  \pmod p \; \Longleftrightarrow
         &\begin{aligned}
@@ -750,7 +750,7 @@ $a \equiv i^2 \pmod p$. Podemos elevar ambos os lados por $\frac{p-1}{2}$, donde
 \begin{equation*}
     a^{\frac{p-1}{2}} \equiv i^{p-1} \pmod p
 \end{equation*}
-pelo teorema \ref{eq : euler-fermat} (e pela transitividade da relação de módulo), ocorre o seguinte:
+pelo Teorema \ref{eq : euler-fermat} (e pela transitividade da relação de módulo), ocorre o seguinte:
 \begin{align*}
     i^{p-1} \equiv 1 \pmod p \;\; \Longrightarrow
     &\begin{aligned}
@@ -765,8 +765,8 @@ por contraposição, é equivalente provar que:
 \begin{equation} \label{eq : contrapos}
     \forall i, a \not\equiv i^2  \pmod p \Longrightarrow a^{\frac{p-1}{2}} \not\equiv 1 \pmod p
 \end{equation}
-Pela hipótese e pelo lema \ref{lema : modp-1fat} tem-se que $a^{\frac{p-1}{2}} \equiv (p-1)! \pmod{p}$. Usando o teorema \ref{teorema : wilson}, por transitividade, $a^{\frac{p-1}{2}} \equiv -1 \pmod{p}$, então de fato $a^{\frac{p-1}{2}} \not\equiv 1 \pmod{p}$. \qed
+Pela hipótese e pelo Lema \ref{lema : modp-1fat} tem-se que $a^{\frac{p-1}{2}} \equiv (p-1)! \pmod{p}$. Usando o Teorema \ref{teorema : wilson}, por transitividade, $a^{\frac{p-1}{2}} \equiv -1 \pmod{p}$, então de fato $a^{\frac{p-1}{2}} \not\equiv 1 \pmod{p}$. \qed
 
 \end{enumerate}
 
-Quanto aos conceitos apresentados nessa sessão, a grande parte (se não todos) não estão implementados na biblioteca Mathematical Components. Sendo assim, apresentam um desafio considerável para que se complete o objetivo proposto neste trabalho, a ser apresentado com maiores detalhes no Capítulo \ref{cap:tonelli-shanks}.
+Quanto aos conceitos apresentados nessa sessão, a grande parte (se não todos) não estão implementados na biblioteca Mathematical Components. Sendo assim, apresentam um desafio considerável para que se complete o objetivo proposto neste trabalho, a ser apresentado com maiores detalhes no Capítulo \ref{cap:implementacao}.

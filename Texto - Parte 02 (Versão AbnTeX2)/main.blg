@@ -6,8 +6,8 @@ A level-1 auxiliary file: PreTextual/Pretexto.aux
 A level-1 auxiliary file: PreTextual/Resumo.aux
 A level-1 auxiliary file: PreTextual/Abstract.aux
 A level-1 auxiliary file: PreTextual/Sumario.aux
-A level-1 auxiliary file: Partes/Capitulo04.aux
-A level-1 auxiliary file: Partes/Capitulo05.aux
+A level-1 auxiliary file: Partes/ApendiceA.aux
+A level-1 auxiliary file: Partes/ApendiceB.aux
 The style file: abntex2-alf.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -21,9 +21,9 @@ Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Database file #1: abntex2-options.bib
 Database file #2: referencias.bib
 Warning--entry type for "johndcookQuadraticReciprocity" isn't style-file defined
---line 76 of file referencias.bib
+--line 106 of file referencias.bib
 Warning--entry type for "kumar2021algorithm" isn't style-file defined
---line 242 of file referencias.bib
+--line 272 of file referencias.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=200001) to 20 items from 10.
@@ -33,45 +33,45 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 21 entries,
+You've used 22 entries,
             6714 wiz_defined-function locations,
-            1364 strings with 13423 characters,
-and the built_in function-call counts, 26561 in all, are:
-= -- 3018
-> -- 475
-< -- 575
-+ -- 769
-- -- 147
-* -- 1660
-:= -- 3365
-add.period$ -- 96
-call.type$ -- 21
-change.case$ -- 178
-chr.to.int$ -- 45
-cite$ -- 20
-duplicate$ -- 2417
-empty$ -- 1321
-format.name$ -- 702
-if$ -- 5547
+            1378 strings with 13951 characters,
+and the built_in function-call counts, 29258 in all, are:
+= -- 3349
+> -- 530
+< -- 650
++ -- 861
+- -- 163
+* -- 1844
+:= -- 3675
+add.period$ -- 105
+call.type$ -- 22
+change.case$ -- 194
+chr.to.int$ -- 49
+cite$ -- 21
+duplicate$ -- 2693
+empty$ -- 1416
+format.name$ -- 779
+if$ -- 6088
 int.to.chr$ -- 0
 int.to.str$ -- 0
-missing$ -- 363
-newline$ -- 110
-num.names$ -- 102
-pop$ -- 468
+missing$ -- 384
+newline$ -- 116
+num.names$ -- 108
+pop$ -- 496
 preamble$ -- 1
-purify$ -- 72
+purify$ -- 77
 quote$ -- 0
-skip$ -- 2462
+skip$ -- 2728
 stack$ -- 1
-substring$ -- 1169
-swap$ -- 930
-text.length$ -- 29
+substring$ -- 1303
+swap$ -- 1042
+text.length$ -- 32
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 7
+type$ -- 8
 warning$ -- 0
-while$ -- 149
+while$ -- 160
 width$ -- 0
-write$ -- 342
+write$ -- 363
 (There were 2 warnings)
