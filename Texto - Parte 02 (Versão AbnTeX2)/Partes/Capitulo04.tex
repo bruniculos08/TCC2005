@@ -61,6 +61,13 @@ Quanto ao segundo item a ser mencionado, este trata do Lema \ref{lema : modp-1fa
         Lemma fact_sqr_exp a p :
         prime p -> ~~ (p %| a) -> ~~ res_quad p a -> (p.-1`!) = a ^ p.-1./2 %[mod p].
 \end{lstlisting}
+onde \lstinline[language=coq]!res_quad! tem a seguinte definição:
+\begin{lstlisting}[language=coq]
+        Definition res_quad p a := has (fun i => i * i == a %[mod p]) (iota 0 p).
+\end{lstlisting}
+em que, a função \lstinline[language=coq]!has! recebe um predicado booleano e uma lista, e então retorna \lstinline[language=coq]!true!
+se há algum elemento da lista que satisfaz o predicado e \lstinline[language=coq]!false! caso contrário. Já a função \lstinline[language=coq]!iota! recebe dois números naturais $m$ e $n$ e retorna uma lista crescente de todos os naturais de $m$ até $n-1+m$. Portanto, a função \lstinline[language=coq]!res_quad! é um método exaustivo para verificar se há um valor $r$ tal que $r^{2} \equiv a \pmod{p}$.
 
+As dificuldade relacionada a prova destes lemas em \textit{Coq}, se baseando nas ideias de provais manuais apresentadas neste trabalho, deve-se ao fato de que tais ideias sugerem a reorganização de todos os termos de produtórios com tamanho arbitrário.   
 
 % Alguns lemas, teoremas e definições que já haviam sido implementados na biblioteca, junto a um que foi implementado durante o período de realização deste trabalho (e portanto possívelmente, na data de publicação deste trabalho, ainda não está incluído na biblioteca) foram de grande importância para alcance dos objetivos estabelecidos. Sendo assim, é de interesse que sejam aqui mencionados.
