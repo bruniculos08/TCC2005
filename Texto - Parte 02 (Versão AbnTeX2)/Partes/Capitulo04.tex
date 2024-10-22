@@ -1,7 +1,7 @@
 \chapter{Implementação}
 \label{cap:implementacao}
 
-Neste capítulo será apresentada a Implementação do \textit{símbolo de Legendre}, que será dividida em três partes: apresentação do sistema de hierarquia de estruturas algébricas, discussão sobre implementações de outros conteúdos já anteriormente disponíveis na biblioteca e consideradas fundamentais para realização do objetivo proposto, e por fim as implementações realizadas no presente trabalho.
+Neste capítulo será tratada a implementação do \textit{símbolo de Legendre}, trazendo um conteúdo dividido em três partes: apresentação do sistema de hierarquia de estruturas algébricas, discussão sobre implementações de outros conteúdos externos a este trabalho consideradas fundamentais para realização do objetivo proposto, e por fim as implementações realizadas no presente trabalho.
         
 Anteriormente vale ressaltar que existem implementações sobre \textit{símbolo de Legendre} fora da biblioteca Mathematical Components. Como exemplo de tais implementações tem-se, utilizando o auxiliador de provas \textit{Lean}, na biblioteca Mathlib\footnote{Disponível em: https://github.com/leanprover-community/mathlib4}, tanto a implementação de \textit{símbolo de Legendre} quanto da \textit{Lei de Reciprocidade Quadrática}
 (tema este discutido no Apêndice \ref{cap:reciprocidadequadratica}). Há também a implementação de ambos os conteúdos mencionados em \textit{Coq} (porém sem utilização da biblioteca Mathematical Components) públicada em repositório\footnote{Disponível em: https://github.com/Ekdohibs/coq-proofs/tree/master/Reciprocity} de Nathanaëlle Courant disponível no GitHub.
@@ -44,4 +44,23 @@ Tal organização presente na biblioteca, ao ser conhecida pelo usuário, torna 
 \textcolor{red}{ Ainda da pra mexer nessa subseção, pra citar mais referências apesar de eu não ter precisado tanto por que as informações são meio obvias após algum tempo de uso da biblioteca, acho q é interessante citar pra dar mais segurança ao leitor (e a mim mesmo também)}
 % conforme apresentado em \cite{2023multipleinheritancehazardsdependentlytypedalgebraic}, são utilizadas para 
 
-\section{Implementações Anteriores}
+\section{Implementações Externas de Maior Relevância}
+Dentre os teoremas e lemas utilizados neste trabalho (dos quais a grande maioria são lemas simples da biblioteca Mathematical Components), existe um lema e um teorema que merecem destaque devido a complexidade para a prova dos mesmos, haja vista a dificuldade em se fazer uma formalização com base na ideia da prova manual destes (ambas apresentadas neste trabalho).
+
+O primeiro destes trata do caso \ref{item:caso3wilson} do Teorema \ref{teorema : wilson} e tem na biblioteca a seguinte declaração:
+\begin{lstlisting}[language=coq]
+        Theorem Wilson p : p > 1 -> prime p = (p %| ((p.-1)`!).+1).
+\end{lstlisting}
+É importante notar, que, nesse contexto, dada a presença da \textit{coercion} \lstinline[language=coq]!is_true!, a igualdade entre as proposições booleanas \lstinline[language=coq]!prime p! e \lstinline[language=coq]!p %| ((p.-1)`!).+1! significa uma bi-implicação caso estas proposições não fossem booleanas. Além, vale aqui lembrar da definição de equivalência em módulo $p$, e que portanto:
+\begin{equation}
+        p \mid (p-1)! + 1 \Longleftrightarrow (p-1)! \equiv -1 \pmod{p} 
+\end{equation}
+
+Quanto ao segundo item a ser mencionado, este trata do Lema \ref{lema : modp-1fat} e foi provado por Laurent Théry durante o período de realiazação deste trabalho. A prova deste está disponível em: \hyperlink{https://github.com/thery/mathcomp-extra/blob/master/euler.v}{https://github.com/thery/mathcomp-extra/blob/master/euler.v} e tem a seguinte declaração:
+\begin{lstlisting}[language=coq]
+        Lemma fact_sqr_exp a p :
+        prime p -> ~~ (p %| a) -> ~~ res_quad p a -> (p.-1`!) = a ^ p.-1./2 %[mod p].
+\end{lstlisting}
+
+
+% Alguns lemas, teoremas e definições que já haviam sido implementados na biblioteca, junto a um que foi implementado durante o período de realização deste trabalho (e portanto possívelmente, na data de publicação deste trabalho, ainda não está incluído na biblioteca) foram de grande importância para alcance dos objetivos estabelecidos. Sendo assim, é de interesse que sejam aqui mencionados.
