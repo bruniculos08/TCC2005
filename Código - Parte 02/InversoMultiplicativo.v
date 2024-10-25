@@ -904,7 +904,20 @@ Module inversezmodp.
     (* 
         NOTE QUE:
             este é um produtório de produtórios, e que em cada
-            sub-produtório
+            sub-produtório, note que, do produtório mais externo
+            temos uma iteração em algum j tal que j < f(j), assim
+            no produtório interno temos duasa ocasiões em que
+            o predicado será satisfeito:
+
+            (a) quando i = j e portanto i < f(i), logo
+            can i = i = j então i == j
+
+            (b) quando i = f(j) e portanto ~~(i < f(i)), logo
+            can i = can (f(j)) = f(f(j)) = j então i == j
+
+            portanto, o subprodutorio será: 
+                j * f(j) = j * (a' / j) = j * a' * j^-1 
+                         = j * j^-1 * a' = a'
     
     *)
     apply: partition_big => i /andP[iF i_neq0].
