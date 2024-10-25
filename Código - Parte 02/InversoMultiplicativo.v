@@ -445,6 +445,24 @@ Module primez.
         (* ... *)
     Abort.
 
+    (* Example asdasd (a b : int):
+        intZmod.addz a b = intZmod.addz b a.
+    Proof.
+    rewrite intZmod.addzC.
+    About addrC.
+    About nmodType.
+    Print addrC.
+    Compute +%R.
+    HB.about nmodType.
+    HB.about GRing.Nmodule.
+    HB.about int.
+    Search (_ / _)%R.
+    Search Gauss_dvdr.
+    HB.about add.
+    HB.about GRing.isNmodule.
+    Print GRing.zero. *)
+    
+
     Close Scope int_scope.
 
 End primez.
@@ -784,6 +802,9 @@ Module inversezmodp.
     have -> : p.-1`! = \prod_(i in 'F_p | i != 0%R) i.
     apply: etrans (_ : \prod_(i in 'F_p | i != 0 :> nat) i = _); last first.
         by apply: eq_bigl => i.
+    Print pdiv.
+    Compute (Zp_trunc (pdiv 5)).+2.
+    Compute (pdiv 5).
     rewrite /= Fp_cast //.
     rewrite fact_prod big_add1 /= big_mkord.
     case: p {pNDa aR}pP => //= p pP.
@@ -791,28 +812,101 @@ Module inversezmodp.
     pose a' : 'F_p := inZp a.
     have a'E : a' = a %% p :> nat by rewrite /= Fp_cast.
     have a'_neq0 : a' != 0%R.
-    apply/eqP/val_eqP; rewrite [val a']a'E /=.
+    apply/eqP/val_eqP. rewrite [val a']a'E /=.
     by have /negPf := pNDa; rewrite /dvdn => ->.
     rewrite -modnXm -a'E.
     pose f (i : 'F_p) : 'F_p := (a' / i)%R.
+    (* 
+        f é uma função que retorna a' multiplicado pelo inverso de i, isto é, i^-1 tal que i * i^-1 = 1, 
+        que é um valor computával (pois 'F_p é u, tipo finito).
+    *)
     have f_eq0 : f 0%R = 0%R by rewrite /f GRing.invr0 GRing.mulr0.
     have fM (i : 'F_p) : i != ord0 -> (f i * i = a')%R.
+    (* 
+        fM é um teorema que diz algo para todo (i : 'F_p),
+        não é uma função (é mas não é); neste caso, o que
+        fM diz é que se i != 0 então f i * i = a'.
+    *)
     by move=> i_neq0; rewrite /f GRing.divfK.
     have fI (i : 'F_p) : f (f i) = i.
+    (* 
+        fI é um teorema que (assim como em fM) para todo
+        (i : 'F_p) f é involutiva.
+    *)
     by rewrite /f GRing.invf_div GRing.mulrC GRing.divfK.
     have fI_neq0 (i : 'F_p) : i != 0%R -> f i != i.
+    (* 
+        fI_neq0 é um teorema que diz que para todo (i : 'F_p),
+        se i != 0 então f(i) != i. 
+    *)
     move=> i_neq0; apply/eqP => fiE.
     have iL : i < p by rewrite -[X in _ < X]Fp_cast.
+    (* 
+        como i pertence a 'F_p pode-se então provar
+        que i < p.
+    *)
     have /res_quadPn/(_ (Ordinal iL)) /= := aR.
+    (* 
+        o comando acima introduz a hipótese aR reescrita com
+        o teorema de reflect res_quadPn e instância o forall
+        para o ordinal i.
+    *)
     have /val_eqP := fM _ i_neq0; rewrite fiE /=.
+    (* 
+        o comando acima introduz (fM _ i_neq0), isto é,
+            (f i * i) = a',
+        reescreve esta expressão trocando f i por i, tendo
+            i * i = a'
+        e, como nessa expressão (i : 'F_p) e (a' : 'F_p), usa-se
+        val_eqP (que é um reflect) para aplicar a conversão de i e a' 
+        para seus tipos carry (há uma conversão padrão e ela é 
+        injetora) mantendo a igualdade (pode-se aplicar a função de
+        conversão a ambos os lados que a igualdade se mantém), de onde 
+        se obtêm:
+            i * i  == a  %[mod (Zp_trunc (pdiv p)).+2]
+    *)
     rewrite ![X in _ %% X]Fp_cast //= => /eqP->.
     by rewrite Fp_cast // eqxx.
+    (* 
+        agora tem-se os seguintes lemas sobre a função f:
+        "f_eq0" : f(0) = 0
+        "fM" : forall i, i != 0 -> f(i)*i = a'
+        "fI" : forall f(f(i)) = i
+    *)
     have fB : {on [pred i |  i != ord0],  bijective f}.
+    (* 
+        a declaração a se provar agora indica que f é bijetora
+        se o argumento i (de tipo 'I_p, que inferido pelo tipo do
+        predicado i != ord0 e pelo tipo da função f) obedece a
+        restrição imposta (i != ord0).
+    *)
     by exists f => j _; apply: fI.
+    (* 
+        lembre-se que f é ser injetora significa que existe
+        uma função g que é inversa de f, ou seja, tal que 
+        g(f(i)) = i (note que tanto faz a ordem de aplicação), mas sabe-mos pela hipótese fI que essa
+        função é a própria f, então utilizando 'exists f'
+        teremos que provar: 
+            forall j, f(j) /in [pred i | i != ord0] -> f(f(j)) = j
+        ou seja, g é inversa de f desde que f(i) != ord0; descobri 
+        isso substituindo os comandos originais por:
+        pose g := f.
+        exists g => j H. apply: fI.
+    *)
     pose can (i : 'F_p) :=  if i < (f i) then i else f i.
+    (* 
+        instânciando uma função 'can' que para um entrada
+        (i : 'I_p) retorna i se i < (f i) ou (f i) caso contrário 
+    *)
     have -> : \prod_(i in 'F_p | i != 0%R) i =
     \prod_(j in 'F_p | (j < f j))
         \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i.
+    (* 
+        NOTE QUE:
+            este é um produtório de produtórios, e que em cada
+            sub-produtório
+    
+    *)
     apply: partition_big => i /andP[iF i_neq0].
     rewrite andTb /can; case: (leqP (S i) _) => //.
     rewrite fI ltnS leq_eqVlt.
@@ -938,82 +1032,100 @@ End inversezmodp.
 
 Module Legendre.
 
-    Definition legendre_symb {p : int} (pL2 : (2 < p)%R) (pP : primez.primez p) (a : int) :=
+    Definition resz_quad p a := has (fun i => ((i * i)%:Z  == a %[mod p])%Z) (iota 0 `|p|).
+
+
+    Definition legendre_symb (p : int) (pL2 : (2 < p)%R) (pP : primez.primez p) (a : int) :=
         if (p %| a)%Z then 0%Z
-        else if [exists i : 'I_`|p|, ((i * i)%:Z  == a %[mod p])%Z]
+        (* else if [exists i : 'I_`|p|, ((i * i)%:Z  == a %[mod p])%Z] *)
+        else if (resz_quad p a)
+        (* 
+            I could have codded using has:
+                "else if has (fun i => ((i * i)%:Z  == a %[mod p])%Z) (iota 0 `|p|)"
+            I really don't know why I didn't... 
+        *)
         then 1%Z
         else (-1)%Z.
+
+    Eval compute in (legendre_symb (_ : 2 < 7)%R (_ : primez.primez 7) 2).
     
     Theorem eulerz_criterion {p : int} (pL2 : (2 < p)%R) (pP : primez.primez p) (a : int) :
         (a ^ ((p - 1) %/ 2)%Z = (legendre_symb pL2 pP a) %[mod p])%Z.
     Proof.
     move: pL2 pP.
-        case: p => // p pL2 pP.
-        rewrite /legendre_symb.
-        rewrite subzn; last by rewrite prime_gt0.
-        rewrite divz_nat -modzXm addn1.
-        case pDa : (p %| a)%Z.
-        move: pDa => /dvdz_mod0P ->.
-        rewrite -rmorphXn //= natrXE exp0n //=.
-            rewrite subn1 divn2 half_gt0 ltn_predRL -ltz_nat //=.
-        rewrite (missing.absz_mod a); last by apply/eqP; move=> p0; rewrite p0 //= in pP.
-        case Ex : ([exists i,  (((nat_of_ord i * nat_of_ord i)%:Z %% p) == `|a %% p|%:Z)])%Z.
-        move: Ex => /existsP.
-        rewrite absz_nat => Ex.
-        case: Ex => x.
-        pose m := `|(a %% p)%Z|%N. rewrite (missing.absz_mod a) -/m.
-        rewrite absz_nat modz_nat. case: x => k kLp //=.
-        move=> /eqP Hk. rewrite -Hk.
-        rewrite -modz_nat modzXm mulnn -natrXE rmorphXn //= -rmorphXn //=.
-        rewrite mulnn natrXE -expnM mul2n divn2 subn1 even_halfK.
-        rewrite rmorphXn //= exprnP.
-        rewrite -subn1 -subzn. rewrite (primez.fermatz_little_pred pP).
-        rewrite //=.
-        rewrite -(subr0 (Posz k)) -eqz_mod_dvd modz_nat mod0z.
-        move=> /eqP pDk.
-        move: Hk. injection pDk => {}pDk.
-        rewrite -modnMml pDk mul0n mod0n => m0.
-        have: (Posz p %| a)%Z.
-            rewrite -(subr0 a) -eqz_mod_dvd mod0z missing.absz_mod -/m.
-            rewrite -m0 //=.
-        apply/eqP => p0. rewrite p0 //= in pP.
-        move=> pDDa. rewrite pDDa //= in pDa.
-        rewrite prime_gt0 //=.
-        rewrite -oddS prednK; last by rewrite prime_gt0 //=.
-        move: pL2.
-        case: (@even_prime p) => //= -> //=.
-        apply/eqP => p0. rewrite p0 //= in pP.
-        move: Ex.
-        rewrite -{1}missing.absz_mod.
-        rewrite -{1}modz_mod {1}(missing.absz_mod a).
-        pose m := `|(a %% p)%Z|%N.
-        rewrite -/m => xE.
-        rewrite -rmorphXn //= -(modz_mod (-1)) modNz_nat.
-        rewrite mod0n subr0 subzn.
-        rewrite !modz_nat. f_equal.
-        have resq: (inversezmodp.res_quad p m) = false.
-            apply/eqP. rewrite eqbF_neg.
-            apply/negP. rewrite /inversezmodp.res_quad.
-            move=> resq. move: resq => /inversezmodp.res_quadP [i Hi]. rewrite -Bool.negb_true_iff in xE.
-            move: xE => /negP xE.
-            apply xE. apply /existsP.
-            exists i.
-            rewrite modz_nat Hi -modz_nat eqxx //=.
-        have pDm : ~~ (p %| m)%N.
-            rewrite -(absz_nat p) -(absz_nat m) -dvdzE.
-            rewrite -(subr0 (Posz m)) -eqz_mod_dvd /m -missing.absz_mod.
-            rewrite modz_mod.
-            apply/negP. rewrite /not eqz_mod_dvd subr0 pDa //=.
-        apply/eqP => p0. rewrite p0 //= in pP.
-        rewrite natrXE.
-        have {}pP : prime p.
-            rewrite //=.
-        move: (inversezmodp.euler_criterion pP pDm).
-        rewrite resq subn1 divn2 //=.
-        rewrite prime_gt0 //. 
-        rewrite prime_gt0 //. 
-        apply/eqP => p0. rewrite p0 //= in pP.
-        apply/eqP => p0. rewrite p0 //= in pP.
+    case: p => // p.
+    rewrite /legendre_symb ltz_nat addn1 => pL2 /andP [_ /= pP].
+    rewrite subzn; last by rewrite prime_gt0.
+    rewrite divz_nat addn1 /exprz.
+    case pDa: (p %| a)%Z.
+        rewrite -(modzXm _ a).
+        move: pDa.
+        rewrite -{1}(subr0 a) -eqz_mod_dvd => /eqP ->.
+        rewrite mod0z -rmorphXn /= natrXE exp0n.
+        by rewrite mod0z.
+        by rewrite subn1 divn2 half_gt0 ltn_predRL pL2.
+    case resz_quad_case: (resz_quad p a).
+        move: resz_quad_case => /hasP /= [x].
+        rewrite -(modzXm _ a).
+        rewrite mem_iota add0n => /andP [xL0 xLp] /eqP xmod.
+        rewrite -xmod.
+        rewrite modzXm.
+        rewrite -rmorphXn /=.
+        rewrite mulnn natrXE -expnM mul2n divn2 subn1.
+        rewrite halfK.
+        have: (odd p.-1) = false.
+            move: pL2 pP pDa xLp xmod.
+            case: p => //= p pL2 pP pDa xLp xmod.
+            apply/eqP. rewrite eqbF_neg -oddS.
+            move: (even_prime pP) pL2 => [-> //= | -> //=].
+        move=> -> //=. 
+        rewrite subn0.
+        rewrite rmorphXn /= exprnP -subn1 -subzn; last by apply prime_gt0.
+        rewrite primez.fermatz_little_pred //=.
+    rewrite -(subr0 (Posz x)) -eqz_mod_dvd !modz_nat => /eqP xmod0.
+    move: xmod. rewrite -modz_mod !modz_nat -modnMml.
+    injection xmod0 => ->.
+    rewrite mod0n mul0n -modz_nat mod0n.
+    move=> /eqP.
+    rewrite eqz_mod_dvd dvdzE sub0r abszN -dvdzE pDa //.
+    pose m := `|a %% p|%Z.
+    rewrite -(modzXm _ a) (missing.absz_mod a) -/m.
+    have pDm : (p %| m) = false.
+        apply/negP.
+        rewrite -(absz_nat p) -(absz_nat m) -dvdzE -(subr0 (Posz m)) //=.
+        move: pDa => /negP.
+        rewrite -(subr0 a) -!eqz_mod_dvd /not => pDa pDm.
+        apply pDa.
+        rewrite -modz_mod (missing.absz_mod a) -/m.
+        apply pDm.
+        apply/negP. rewrite /negP => /eqP pE0. injection pE0 => {}pE0.
+        rewrite pE0 // in pP.
+        rewrite -(modz_mod (-1)%Z).
+        rewrite modNz_nat.
+        rewrite mod0n subr0.
+    have not_res_quad: inversezmodp.res_quad p m = false.
+        apply/negP.
+        rewrite /inversezmodp.res_quad.
+        move=> /hasP //= [x]. rewrite mem_iota add0n => /andP [_ xLp] /eqP xmod.
+        move: resz_quad_case. rewrite /resz_quad. move=>/hasP H. apply H.
+        clear H. exists x.
+        rewrite /= mem_iota add0n xLp //.
+        rewrite -(modz_mod a) (missing.absz_mod a) -/m.
+        rewrite !modz_nat.
+        rewrite xmod //.
+        apply/negP. rewrite /negP => /eqP pE0. injection pE0 => {}pE0.
+        rewrite pE0 // in pP.
+        Set Printing Coercions.
+        rewrite -rmorphXn /=. rewrite subzn.
+        rewrite !modz_nat subn1 divn2. f_equal.
+        rewrite inversezmodp.euler_criterion.
+        rewrite not_res_quad //=.
+    by [].
+    by rewrite pDm.
+    by rewrite prime_gt0.
+    by rewrite prime_gt0.
+    apply/negP. rewrite /negP => /eqP pE0. injection pE0 => {}pE0.
+    rewrite pE0 // in pP.
     Qed.
 
     (* 
@@ -1037,7 +1149,7 @@ Module Legendre.
     Proof.
     move: pP pL2.
     case: p => // p pP pL2 /eqP amodb.
-    rewrite /legendre_symb. rewrite amodb.
+    rewrite /legendre_symb. rewrite /resz_quad amodb.
     have -> : (p %| a)%Z = (p %| b)%Z.
         rewrite -(subr0 a) -(subr0 b) -!eqz_mod_dvd amodb //=.
     by [].
@@ -1052,15 +1164,17 @@ Module Legendre.
     rewrite exprSz expr1z (primez.Euclidz_dvdM _ _ pP) Bool.orb_diag -eqbF_neg.
     move=> /eqP pDa. rewrite pDa.
     apply /eqP.
-    have: [exists i : 'I_p,  (Posz (nat_of_ord i * nat_of_ord i)  == a * a  %[mod p])]%Z.
-        apply/existsP.
+    have: (resz_quad (Posz p) (a * a)).
+        apply/hasP. rewrite /=.
         have H: (`|a %% Posz p|%Z < p)%N.
             rewrite -ltz_nat -missing.absz_mod.
             rewrite ltz_pmod //=.
             rewrite ltz_nat prime_gt0 //.
             apply /eqP => p0. rewrite p0 //= in pL2.
-        pose x := Ordinal H.
+        pose x := `|(a %% Posz p)%Z|.
         exists x.
+        rewrite mem_iota.
+        rewrite /x //= PoszM -missing.absz_mod. 
         rewrite /x //= PoszM -missing.absz_mod. 
         rewrite modzMml modzMmr eqxx //.
         apply/eqP => p0. rewrite p0 //= in pL2.
@@ -1112,7 +1226,7 @@ Module Legendre.
         rewrite /exprz sgz_odd; last by [].
         rewrite odd_double //= expr0.
     rewrite /legendre_symb dvdzE //= Euclid_dvd1; last by [].
-    case: ([exists i,  (nat_of_ord i * nat_of_ord i)%N  == -1  %[mod p]])%Z.
+    case: (resz_quad (Posz p) (-1)).
         rewrite //=.
     move=> /eqP. rewrite eqz_mod_dvd.
     have -> : (1 - (-1)%Z)%R = 2 by [].
@@ -1125,58 +1239,32 @@ Module Legendre.
     Proof.
     rewrite /legendre_symb.
     case pDa : (p %| a)%Z => //=.
-    case: [exists i,  ((nat_of_ord i * nat_of_ord i)%N  == a  %[mod p])%Z] => //=.
+    case: (resz_quad p a) => //=.
     Qed.
 
     Lemma legendre_symb_mod (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
         ((legendre_symb pL2 pP a) == (legendre_symb pL2 pP b)) = ((legendre_symb pL2 pP a) == (legendre_symb pL2 pP b) %[mod p])%Z.
     Proof.
+    move: pL2 pP.
+    case: p => // p pL2 pP.
     move: (legendre_symb_or a pL2 pP) => /orP [/orP [/eqP ->|/eqP ->] |/eqP ->].
-    apply Bool.eq_true_iff_eq. split.
-        move=> /eqP ->; rewrite eqxx //=.
     move: (legendre_symb_or b pL2 pP) => /orP [/orP [/eqP ->|/eqP ->] |/eqP ->].
-        rewrite //=.
-    rewrite eqz_mod_dvd.
-    have -> : (1%Z - (-1)%Z)%R = 2%Z.
-        rewrite //=.
-    move: pP pL2.
-    case: p => // p.
-    rewrite dvdzE ltz_nat addn1 //= => pP pL2.
-    rewrite gtnNdvd; last by []; last by [].
-    rewrite //=.
-    rewrite eqz_mod_dvd dvdzE //= addn0.
-    move: pP pL2. case: p => // p //= pP.
-    rewrite Euclid_dvd1; last by [].
-    rewrite //=.
-    apply Bool.eq_true_iff_eq. split.
-    move=> /eqP ->. by rewrite eqxx.
+        by rewrite !eqxx.
+        rewrite eqz_mod_dvd dvdzE //= addn1.
+        rewrite gtnNdvd //=.
+        rewrite eqz_mod_dvd subr0 dvdzE /= gtnNdvd //=.
+        rewrite prime_gt1 //.
     move: (legendre_symb_or b pL2 pP) => /orP [/orP [/eqP ->|/eqP ->] |/eqP ->].
-    rewrite eqz_mod_dvd.
-    have -> : ((-1)%Z - 1%Z)%R = (-2)%Z.
-        rewrite //=.
-    rewrite dvdzE //=.
-    move: pL2 pP. case: p => p //= pL2 pP.
-    rewrite gtnNdvd; last by []; last by [].
-    rewrite //=.
-    rewrite //=.
-    rewrite eqz_mod_dvd dvdzE //= subn0.
-    move: pL2 pP. case: p => p //= pL2 pP.
-    rewrite Euclid_dvd1; last by [].
-    rewrite //=.
+        rewrite eqz_mod_dvd dvdzE /= addn0 gtnNdvd //=.
+        by rewrite !eqxx.
+        rewrite eqz_mod_dvd dvdzE /= sub0n gtnNdvd //.
+        by rewrite prime_gt1.
     move: (legendre_symb_or b pL2 pP) => /orP [/orP [/eqP ->|/eqP ->] |/eqP ->].
-    apply Bool.eq_true_iff_eq. split.
-        rewrite //=. 
-    rewrite eqz_mod_dvd dvdzE //= subn0.
-    move: pP pL2. case: p => p pP pL2 //=.
-    rewrite Euclid_dvd1; last by [].
-    rewrite //=.
-    apply Bool.eq_true_iff_eq. split.
-        rewrite //=.
-    rewrite eqz_mod_dvd dvdzE //= add0n.
-    move: pP pL2. case: p => p pP pL2 //=.
-    rewrite Euclid_dvd1; last by [].
-    rewrite //=.
-    rewrite !eqxx //=.
+        rewrite eqz_mod_dvd dvdzE /= subn0 gtnNdvd //=.
+        by rewrite prime_gt1.
+        rewrite eqz_mod_dvd dvdzE /= add0n gtnNdvd //=.
+        by rewrite prime_gt1.
+        by rewrite !eqxx.
     Qed.
 
     Lemma res_quad_eq_leg (p a : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
@@ -1188,32 +1276,35 @@ Module Legendre.
     rewrite absz_nat /legendre_symb /inversezmodp.res_quad.
     case pDa : (p %| a)%Z => //.
     case Hi: (has (fun i : nat => i * i  == `|(a %% p)%Z|  %[mod p]) (iota 0 p))%N.
-    Search (has) (reflect). 
     move: Hi => /hasP [x Hi].
     rewrite mem_iota add0n in Hi => Hx.
-    have -> : [exists i : 'I_p,  ((nat_of_ord i * nat_of_ord i)%N  == a  %[mod p])%Z].
+    have -> : resz_quad (Posz p) a.
+        rewrite /resz_quad.
         rewrite -(modz_mod a) (missing.absz_mod a).
         move: Hi => /andP [_ Hi].
-        apply/existsP.
-        exists (Ordinal Hi).
+        rewrite //=.
+        apply/hasP.
+        exists x.
+        rewrite mem_iota add0n //=.
         rewrite //= !modz_nat. apply/eqP. f_equal.
         apply/eqP. apply Hx.
     apply/eqP. move=> p0. rewrite p0 // in pL2.
     by [].
-    have: ~~ [exists i : 'I_p,  ((nat_of_ord i * nat_of_ord i)%N  == a  %[mod p])%Z].
+    have: ~~ (resz_quad (Posz p) a).
+        rewrite /resz_quad.
         rewrite -(modz_mod a) (missing.absz_mod a).
-        apply/negP => /existsP [x H].
-        rewrite !modz_nat in H.
+        apply/negP => /hasP //= [x H amod].
         move: Hi => /eqP Hi.
         rewrite eqbF_neg in Hi.
         move: Hi => /negP Hi.
         apply Hi.
         apply/hasP.
-        move: H. case: x => x Hx //= /eqP xE.
-        injection xE => /eqP {}xE.
         exists x.
-        rewrite mem_iota add0n Hx //.
-        apply xE.
+        move: H.
+        rewrite //=.
+        move: amod. rewrite !modz_nat => /eqP amod.
+        injection amod => {}amod.
+        rewrite amod eqxx //.
     apply/eqP. move=> p0. rewrite p0 // in pL2.
     rewrite -eqbF_neg => /eqP -> //.
     Qed.
