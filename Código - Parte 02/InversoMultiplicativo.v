@@ -918,60 +918,222 @@ Module inversezmodp.
             portanto, o subprodutorio será: 
                 j * f(j) = j * (a' / j) = j * a' * j^-1 
                          = j * j^-1 * a' = a'
-    
-    *)
+            note que para cada j : 'F_p existe exatamente
+            um (j^-1 * a'), isto é, f(j), e que é único (pois
+            caso contrário f não seria bijetora)
+     *)
     apply: partition_big => i /andP[iF i_neq0].
-    rewrite andTb /can; case: (leqP (S i) _) => //.
+    (* 
+        note que em, no caso atual, será necessário provar:
+        (∀ i : I, P i → Q (p i)) 
+        em que
+        P é (fun i => i \in 'F_p && i != 0%R)
+        p é a função 'can'
+        Q é (fun i => i \in 'F_p && i < f i)
+        logo, é necessário provar:
+        (i \in 'F_p && i != 0%R) -> Q(can i)
+        isto é:
+        (i \in 'F_p && i != 0%R) -> ((can i) \in 'F_p && (can i) < (f (can i)))
+    *)
+    rewrite andTb. rewrite /can. case: (leqP (S i) _) => //.
+    (* 
+        como o lado esquerdo do '&&' é trivial (can i \in 'F_p = true) se usa andTb para simplificar o '&&'.
+
+        o argumento inferido para o placeholder '_' é inferido
+        como f(i), assim está se tratando no case os casos 
+        (f i < i.+1) e (i.+1 < f i || i.+1 == f i) 
+
+        OBS.: leq_xor_gtn é um tipo indutivo que tem os construtores 
+            LeqNotGtn : m <= n -> leq_xor_gtn m n m m n n true false
+            GtnNotLeq : n < m -> leq_xor_gtn m n n n m m false true
+        O lema leqP diz que a partir de quaisquer (m n : nat) pode-se
+        construir um habitante de leq_xor_gtn, portanto para tal par
+        de inteiros é possível fornecer a prova de m <= n ou n < m, por
+        isso fazer o case de tal habitante equivale a fazer um case em
+        m <= n \/ n < m.
+    *)
     rewrite fI ltnS leq_eqVlt.
+    (* 
+        após este rewrite tem-se no goal:
+            (f i == i) || (f i < i) -> f i < i
+        mas note que pela hipótese fI_neq0 o lado esquerdo do '||'
+        é falso, assim pode-se reescrever o goal como:
+            f i < i -> f i < i
+        a simplificação e conclusão é feita no comando a seguir:
+    *)
     by have /eqP/val_eqP/negPf/=-> := fI_neq0 _ i_neq0.
+    (*
+        com o comando a seguir iremos provar a igualdade:
+        \prod_(j in 'F_p | j < f j) \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i 
+                            = a' ^ p.-1./2  %[mod p]
+        provando os seguintes goals (transitividade da igualdade):
+        \prod_(j in 'F_p | j < f j) \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i 
+                            = \prod_(j in 'F_p | j < f j) (j * f j)
+        e
+        a' ^ p.-1./2  %[mod p]
+                            = \prod_(j in 'F_p | j < f j) (j * f j)
+
+    *)
     apply: etrans (_ : \prod_(j in 'F_p | j < f j) (j * f j) = _ %[mod p]).
-    congr (_ %% _); apply: eq_bigr => j /andP[jF jLfj].
+    congr (_ %% _). apply: eq_bigr => j /andP[jF jLfj].
+    (*  o comando congr ([alguma função]) funciona como o f_equal.  *)
     rewrite (bigD1 j); last first.
+    (*  A reescrita (bigD1 j) serve para 'retirar' o elemento j do
+        produtorio mas para isso deve então se provar que j cumpre 
+        a restrição P do elementos do produtorio (last first faz com
+        se tenha que provar o cumprimento dessa restrição primeiro).    *)
         rewrite jF /can jLfj eqxx andTb andbT.
         by apply/eqP=> j_eq0; rewrite j_eq0 f_eq0 ltnn in jLfj.
+        rewrite /=. (*  "<= this computation simplifies 
+                        some types putting them as their 
+                        coercions."   *)
     rewrite (bigD1 (f j)); last first.
-        rewrite inE /can ifN.
+        (*  - retirou-se o termo (f j) do produtório usando 'bigD1'.
+            - o lema 'inE' é usado para escreve (f j \in 'F_p) como true. 
+            - a partir deste 'last first' o objetivo se torna provar  que (f j) satistas as restrições de um termo do produtório   *)
+        rewrite /can. rewrite ifN.  (*  "<= simpler tatic in the place of the
+                                        following comment tatic made by Laurent;
+                                        this was possible because of a previous
+                                        computation. "  *)
+        (* rewrite inE /can. rewrite ifN. *) 
         rewrite fI eqxx.
         case: eqP => [fj_eq0|].
-            by rewrite fj_eq0 -[j]fI fj_eq0 f_eq0 ltnn in jLfj.
+        (*  usar 'case' sobre 'eqP' irá trata sobre a primeira
+            igualdade encontrada na expressão. *)
+            by rewrite fj_eq0 ltn0 in jLfj. (*  "<= simpler way compared
+                                                to the following commented command used by Laurent. "   *)
+            (* by rewrite fj_eq0 -[j]fI fj_eq0 f_eq0 ltnn in jLfj. *)
         by case: eqP => [fj_eqj|//]; rewrite fj_eqj ltnn in jLfj.
+        (*  
+            este 'case' atua sobre (f j) e j (da desigualdade presente
+            na expressão). 
+        *)
         by rewrite fI -leqNgt ltnW.
+        (*
+            o subgoal resolvido no comando acima surgiu pelo uso do
+            lema ifN.
+        *)
+        rewrite /=. (* <= added just to simplify the expression *)
     rewrite big1 /= ?muln1 // => i.
-    rewrite /can; case: leqP; last by case: (i =P j); rewrite andbF.
+    (* 
+        neste ponto é necessário provar o subgoal:
+            (i != 0%R) && (can i == j) && (i != j) && (i != f j) -> i = 1
+        devido ao uso do lema 'big1'.    
+    *)
+    rewrite /can.
+    case: leqP; last by case: (i =P j); rewrite andbF.
+    (* 
+        o 'case' de 'leqP' é feito em relação as variáveis da primeira
+        operação '<=' ou '>' encontrada. 
+    *)
     case: (f i =P j); rewrite ?andbF // => <-.
     by rewrite fI eqxx andbF.
+    (* 
+        o 'case' de uma igualdade da forma (x =P y) basicamente gera
+        2 casos, um em que x = y e outro em que x <> y.
+    *)
     apply: etrans (_ : \prod_(j in 'F_p | j < f j) a' = _ %[mod p]).
-    rewrite -modn_prodm; congr (_ %% _); apply: eq_bigr => i /andP[_ iLfi].
+    (* 
+        Agora tento que se provar o subgoal restante do uso de lema
+        sobre transitividade da igualdade, faz-se novamente o uso desta
+        transitividade; assim para se provar:
+        \prod_(j in 'F_p | j < f j) (j * f j)  = a' ^ p.-1./2  %[mod p]
+        deve-se provar que:
+        \prod_(j in 'F_p | j < f j) (j * f j)  = \prod_(j in 'F_p | j < f j) a'  %[mod p]
+    *)
+    rewrite -modn_prodm. congr (_ %% _). apply: eq_bigr => i /andP[_ iLfi].
     have i_neq0 : i != 0%R.
+        (*  
+            é fácil provar nesse contexto que i != 0%R pois
+            se i = 0%R, teria-se pelas hipóteses f_eq0 e iLfi que
+            0%R < 0%R (false).
+        *)
         by apply/eqP=> i_eq0; rewrite i_eq0 f_eq0 ltnn in iLfi.
     rewrite -(fM i i_neq0) mulnC.
-    by congr (_ %% _); rewrite Fp_cast.
+    (* congr (_ %% _). rewrite Fp_cast //. *)
+    by congr (_ %% _); rewrite (Fp_cast pP).
     congr (_ %% _).
     rewrite prod_nat_const.
     congr (_ ^  _).
+    (*  Explicar a tática congr no TCC? *)
+    rewrite /=. rewrite ![X in _ %% X](Fp_cast pP). (* "<= I used it here to simplify the types "*)
+    (* 
+        OBS.: creio que não da pra fazer nenhuma manipulação sobre
+        termos que estão em operação direta com um argumento (a ser
+        recebido) de uma função. 
+    *)
     rewrite -[p in RHS](card_Fp pP).
-    rewrite [in RHS](cardD1 0%R) inE add1n -pred_Sn.
+    (*  Note que foi necessário especificar o termo
+        do rewrite para que não ocorrer um erro.    *)
+    rewrite [in RHS](cardD1 0%R). rewrite inE add1n -pred_Sn.
+    (* 
+        NOTE: predD1 A & x siginifica recebe algum y e retorna
+        y \in A && y != x.
+    *)
+    (*  Conjuto A: todo elemento de 'F_p diferente de 0%R *)
     set A := [predD1 'F_p & 0%R].
+    (*  Conjuto B: todo elemento i em 'F_p tal que i < f i *)
     pose B := [pred i |  (i : 'F_p) < f i].
+    (*  A = (A intersec B) + (A - B)    *)
     rewrite -(cardID B A).
+    (*  image f [...] é a lista [...] com f aplicada sobre
+        todos os elementos 
+        
+        obviamente que se A contém todo (i : 'F_p) tal que
+        i != 0 e B contém todo (i : 'F_p) tal que i < f i  
+    *)
     have <- : #|image f [predI A & B]| = #|[predD A & B]|.
-    apply: eq_card => i; rewrite !inE.
-    rewrite -[in LHS](fI i) mem_map; last first.
+        (*  eq_card: se |A| = |B| então para todo x
+            x \in A = x \in B.  *)
+        apply: eq_card => i. 
+        (*  simplificando as expressões 'x \in 'F_p' como true:  *)
+        rewrite !inE.
+        (*  note que o goal está dessa forma pois se 'x \in A' 
+            então i != 0 e se 'x \notin B' então ~~(i < f i):    *)
+        rewrite -[in LHS](fI i).
+        rewrite mem_map; last first.
         by move=> i1 j1 fiEfj; rewrite -[i1]fI fiEfj fI.
-    have -> : (f i  \in enum [predI A & B])  = ([predI A & B] (f i)).
-        have F (U : finType) (p1 : pred U) (x : U) : x \in enum p1 = p1 x.
-        by rewrite mem_enum .
-        by rewrite F.
-    rewrite [LHS]/= !inE fI.
-    case: (i =P 0%R) => [->|]; first by rewrite f_eq0.
-    case: (f i =P 0%R) => [fi0|/eqP fi_neq0 /eqP i_neq0].
-        by case; rewrite -(fI i) fi0 f_eq0.
-    case: ltngtP => // /eqP/val_eqP fiEi.
-    by have := fI_neq0 i i_neq0; rewrite fiEi eqxx.
+        (*  a função 'enum' de acordo com a documentação:
+            'enum A == a duplicate-free list of all the x \in A, 
+            where A is a collective predicate over T'   
+            
+            a expressão '[predI A & B]' é uma função de tipo pred T
+            (T -> bool), por isso faz sentido esta aplicada sobre (f i) *)
+        Print simpl_pred.
+        have -> : (f i  \in enum [predI A & B])  = ([predI A & B] (f i)).
+            have F (U : finType) (p1 : pred U) (x : U) : x \in enum p1 = p1 x.
+                (*  utilizando o comando:
+                    rewrite mem_enum /(_ \in _) /mem /=. 
+                pode-se verificar que (x  \in enum p1) é simplificado
+                para (p1 x) *)
+                by rewrite mem_enum .
+            by rewrite F.
+        rewrite [LHS]/= !inE fI.
+        (*  LEMBRETE:
+                case sobre um expressão (x =P y) abre dois casos sobre
+                o goal: um em que x = y e outro em que x <> y.  *)
+        case: (i =P 0%R) => [->|]; 
+            first by rewrite f_eq0.
+        case: (f i =P 0%R) => [fi0|/eqP fi_neq0 /eqP i_neq0].
+            by case; rewrite -(fI i) fi0 f_eq0.
+        case: ltngtP => // /eqP/val_eqP fiEi.
+            by have := fI_neq0 i i_neq0; rewrite fiEi eqxx.
+    (* card_image é um lema que diz que para um conjunto quaisquer A, 
+        para toda f injetora tem-se:
+        #|[seq f x | x in A]| = #|A|
+        (a cardinalidade não conta membros repetidos se pensando A como
+        uma lista)
+    *)
     rewrite card_image; last by move=> i j fiEfj; rewrite -[i]fI fiEfj fI.
     rewrite addnn (half_bit_double _ false).
     apply: eq_card => i; rewrite !inE.
-    by case: eqP => // ->; rewrite f_eq0 ltnn.
+    rewrite //= /(_ \in _) /mem /=.
+    case: eqP => //. move=> -> /=.
+        rewrite muln0 mod0n //=.
+    rewrite ![X in _ %% X](Fp_cast pP). rewrite -/(_ == _) -/(_ < _) /= => _.
+    congr (_ < _). 
+    symmetry; rewrite [X in a %% X](Fp_cast pP).
+    by rewrite [X in _ %% X](Fp_cast pP) //.
     Qed.
 
     Lemma euler_criterion a p : 
