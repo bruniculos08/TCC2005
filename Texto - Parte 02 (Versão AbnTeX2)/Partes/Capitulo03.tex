@@ -298,14 +298,14 @@ Em que o comando \lstinline[language = coq]{Variable} declara um variável no co
 
     Em relação a definição \lstinline[language = coq]{InZp}, esta utiliza $2$ lemas, cujas proposições são:
 \begin{lstlisting}[language = coq]
-    Lemma ltn_pmod m d : 0 < d → m %% d < d.
+    Lemma ltn_pmod m d : 0 < d -> m %% d < d.
     Lemma ltn0Sn n : 0 < n.+1.
 \end{lstlisting}
 Portanto note que a expressão \lstinline[language = coq]{ltn_pmod i (ltn0Sn p')} constrói uma prova de que \lstinline[language = coq]{i %% p < p}, assim construindo um objeto do tipo \lstinline[language = coq]{'I_p}. 
 
 São então definidas as classes de equivalência $\overline{0}$ e $\overline{1}$ e operações para instâncias de \lstinline[language = coq]{inZp} da seguinte maneira:
 \begin{lstlisting}[language = coq]
-    Definition Zp0 : ’I_p := ord0.
+    Definition Zp0 : 'I_p := ord0.
     Definition Zp1 := inZp 1.
     Definition Zp_opp x := inZp (p - x).
     Definition Zp_add x y := inZp (x + y).
@@ -431,7 +431,7 @@ Por último, há também um lema que estabelece a equivalência entre a definiç
         totient n = \sum_(0 <= d < n) coprime n d.
 \end{lstlisting} 
 
-\section{Congruência de Grau 2 e Símbolos de Legendre}
+\section{Congruência de Grau 2 e Símbolo de Legendre}
 Sendo um técnica muito eficiente para verificar se um número é um resíduo quadrático em relação a um outro número primo, os símbolos de Legendre, além de serem um objetivo de implementação deste trabalho, são diretamente utilizados no algoritmo RESSOL. Entretanto para se explicar o que são esses, é necessário uma breve introdução sobre congruências de grau 2 (ou quadráticas).
 Como motivação para se tratar deste assunto, note que, sendo $p > 2$ um número primo e $a, b, c \in \mathbb{Z}$, em que $a$ não é divisível por $p$, suponha que se deseje resolver a seguinte equação:
 \begin{equation} \label{eq : ax2bxc}

@@ -42,6 +42,8 @@ Usando o mesmo comando (\lstinline[language = coq]!HB.about!) sobre o tipo \lsti
 Tal organização presente na biblioteca, ao ser conhecida pelo usuário, torna mais fácil e organizada a manipulação de diferentes tipos, e é portanto uma informação importante para leitores deste trabalho que desejam futuramente fazer uso da mesma biblioteca. 
 
 \textcolor{red}{ Ainda da pra mexer nessa subseção, pra citar mais referências apesar de eu não ter precisado tanto por que as informações são meio obvias após algum tempo de uso da biblioteca, acho q é interessante citar pra dar mais segurança ao leitor (e a mim mesmo também)}
+
+\textcolor{darkgreen}{\textbf{IDEIA}: jogar essa seção para o Capítulo 2.}
 % conforme apresentado em \cite{2023multipleinheritancehazardsdependentlytypedalgebraic}, são utilizadas para 
 
 \section{Implementações Externas de Maior Relevância}
@@ -68,13 +70,79 @@ onde \lstinline[language=coq]!res_quad! tem a seguinte definição:
 em que, a função \lstinline[language=coq]!has! recebe um predicado booleano e uma lista, e então retorna \lstinline[language=coq]!true!
 se há algum elemento da lista que satisfaz o predicado e \lstinline[language=coq]!false! caso contrário. Já a função \lstinline[language=coq]!iota! recebe dois números naturais $m$ e $n$ e retorna uma lista crescente de todos os naturais de $m$ até $n-1+m$. Portanto, a função \lstinline[language=coq]!res_quad! é um método exaustivo para verificar se há um valor $r$ tal que $r^{2} \equiv a \pmod{p}$.
 
-As dificuldades relacionadas as provas destas declarações em \textit{Coq}, se baseando nas ideias de provais manuais apresentadas neste trabalho, deve-se ao fato de que tais ideias sugerem a reorganização de todos os termos de produtórios com tamanho arbitrário. E tais provas além de dificeís não podem ser evitadas ao se buscar a implementação de \textit{símbolo de Legendre} em \textit{Coq} dado que tratam de conteúdos diretamente conectados (principalmente ao se considerar o Teorema \ref{teorema:criteriodeeuler}).  
+As dificuldades relacionadas as provas destas declarações em \textit{Coq}, se baseando nas ideias de provais manuais apresentadas neste trabalho, deve-se ao fato de que tais ideias sugerem a reorganização de todos os termos de produtórios com tamanho arbitrário. E tais provas além de dificeís não podem ser evitadas ao se buscar a implementação de \textit{símbolo de Legendre} em \textit{Coq} dado que tratam de conteúdos diretamente conectados (principalmente ao se considerar o Teorema \ref{teorema:criteriodeeuler}).
+
+Devido a essa dificuldade, que pode vir a aparecer em diversas situações onde tem-se uma ideia de prova semelhante a ser formalizada, é de interesse se ter conhecimento de como as provas do Teorema \ref{teorema : wilson} e do Lema \ref{lema : modp-1fat} foram feitas em \textit{Coq}. Para satisfazer essa necessidade será aqui explicada em detalhe (com excessão de \textit{subgoals} básicos e outras partes triviais) o conteúdo da prova do Lema \ref{lema : modp-1fat} realizada por Laurent Théry. O código da prova pode-ser divido nas seguintes etapas:
+
+\begin{enumerate}
+        \item Inicialmente tem-se o seguinte \textit{goal}:
+        \begin{tcolorbox}[colback=green!50!white,colframe=green!100!black,width=14.7cm]
+        \begin{lstlisting}[language=coq]
+prime p -> ~~ (p %| a) -> ~~ res_quad p a -> (p.-1`!) = a ^ p.-1./2 %[mod p]
+        \end{lstlisting}
+        \end{tcolorbox}
+        introduz-se então todas as hipóteses e se reescreve $(p-1)!$ como um produtório de entre todos os elementos diferentes de $0$ em $\mathbb{F}_p$:
+        \begin{lstlisting}[language=coq]
+move=> pP pNDa aR. (* introducao das hipoteses em ordem *)
+have -> : p.-1`! = \prod_(i in 'F_p | i != 0%R) i.  (* substituicao de (p.-1`!) 
+        pelo produtorio de i \in 'F_p tal que i != 0%R *) 
+        (* ... prova do subgoal aberto pela substituicao... *)
+        \end{lstlisting}
+        % (*      
+        % Obs.: o comando "have" funciona de maneira semelhante ao comando
+        % "assert", e pode receber um nome para uma nova hipotese, nada
+        % (assim o conteudo sera colocado como precedente do goal) e -> 
+        % ou <- para se fazer um substituicao    
+        % *)
+
+        \item Tendo agora o seguinte \textit{goal}:
+        \begin{tcolorbox}[colback=green!50!white,colframe=green!100!black,width=14.7cm]
+        \begin{lstlisting}[language=coq]
+\prod_(i in 'F_p | i != 0%R) i  = a ^ p.-1./2  %[mod p]
+        \end{lstlisting}
+        \end{tcolorbox}
+        faz-se então uma série de declarações de constantes e funções e introducão de novas hipóteses:
+        \begin{lstlisting}[language=coq]
+pose a' : 'F_p := inZp a. (* declaracao de uma variavel a' de tipo 'F_p: *)
+have a'E : a' = a %% p :> nat (* introducao de hipotese com nome a'E; note 
+        que ":> nat" indica a aplicacao de coercion para nat em ambos os 
+        lados da igualdade *)
+        by rewrite /= Fp_cast.
+have a'_neq0 : a' != 0%R. (* note que 0%R tem tipo 'F_p *)
+        (*... prova do subgoal para introducao da hipotese a'_neq0...*)
+rewrite -modnXm -a'E. (* reescrita de a^p.-1./2 como a'^p.-1./2 *)
+pose f (i : 'F_p) : 'F_p := (a' / i)%R. (* declaracao de funcao que recebe i e 
+        retorna a * i^-1, onde i * i^-1 (o que e possivel pois para todo 
+        elemento i de 'F_p existe um inverso i^-1) *)
+have f_eq0 : f 0%R = 0%R by rewrite /f GRing.invr0 GRing.mulr0. 
+have fM (i : 'F_p) : i != ord0 -> (f i * i = a')%R. (* ord0 e uma notacao 
+        para 0%R *)
+        (*... prova do subgoal para introducao da hipotese fM...*)
+have fI (i : 'F_p) : f (f i) = i.
+        (*... prova do subgoal para introducao da hipotese fI...*)
+have fI_neq0 (i : 'F_p) : i != 0%R -> f i != i.
+        (*... prova do subgoal para introducao da hipotese fI_neq0...*)
+have fB : {on [pred i |  i != ord0],  bijective f}.
+        (* a notacao de fB tem o seguinte significado: existe uma funcao f, 
+        tal que esta e bijetora se o argumento i obedece a restricao 
+        imposta (i != ord0).*)
+        by exists f => j _; apply: fI.
+        (* note que o subgoal e resolvido com a tatica 'exists', tendo como 
+        argumento a funcao f anteriormente declarada, e com a aplicacao da 
+        hipotese fI que indica que f e involutiva. *)
+pose can (i : 'F_p) :=  if i < (f i) then i else f i. (* declaracao de uma funcao 
+        que recebe i e retorna o minimo entre i e f i *)
+
+        \end{lstlisting}
+
+        \item 
+\end{enumerate}
 
 % Alguns lemas, teoremas e definições que já haviam sido implementados na biblioteca, junto a um que foi implementado durante o período de realização deste trabalho (e portanto possívelmente, na data de publicação deste trabalho, ainda não está incluído na biblioteca) foram de grande importância para alcance dos objetivos estabelecidos. Sendo assim, é de interesse que sejam aqui mencionados.
 
 \section{Formalização do Símbolo de Legendre}
 
-Seguindo a ideia utilizada (e recomendada) por Laurent Théry, em se utilizar uma função exaustiva para verificar se um determinado número é um resíduo quadrático módulo $p$ (em que $p$ é um número primo), e portanto ter-se uma que é pelo menos computável (apesar de sua ineficácia), fez-se \'{} neste trabalho a seguinte definição para o \textit{símbolo de Legendre}:
+Seguindo a ideia utilizada (e recomendada) por Laurent Théry, em se utilizar uma função exaustiva para verificar se um determinado número é um resíduo quadrático módulo $p$ (em que $p$ é um número primo), e portanto, ter-se uma função que é pelo menos computável (apesar de sua ineficácia), fez-se neste trabalho a seguinte definição para o \textit{símbolo de Legendre}:
 \begin{lstlisting}[language=coq]
         Definition legendre_symb {p : int} (pL2 : (2 < p)%R) (pP : primez.primez p) 
         (a : int) :=
@@ -88,3 +156,48 @@ Com esta definição, o \textit{símbolo de Legendre} é portanto uma função q
         Compute (legendre_symb (_ : 2 < 7)%R (_ : primez.primez 7) 2).
 \end{lstlisting}
 que neste caso irá retornar $1$.
+
+Havendo a definição de \textit{símbolo de Legendre} resta então provar as suas principais propriedades, que podem vir a ser úteis em trabalhos futuros. Se baseando em \cite{book:2399854}, as principais propriedades do \textit{símbolo de Legendre}, considerando um número primo $p > 2$, são, para todo $a, b \in \mathbb{Z}$:
+\begin{enumerate}
+        \item $a \equiv b \pmod{p} \rightarrow \left(\frac{a}{p}\right) = \left(\frac{b}{p}\right)$, cuja declaração dada em \textit{Coq} é:
+        \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
+        \begin{lstlisting}[language=coq]
+Lemma legendre_symbE (p a b : int) (pL2 : (2 < p)%R) 
+(pP : primez.primez p):
+(a == b %[mod p])%Z -> 
+        ((legendre_symb pL2 pP a) == (legendre_symb pL2 pP b)).
+        \end{lstlisting}
+        \end{tcolorbox}
+        
+        \item $p \nmid a \rightarrow \left(\frac{a^2}{p}\right)$, cuja declaração dada em \textit{Coq} é:
+        \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
+        \begin{lstlisting}[language=coq]
+Lemma legendre_symb_Ndvd (p a b : int) (pL2 : (2 < p)%R) 
+(pP : primez.primez p):
+~~(p %| a)%Z -> (legendre_symb pL2 pP (a^2)) == 1.
+        \end{lstlisting}
+        \end{tcolorbox}
+        
+        \item $\left(\frac{-1}{p}\right) = (-1)^{\frac{p - 1}{2}} = 1 \leftrightarrow p \equiv 1 \pmod{p}$, cuja declaração dada em \textit{Coq} é:
+        \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
+        \begin{lstlisting}[language=coq]
+Lemma legendre_symb_Neg1 (p : int) (pL2 : (2 < p)%R) 
+(pP : primez.primez p):
+((legendre_symb pL2 pP (-1)) == 1) = (p == 1 %[mod 4])%Z.
+        \end{lstlisting}
+        \end{tcolorbox}
+        
+        % \item $\left(\frac{-1}{p}\right) = (-1)^{\frac{p - 1}{2}} = -1 \leftrightarrow p \equiv 3 \pmod{p}$ 
+        
+        \item $\left(\frac{a \cdot b}{p}\right) = \left(\frac{a}{p}\right) \cdot \left(\frac{b}{p}\right)$, cuja declaração dada em \textit{Coq} é:
+        \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
+        \begin{lstlisting}[language=coq]
+Lemma legendre_symb_Neg1 (p : int) (pL2 : (2 < p)%R) 
+(pP : primez.primez p):
+((legendre_symb pL2 pP (-1)) == 1) = (p == 1 %[mod 4])%Z.
+        \end{lstlisting}
+        \end{tcolorbox}
+\end{enumerate}
+
+A formalização (isto é, prova) de todos estes lemas está disponível no seguinte \hyperlink{https://github.com/bruniculos08/TCC2005/blob/main/Código - Parte 02/InversoMultiplicativo.v}{repositório}.
+

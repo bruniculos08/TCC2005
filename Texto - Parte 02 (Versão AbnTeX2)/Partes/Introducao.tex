@@ -49,7 +49,7 @@ Define-se então o que se chama de congruência \cite{book:2399854}:
 
 Tais definições levam a uma série de teoremas como os relacionados à função $\varphi$ de Euler, muito utilizados em criptografia, e além disso, a criação de estruturas mais complexas a partir do conjunto dos números inteiros, como os anéis e grupos de unidades \cite{book:2399854}.
 
-Um conteúdo que carece de formalizações e provas, e possu relação com o conteúdo a ser apresentado neste trabalho, é o algoritmo de Tonelli-Shanks, também conhecido como Algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} \cite{Huynh1581080}, acrônimo este que significa \textit{Residue Solver} de acordo com \cite{Niven1915}. Esse método resolve congruências quadráticas, isto é, equações da seguinte forma:
+Um conteúdo que carece de formalizações e provas, e possui relação com o conteúdo a ser apresentado neste trabalho, é o algoritmo de Tonelli-Shanks, também conhecido como Algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} \cite{Huynh1581080}, acrônimo este que significa \textit{Residue Solver} de acordo com \cite{Niven1915}. Esse método resolve congruências quadráticas, isto é, equações da seguinte forma:
 \begin{equation}
     \label{eq:congruenciaquadratica}
     r^2 \equiv n \pmod p
@@ -58,7 +58,9 @@ em que $r, n, p \in \mathbb{Z}$, onde $p$ é um número primo, $n$ é um valor c
 % Este método foi proposto inicialmente em \cite{Tonelli1891}, porém foi aprimorado anos depois em \apud{danielShanks}{Kumar2020AnAF}.
 Como motivação ao leitor, uma das utilidades deste algoritmo está relacionada ao \textit{Rabin Cryptosystem}, visto que esse sistema tem relações com resíduos quadráticos \cite{Huynh1581080}. No entanto esse não é único contexto em que aparecem equações com resíduos quadráticos, por isso, pode-se dizer que existe uma vasta quantidade de aplicações do Algoritmo \hyperref[algo:ressol]{\textsc{Ressol}}. Um exemplo adicional são os sistemas de criptografia que utilizam curvas elípticas, conforme mencionado em \cite{PalashSarkar2024AdvancesinMathematicsofCommunications}, \cite{kumar2021algorithm} e \cite{7133812}. 
 
-Essas considerações (sobre utilidades) valem portanto para qualquer algoritmo que resolve congruências quadráticas, e além disso, no que se trata sobre a relação do Algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} (e possivelmente de outros métodos que possuem o mesmo objetivo), o \textit{símbolo de Legendre} se relaciona com tal por ser uma função que indica a existência ou não de uma solução para um instância da Equação \ref{eq:congruenciaquadratica}.
+Essas considerações (sobre utilidades) valem portanto para qualquer algoritmo que resolve congruências quadráticas. Além disso, há uma função que possui relação com Algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} (e possivelmente com outros métodos que possuem o mesmo objetivo), por indicar a existência ou não de uma solução para um instância da Equação \ref{eq:congruenciaquadratica}. Esta é chamada de \textit{símbolo de Legendre}, o principal tema deste trabalho.
+
+% Essas considerações (sobre utilidades) valem portanto para qualquer algoritmo que resolve congruências quadráticas. Além disso, no que se trata sobre a relação do Algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} (e possivelmente de outros métodos que possuem o mesmo objetivo), há uma função que se relaciona com tal por indicar a existência ou não de uma solução para um instância da Equação \ref{eq:congruenciaquadratica}. Esta .
 
 Tais conceitos matemáticos explorados até o momento e quaisquer outros de áreas diversas sempre necessitam de alguma formalização. Especificamente quando se trata de algoritmos e teoremas, estes requerem provas para que sejam úteis (válidos). Nesse contexto, a matemática por muito tempo sempre se baseou na verificação de provas manualmente, isto é, por outros matemáticos, devido às limitações tecnológicas no passado. Tal dependência na verificação manual permitiu erros que fizeram com que muitas provas incorretas fossem tomadas como válidas, até que alguém notasse algum erro.  A exemplo disso tem-se o teorema tratado em \cite{Neeman2002}, onde se apresenta um contra-exemplo para o mesmo.
 
@@ -70,9 +72,31 @@ A biblioteca Mathematical Components, apesar de vasta, obviamente não apresenta
 \begin{enumerate}
     \item Esta função não está implementada e/ou formalizada na biblioteca Mathematical Components.
     \item A base de teoremas, lemas e definições necessários para a formalização deste conteúdo inclui diversos itens, dos quais, parte não se encontram na biblioteca Mathematical Components.
-    \item A formalização deste conteúdo possibilita futuros trabalhos sobre conteúdos relevantes ainda não implementados na biblioteca como o já mencionado Algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} (sobre o qual não há implementação em \textit{Coq}) e a \textit{Lei de Reciprocidade Quadrática}. 
+    \item A formalização deste tema possibilita futuros trabalhos sobre outros conteúdos relevantes ainda não implementados na biblioteca como o já mencionado Algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} (sobre o qual não há implementação em \textit{Coq}) e a \textit{Lei de Reciprocidade Quadrática}. 
     
     % \label{item:objetivo-secundario} Tal base necessária abre a possibilidade para um segundo objetivo, que seria a formalização da lei da reciprocidade quadrática (que também não está disponível na biblioteca) e possui aplicações que serão apresentadas no Capitulo \ref{cap:reciprocidadequadratica}. 
 \end{enumerate}
 % Quanto ao objetivo secundário apresentado no Item \ref{item:objetivo-secundario} é interessante destacar que a prova deste teorema já foi implementada em \textit{Lean} e \textit{Isabelle}, estando ambas disponíveis publicamente\footnote{Implementação em \textit{Lean}: \url{https://github.com/leanprover-community/mathlib4/blob/261109249151ce5651da62077c255a5c76b4941e/Mathlib/NumberTheory/LegendreSymbol/QuadraticReciprocity.lean\#L121-L133}}\footnote{ Implementação em \textit{Isabelle}:
 % \url{https://isabelle.in.tum.de/dist/library/HOL/HOL-Number\_Theory/Quadratic\_Reciprocity.html}}.
+
+\section{Objetivo Geral}
+
+O objetivo geral do presente trabalho é realizar uma implementação do \textit{símbolo de Legendre} voltada para a biblioteca Mathematical Components.
+
+\section{Objetivos Específicos}
+
+Seguindo as necessidades para realização do objetivo geral, os objetivos específicos deste trabalho são:
+
+\begin{enumerate}
+    \item Obter conhecimentos avançados sobre o assistente de provas \textit{Coq}.
+    \item Realizar o estudo sobre as principais documentações da biblioteca Mathematical Components.
+    \item Desenvolver a capacidade de realizar provas em \textit{Coq} utilizando as táticas da linguagem de provas \textit{SSReflect}.
+    \item Estudar conteúdos de Teoria dos Números relacionados ao \textit{símbolo de Legendre}.
+    \item \label{obj:func} Implementar uma função que compute o valor do \textit{símbolo de Legendre} e provar que a corretude da mesma utilizando-se da biblioteca Mathematical Components.
+    \item \label{obj:proofs} Provar teoremas úteis para manipulação de expressões envolvendo o \textit {símbolo de Legendre} utilizando-se da biblioteca Mathematical Components.
+\end{enumerate}
+ 
+\section{Estrutura do Trabalho}
+
+O presente trabalho está dividido da seguinte maneira: o Capítulo 2 trata sobre conhecimentos básicos em relação a biblioteca Mathematical Components e ferramentas em \textit{Coq} utilizadas nesta; o Capítulo 3 traz conteúdos de Teoria dos Números com objetivo de introduzir o conceito de \textit{símbolo de Legendre}; no Capítulo 4 são apresentadas a formalização e as provas relacionadas ao \textit{símbolo de Legendre}; o Capítulo 5 traz por fim as conclusões sobre este trabalho e finalmente os apêndices A e B trazem conteúdos que podem vir a ser implementados na biblioteca Mathematical Components em trabalhos futuros: o Algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} e a \textit{Lei de Reciprocidade Quadrática} respectivamente.
+
