@@ -216,22 +216,22 @@ apply: etrans (_ : \prod_(j in 'F_p | j < f j) (j * f j) = _ %[mod p]).
         = \prod_(j in 'F_p | j < f j) (j * f j)  %[mod p]
                 \end{lstlisting}
         para qual são usadas as seguintes táticas:
-                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1]
-congr (_ %% _). 
-apply: eq_bigr => j /andP[jF jLfj].
-rewrite (bigD1 j); last first.
+                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$]
+congr (_ %% _).                         $\label{line:1-item4-2}$
+apply: eq_bigr => j /andP[jF jLfj].     $\label{line:2-item4-2}$
+rewrite (bigD1 j); last first.          $\label{line:3-item4-2}$
         (*... prova do subgoal...*)
-rewrite [LHS]/=.
-rewrite (bigD1 (f j)); last first.
+rewrite [LHS]/=.                        $\label{line:5-item4-2}$
+rewrite (bigD1 (f j)); last first.      $\label{line:6-item4-2}$
         (*... prova do subgoal...*)
-rewrite [LHS]/=.
+rewrite big1 /= ?muln1 // => i.         $\label{line:8-item4-2}$
                 \end{lstlisting}
         Explicando os comandos feitos em linhas específicas têm-se:
         \begin{enumerate}
                 
-                \item[\textbf{(1)}] retirada da aplicação de $\bmod \; p$ em ambos os lados da equação;
+                \item[\textbf{(\ref{line:1-item4-2})}] retirada da aplicação de $\bmod \; p$ em ambos os lados da equação;
                 
-                \item[\textbf{(2)}] aplicação do lema \lstinline[language=coq]|eq_bigr| junto à eliminação do $\forall$ e introdução da hipótese gerada por tal aplicação; é interessante ao leitor não acostumado com as táticas da linguagem SSReflect notar que, sabendo que o lema \lstinline[language=coq]|eq_bigr| tem o seguinte enunciado:
+                \item[\textbf{(\ref{line:2-item4-2})}]aplicação do lema \lstinline[language=coq]|eq_bigr| junto à eliminação do $\forall$ e introdução da hipótese gerada por tal aplicação; é interessante ao leitor não acostumado com as táticas da linguagem SSReflect notar que, sabendo que o lema \lstinline[language=coq]|eq_bigr| tem o seguinte enunciado:
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma eq_bigr r (P : pred I) F1 F2 : (forall i, P i -> F1 i = F2 i) ->
         \big[op/idx]_(i <- r | P i) F1 i = \big[op/idx]_(i <- r | P i) F2 i.
@@ -242,6 +242,8 @@ Lemma eq_bigr r (P : pred I) F1 F2 : (forall i, P i -> F1 i = F2 i) ->
         \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i = j * f j
                         \end{lstlisting}
                 mas nesse caso também é feita a introdução da hipótese com \lstinline[language=coq]|/andP[jF jLfj]|, que torna, em tal hipótese, a expressão com operador \lstinline[language=coq]|&&| (conjunção booleana) em uma expressão equivalente com \lstinline[language=coq]|/\| (conjunção proposicional) que é então separada nas hipóteses \lstinline[language=coq]|jF| e \lstinline[language=coq]|jLfj|.
+
+                Pode-se notar portanto que a partir da aplicação do lema \lstinline[language=coq]|eq_bigr| o \textit{goal} consiste em provar que o termo geral dos produtórios é igual.
 
                 \item[\textbf{(3)}] reescrita por meio do lema \lstinline[language=coq]|bigD1| com o \textit{goal} sendo (devido as alterações feitas nas linhas anteriores):
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
@@ -255,19 +257,24 @@ j * \prod_(i < (Zp_trunc (pdiv p)).+2 | (i != 0%R) && (can i == j) && (i != j)) 
                         \end{lstlisting}
                 em que \lstinline[language=coq]|(Zp_trunc (pdiv p)).+2| é igual a \lstinline[language=coq]|p|, o que é apresentado pelo lema \lstinline[language=coq]|Fp_cast|.
 
-                \item[\textbf{(6)}] reescrita análoga a feita an linha 3, porém retirando o elemento \lstinline[language=coq]|f j| do produtório.
-                
-                \item[\textbf{(8)}] comando adicionado com a mesma intenção da linha 5, e nesse caso, após a execução dos comandos da linha 6 e deste comando, o \textit{goal} se torna:
+                \item[\textbf{(6)}] reescrita análoga a feita an linha 3, porém retirando o elemento \lstinline[language=coq]|f j| do produtório, de modo que o \textit{goal} se torne então:
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-j * ((a %% (Zp_trunc (pdiv p)).+2 * (j^-1)%R) %% (Zp_trunc (pdiv p)).+2 *
-        \prod_(i < (Zp_trunc (pdiv p)).+2 | (i != 0%R) && (can i == j) && (i != j) && (i != f j))  i) = 
-                j * f j
-                        \end{lstlisting}        
+j * ssrnat_muln__canonical__SemiGroup_ComLaw (f j)
+        (\big[ssrnat_muln__canonical__SemiGroup_ComLaw/1]_(i | (i != 0%R) 
+                && (can i == j) && (i != j) && (i != f j)) i) 
+                        = j * f j
+                        \end{lstlisting}
+                onde \lstinline[language=coq]|ssrnat_muln__canonical__SemiGroup_ComLaw| é basicamente a operação de multiplicação.
 
+                \item[\textbf{(8)}] reescrita do produtório ainda presente no \textit{goal} como 1 (elemento neutro) por meio do lema \lstinline[language=coq]|big1|, que por sua vez tem o seguinte enunciado:
+                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma big1 {R : Type} {idx : R} {op : Monoid.law idx} I r (P : pred I) F :
+        (forall i : I, P i -> F i = idx) -> 
+                \big[op/idx]_(i <- r | P i) F i = idx.
+                        \end{lstlisting}
+                seguindo de computação (dada por \lstinline[language=coq]|/=|), reescrita da multiplicação por 1 (simplificação), resolução do goal por meio de \lstinline[language=coq]|//| (semelhante ao comando \lstinline[language=coq]|simplify|) e eliminação do $\forall$ (com "\lstinline[language=coq]|=> i|") do \textit{subgoal} aberto pelo uso do lema \lstinline[language=coq]|big1|.
 
-                
-
-
+                Este \textit{subgoal} aberto consiste em provar que as condições do produtório nunca serão atendidas.
         \end{enumerate}
 
 \end{enumerate}

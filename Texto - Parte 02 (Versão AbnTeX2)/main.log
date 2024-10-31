@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2024.10.10)  31 OCT 2024 12:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2024.10.10)  31 OCT 2024 20:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1480,15 +1480,15 @@ Overfull \hbox (1.90671pt too wide) in paragraph at lines 581--583
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [64] [65] [66] [67] [68] [69] [70]) (./main.bbl (./main.brf)
+ [64] [65] [66] [67] [68] [69] [70] [71]) (./main.bbl (./main.brf)
 \tf@brf=\write6
 \openout6 = `main.brf'.
 
- [71] [72
-
-]
+ [72]
 bibitemlist
-[73]) [74]
+[73
+
+]) [74]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\uppercase' on input line 84.
@@ -1522,4 +1522,53 @@ LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scs
+(Font)              using `T1/lmr/m/scsl' instead on input line 285.
+
+[81]) [82]
+\openout2 = `Partes/ApendiceB.aux'.
+
+ (./Partes/ApendiceB.tex
+
+LaTeX Warning: Command \ss invalid in math mode on input line 23.
+
+[83
+
+
+
+
+] [84] [85] [86] [87] [88] [89] [90]) [91]
+\tf@lof=\write7
+\openout7 = `main.lof'.
+
+\tf@loa=\write8
+\openout8 = `main.loa'.
+
+\tf@toc=\write9
+\openout9 = `main.toc'.
+
+ (./main.aux (./Partes/Ficha.aux) (./PreTextual/Pretexto.aux) (./PreTextual/Resumo.aux) (./PreTextual/Abstract.aux) (./PreTextual/Sumario.aux) (./Partes/ApendiceA.aux) (./Partes/ApendiceB.aux))
+Package rerunfilecheck Info: File `main.brf' has not changed.
+(rerunfilecheck)             Checksum: 47C7259FC4D33198EEF313897E58EE90;3131.
+ ) 
+Here is how much of TeX's memory you used:
+ 41316 strings out of 476034
+ 784804 string characters out of 5792853
+ 2210388 words of memory out of 6000000
+ 59896 multiletter control sequences out of 15000+600000
+ 649218 words of font info for 294 fonts, out of 8000000 for 9000
+ 1137 hyphenation exceptions out of 8191
+ 93i,25n,99p,1477b,1603s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{https://github.com/bruniculos08/TCC2005/blob/main/C\303\263digo\040-\040Parte\04002/InversoMultiplicativo.v} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{https://github.com/thery/mathcomp-extra/blob/master/euler.v} has been referenced but does not exist, replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (93 pages, 778276 bytes).
+PDF statistics:
+ 1874 PDF objects out of 2073 (max. 8388607)
+ 1680 compressed objects within 17 object streams
+ 748 named destinations out of 1000 (max. 500000)
+ 76786 words of extra memory for PDF output out of 89155 (max. 10000000)
+
