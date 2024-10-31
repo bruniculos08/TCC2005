@@ -257,7 +257,7 @@ j * \prod_(i < (Zp_trunc (pdiv p)).+2 | (i != 0%R) && (can i == j) && (i != j)) 
 
                 \item[\textbf{(6)}] reescrita análoga a feita an linha 3, porém retirando o elemento \lstinline[language=coq]|f j| do produtório.
                 
-                \item[textbf{(8)}] comando adicionado com a mesma intenção da linha 5, e nesse caso, após a execução dos comandos da linha 6 e deste comando, o \textit{goal} se torna:
+                \item[\textbf{(8)}] comando adicionado com a mesma intenção da linha 5, e nesse caso, após a execução dos comandos da linha 6 e deste comando, o \textit{goal} se torna:
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 j * ((a %% (Zp_trunc (pdiv p)).+2 * (j^-1)%R) %% (Zp_trunc (pdiv p)).+2 *
         \prod_(i < (Zp_trunc (pdiv p)).+2 | (i != 0%R) && (can i == j) && (i != j) && (i != f j))  i) = 
