@@ -159,15 +159,18 @@ have -> : \prod_(i in 'F_p | i != 0%R) i =
                         \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i.
         (*... prova do subgoal...*)
                 \end{lstlisting}
+        
         Explicando os comandos feitos em linhas específicas têm-se:
         \begin{enumerate}
 
                 \item[\textbf{(1)}] substituição (no \textit{goal}) de $\prod_{i \in (\mathbb{F}_p - \{0\})} i$ por:
+                
                         \begin{equation*}
                         \prod_{j \in \mathbb{F}_p \mid j < f(j)} \left( \prod_{i \in (\mathbb{F}_p - \{0\}) \mid can(i)= j} i \right)
                         \end{equation*}
 
                 \item[\textbf{(4)}] código da prova do \textit{subgoal} gerado na linha 1 - este código não será apresentado aqui, no entanto, pode-se dizer que tal subprova se baseia na utilização do lema \lstinline[language=coq]|partition_big|, que tem a seguinte declaração:
+                
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma partition_big {R : Type} {idx : R} {op : Monoid.com_law idx} 
 {I : Type} {s : seq I} {J : finType} {P : pred I} (p : I -> J) (Q : pred J) 
@@ -176,17 +179,22 @@ Lemma partition_big {R : Type} {idx : R} {op : Monoid.com_law idx}
         \big[op/idx]_(i <- s | P i) F i =
         \big[op/idx]_(j | Q j) \big[op/idx]_(i <- s | P i && (p i == j)) F i
                         \end{lstlisting}
+                
                 onde \lstinline[language=coq]|\big[op/idx]| é parte comum de uma série de notações para uso da função \lstinline[language=coq]|bigop|, que, conforme apresentado em \cite{assia_mahboubi_2022_7118596}, pode ser definido (apesar de não possuir exatamente esta implementação na biblioteca) como:
+
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition bigop R I idx op r (P : pred I) (F : I -> R) : R :=
         foldr (fun i x => if P i then op (F i) x else x) idx r.
                         \end{lstlisting}
+                
                 e dentre as notações para o uso desta função tem-se:
+
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Notation "\big [ op / idx ]_ ( i <- r | P ) F" :=
         (bigop idx op r (fun i => P%B) (fun i => F)) : big_scope.
                         \end{lstlisting}
-                Assim , pode-se perceber que a notação de um produtório é um açucar sintático para a uso do operador \lstinline[language=coq]|bigop| com o argumento \lstinline[language=coq]|op| sendo a operação de multiplicação e o argumento \lstinline[language=coq]|idx| sendo 1. 
+                
+                Assim, pode-se perceber que a notação de um produtório é um açucar sintático para a uso do operador \lstinline[language=coq]|bigop| com o argumento \lstinline[language=coq]|op| sendo a operação de multiplicação e o argumento \lstinline[language=coq]|idx| sendo 1. 
                 
                 Nesta subprova usa-se então o lema \lstinline[language=coq]|partition_big| com \lstinline[language=coq]|P i| sendo a condição $(i \neq 0)$, \lstinline[language=coq]|p| sendo a função $can$ e \lstinline[language=coq]|Q j| sendo a condição $(j < f(j))$. Após o uso de tal lema é então necessário provar mais um subgoal (que não é printado exatamente da seguinte forma mas é equivalente a tal): 
                 % devido ao lema \lstinline[language=coq]|Fp_cast|):
@@ -205,17 +213,21 @@ Notation "\big [ op / idx ]_ ( i <- r | P ) F" :=
         usa-se a seguinte tática:
                 \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1]
 apply: etrans (_ : \prod_(j in 'F_p | j < f j) (j * f j) = _ %[mod p]).
-        (*... prova do subgoal 1...*)
-        (*... prova do subgoal 2...*)
+        (*... prova do goal 1...*)
+        (*... prova do goal 2...*)
                 \end{lstlisting}
-        Esta tática então aplicada na linha 1 utiliza da transitividade da igualdade por meio do lema \lstinline[language=coq]|etrans| junto a um argumento que permite que o \textit{Coq} infira o termo médio desta transitividade. Este argumento é uma prova de igualdade, qual por não existir nas hipóteses irá gerar 2 \textit{subgoals} no lugar do \textit{goal} atual.
+        Esta tática então aplicada na linha 1 utiliza da transitividade da igualdade por meio do lema \lstinline[language=coq]|etrans| junto a um argumento que permite que o \textit{Coq} infira o termo médio desta transitividade. Este argumento é uma prova de igualdade, qual por não existir nas hipóteses irá gerar 2 \textit{goals} no lugar do \textit{goal} atual:
 
-        Sendo assim o primeiro \textit{subgoal} a ser provado é:
+        \begin{itemize}
+        \item O primeiro \textit{goal} a ser provado é:
+                
                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 \prod_(j in 'F_p | j < f j) \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i
         = \prod_(j in 'F_p | j < f j) (j * f j)  %[mod p]
                 \end{lstlisting}
-        para qual são usadas as seguintes táticas:
+                
+                para qual são usadas as seguintes táticas:
+                
                 \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$]
 congr (_ %% _).                         $\label{line:1-item4-2}$
 apply: eq_bigr => j /andP[jF jLfj].     $\label{line:2-item4-2}$
@@ -225,57 +237,137 @@ rewrite [LHS]/=.                        $\label{line:5-item4-2}$
 rewrite (bigD1 (f j)); last first.      $\label{line:6-item4-2}$
         (*... prova do subgoal...*)
 rewrite big1 /= ?muln1 // => i.         $\label{line:8-item4-2}$
+        (*... prova do subgoal...*)
                 \end{lstlisting}
-        Explicando os comandos feitos em linhas específicas têm-se:
-        \begin{enumerate}
+                
+                Explicando os comandos feitos em linhas específicas têm-se:
+        
+                \begin{enumerate}
                 
                 \item[\textbf{(\ref{line:1-item4-2})}] retirada da aplicação de $\bmod \; p$ em ambos os lados da equação;
                 
                 \item[\textbf{(\ref{line:2-item4-2})}]aplicação do lema \lstinline[language=coq]|eq_bigr| junto à eliminação do $\forall$ e introdução da hipótese gerada por tal aplicação; é interessante ao leitor não acostumado com as táticas da linguagem SSReflect notar que, sabendo que o lema \lstinline[language=coq]|eq_bigr| tem o seguinte enunciado:
+        
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma eq_bigr r (P : pred I) F1 F2 : (forall i, P i -> F1 i = F2 i) ->
         \big[op/idx]_(i <- r | P i) F1 i = \big[op/idx]_(i <- r | P i) F2 i.
                         \end{lstlisting}
+                        
                 após a aplicação do lema e eliminação do $\forall$, o \textit{goal} se torna:
+                        
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 (j  \in 'F_p) && (j < f j) -> 
         \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i = j * f j
                         \end{lstlisting}
+                        
                 mas nesse caso também é feita a introdução da hipótese com \lstinline[language=coq]|/andP[jF jLfj]|, que torna, em tal hipótese, a expressão com operador \lstinline[language=coq]|&&| (conjunção booleana) em uma expressão equivalente com \lstinline[language=coq]|/\| (conjunção proposicional) que é então separada nas hipóteses \lstinline[language=coq]|jF| e \lstinline[language=coq]|jLfj|.
-
+                        
                 Pode-se notar portanto que a partir da aplicação do lema \lstinline[language=coq]|eq_bigr| o \textit{goal} consiste em provar que o termo geral dos produtórios é igual.
-
+                        
                 \item[\textbf{(3)}] reescrita por meio do lema \lstinline[language=coq]|bigD1| com o \textit{goal} sendo (devido as alterações feitas nas linhas anteriores):
+                        
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i = j * f j
                         \end{lstlisting}
+                        
                 Este lema basicamente retira um elemento de dentro da aplicação do operador \lstinline[language=coq]|bigop| (nesse caso o elemento \lstinline[language=coq]|j| pois foi este o argumento passado ao lema), no entanto deve-se demonstrar que tal elemento realmente ocorre em alguma das iterações, por isto é então gerado um \textit{subgoal}. Esse \textit{subgoal} normalmente deveria ser resolvido após a resolução do \textit{goal} principal, mas devido ao uso de \lstinline[language=coq]|last first| tal \textit{subgoal} deve ser resolvido antes do \textit{goal} principal.
-                
+                        
                 \item[\textbf{(5)}] comando adicionado apenas para tornar o \textit{goal} mais legível (não é algo que estava na prova original feita por Laurent), e nesse caso, após a execução dos comandos da linha 3 e deste comando, o \textit{goal} se torna:
+                        
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-j * \prod_(i < (Zp_trunc (pdiv p)).+2 | (i != 0%R) && (can i == j) && (i != j))  i = j * f j
+j * \prod_(i < (Zp_trunc (pdiv p)).+2 | (i != 0%R) && (can i == j) && (i != j))  i 
+        = j * f j
                         \end{lstlisting}
+                        
                 em que \lstinline[language=coq]|(Zp_trunc (pdiv p)).+2| é igual a \lstinline[language=coq]|p|, o que é apresentado pelo lema \lstinline[language=coq]|Fp_cast|.
-
+                        
                 \item[\textbf{(6)}] reescrita análoga a feita an linha 3, porém retirando o elemento \lstinline[language=coq]|f j| do produtório, de modo que o \textit{goal} se torne então:
+                        
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 j * ssrnat_muln__canonical__SemiGroup_ComLaw (f j)
         (\big[ssrnat_muln__canonical__SemiGroup_ComLaw/1]_(i | (i != 0%R) 
                 && (can i == j) && (i != j) && (i != f j)) i) 
                         = j * f j
                         \end{lstlisting}
+                        
                 onde \lstinline[language=coq]|ssrnat_muln__canonical__SemiGroup_ComLaw| é basicamente a operação de multiplicação.
-
+                        
                 \item[\textbf{(8)}] reescrita do produtório ainda presente no \textit{goal} como 1 (elemento neutro) por meio do lema \lstinline[language=coq]|big1|, que por sua vez tem o seguinte enunciado:
+                        
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma big1 {R : Type} {idx : R} {op : Monoid.law idx} I r (P : pred I) F :
         (forall i : I, P i -> F i = idx) -> 
                 \big[op/idx]_(i <- r | P i) F i = idx.
                         \end{lstlisting}
+                        
                 seguindo de computação (dada por \lstinline[language=coq]|/=|), reescrita da multiplicação por 1 (simplificação), resolução do goal por meio de \lstinline[language=coq]|//| (semelhante ao comando \lstinline[language=coq]|simplify|) e eliminação do $\forall$ (com "\lstinline[language=coq]|=> i|") do \textit{subgoal} aberto pelo uso do lema \lstinline[language=coq]|big1|.
+                        
+                Este \textit{subgoal} aberto consiste em provar que: o termo geral é sempre igual a 1 ou que as condições do produtório nunca serão atendidas (que é o caso desta prova) e portanto o produtório retorna apenas 1. 
+                        
+                Após a prova deste \textit{subgoal} resta então apenas o segundo \textit{goal} gerado na aplicação da tática \lstinline[language=coq]|etrans|.
+                
+                \end{enumerate}
 
-                Este \textit{subgoal} aberto consiste em provar que as condições do produtório nunca serão atendidas.
-        \end{enumerate}
+        \item O segundo \textit{goal} a ser provado é:
+        
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+\prod_(j in 'F_p | j < f j) (j * f j)  = a' ^ p.-1./2  %[mod p]
+                \end{lstlisting}
+
+                para qual é inicialmente utilizada a aplicação do lema \lstinline[language=coq]|etrans| novamente:
+
+                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$]
+apply: etrans (_ : \prod_(j in 'F_p | j < f j) a' = _ %[mod p]).
+        (*... prova do goal 1...*)
+        (*... prova do goal 2...*)
+                \end{lstlisting}
+
+                e assim, como feito em item anterior, têm-se agora dois \textit{goals} a serem resolvidos, dos quais o primeiro é:
+                
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+\prod_(j in 'F_p | j < f j) (j * f j)  
+        = \prod_(j in 'F_p | j < f j) a'  %[mod p]
+                \end{lstlisting}
+
+                e são inicialmente, para este \textit{goal}, aplicadas as seguintes táticas:
+                
+                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$]
+rewrite -modn_prodm. 
+congr (_ %% _). 
+apply: eq_bigr => i /andP[_ iLfi].
+        (*... restante da prova do goal atual...*)                        
+        (*... prova do goal seguinte...*)                        
+                \end{lstlisting}
+
+                Explicando os comandos feitos em linhas específicas têm-se:
+                \begin{enumerate}
+                        \item[\textbf{(1)}] reescrita do termo geral do produtório do lado esquerdo como \lstinline[language=coq]|((j * f j) %% p)|;
+                        
+                        \item[\textbf{(2)}] remoção da aplicação de $\bmod \; p$ em ambos os lados da equação;
+                        
+                        \item[\textbf{(3)}] aplicação do lema \lstinline[language=coq]|eq_bigr|, que por sua vez tem o seguinte enunciado:
+                        
+                                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$]
+Lemma eq_bigr r (P : pred I) F1 F2 : (\forall i, P i -> F1 i = F2 i) ->
+        \big[op/idx]_(i <- r | P i) F1 i = \big[op/idx]_(i <- r | P i) F2 i.
+                                \end{lstlisting}
+                        
+                        junto a eliminação do $\forall$ e introducão das hipóteses do  \textit{goal} alterado após a aplicação de \lstinline[language=coq]|eq_bigr|. Com isto o \textit{goal} se torna:
+
+                                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$]
+(i * f i) %% p = a'
+                                \end{lstlisting}
+
+                \end{enumerate}
+
+
+
+        \end{itemize}
+
+
+%                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+% \prod_(j in 'F_p | j < f j) (j * f j)  = a' ^ p.-1./2  %[mod p]
+%                         \end{lstlisting}
 
 \end{enumerate}
 
