@@ -381,45 +381,116 @@ congr (_ %% _).
 rewrite prod_nat_const.
 rewrite [X in fun i : X => _]/=.
 congr (_ ^  _).
+rewrite -[p in RHS](card_Fp pP).
+rewrite [in RHS](cardD1 0%R).
+rewrite inE add1n -pred_Sn.
+set A := [predD1 'F_p & 0%R].
+pose B := [pred i |  (i : 'F_p) < f i].
+rewrite -(cardID B A).
+have <- : #|image f [predI A & B]| = #|[predD A & B]|.
+        (*... prova do subgoal...*)
+rewrite card_image; last by move=> i j fiEfj; rewrite -[i]fI fiEfj fI.
+rewrite addnn (half_bit_double _ false).
+apply: eq_card => i.
+rewrite !inE.
                                 \end{lstlisting}
-
                         Explicando os comandos feitos em linhas específicas têm-se:
+
+                        \begin{enumerate}[listparindent=\parindent]
 
                                 \item[\textbf{(1)}] Remoção da aplicação de $\bmod \; p$ em ambos os lados da equação; 
 
                                 \item[\textbf{(2)}] Reescrita utilizando \lstinline[language=coq]|prod_nat_const|, lema este que possui o seguinte enunciado:
                                 
-                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma prod_nat_const n : \prod_(i in A) n = n ^ #|A|.
-                                \end{lstlisting}
+                                        \end{lstlisting}
+                                em que \lstinline[language=coq]!#|A|! denota a cardinalidade de um conjunto \lstinline[language=coq]!A!. Assim o lado direito do goal se torna:
 
-                                com isto o lado direito do goal se torna:
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+a' ^ #|(fun i : fintype_ordinal__canonical__fintype_Finite 
+        (Zp_trunc (pdiv p)).+2 => eqn (i.+1 - f i) 0)|
+                                        \end{lstlisting}
+                                onde, como já explicado anteriormente, a expressão:
 
-                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-a' ^ #|(fun i : fintype_ordinal__canonical__fintype_Finite (Zp_trunc (pdiv p)).+2 => eqn (i.+1 - f i) 0)|
-                                \end{lstlisting}
-
-                                Onde, como já explicado anteriormente, a expressão:
-
-                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-fintype_ordinal__canonical__fintype_Finite (Zp_trunc (pdiv p)).+2
-                                \end{lstlisting}
-
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+fintype_ordinal__canonical__fintype_Finite 
+        (Zp_trunc (pdiv p)).+2
+                                        \end{lstlisting}
                                 é equivalente à \lstinline[language=coq]|'F_p|, e portanto ao se executar uma computação ela resulta em \lstinline[language=coq]|'F_p|. Esta computação é então realizada na linha 3, e assim, tem-se no \textit{goal}:
                                 % é equivalente à \lstinline[language=coq]|'F_p|, pois ao se executar uma computação ela resulta em \lstinline[language=coq]|'F_p|. Esta computação é então realizada na linha 3, e assim, tem-se no \textit{goal}:
 
-                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 a' ^ #|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = a' ^ p.-1./2
-                                \end{lstlisting}
+                                        \end{lstlisting}
                                 em que a expressão: 
                                 
-                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 eqn (i.+1 - f i) 0
+                                        \end{lstlisting}
+                                é a operação \lstinline[language=coq]|<| (a definição está ``unfolded'').
+                                Pode-se notar aqui que o conjunto não é, nesse caso, definido por uma lista, mas sim por um predicado booleano cujo domínio é um tipo finito (\lstinline[language=coq]|'F_p|).
+
+                                \item[\textbf{(4)}] Tranformação do \textit{goal} em uma igualdade entre os expoentes, dado que em cada lado da equação do \textit{goal} haviam exponenciações de mesma base. Com isto o \textit{goal} se torna:
+                                
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+#|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = p.-1./2
+                                        \end{lstlisting}
+
+                                \item[\textbf{(5)}] Reescrita de \lstinline[language=coq]|p| como \lstinline[language=coq]!#|'F_p|! no lado direito da equação.
+                                
+                                \item[\textbf{(6)}] Reescrita de \lstinline[language=coq]!#|'F_p|! como \lstinline[language=coq]!(0%R  \in 'F_p) + #|[predD1 'F_p & 0%R]|! em que \lstinline[language=coq]![predD1 'F_p & 0%R]! é uma notação para o seguinte:
+                                
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+[fun x =>  (x != 0%R) && (x  \in 'F_p)]
+                                        \end{lstlisting}
+                                ou seja, \lstinline[language=coq]![predD1 'F_p & 0%R]! é o conjunto $\mathbb{F}_p - \{0\}$.
+
+                                \item[\textbf{(7)}] Reescrita de \lstinline[language=coq]!(0%R  \in 'F_p)! como \lstinline[language=coq]!true! (pelo lema \lstinline[language=coq]!inE!) o que é então convertido para 1 (devido a uma \textit{coercion}); reescrita da soma de 1 à esquerda na forma da notação \lstinline[language=coq]!_.+1! (pelo lema \lstinline[language=coq]!add1n!); cancelamento da adição de 1 com a subtração 1 (pelo lema \lstinline[language=coq]!pred_Sn!, onde o uso de \lstinline[language=coq]|-| antes do nome do lema indica a direção contrária a usual da rescrita, isto é, do padrão do lado direito para o padrão do lado esquero). Com estas reescritas o \textit{goal} se torna:
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+#|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = #|[predD1 'F_p & 0%R]|./2
+                                        \end{lstlisting}
+                                
+                                \item[\textbf{(8)}] Introducão do \textit{alias} \lstinline[language=coq]|A| para o conjunto \lstinline[language=coq]|[predD1 'F_p & 0%R]|.
+                                
+                                \item[\textbf{(9)}] Introducão do \textit{alias} \lstinline[language=coq]|B| para o conjunto \lstinline[language=coq]![pred i |  (i : 'F_p) < f i]! (a diferença do uso de \lstinline[language=coq]|set| e \lstinline[language=coq]|pose| é que o primeiro realiza substituição da expressão pelo \textit{alias} no \textit{goal}).
+                                
+                                \item[\textbf{(10)}] Reescrita da cardinalidade de \lstinline[language=coq]!A! como a cardinalidade da intersecção entre \lstinline[language=coq]!A! e \lstinline[language=coq]!B! somada a cardinalidade de \lstinline[language=coq]!A! menos \lstinline[language=coq]!B! (por meio do lema \lstinline[language=coq]!cardID!); em termos das notações mais comuns usadas e Teoria dos Conjunto faz-se a substituição de $|A|$ por $|A \bigcap B| + |A - B|$.
+                                
+                                \item[\textbf{(11)}] Substituição de \lstinline[language=coq]!#|[predD A & B]|! por \lstinline[language=coq]!#|image f [predI A & B]|! em que está ultima expressão indica a o primeiro conjunto após a aplicação da função \lstinline[language=coq]!f! (a imagem de \lstinline[language=coq]!f! tendo \lstinline[language=coq]!#|[predD A & B]|! como domínio). Tal substituição abre um \textit{subgoal} que é resolvido em seguida (conforme indicado no comentário da linha 12). \textcolor{red}{vou colocar aqui a resolução desse \textit{subgoal} por que ele não é trivial e é bem importante para a prova}. Com isso o \textit{goal} se torna:
+                                
+                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+#|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = 
+        (#|[predI A & B]| + #|[seq f x  | x in [predI A & B]]|)./2
                                 \end{lstlisting}
-                                é a operação \lstinline[language=coq]|<|.
+
+                                \item[\textbf{(13)}] Reescrita (e resolução do \textit{subgoal} aberto por tal tatíca) de:
+
+                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+#|[seq f x  | x in [predI A & B]]|
+                                \end{lstlisting}
+                                como \lstinline[language=coq]!#|[predI A & B]|!. Em termos de notações comumente usadas em Teoria dos Conjuntos, substitui-se $|Im(f, A \bigcap B)|$ por $|A \bigcap B|$ (o que é possível por $f$ é injetora). Com isso o \textit{goal} se torna:
+                                
+                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+#|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = 
+        (#|[predI A & B]| + #|[predI A & B]|)./2
+                                \end{lstlisting}
+                                
+                                \item[\textbf{(14)}] Reescrita da expressão:
+                                        
+                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+(#|[predI A & B]| + #|[predI A & B]|)./2
+                                \end{lstlisting}
+                                como \lstinline[language=coq]!|[predI A & B]|!.
+                                
+                                \item[\textbf{(15)}] Reescrita da igualdade entre 2 conjuntos como uma igualdade entre expressões booleanas de pertencimento de um elemento a cada conjunto. Assim o goal se torna:
+                                
+                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+(i  \in (fun i0 : 'F_p => eqn (i0.+1 - f i0) 0)) = (i  \in [predI A & B])
+                                \end{lstlisting}
 
 
-                                \item[\textbf{(4)}] Tranformação do \textit{goal} em uma igualdade entre os expoentes, dado que em cada lado da equação do \textit{goal} haviam exponenciações de mesma base.
+                        \end{enumerate}
 
                 \end{enumerate}
 

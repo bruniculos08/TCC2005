@@ -34,21 +34,21 @@
 \contentsline {chapter}{\chapternumberline {4}\MakeUppercase []{Implementação}}{63}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Hierarquias entre Estruturas Algébricas}{63}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Implementações Externas de Maior Relevância}{65}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Formalização do Símbolo de Legendre}{72}{section.4.3}%
+\contentsline {section}{\numberline {4.3}Formalização do Símbolo de Legendre}{74}{section.4.3}%
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\MakeUppercase []{Refer\^encias}}{75}{section*.18}%
+\contentsline {chapter}{\MakeUppercase []{Refer\^encias}}{77}{section*.18}%
 \renewcommand *{\cftappendixname }{AP\^ENDICE \space }
 \setlength {\cftpartindent }{\cftlastnumwidth } \setlength {\cftpartnumwidth }{2em}
 \cftinsert {A}
-\contentsline {part}{\uppercase {Ap\^endices}}{77}{section*.19}%
+\contentsline {part}{\uppercase {Ap\^endices}}{79}{section*.19}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \cftinsert {A}
-\contentsline {appendix}{\chapternumberline {A}\MakeUppercase []{Algoritmo de Tonelli-Shanks (ou RESSOL)}}{79}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Descrição do Algoritmo}{79}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Prova Manual}{81}{section.A.2}%
+\contentsline {appendix}{\chapternumberline {A}\MakeUppercase []{Algoritmo de Tonelli-Shanks (ou RESSOL)}}{81}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Descrição do Algoritmo}{81}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Prova Manual}{83}{section.A.2}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \cftinsert {A}
-\contentsline {appendix}{\chapternumberline {B}\MakeUppercase []{Reciprocidade Quadrática}}{85}{appendix.B}%
+\contentsline {appendix}{\chapternumberline {B}\MakeUppercase []{Reciprocidade Quadrática}}{87}{appendix.B}%
