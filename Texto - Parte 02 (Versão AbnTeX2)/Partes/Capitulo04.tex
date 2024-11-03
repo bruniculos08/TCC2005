@@ -459,36 +459,43 @@ eqn (i.+1 - f i) 0
                                 
                                 \item[\textbf{(11)}] Substituição de \lstinline[language=coq]!#|[predD A & B]|! por \lstinline[language=coq]!#|image f [predI A & B]|! em que está ultima expressão indica a o primeiro conjunto após a aplicação da função \lstinline[language=coq]!f! (a imagem de \lstinline[language=coq]!f! tendo \lstinline[language=coq]!#|[predD A & B]|! como domínio). Tal substituição abre um \textit{subgoal} que é resolvido em seguida (conforme indicado no comentário da linha 12). \textcolor{red}{vou colocar aqui a resolução desse \textit{subgoal} por que ele não é trivial e é bem importante para a prova}. Com isso o \textit{goal} se torna:
                                 
-                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 #|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = 
         (#|[predI A & B]| + #|[seq f x  | x in [predI A & B]]|)./2
-                                \end{lstlisting}
+                                        \end{lstlisting}
 
                                 \item[\textbf{(13)}] Reescrita (e resolução do \textit{subgoal} aberto por tal tatíca) de:
 
-                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 #|[seq f x  | x in [predI A & B]]|
-                                \end{lstlisting}
+                                        \end{lstlisting}
                                 como \lstinline[language=coq]!#|[predI A & B]|!. Em termos de notações comumente usadas em Teoria dos Conjuntos, substitui-se $|Im(f, A \bigcap B)|$ por $|A \bigcap B|$ (o que é possível por $f$ é injetora). Com isso o \textit{goal} se torna:
                                 
-                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 #|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = 
         (#|[predI A & B]| + #|[predI A & B]|)./2
-                                \end{lstlisting}
+                                        \end{lstlisting}
                                 
                                 \item[\textbf{(14)}] Reescrita da expressão:
                                         
-                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 (#|[predI A & B]| + #|[predI A & B]|)./2
-                                \end{lstlisting}
+                                        \end{lstlisting}
                                 como \lstinline[language=coq]!|[predI A & B]|!.
                                 
-                                \item[\textbf{(15)}] Reescrita da igualdade entre 2 conjuntos como uma igualdade entre expressões booleanas de pertencimento de um elemento a cada conjunto. Assim o goal se torna:
+                                \item[\textbf{(15)}] Reescrita da igualdade entre 2 conjuntos como uma igualdade entre expressões booleanas de pertencimento de um elemento (instânciado após a eliminação do $\forall$ na mesma linha) a cada conjunto. Assim o goal se torna:
                                 
-                                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-(i  \in (fun i0 : 'F_p => eqn (i0.+1 - f i0) 0)) = (i  \in [predI A & B])
-                                \end{lstlisting}
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+(i \in (fun i0 : 'F_p => eqn (i0.+1 - f i0) 0)) = (i \in [predI A & B])
+                                        \end{lstlisting}
 
+                                \item[\textbf{(16)}] Ambas as expressões da igualdade podem ser simplificadas com o uso do lema \lstinline[language=coq]|inE| diversas vezes, portanto para realizar o máximo de reescritas possíveis é utilizado "\lstinline[language=coq]|!|" antes do nome do lema. Obtêm-se então a seguinte expressão no \textit{goal}:
+                                
+                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+(i < f i) = (i != 0%R) && true && (i < f i)
+                                        \end{lstlisting}
+                                que é por sua vez trivial considerando as hipóteses \lstinline[language=coq]|f_eq0| e \lstinline[language=coq]|fI_neq0| introduzidas no início. Após isso a prova se encerra.
+                                
 
                         \end{enumerate}
 

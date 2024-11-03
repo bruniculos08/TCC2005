@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.2)  3 NOV 2024 10:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.2)  3 NOV 2024 11:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1374,4 +1374,201 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--6
 
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/12'.
-(microtype)             Ignoring protrusion settin
+(microtype)             Ignoring protrusion settings for this character.
+[13
+
+
+
+] [14
+
+])
+\openout2 = `PreTextual/Abstract.aux'.
+
+ (./PreTextual/Abstract.tex [15
+
+
+
+] [16
+
+])
+\openout2 = `PreTextual/Sumario.aux'.
+
+ (./PreTextual/Sumario.tex (./main.lof) [17
+
+
+
+] [18
+
+] [19
+
+] [20
+
+] (./main.loa) [21
+
+] [22
+
+] (./main.toc
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 44.
+
+Overfull \hbox (5.1282pt too wide) in paragraph at lines 48--48
+ [][] [][][]\T1/lmr/bx/n/12 (-20) ALGORITMO DE TONELLI-SHANKS (OU 
+ []
+
+) [23{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}] [24]) (./Partes/Introducao.tex [25
+
+
+
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}] [26] [27] [28]) (./Partes/Capitulo02.tex [29] [30
+
+]
+<Figuras/ssreflect.png, id=384, 947.54pt x 782.925pt>
+File: Figuras/ssreflect.png Graphic file (type png)
+<use Figuras/ssreflect.png>
+Package pdftex.def Info: Figuras/ssreflect.png  used on input line 15.
+(pdftex.def)             Requested size: 273.00278pt x 225.57301pt.
+ [31 <./Figuras/ssreflect.png>]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 27.
+ (/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 27.
+ [32] [33] [34] [35] [36] [37] [38] [39] [40]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 391.
+ (/usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [41{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [42]) (./Partes/Capitulo03.tex [43] [44
+
+] [45] [46] [47] [48]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <17.28> on input line 197.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 197.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 197.
+
+[49] [50{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [51] [52]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 325.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\varphi' on input line 325.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 325.
+
+[53] [54] [55] [56] [57] [58]
+Overfull \hbox (1.90671pt too wide) in paragraph at lines 581--583
+[]\T1/lmr/m/it/12 (-20) Dado um nú-mero primo
+ []
+
+[59] [60] [61]) (./Partes/Capitulo04.tex [62] [63
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [64] [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75]) (./main.bbl (./main.brf)
+\tf@brf=\write6
+\openout6 = `main.brf'.
+
+ [76]
+bibitemlist
+[77
+
+]) [78]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\uppercase' on input line 84.
+
+[79
+
+
+] [80]
+\openout2 = `Partes/ApendiceA.aux'.
+
+ (./Partes/ApendiceA.tex [81
+
+
+] [82]
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 127.
+
+[83]
+Overfull \hbox (19.07716pt too wide) detected at line 187
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [84]
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 280.
+
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 285.
+
+[85]) [86]
+\openout2 = `Partes/ApendiceB.aux'.
+
+ (./Partes/ApendiceB.tex
+
+LaTeX Warning: Command \ss invalid in math mode on input line 23.
+
+[87
+
+
+
+
+] [88] [89] [90] [91] [92] [93] [94]) [95]
+\tf@lof=\write7
+\openout7 = `main.lof'.
+
+\tf@loa=\write8
+\openout8 = `main.loa'.
+
+\tf@toc=\write9
+\openout9 = `main.toc'.
+
+ (./main.aux (./Partes/Ficha.aux) (./PreTextual/Pretexto.aux) (./PreTextual/Resumo.aux) (./PreTextual/Abstract.aux) (./PreTextual/Sumario.aux) (./Partes/ApendiceA.aux) (./Partes/ApendiceB.aux))
+Package rerunfilecheck Info: File `main.brf' has not changed.
+(rerunfilecheck)             Checksum: 2C80A05FBFD50D4749EBA656AA41557D;3131.
+ ) 
+Here is how much of TeX's memory you used:
+ 41428 strings out of 476041
+ 786333 string characters out of 5793174
+ 2207388 words of memory out of 6000000
+ 59918 multiletter control sequences out of 15000+600000
+ 649361 words of font info for 295 fonts, out of 8000000 for 9000
+ 1137 hyphenation exceptions out of 8191
+ 93i,25n,99p,1477b,1618s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{https://github.com/bruniculos08/TCC2005/blob/main/C\303\263digo\040-\040Parte\04002/InversoMultiplicativo.v} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{https://github.com/thery/mathcomp-extra/blob/master/euler.v} has been referenced but does not exist, replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (97 pages, 796228 bytes).
+PDF statistics:
+ 1993 PDF objects out of 2073 (max. 8388607)
+ 1794 compressed objects within 18 object streams
+ 835 named destinations out of 1000 (max. 500000)
+ 76786 words of extra memory for PDF output out of 89155 (max. 10000000)
+
