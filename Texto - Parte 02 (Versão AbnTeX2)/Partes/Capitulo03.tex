@@ -263,16 +263,24 @@ Com esta definição de \textit{anel} chega-se em outras também importantes:
 
     \item se $A$ é um \textit{anel comutativo} em que os elementos neutros deste são diferentes ($0 \neq 1$) e $\forall a, b \in A, a \cdot b = 0 \Rightarrow a = 0 \lor b = 0$ então $A$ é um \textit{domínio}.
 
-    \item se $A$ é um \textit{anel comutativo} em que os elementos neutros deste são diferentes ($0 \neq 1$) e todo elemento diferente de $0$ em $A$ possui inverso na operação $\cdot$, isto é, $(A - \{0\}, \cdot)$ é um grupo então $A$ é um \textit{corpo}.
+    \item se $A$ é um \textit{anel comutativo} em que os elementos neutros deste são diferentes ($0 \neq 1$) e todo elemento diferente de $0$ em $A$ possui inverso na operação $\cdot$, isto é, $(A - \{0\}, \cdot)$ é um grupo então $A$ é um \textit{corpo}, que em inglês são conhecidos como \textit{fields}, e em geral são representados como $\mathbb{F}_n$ ao invés de $\mathbb{Z}/(n)$.
 \end{itemize}
-Relacionados a \textit{corpos}, tem-se os seguintes lemas importantes apresentados em \cite{book:2399854}:
-\begin{lema}
-    $\forall a, n \in \mathbb{Z}, n > 0 \Rightarrow \exists b \in \mathbb{Z}$ tal que $a \cdot b \equiv 1 \pmod n$ se, e somente se, $\mdc(a, n) = 1$.
-\end{lema}
 
-\begin{lema}
-    $\forall n \in \mathbb{Z}, \mathbb{Z}/(n)$ é um corpo se e somente se $n$ é primo. 
-\end{lema}
+% coisa q to mudando:
+Havendo conhecimento da definição de \textit{corpos}, tem-se o seguinte importante Lema apresentado em \cite{book:2399854} (cuja a prova depende fortemente do Lema \ref{lema : mdcinv}):
+    \begin{lema}
+        $\forall n \in \mathbb{Z}, \mathbb{Z}/(n)$ é um corpo se e somente se $n$ é primo. 
+    \end{lema}
+
+
+% Relacionados a \textit{corpos}, tem-se os seguintes lemas importantes apresentados em \cite{book:2399854}:
+% \begin{lema}
+%     $\forall a, n \in \mathbb{Z}, n > 0 \Rightarrow \exists b \in \mathbb{Z}$ tal que $a \cdot b \equiv 1 \pmod n$ se, e somente se, $\mdc(a, n) = 1$.
+% \end{lema}
+
+% \begin{lema}
+%     $\forall n \in \mathbb{Z}, \mathbb{Z}/(n)$ é um corpo se e somente se $n$ é primo. 
+% \end{lema}
 
 Note que, pelo Lema 4, em um \textit{anel de inteiros módulo $n$}, só há inverso multiplicativo para um determinada \textit{classe de equivalência} $\overline{a}$ se $\mdc(a, n) = 1$, pois só assim existirá outra \textit{classe de equivalência} $\overline{b}$ tal que $\overline{a} \cdot \overline{b} = \overline{a \cdot b} = \overline{1}$ ($\overline{1}$ é o elemento neutro da operação $\cdot$).
 
@@ -319,17 +327,35 @@ Definition ord0 := Ordinal (ltn0Sn n').
     \end{lstlisting}
 ou seja, \lstinline[language = coq]{ord0} é sempre o elemento de \lstinline[language = coq]{'I_p} construído com \lstinline[language = coq]{m} sendo 0 (em que \lstinline[language = coq]{p} é um valor inferido pelo \textit{Coq}).
 
-A partir disso podem ser provados os lemas que tornam o conjunto \lstinline[language = coq]{'I_p} dotado das operações definidas com \lstinline[language = coq]{inZp} em um \textit{anel} (conforme a definição mais básica em \cite{book:2399854}):
-\begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Lemma Zp_add0z : left_id Zp0 Zp_add. (* Elemento neutro da operacao "+" *)
-Lemma Zp_addC : commutative Zp_add. (* Comutatividade da operacao "+" *)
+A partir disso podem ser provados os lemas que tornam o conjunto \lstinline[language = coq]{'I_p} dotado das operações definidas com \lstinline[language = coq]{inZp} em um \textit{grupo abeliano} (conforme a definição mais em \cite{book:2399854}):
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma Zp_add0z : left_id Zp0 Zp_add.
+Lemma Zp_addNz : left_inverse Zp0 Zp_opp Zp_add.
+Lemma Zp_addA : associative Zp_add.
+Lemma Zp_addC : commutative Zp_add.
+    \end{lstlisting}
+e também podem ser então provados os lemas que farão de \lstinline[language = coq]{'I_p} um \textit{anel comutativo} (de acordo com \cite{book:2399854}), considereando as operações binárilas \lstinline[language = coq]{Zp_add} e \lstinline[language = coq]{Zp_mul}:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma Zp_mulz1 : right_id Zp1 Zp_mul. (* Elemento neutro do produto a direita *)
+Lemma Zp_mulC : commutative Zp_mul. (* Comutatividade do produto *)
 Lemma Zp_mul1z : left_id Zp1 Zp_mul. (* Elemento neutro do produto a esquerda *)
 Lemma Zp_mulA : associative Zp_mul. (* Associatividade do produto *)
 Lemma Zp_mul_addr : right_distributive Zp_mul Zp_add. (* Distributividade a direita *)
 Lemma Zp_mul_addl : left_distributive Zp_mul Zp_add. (* Distributividade a esquerda *)
-\end{lstlisting}
-    Por fim, vale aqui ressaltar que o desenvolvimento deste tipo na biblioteca vai muito além do que foi apresentado aqui, envolvendo detalhes relacionados a interfaces de anéis e outros conceitos tratados na biblioteca.
+    \end{lstlisting}
+Por fim, dada a condição para que um \textit{anel comutativo} seja um \textit{domínio} e para que seja \textit{corpo}, as seguintes notações abragem os conjuntos \lstinline[language=coq]|'I_p| que se encaixam nas respectivas categorias (desconsiderando a necessidade dos lemas sobre tais notações):
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Definition Zp_trunc p := p.-2.
+
+Notation "''Z_' p" := 'I_(Zp_trunc p).+2
+  (at level 8, p at level 2, format "''Z_' p") : type_scope.
+  
+Notation "''F_' p" := 'Z_(pdiv p)
+  (at level 8, p at level 2, format "''F_' p") : type_scope.
+    \end{lstlisting}
+onde a notação \lstinline[language=coq]|'Z_p| sempre retorna um tipo \lstinline[language=coq]|'I_p| tal que $2 \leq p$, portanto é sempre um \textit{domínio}, e a notação \lstinline[language=coq]|'F_p| retorna um tipo \lstinline[language=coq]|'I_p| tal que $2 \leq p$ e $p$ é primo (pois a função \lstinline[language=coq]|pdiv| retorna o primeiro primo divisor do número passado como argumento), portanto é sempre um \textit{corpo}.
+
+    % Por fim, vale aqui ressaltar que o desenvolvimento deste tipo na biblioteca vai muito além do que foi apresentado aqui, envolvendo detalhes relacionados a interfaces de anéis e outros conceitos tratados na biblioteca.
 
 \section{Função $\varphi$ de Euler}
 
