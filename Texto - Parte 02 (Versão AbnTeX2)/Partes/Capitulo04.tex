@@ -47,13 +47,14 @@ Tal organização presente na biblioteca, ao ser conhecida pelo usuário, torna 
 % conforme apresentado em \cite{2023multipleinheritancehazardsdependentlytypedalgebraic}, são utilizadas para 
 
 \section{Implementações Externas de Maior Relevância}
-Dentre os teoremas e lemas utilizados neste trabalho (dos quais a grande maioria são lemas simples da biblioteca Mathematical Components), existe um lema e um teorema que merecem destaque devido a complexidade para a prova dos mesmos, haja vista a dificuldade em se fazer uma formalização com base na ideia da prova manual destes (ambas apresentadas neste trabalho).
+Dentre os teoremas e lemas utilizados neste trabalho (dos quais a grande maioria são lemas simples da biblioteca Mathematical Components), existe um lema e um teorema que merecem destaque devido a complexidade para a prova dos mesmos. Este empecilho em suas respecitvas provas ocorre pela dificuldade em se fazer uma formalização com base nas ideias de prova manual para os mesmos (ambas apresentadas neste trabalho).
 
 O primeiro lema a ser mencionado trata do caso \ref{item:caso3wilson} do Teorema \ref{teorema : wilson} e tem na biblioteca o seguinte enunciado:
 \begin{lstlisting}[language=coq]
         Theorem Wilson p : p > 1 -> prime p = (p %| ((p.-1)`!).+1).
 \end{lstlisting}
-É importante notar, que, a igualdade entre as proposições booleanas \lstinline[language=coq]!prime p! e \lstinline[language=coq]!p %| ((p.-1)`!).+1! significa uma bi-implicação caso estas proposições não fossem booleanas. Além disso, vale aqui lembrar da definição de equivalência em módulo $p$, e que portanto:
+É importante notar, que, a igualdade entre as proposições booleanas \lstinline[language=coq]!prime p! e \lstinline[language=coq]!p %| ((p.-1)`!).+1! equivale a uma bi-implicação caso estas proposições não fossem booleanas. Além disso, vale aqui lembrar que, pela definição de equivalência em módulo $p$, há a seguinte bi-implicação:
+% Além disso, vale aqui lembrar da definição de equivalência em módulo $p$, e que portanto:
 \begin{equation}
         p \mid (p-1)! + 1 \Longleftrightarrow (p-1)! \equiv -1 \pmod{p} 
 \end{equation}
@@ -70,7 +71,7 @@ onde \lstinline[language=coq]!res_quad! tem a seguinte definição:
 em que, a função \lstinline[language=coq]!has! recebe um predicado booleano e uma lista, e então retorna \lstinline[language=coq]!true!
 se há algum elemento da lista que satisfaz o predicado e \lstinline[language=coq]!false! caso contrário. Já a função \lstinline[language=coq]!iota! recebe dois números naturais $m$ e $n$ e retorna uma lista crescente de todos os naturais de $m$ até $n-1+m$. Sendo assim, a função \lstinline[language=coq]!res_quad! é um método exaustivo para verificar se há um valor $r$ tal que $r^{2} \equiv a \pmod{p}$.
 
-As dificuldades relacionadas as provas destas declarações em \textit{Coq}, se baseando nas ideias de provais manuais apresentadas neste trabalho, deve-se ao fato de que tais ideias sugerem a reorganização de todos os termos de produtórios com tamanho arbitrário. E tais provas além de dificeís não podem ser evitadas ao se buscar a implementação de \textit{símbolo de Legendre} em \textit{Coq} dado que tratam de conteúdos diretamente conectados (principalmente ao se considerar o Teorema \ref{teorema:criteriodeeuler}).
+As dificuldades relacionadas as provas destas declarações em \textit{Coq}, se baseando nas ideias de provais manuais apresentadas neste trabalho, deve-se ao fato de que tais ideias sugerem a reorganização de todos os termos de produtórios com tamanho arbitrário. Tais provas além de dificeís não podem ser evitadas ao se buscar a implementação de \textit{símbolo de Legendre} em \textit{Coq} dado que tratam de conteúdos diretamente relacionados (principalmente ao se considerar o Teorema \ref{teorema:criteriodeeuler}).
 
 Devido a essa dificuldade, que pode vir a aparecer em diversas situações onde tem-se uma ideia de prova semelhante a ser formalizada, é de interesse se ter conhecimento de como as provas do Teorema \ref{teorema : wilson} e do Lema \ref{lema : modp-1fat} foram feitas em \textit{Coq}. Para satisfazer tal necessidade será aqui explicada em detalhe (com excessão da maioria dos \textit{subgoals} e outras partes triviais) o conteúdo da prova do Lema \ref{lema : modp-1fat} realizada por Laurent Théry. O código da prova pode-ser divido nas seguintes etapas:
 
@@ -92,7 +93,7 @@ have -> : p.-1`! = \prod_(i in 'F_p | i != 0%R) i.
         \begin{enumerate}
                 \item[\textbf{(1)}] Introdução dos precedentes do \textit{goal} para hipóteses com os nomes \lstinline[language=coq]|pP|, \lstinline[language=coq]|pNDa| e \lstinline[language=coq]|aR| respectivamente.
                 
-                \item[\textbf{(2)}] Reescrita de $(p-1)!$ como $\prod_{i \in (\mathbb{F}_p - \{0\})} i$ (o que por sua vez abre um subgoal).
+                \item[\textbf{(2)}] Reescrita de $(p-1)!$ como $\prod_{i \in (\mathbb{F}_p - \{0\})} i$ (o que por sua vez abre um \textit{subgoal}, que é por sua vez trivial).
                 
                 % \item[\textbf{(3)}] resolução do \textit{subgoal} aberto na linha 2.
         \end{enumerate}
@@ -179,7 +180,8 @@ Lemma partition_big {R : Type} {idx : R} {op : Monoid.com_law idx}
         \big[op/idx]_(i <- s | P i) F i =
         \big[op/idx]_(j | Q j) \big[op/idx]_(i <- s | P i && (p i == j)) F i
                         \end{lstlisting}
-                onde \lstinline[language=coq]|\big[op/idx]| é parte comum de uma série de notações para uso da função \lstinline[language=coq]|bigop|, que, conforme apresentado em \cite{assia_mahboubi_2022_7118596}, pode ser definido (apesar de não possuir exatamente esta implementação na biblioteca) como:
+                onde \lstinline[language=coq]|\big[op/idx]| é parte comum de uma série de notações para uso da função \lstinline[language=coq]|bigop|, que, conforme apresentado em \cite{assia_mahboubi_2022_7118596}, pode ser definida como:
+                % (apesar de não possuir exatamente esta implementação na biblioteca) como:
 
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition bigop R I idx op r (P : pred I) (F : I -> R) : R :=
@@ -196,23 +198,21 @@ Notation "\big [ op / idx ]_ ( i <- r | P ) F" :=
                 Nesta subprova usa-se então o lema \lstinline[language=coq]|partition_big| com \lstinline[language=coq]|P i| sendo a condição \lstinline[language=coq]|(i != 0)|, \lstinline[language=coq]|p| sendo a função \lstinline[language=coq]|can| e \lstinline[language=coq]|Q j| sendo a condição \lstinline[language=coq]|(j < f(j))|. Após o uso de tal lema é então necessário provar mais um subgoal:
                 %  (que não é printado exatamente da seguinte forma mas é equivalente a tal): 
                 % devido ao lema \lstinline[language=coq]|Fp_cast|):
-                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 forall i : 
  fintype_ordinal__canonical__fintype_Finite (Zp_trunc (pdiv p)).+2,
         (i  \in 'F_p) && (i != 0%R) -> (can i  \in 'F_p) && (can i < f (can i))
-                \end{lstlisting}
+                        \end{lstlisting}
                 onde a expressão:
                 
-                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 fintype_ordinal__canonical__fintype_Finite (Zp_trunc (pdiv p)).+2
-                \end{lstlisting}
-                equivale à \lstinline[language=coq]|'F_p|, pois basta realizar uma computação sobre a primeira para verificar isto, o que pode ser feito utilizando nesse caso a tática:
+                        \end{lstlisting}
+                equivale à \lstinline[language=coq]|'F_p|, pois basta realizar uma computação sobre a expressão para que ela se torne \lstinline[language=coq]|'F_p|, o que pode ser feito utilizando nesse caso a tática (utilizando casamento de padrões):
 
-                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 rewrite [X in forall i : X, _]/=.
-                \end{lstlisting}
-                
-
+                        \end{lstlisting}
 
         \end{enumerate}
 
@@ -222,7 +222,8 @@ rewrite [X in forall i : X, _]/=.
         \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i
                                         = a' ^ p.-1./2  %[mod p]
                 \end{lstlisting}
-        usa-se a seguinte tática:
+        Usa-se então a seguinte tática:
+
                 \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1]
 apply: etrans (_ : \prod_(j in 'F_p | j < f j) (j * f j) = _ %[mod p]).
         (*... prova do goal 1...*)
@@ -256,9 +257,9 @@ rewrite big1 /= ?muln1 // => i.         $\label{line:8-item4-2}$
         
                 \begin{enumerate}[listparindent=\parindent]
                 
-                        \item[\textbf{(\ref{line:1-item4-2})}] Retirada da aplicação de $\bmod \; p$ em ambos os lados da equação;
+                        \item[\textbf{(\ref{line:1-item4-2})}] Retirada da aplicação de $\bmod \; p$ em ambos os lados da equação.
                 
-                        \item[\textbf{(\ref{line:2-item4-2})}] Aplicação do lema \lstinline[language=coq]|eq_bigr| junto à eliminação do $\forall$ e introdução da hipótese gerada por tal aplicação; é interessante ao leitor não acostumado com as táticas da linguagem SSReflect notar que, sabendo que o lema \lstinline[language=coq]|eq_bigr| tem o seguinte enunciado:
+                        \item[\textbf{(\ref{line:2-item4-2})}] Aplicação do lema \lstinline[language=coq]|eq_bigr| junto à eliminação do $\forall$ e introdução da hipótese gerada por tal aplicação; é interessante ao leitor não acostumado com as táticas da linguagem \textit{SSReflect} notar que, sabendo que o lema \lstinline[language=coq]|eq_bigr| tem o seguinte enunciado:
         
                                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma eq_bigr r (P : pred I) F1 F2 : (forall i, P i -> F1 i = F2 i) ->
@@ -289,7 +290,7 @@ j * \prod_(i < (Zp_trunc (pdiv p)).+2 | (i != 0%R) && (can i == j) && (i != j)) 
                                 \end{lstlisting}
                         em que \lstinline[language=coq]|(Zp_trunc (pdiv p)).+2| é igual a \lstinline[language=coq]|p|, o que é provado pelo lema \lstinline[language=coq]|Fp_cast|.
                         
-                        \item[\textbf{(6)}] Reescrita análoga a feita an linha 3, porém retirando o elemento \lstinline[language=coq]|f j| do produtório, de modo que o \textit{goal} se torne então:
+                        \item[\textbf{(6)}] Reescrita análoga a feita na linha 3, porém retirando o elemento \lstinline[language=coq]|f j| do produtório, de modo que o \textit{goal} se torne então:
                         
                                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 j * ssrnat_muln__canonical__SemiGroup_ComLaw (f j)
@@ -306,7 +307,7 @@ Lemma big1 {R : Type} {idx : R} {op : Monoid.law idx} I r (P : pred I) F :
         (forall i : I, P i -> F i = idx) -> 
                 \big[op/idx]_(i <- r | P i) F i = idx.
                                 \end{lstlisting}
-                        seguindo de computação (dada por \lstinline[language=coq]|/=|), reescrita da multiplicação por 1 (simplificação), resolução do goal por meio de \lstinline[language=coq]|//| (semelhante ao comando \lstinline[language=coq]|simplify|) e eliminação do $\forall$ (com "\lstinline[language=coq]|=> i|") do \textit{subgoal} aberto pelo uso do lema \lstinline[language=coq]|big1|. 
+                        seguindo de computação (dada por \lstinline[language=coq]|/=|), reescrita da multiplicação por 1 (omissão), resolução do goal por meio de \lstinline[language=coq]|//| (semelhante ao comando \lstinline[language=coq]|simplify|) e eliminação do $\forall$ (com "\lstinline[language=coq]|=> i|") do \textit{subgoal} aberto pelo uso do lema \lstinline[language=coq]|big1|. 
                                 
                         Este \textit{subgoal} aberto consiste em provar que: o termo geral é sempre igual a 1 ou que as condições do produtório nunca serão atendidas (que é o caso desta prova) e portanto o produtório retorna apenas 1. 
                         
@@ -398,7 +399,7 @@ rewrite !inE.
 
                         \begin{enumerate}[listparindent=\parindent]
 
-                                \item[\textbf{(1)}] Remoção da aplicação de $\bmod \; p$ em ambos os lados da equação; 
+                                \item[\textbf{(1)}] Remoção da aplicação de $\bmod \; p$ em ambos os lados da equação.
 
                                 \item[\textbf{(2)}] Reescrita utilizando \lstinline[language=coq]|prod_nat_const|, lema este que possui o seguinte enunciado:
                                 
@@ -417,7 +418,7 @@ a' ^ #|(fun i : fintype_ordinal__canonical__fintype_Finite
 fintype_ordinal__canonical__fintype_Finite 
         (Zp_trunc (pdiv p)).+2
                                         \end{lstlisting}
-                                é equivalente à \lstinline[language=coq]|'F_p|, e portanto ao se executar uma computação ela resulta em \lstinline[language=coq]|'F_p|. Esta computação é então realizada na linha 3, e assim, tem-se no \textit{goal}:
+                                é equivalente à \lstinline[language=coq]|'F_p|, e portanto ao se executar uma computação sobre tal expressão ela resulta em \lstinline[language=coq]|'F_p|. Esta computação é então realizada na linha 3 (qual não estava no código de Laurent), e assim, tem-se no \textit{goal}:
                                 % é equivalente à \lstinline[language=coq]|'F_p|, pois ao se executar uma computação ela resulta em \lstinline[language=coq]|'F_p|. Esta computação é então realizada na linha 3, e assim, tem-se no \textit{goal}:
 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
@@ -428,8 +429,7 @@ a' ^ #|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = a' ^ p.-1./2
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 eqn (i.+1 - f i) 0
                                         \end{lstlisting}
-                                é a operação \lstinline[language=coq]|<| (a definição está ``unfolded'').
-                                Pode-se notar aqui que o conjunto não é, nesse caso, definido por uma lista, mas sim por um predicado booleano cujo domínio é um tipo finito (\lstinline[language=coq]|'F_p|).
+                                é a operação \lstinline[language=coq]|<| (a notação está ``unfolded''). Pode-se notar aqui que o conjunto não é definido por uma lista, mas sim por um predicado booleano, cujo domínio é um tipo finito (\lstinline[language=coq]|'F_p| neste caso).
 
                                 \item[\textbf{(4)}] Tranformação do \textit{goal} em uma igualdade entre os expoentes, dado que em cada lado da equação do \textit{goal} haviam exponenciações de mesma base. Com isto o \textit{goal} se torna:
                                 
@@ -446,7 +446,7 @@ eqn (i.+1 - f i) 0
                                         \end{lstlisting}
                                 ou seja, \lstinline[language=coq]![predD1 'F_p & 0%R]! é o conjunto $\mathbb{F}_p - \{0\}$.
 
-                                \item[\textbf{(7)}] Reescrita de \lstinline[language=coq]!(0%R  \in 'F_p)! como \lstinline[language=coq]!true! (pelo lema \lstinline[language=coq]!inE!) o que é então convertido para 1 (devido a uma \textit{coercion}); reescrita da soma de 1 à esquerda na forma da notação \lstinline[language=coq]!_.+1! (pelo lema \lstinline[language=coq]!add1n!); cancelamento da adição de 1 com a subtração 1 (pelo lema \lstinline[language=coq]!pred_Sn!, onde o uso de \lstinline[language=coq]|-| antes do nome do lema indica a direção contrária a usual da rescrita, isto é, do padrão do lado direito para o padrão do lado esquero). Com estas reescritas o \textit{goal} se torna:
+                                \item[\textbf{(7)}] Reescrita de \lstinline[language=coq]!(0%R  \in 'F_p)! como \lstinline[language=coq]!true! (pelo lema \lstinline[language=coq]!inE!) o que é então convertido para 1 (devido a uma \textit{coercion}); reescrita da soma de 1 à esquerda na forma da notação \lstinline[language=coq]!_.+1! (pelo lema \lstinline[language=coq]!add1n!); cancelamento da adição de 1 com a subtração de 1 (pelo lema \lstinline[language=coq]!pred_Sn!, onde o uso de \lstinline[language=coq]|-| antes do nome do lema indica a direção contrária a usual da rescrita, isto é, do padrão do lado direito para o padrão do lado esquerdo). Com estas reescritas o \textit{goal} se torna:
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 #|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = #|[predD1 'F_p & 0%R]|./2
                                         \end{lstlisting}
@@ -455,9 +455,11 @@ eqn (i.+1 - f i) 0
                                 
                                 \item[\textbf{(9)}] Introducão do \textit{alias} \lstinline[language=coq]|B| para o conjunto \lstinline[language=coq]![pred i |  (i : 'F_p) < f i]! (a diferença do uso de \lstinline[language=coq]|set| e \lstinline[language=coq]|pose| é que o primeiro realiza substituição da expressão pelo \textit{alias} no \textit{goal}).
                                 
-                                \item[\textbf{(10)}] Reescrita da cardinalidade de \lstinline[language=coq]!A! como a cardinalidade da intersecção entre \lstinline[language=coq]!A! e \lstinline[language=coq]!B! somada a cardinalidade de \lstinline[language=coq]!A! menos \lstinline[language=coq]!B! (por meio do lema \lstinline[language=coq]!cardID!); em termos das notações mais comuns usadas e Teoria dos Conjunto faz-se a substituição de $|A|$ por $|A \bigcap B| + |A - B|$.
+                                \item[\textbf{(10)}] Reescrita da cardinalidade de \lstinline[language=coq]!A! como a cardinalidade da intersecção entre \lstinline[language=coq]!A! e \lstinline[language=coq]!B! somada a cardinalidade de \lstinline[language=coq]!A! menos \lstinline[language=coq]!B! (por meio do lema \lstinline[language=coq]!cardID!); em termos das notações mais comuns usadas em Teoria dos Conjunto faz-se a substituição de $|A|$ por $|A \bigcap B| + |A - B|$.
                                 
-                                \item[\textbf{(11)}] Substituição de \lstinline[language=coq]!#|[predD A & B]|! por \lstinline[language=coq]!#|image f [predI A & B]|! em que está ultima expressão indica a o primeiro conjunto após a aplicação da função \lstinline[language=coq]!f! (a imagem de \lstinline[language=coq]!f! tendo \lstinline[language=coq]!#|[predD A & B]|! como domínio). Tal substituição abre um \textit{subgoal} que é resolvido em seguida (conforme indicado no comentário da linha 12). \textcolor{red}{vou colocar aqui a resolução desse \textit{subgoal} por que ele não é trivial e é bem importante para a prova}. Com isso o \textit{goal} se torna:
+                                \item[\textbf{(11)}] Substituição de \lstinline[language=coq]!#|[predD A & B]|! por \lstinline[language=coq]!#|image f [predI A & B]|! (que é printada como \lstinline[language=coq]!#|[seq f x  | x in [predI A & B]]!) em que está ultima expressão indica a imagem de \lstinline[language=coq]!f! tendo \lstinline[language=coq]!#|[predD A & B]|! como domínio. 
+                                
+                                Tal substituição abre um \textit{subgoal} que é resolvido em seguida (conforme indicado no comentário da linha 12). \textcolor{red}{vou colocar aqui a resolução desse \textit{subgoal} por que ele não é trivial e é bem importante para a prova}. Com isso o \textit{goal} se torna:
                                 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 #|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = 
@@ -483,13 +485,13 @@ eqn (i.+1 - f i) 0
                                         \end{lstlisting}
                                 como \lstinline[language=coq]!|[predI A & B]|!.
                                 
-                                \item[\textbf{(15)}] Reescrita da igualdade entre 2 conjuntos como uma igualdade entre expressões booleanas de pertencimento de um elemento (instânciado após a eliminação do $\forall$ na mesma linha) a cada conjunto. Assim o goal se torna:
+                                \item[\textbf{(15)}] Reescrita da igualdade entre 2 conjuntos como uma igualdade entre expressões booleanas de pertencimento de um elemento (instânciado após a eliminação do $\forall$ na mesma linha) a cada conjunto. Assim o \textit{goal} se torna:
                                 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 (i \in (fun i0 : 'F_p => eqn (i0.+1 - f i0) 0)) = (i \in [predI A & B])
                                         \end{lstlisting}
 
-                                \item[\textbf{(16)}] Ambas as expressões da igualdade podem ser simplificadas com o uso do lema \lstinline[language=coq]|inE| diversas vezes, portanto para realizar o máximo de reescritas possíveis é utilizado "\lstinline[language=coq]|!|" antes do nome do lema. Obtêm-se então a seguinte expressão no \textit{goal}:
+                                \item[\textbf{(16)}] Ambas as expressões da igualdade podem ser simplificadas com o uso do lema \lstinline[language=coq]|inE| diversas vezes, portanto para realizar o máximo de reescritas possíveis é utilizado ``\lstinline[language=coq]|!|'' antes do nome do lema. Obtêm-se então a seguinte expressão no \textit{goal}:
                                 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 (i < f i) = (i != 0%R) && true && (i < f i)
@@ -515,8 +517,8 @@ eqn (i.+1 - f i) 0
 \section{Formalização do Símbolo de Legendre}
 
 Seguindo a ideia utilizada (e recomendada) por Laurent Théry, em se utilizar uma função exaustiva para verificar se um determinado número é um resíduo quadrático módulo $p$ (em que $p$ é um número primo), e portanto, ter-se uma função que é pelo menos computável (apesar de sua ineficácia), fez-se neste trabalho a seguinte definição para o \textit{símbolo de Legendre}:
-\begin{lstlisting}[language=coq]
-        Definition legendre_symb {p : int} (pL2 : (2 < p)%R) (pP : primez.primez p) 
+\begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Definition legendre_symb {p : int} (pL2 : (2 < p)%R) (pP : primez.primez p) 
         (a : int) :=
         if (p %| a)%Z then 0%Z
         else if has (fun i => ((i * i)%:Z  == a %[mod p])%Z) (iota 0 `|p|)
@@ -524,52 +526,60 @@ Seguindo a ideia utilizada (e recomendada) por Laurent Théry, em se utilizar um
         else (-1)%Z.
 \end{lstlisting}
 Com esta definição, o \textit{símbolo de Legendre} é portanto uma função que recebe um número inteiro $p$, uma prova de que $2 < p$, uma prova de que $p$ é um número primo e por último um número inteiro $a$. Note que os argumentos que constituem provas podem ser gerados automaticamente pelo usuário dado que as funções \lstinline[language=coq]!<! e \lstinline[language=coq]!primez! são computáveis. Como exemplo de uso da função tem-se portanto:
-\begin{lstlisting}[language=coq]
-        Compute (legendre_symb (_ : 2 < 7)%R (_ : primez.primez 7) 2).
+\begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Compute (legendre_symb (_ : 2 < 7)%R (_ : primez.primez 7) 2).
 \end{lstlisting}
 que neste caso irá retornar $1$.
 
 Havendo a definição de \textit{símbolo de Legendre} resta então provar as suas principais propriedades, que podem vir a ser úteis em trabalhos futuros. Se baseando em \cite{book:2399854}, as principais propriedades do \textit{símbolo de Legendre}, considerando um número primo $p > 2$, são, para todo $a, b \in \mathbb{Z}$:
-\begin{enumerate}
+        \begin{enumerate}
         \item $a \equiv b \pmod{p} \rightarrow \left(\frac{a}{p}\right) = \left(\frac{b}{p}\right)$, cuja declaração dada em \textit{Coq} é:
-        \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
-        \begin{lstlisting}[language=coq]
+        \newline
+                % \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
+                % \begin{lstlisting}[language=coq]
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma legendre_symbE (p a b : int) (pL2 : (2 < p)%R) 
 (pP : primez.primez p):
 (a == b %[mod p])%Z -> 
         ((legendre_symb pL2 pP a) == (legendre_symb pL2 pP b)).
-        \end{lstlisting}
-        \end{tcolorbox}
+                \end{lstlisting}
+                % \end{tcolorbox}
         
         \item $p \nmid a \rightarrow \left(\frac{a^2}{p}\right)$, cuja declaração dada em \textit{Coq} é:
-        \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
-        \begin{lstlisting}[language=coq]
+        \newline
+                % \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
+                % \begin{lstlisting}[language=coq]
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma legendre_symb_Ndvd (p a b : int) (pL2 : (2 < p)%R) 
 (pP : primez.primez p):
 ~~(p %| a)%Z -> (legendre_symb pL2 pP (a^2)) == 1.
-        \end{lstlisting}
-        \end{tcolorbox}
+                \end{lstlisting}
+                % \end{tcolorbox}
         
         \item $\left(\frac{-1}{p}\right) = (-1)^{\frac{p - 1}{2}} = 1 \leftrightarrow p \equiv 1 \pmod{p}$, cuja declaração dada em \textit{Coq} é:
-        \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
-        \begin{lstlisting}[language=coq]
+        \newline
+                % \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
+                % \begin{lstlisting}[language=coq]
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma legendre_symb_Neg1 (p : int) (pL2 : (2 < p)%R) 
 (pP : primez.primez p):
 ((legendre_symb pL2 pP (-1)) == 1) = (p == 1 %[mod 4])%Z.
-        \end{lstlisting}
-        \end{tcolorbox}
+                \end{lstlisting}
+                % \end{tcolorbox}
         
         % \item $\left(\frac{-1}{p}\right) = (-1)^{\frac{p - 1}{2}} = -1 \leftrightarrow p \equiv 3 \pmod{p}$ 
         
         \item $\left(\frac{a \cdot b}{p}\right) = \left(\frac{a}{p}\right) \cdot \left(\frac{b}{p}\right)$, cuja declaração dada em \textit{Coq} é:
-        \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
-        \begin{lstlisting}[language=coq]
+        \newline
+                % \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
+                % \begin{lstlisting}[language=coq]
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma legendre_symb_Neg1 (p : int) (pL2 : (2 < p)%R) 
 (pP : primez.primez p):
 ((legendre_symb pL2 pP (-1)) == 1) = (p == 1 %[mod 4])%Z.
-        \end{lstlisting}
-        \end{tcolorbox}
-\end{enumerate}
+                \end{lstlisting}
+                % \end{tcolorbox}
+        \end{enumerate}
 
 A formalização (isto é, prova) de todos estes lemas está disponível no seguinte \hyperlink{https://github.com/bruniculos08/TCC2005/blob/main/Código - Parte 02/InversoMultiplicativo.v}{repositório}.
 
