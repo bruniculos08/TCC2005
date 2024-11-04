@@ -202,7 +202,7 @@ Uma estrutura que será utilizada no presente trabalho, e que pode ser implement
     \item \textbf{\textit{transitividade}}: $\forall x, y, z \in X, x \sim y \land y \sim z \rightarrow x \sim z$
     \item \textbf{\textit{simetria}}: $\forall x y \in X, x \sim y \leftrightarrow y \sim x$
 \end{enumerate}
-Como exposto em \cite{book:2399854}, estabelecer uma relação de equivalência sobre um conjunto $X$ é o mesmo que definir um partição sobre o mesmo, isto é, dividir $X$ em subconjuntos, em que, sendo cada subconjunto identifica como $X_\lambda$ onde $\lambda$ pertence a um conjunto $\Lambda$, então
+Como exposto em \cite{book:2399854}, estabelecer uma relação de equivalência sobre um conjunto $X$ é o mesmo que definir um partição sobre o mesmo, isto é, dividir $X$ em subconjuntos, em que, sendo cada subconjunto identificado como $X_\lambda$ onde $\lambda$ pertence a um conjunto $\Lambda$, então
 \begin{equation*}
     X = \bigcup_{\lambda \in \Lambda} X_{\lambda}
 \end{equation*}
@@ -240,7 +240,7 @@ Se define então as operações de soma, subtração e multiplicação em $\math
     \item $\overline{a} - \overline{b} = \overline{a - b}$
     \item $\overline{a} \cdot \overline{b} = \overline{a \cdot b}$
 \end{itemize}
-Como explicado por explicado por \cite{book:2399854} e devido a estas operações, o nome \textit{anel de inteiros módulo $n$} é justificado pela definição de \textit{anel}: qualquer conjunto $A$ com duas operações binárias $+$ e $\cdot$, de modo que $A$ satisfaz as seguintes propriedades:
+Como explicado em \cite{book:2399854} e devido a estas operações, o nome \textit{anel de inteiros módulo $n$} é justificado pela definição de \textit{anel}: qualquer conjunto $A$ com duas operações binárias $+$ e $\cdot$, de modo que $A$ satisfaz as seguintes propriedades:
 % é um \textit{grupo abeliano}, isto é, um grupo que além das condições para ser um grupo, é comutativo, ou seja, se $A$ é um grupo por meio da operação binária $\cdot$, então:
 % \begin{equation*}
 %     \forall a, b \in A, a \cdot b = b \otimes a
@@ -263,7 +263,7 @@ Com esta definição de \textit{anel} chega-se em outras também importantes:
 
     \item se $A$ é um \textit{anel comutativo} em que os elementos neutros deste são diferentes ($0 \neq 1$) e $\forall a, b \in A, a \cdot b = 0 \Rightarrow a = 0 \lor b = 0$ então $A$ é um \textit{domínio}.
 
-    \item se $A$ é um \textit{anel comutativo} em que os elementos neutros deste são diferentes ($0 \neq 1$) e todo elemento diferente de $0$ em $A$ possui inverso na operação $\cdot$, isto é, $(A - \{0\}, \cdot)$ é um grupo então $A$ é um \textit{corpo}, que em inglês são conhecidos como \textit{fields}, e em geral são representados como $\mathbb{F}_n$ ao invés de $\mathbb{Z}/(n)$.
+    \item se $A$ é um \textit{anel comutativo} em que os elementos neutros deste são diferentes ($0 \neq 1$) e todo elemento diferente de $0$ em $A$ possui inverso na operação $\cdot$, isto é, $(A - \{0\}, \cdot)$ é um grupo então $A$ é um \textit{corpo}, o que em inglês é conhecido como \textit{field}, e em geral se representa como $\mathbb{F}_n$ ao invés de simplesmente $\mathbb{Z}/(n)$.
 \end{itemize}
 
 % coisa q to mudando:
@@ -282,28 +282,29 @@ Havendo conhecimento da definição de \textit{corpos}, tem-se o seguinte import
 %     $\forall n \in \mathbb{Z}, \mathbb{Z}/(n)$ é um corpo se e somente se $n$ é primo. 
 % \end{lema}
 
-Note que, pelo Lema 4, em um \textit{anel de inteiros módulo $n$}, só há inverso multiplicativo para um determinada \textit{classe de equivalência} $\overline{a}$ se $\mdc(a, n) = 1$, pois só assim existirá outra \textit{classe de equivalência} $\overline{b}$ tal que $\overline{a} \cdot \overline{b} = \overline{a \cdot b} = \overline{1}$ ($\overline{1}$ é o elemento neutro da operação $\cdot$).
+Note que, pelo Lema 4, em um \textit{anel de inteiros módulo $n$}, só há inverso multiplicativo para um determinada \textit{classe de equivalência} $\overline{a}$ se $\mdc(a, n) = 1$, pois só assim existirá outra \textit{classe de equivalência} $\overline{b}$ tal que $\overline{a} \cdot \overline{b} = \overline{a \cdot b} = \overline{1}$ (onde $\overline{1}$ é o elemento neutro da operação $\cdot$).
 
 Outro conceito importante originado a partir da definição de \textit{anéis de inteiros módulo $n$} é a definição de \textit{grupo de unidades}, denotado por $(\mathbb{Z}/(n))^{\times}$. Esse é um subconjunto formado pelas \textit{classes de equivalência} invertíveis de $\mathbb{Z}/(n)$, ou seja:
 \begin{equation} \label{def:totientset}
     (\mathbb{Z}/(n))^{\times} = \{\overline{a} \in \mathbb{Z}/(n) | \mdc(a, n) = 1\}
 \end{equation}
 
-Sobre a implementação de \textit{anéis de inteiros módulo $n$} na biblioteca Mathematical Components, conforme é apresentado em \cite{assia_mahboubi_2022_7118596}, essa implementação envolve o tipo \lstinline[language = coq]{ordinal}. Este é declarado da seguinte forma (junto de sua notação e \textit{coercion} relacionada):
+Sobre a implementação de \textit{anéis de inteiros módulo $n$} na biblioteca Mathematical Components, conforme é apresentado em \cite{assia_mahboubi_2022_7118596}, essa implementação envolve o tipo \lstinline[language = coq]{ordinal}. Este é declarado da seguinte forma (junto de sua notação e \textit{coercion} para \lstinline[language=coq]|nat|):
 % Este é idêntico ao \textit{record} \lstinline[language = coq]{smaller} (usado como exemplo na Subseção \ref{subsection:coercion}), porém é declarado da seguinte forma (junto de sua notação e \textit{coercion} relacionada):
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Inductive ordinal n := Ordinal m of m < n.
 Notation "'I_' n" := (ordinal n).
 Coercion nat_of_ord n (i : 'I_n) := let: @Ordinal _ m _ := i in m.
     \end{lstlisting}
-Com isso, para simular os \textit{inteiros módulo $n$} (ainda não tendo provadas as propriedades que fazem destes conjuntos anéis), se utiliza o seguinte código:
+% Com isso, para simular os \textit{inteiros módulo $n$} (ainda não tendo provadas as propriedades que fazem destes conjuntos \textit{anéis}), se utiliza o seguinte código:
+Com isso, para implementar operações sobre \textit{inteiros módulo $n$}, utiliza-se o seguinte código:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Variable p' : nat.
 Local Notation p := p'.+1.
 Implicit Types x y z : 'I_p.
 Definition inZp i := @Ordinal p (i %% p) (ltn_pmod i (ltn0Sn p')).
     \end{lstlisting}
-em que o comando \lstinline[language = coq]{Variable} declara um variável no contexto de quaisquer declarações a partir daquela linha, o que é equivalente a utilizar nessas \lstinline[language = coq]{\forall (p' : nat)} (e é o que é considerado nas declarações fora da \lstinline[language = coq]{Section} em que foi declarada a variável). Sobre o comando \lstinline[language = coq]{Local Notation}, esse cria um notação válida apenas para o módulo em que ela é declarada (assim, importar o módulo não importará a notação), e quanto ao comando \lstinline[language = coq]{Implicit Types}, esse faz com que nas declarações a seguir, se forem utilizadas variáveis com tipos implícitos e de nome \lstinline[language = coq]{x}, \lstinline[language = coq]{y} ou \lstinline[language = coq]{z}, o \textit{Coq} infira como tipo dessas \lstinline[language = coq]{'I_p}.
+em que o comando \lstinline[language = coq]{Variable} declara uma variável no contexto de quaisquer declarações a partir daquela linha, o que é equivalente a utilizar nessas \lstinline[language = coq]{\forall (p' : nat)} (e é o que é considerado nas declarações fora da \lstinline[language = coq]{Section} em que foi declarada a variável). Sobre o comando \lstinline[language = coq]{Local Notation}, esse cria um notação válida apenas para o módulo em que ela é declarada (assim, importar o módulo não importará a notação), e quanto ao comando \lstinline[language = coq]{Implicit Types}, esse faz com que nas declarações a seguir, se forem utilizadas variáveis com tipos implícitos e de nome \lstinline[language = coq]{x}, \lstinline[language = coq]{y} ou \lstinline[language = coq]{z}, o \textit{Coq} infira como tipo dessas \lstinline[language = coq]{'I_p}.
 
 Em relação a definição \lstinline[language = coq]{InZp}, esta serve como maneira para converter números naturais em elementos do tipo \lstinline[language = coq]{'I_p}, e portanto, é útil para definir operações como soma e multiplicação sobre \lstinline[language = coq]{'I_p}. Tal definição utiliza $2$ lemas, cujas proposições são:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
