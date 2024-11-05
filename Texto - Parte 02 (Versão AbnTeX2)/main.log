@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.2)  4 NOV 2024 20:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.2)  4 NOV 2024 22:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1480,23 +1480,23 @@ Overfull \hbox (1.90671pt too wide) in paragraph at lines 618--620
 ] [65]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76]
-Underfull \hbox (badness 10000) in paragraph at lines 536--540
+ [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77]
+Underfull \hbox (badness 10000) in paragraph at lines 560--564
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 548--552
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 559--563
-
- []
-
-[77]
 Underfull \hbox (badness 10000) in paragraph at lines 572--576
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 583--587
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 596--600
 
  []
 
@@ -1568,14 +1568,14 @@ LaTeX Warning: Command \ss invalid in math mode on input line 23.
 
  (./main.aux (./Partes/Ficha.aux) (./PreTextual/Pretexto.aux) (./PreTextual/Resumo.aux) (./PreTextual/Abstract.aux) (./PreTextual/Sumario.aux) (./Partes/ApendiceA.aux) (./Partes/ApendiceB.aux))
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: 34C61272A00ACF8940A602CE741603B5;3237.
+(rerunfilecheck)             Checksum: FC794FA20ADEEC40901F91816CABB256;3237.
  ) 
 Here is how much of TeX's memory you used:
- 41411 strings out of 476041
- 785673 string characters out of 5793174
+ 41444 strings out of 476041
+ 786101 string characters out of 5793174
  2208388 words of memory out of 6000000
- 59885 multiletter control sequences out of 15000+600000
- 649555 words of font info for 297 fonts, out of 8000000 for 9000
+ 59899 multiletter control sequences out of 15000+600000
+ 649684 words of font info for 298 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
  93i,25n,99p,1477b,1612s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
@@ -1585,10 +1585,10 @@ pdfTeX warning (dest): name{https://github.com/bruniculos08/TCC2005/blob/main/C\
 pdfTeX warning (dest): name{https://github.com/thery/mathcomp-extra/blob/master/euler.v} has been referenced but does not exist, replaced by a fixed one
 
 </usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (99 pages, 806888 bytes).
+Output written on main.pdf (99 pages, 808887 bytes).
 PDF statistics:
- 2018 PDF objects out of 2073 (max. 8388607)
- 1816 compressed objects within 19 object streams
- 847 named destinations out of 1000 (max. 500000)
+ 2040 PDF objects out of 2073 (max. 8388607)
+ 1838 compressed objects within 19 object streams
+ 864 named destinations out of 1000 (max. 500000)
  76786 words of extra memory for PDF output out of 89155 (max. 10000000)
 

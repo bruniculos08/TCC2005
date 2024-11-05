@@ -459,12 +459,36 @@ eqn (i.+1 - f i) 0
                                 
                                 \item[\textbf{(11)}] Substituição de \lstinline[language=coq]!#|[predD A & B]|! por \lstinline[language=coq]!#|image f [predI A & B]|! (que é printada como \lstinline[language=coq]!#|[seq f x  | x in [predI A & B]]!) em que está ultima expressão indica a imagem de \lstinline[language=coq]!f! tendo \lstinline[language=coq]!#|[predD A & B]|! como domínio. 
                                 
-                                Tal substituição abre um \textit{subgoal} que é resolvido em seguida (conforme indicado no comentário da linha 12). \textcolor{red}{vou colocar aqui a resolução desse \textit{subgoal} por que ele não é trivial e é bem importante para a prova}. Com isso o \textit{goal} se torna:
-                                
+                                Tal substituição abre um \textit{subgoal} que é resolvido em seguida, conforme indicado no comentário da linha 12 e com isso o \textit{goal} se torna:
+                                % \textcolor{red}{vou colocar aqui a resolução desse \textit{subgoal} por que ele não é trivial e é bem importante para a prova}. 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 #|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = 
         (#|[predI A & B]| + #|[seq f x  | x in [predI A & B]]|)./2
                                         \end{lstlisting}
+                                Por não ser trivial, é útil se analisar a prova deste \textit{subgoal}. Tal prova consiste no uso
+                                das seguintes táticas:
+                                
+                                        \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$]
+apply: eq_card => i.
+rewrite !inE.
+rewrite -[in LHS](fI i).
+rewrite mem_map; last first.
+      by move=> i1 j1 fiEfj; rewrite -[i1]fI fiEfj fI.
+have -> : (f i \in enum [predI A & B])  = ([predI A & B] (f i)).
+        have F (U: finType) (p1: pred U) (x: U): x \in enum p1 = p1 x.
+                by rewrite mem_enum.
+        by rewrite F.
+rewrite [LHS]/= !inE fI.
+case: (i =P 0%R) => [->|]; 
+        first by rewrite f_eq0.
+case: (f i =P 0%R) => [fi0|/eqP fi_neq0 /eqP i_neq0].
+        by case; rewrite -(fI i) fi0 f_eq0.
+case: ltngtP => // /eqP/val_eqP fiEi.
+        by have := fI_neq0 i i_neq0; rewrite fiEi eqxx.
+                                        \end{lstlisting}
+                                Explicando determinadas linhas da subprova têm-se:
+                                
+                                
 
                                 \item[\textbf{(13)}] Reescrita (e resolução do \textit{subgoal} aberto por tal tatíca) de:
 
