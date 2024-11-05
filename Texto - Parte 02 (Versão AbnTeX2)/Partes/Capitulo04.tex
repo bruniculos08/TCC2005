@@ -243,7 +243,7 @@ apply: etrans (_ : \prod_(j in 'F_p | j < f j) (j * f j) = _ %[mod p]).
                 
                 Para este \textit{goal} são usadas as seguintes táticas:
                 
-                        \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$]
+                        \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$, name=proof]
 congr (_ %% _).                         $\label{line:1-item4-2}$
 apply: eq_bigr => j /andP[jF jLfj].     $\label{line:2-item4-2}$
 rewrite (bigD1 j); last first.          $\label{line:3-item4-2}$
@@ -325,10 +325,12 @@ Lemma big1 {R : Type} {idx : R} {op : Monoid.law idx} I r (P : pred I) F :
 
                 Para este \textit{goal} é inicialmente utilizada a aplicação do lema \lstinline[language=coq]|etrans| novamente:
 
-                        \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$]
+                        \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=@, name=proof]
 apply: etrans (_ : \prod_(j in 'F_p | j < f j) a' = _ %[mod p]).
-        (*... prova do goal 1...*)
-        (*... prova do goal 2...*)
+        (*... prova do goal 1...*)      @ \Suppressnumber @
+                @\footnotesize \rvdots \Reactivatenumber \setcounter{lstnumber}{39}@
+        (*... prova do goal 2...*)      @ \Suppressnumber @
+                @\footnotesize \rvdots \Reactivatenumber \setcounter{lstnumber}{35}@
                         \end{lstlisting}
 
                 e assim, como feito em item anterior, têm-se agora dois \textit{goals} a serem resolvidos:
@@ -344,7 +346,7 @@ apply: etrans (_ : \prod_(j in 'F_p | j < f j) a' = _ %[mod p]).
 
                         Para este \textit{goal} são inicialmente aplicadas as seguintes táticas:
                 
-                        \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$]
+                        \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$, name=proof]
 rewrite -modn_prodm. 
 congr (_ %% _). 
 apply: eq_bigr => i /andP[_ iLfi].
@@ -379,7 +381,7 @@ Lemma eq_bigr r (P : pred I) F1 F2 : (\forall i, P i -> F1 i = F2 i) ->
                                 \end{lstlisting}
                         Para este \textit{goal} são inicialmente utilizadas as seguintes táticas:
 
-                                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$]
+                                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=@, name=proof, firstnumber=40]
 congr (_ %% _).
 rewrite prod_nat_const.
 rewrite [X in fun i : X => _]/=.

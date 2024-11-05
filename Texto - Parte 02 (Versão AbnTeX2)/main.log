@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.2)  5 NOV 2024 14:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.2)  5 NOV 2024 14:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1487,31 +1487,36 @@ pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-97.
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.277 
-      ] [72] [73] [74] [75] [76] [77] [78]
-Underfull \hbox (badness 10000) in paragraph at lines 606--610
+      ] [72] [73
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-107.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.369                                 j
+                                       unto a eliminação do $\forall$ e in...] [74] [75] [76] [77] [78]
+Underfull \hbox (badness 10000) in paragraph at lines 608--612
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 618--622
+Underfull \hbox (badness 10000) in paragraph at lines 620--624
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 629--633
+Underfull \hbox (badness 10000) in paragraph at lines 631--635
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 642--646
+Underfull \hbox (badness 10000) in paragraph at lines 644--648
 
  []
 
-) (./main.bbl (./main.brf)
+[79]) (./main.bbl (./main.brf)
 \tf@brf=\write6
 \openout6 = `main.brf'.
 
- [79] [80]
+ [80]
 bibitemlist
 [81
 
@@ -1578,8 +1583,8 @@ Package rerunfilecheck Info: File `main.brf' has not changed.
 (rerunfilecheck)             Checksum: 0FB87F17A7427F37D74F86FE54E0B2AB;3237.
  ) 
 Here is how much of TeX's memory you used:
- 41461 strings out of 476041
- 786377 string characters out of 5793174
+ 41462 strings out of 476041
+ 786436 string characters out of 5793174
  2208388 words of memory out of 6000000
  59906 multiletter control sequences out of 15000+600000
  649490 words of font info for 296 fonts, out of 8000000 for 9000
@@ -1592,10 +1597,10 @@ pdfTeX warning (dest): name{https://github.com/bruniculos08/TCC2005/blob/main/C\
 pdfTeX warning (dest): name{https://github.com/thery/mathcomp-extra/blob/master/euler.v} has been referenced but does not exist, replaced by a fixed one
 
 </usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (101 pages, 814869 bytes).
+Output written on main.pdf (101 pages, 815408 bytes).
 PDF statistics:
- 2064 PDF objects out of 2073 (max. 8388607)
- 1860 compressed objects within 19 object streams
- 878 named destinations out of 1000 (max. 500000)
+ 2065 PDF objects out of 2073 (max. 8388607)
+ 1861 compressed objects within 19 object streams
+ 879 named destinations out of 1000 (max. 500000)
  76786 words of extra memory for PDF output out of 89155 (max. 10000000)
 
