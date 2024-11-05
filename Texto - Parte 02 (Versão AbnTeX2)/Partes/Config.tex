@@ -83,3 +83,28 @@
 		\SetKw{Retorna}{retorna}
 		\SetKwFor{Enqto}{enquanto}{faça}{endw}
 		\SetKwIF{Se}{eSe}{SeN}{se}{então}{e se}{senão}{fimse}
+		% Comandos para suprimir e reativar numeração em lstlisting:
+		\let\origthelstnumber\thelstnumber
+		\makeatletter
+		\newcommand*\Suppressnumber{%
+		\lst@AddToHook{OnNewLine}{%
+			\let\thelstnumber\relax%
+			\advance\c@lstnumber-\@ne\relax%
+			}%
+		}
+
+		\newcommand*\Reactivatenumber{%
+		\lst@AddToHook{OnNewLine}{%
+		\let\thelstnumber\origthelstnumber%
+		\advance\c@lstnumber\@ne\relax}%
+		}
+		\makeatother
+		% Comando para \vdots customizado:
+		\makeatletter
+		\DeclareRobustCommand{\rvdots}{%
+		\vbox{
+			\baselineskip4\p@\lineskiplimit\z@
+			\kern-\p@
+			\hbox{.}\hbox{.}\hbox{.}
+		}}
+		\makeatother

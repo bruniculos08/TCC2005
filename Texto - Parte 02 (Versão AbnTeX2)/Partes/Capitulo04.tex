@@ -80,15 +80,15 @@ Devido a essa dificuldade, que pode vir a aparecer em diversas situações onde 
         % Parte 01:
 
         \item Inicialmente tem-se o seguinte \textit{goal}:
-        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 prime p -> ~~ (p %| a) -> ~~ res_quad p a -> (p.-1`!) = a ^ p.-1./2 %[mod p]
-        \end{lstlisting}
+                \end{lstlisting}
         Introduz-se então todas as hipóteses e se reescreve $(p-1)!$:
-        \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1]
+                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1,name=proof]
 move=> pP pNDa aR.
 have -> : p.-1`! = \prod_(i in 'F_p | i != 0%R) i.
         (* ... prova do subgoal... *)
-        \end{lstlisting}
+                \end{lstlisting}
         Explicando os comandos feitos em linhas específicas têm-se:
         \begin{enumerate}
                 \item[\textbf{(1)}] Introdução dos precedentes do \textit{goal} para hipóteses com os nomes \lstinline[language=coq]|pP|, \lstinline[language=coq]|pNDa| e \lstinline[language=coq]|aR| respectivamente.
@@ -101,11 +101,11 @@ have -> : p.-1`! = \prod_(i in 'F_p | i != 0%R) i.
         % Parte 02:
 
         \item Tendo agora o seguinte \textit{goal}:
-        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 \prod_(i in 'F_p | i != 0%R) i  = a ^ p.-1./2  %[mod p]
-        \end{lstlisting}
+                \end{lstlisting}
         faz-se então uma série de declarações de variáveis e funções junto à introdução de novas hipóteses:
-        \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1]
+                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1,name=proof]
 pose a' : 'F_p := inZp a.
 have a'E : a' = a %% p :> nat
         by rewrite /= Fp_cast.
@@ -123,30 +123,30 @@ have fI_neq0 (i : 'F_p) : i != 0%R -> f i != i.
 have fB : {on [pred i |  i != ord0],  bijective f}.
         (*... prova do subgoal...*)
 pose can (i : 'F_p) :=  if i < (f i) then i else f i.
-        \end{lstlisting}
+                \end{lstlisting}
         Explicando os comandos feitos em linhas específicas têm-se:
         \begin{enumerate}
-                \item[\textbf{(1)}] Declaração da variável $a' \in \mathbb{F}_p$ que por sua vez depende do valor de $a$.
+                \item[\textbf{(4)}] Declaração da variável $a' \in \mathbb{F}_p$ que por sua vez depende do valor de $a$.
                 
-                \item[\textbf{(2)}] Introdução da hipótese \lstinline[language=coq]|a'E| de que $a' = a \bmod{p}$.
+                \item[\textbf{(5)}] Introdução da hipótese \lstinline[language=coq]|a'E| de que $a' = a \bmod{p}$.
                 
-                \item[\textbf{(4)}] Introdução da hipótese \lstinline[language=coq]|a'_neq0| de que $a' \neq 0$.
+                \item[\textbf{(7)}] Introdução da hipótese \lstinline[language=coq]|a'_neq0| de que $a' \neq 0$.
                 
-                \item[\textbf{(6)}] Reescrita (no \textit{goal}) de $a^{\frac{p-1}{2}}$ como $(a')^{\frac{p-1}{2}}$.
+                \item[\textbf{(9)}] Reescrita (no \textit{goal}) de $a^{\frac{p-1}{2}}$ como $(a')^{\frac{p-1}{2}}$.
                 
-                \item[\textbf{(7)}] Declaração de uma função $f : \mathbb{F}_p \rightarrow \mathbb{F}_p$ tal que $f(i) = (a') \cdot i^{-1}$ (onde $i^{-1}$ é o inverso de $i$ em $\mathbb{F}_p$ e a notação \lstinline[language=coq]|"x / y"| é definida como \lstinline[language=coq]|x * y^-1|).
+                \item[\textbf{(10)}] Declaração de uma função $f : \mathbb{F}_p \rightarrow \mathbb{F}_p$ tal que $f(i) = (a') \cdot i^{-1}$ (onde $i^{-1}$ é o inverso de $i$ em $\mathbb{F}_p$ e a notação \lstinline[language=coq]|"x / y"| é definida como \lstinline[language=coq]|x * y^-1|).
                 
-                \item[\textbf{(8)}] Introducão (e prova na mesma linha a partir do comando \lstinline[language=coq]|by|) da hipótese \lstinline[language=coq]|f_eq0| de que $f(0) = 0$.
+                \item[\textbf{(11)}] Introducão (e prova na mesma linha a partir do comando \lstinline[language=coq]|by|) da hipótese \lstinline[language=coq]|f_eq0| de que $f(0) = 0$.
                 
-                \item[\textbf{(9)}] Introducão da hipótese \lstinline[language=coq]|fM| de que $\forall i \in \mathbb{F}_p, (i \neq 0 \rightarrow f(i) \cdot i = a')$;
+                \item[\textbf{(12)}] Introducão da hipótese \lstinline[language=coq]|fM| de que $\forall i \in \mathbb{F}_p, (i \neq 0 \rightarrow f(i) \cdot i = a')$;
                 
-                \item[\textbf{(11)}] Introducão da hipótese \lstinline[language=coq]|fI| de que $\forall i \in \mathbb{F}_p, f(f(i)) = i$, isto é, $f$ é involutiva.
+                \item[\textbf{(14)}] Introducão da hipótese \lstinline[language=coq]|fI| de que $\forall i \in \mathbb{F}_p, f(f(i)) = i$, isto é, $f$ é involutiva.
                 
-                \item[\textbf{(13)}] Introducão da hipótese \lstinline[language=coq]|fI_neq0| de que $\forall i \in \mathbb{F}_p, (i \neq 0 \rightarrow f(i) \neq i)$.
+                \item[\textbf{(16)}] Introducão da hipótese \lstinline[language=coq]|fI_neq0| de que $\forall i \in \mathbb{F}_p, (i \neq 0 \rightarrow f(i) \neq i)$.
                 
-                \item[\textbf{(15)}] Introducão da hipótese \lstinline[language=coq]|fB| de existe uma função $f : (\mathbb{F}_p - \{0\}) \rightarrow (\mathbb{F}_p - \{0\})$ que é bijetora (o que é óbvio já que a função $f$ declarada anteriormente é involutiva).
+                \item[\textbf{(18)}] Introducão da hipótese \lstinline[language=coq]|fB| de existe uma função $f : (\mathbb{F}_p - \{0\}) \rightarrow (\mathbb{F}_p - \{0\})$ que é bijetora (o que é óbvio já que a função $f$ declarada anteriormente é involutiva).
                 
-                \item[\textbf{(17)}] Declaração de uma função $can : \mathbb{F}_p \rightarrow \mathbb{F}_p$ tal que $can(i)$ retorna o valor mínimo entre $i$ e $f(i)$.
+                \item[\textbf{(20)}] Declaração de uma função $can : \mathbb{F}_p \rightarrow \mathbb{F}_p$ tal que $can(i)$ retorna o valor mínimo entre $i$ e $f(i)$.
         \end{enumerate}
 
         \item Tendo agora o seguinte \textit{goal}:
@@ -154,7 +154,7 @@ pose can (i : 'F_p) :=  if i < (f i) then i else f i.
 \prod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
                 \end{lstlisting}
         faz-se a seguinte reescrita:
-                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1]
+                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1,name=proof]
 have -> : \prod_(i in 'F_p | i != 0%R) i =
                 \prod_(j in 'F_p | (j < f j))
                         \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i.
@@ -164,13 +164,13 @@ have -> : \prod_(i in 'F_p | i != 0%R) i =
         Explicando os comandos feitos em linhas específicas têm-se:
         \begin{enumerate}[listparindent=\parindent]
 
-                \item[\textbf{(1)}] Substituição (no \textit{goal}) de $\prod_{i \in (\mathbb{F}_p - \{0\})} i$ por:
+                \item[\textbf{(21)}] Substituição (no \textit{goal}) de $\prod_{i \in (\mathbb{F}_p - \{0\})} i$ por:
                 
                         \begin{equation*}
                         \prod_{j \in \mathbb{F}_p \mid j < f(j)} \left( \prod_{i \in (\mathbb{F}_p - \{0\}) \mid can(i)= j} i \right)
                         \end{equation*}
 
-                \item[\textbf{(4)}] Código da prova do \textit{subgoal} gerado na linha 1 - este código não será apresentado aqui, no entanto, pode-se dizer que tal subprova se baseia na utilização do lema \lstinline[language=coq]|partition_big|, que tem a seguinte declaração:
+                \item[\textbf{(24)}] Código da prova do \textit{subgoal} gerado na linha 1 - este código não será apresentado aqui, no entanto, pode-se dizer que tal subprova se baseia na utilização do lema \lstinline[language=coq]|partition_big|, que tem a seguinte declaração:
                 
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma partition_big {R : Type} {idx : R} {op : Monoid.com_law idx} 
@@ -224,10 +224,12 @@ rewrite [X in forall i : X, _]/=.
                 \end{lstlisting}
         Usa-se então a seguinte tática:
 
-                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1]
+                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1,name=proof, escapechar=\@]
 apply: etrans (_ : \prod_(j in 'F_p | j < f j) (j * f j) = _ %[mod p]).
-        (*... prova do goal 1...*)
-        (*... prova do goal 2...*)
+        (*... prova do goal 1...*)      @ \Suppressnumber @
+                        @\footnotesize \rvdots \Reactivatenumber \setcounter{lstnumber}{34}@
+        (*... prova do goal 2...*)      @ \Suppressnumber @
+                        @\footnotesize \rvdots \Reactivatenumber \setcounter{lstnumber}{25}@
                 \end{lstlisting}
         Esta tática então aplicada na linha 1 utiliza da transitividade da igualdade por meio do lema \lstinline[language=coq]|etrans| junto a um argumento que permite que o \textit{Coq} infira o termo médio desta transitividade. Este argumento é uma prova de igualdade, qual por não existir nas hipóteses irá gerar 2 \textit{goals} no lugar do \textit{goal} atual:
 
@@ -446,7 +448,7 @@ eqn (i.+1 - f i) 0
                                         \end{lstlisting}
                                 ou seja, \lstinline[language=coq]![predD1 'F_p & 0%R]! é o conjunto $\mathbb{F}_p - \{0\}$.
 
-                                \item[\textbf{(7)}] Reescrita de \lstinline[language=coq]!(0%R  \in 'F_p)! como \lstinline[language=coq]!true! (pelo lema \lstinline[language=coq]!inE!) o que é então convertido para 1 (devido a uma \textit{coercion}); reescrita da soma de 1 à esquerda na forma da notação \lstinline[language=coq]!_.+1! (pelo lema \lstinline[language=coq]!add1n!); cancelamento da adição de 1 com a subtração de 1 (pelo lema \lstinline[language=coq]!pred_Sn!, onde o uso de \lstinline[language=coq]|-| antes do nome do lema indica a direção contrária a usual da rescrita, isto é, do padrão do lado direito para o padrão do lado esquerdo). Com estas reescritas o \textit{goal} se torna:
+                                \item[\textbf{(7)}] Reescrita de \lstinline[language=coq]!(0%R  \in 'F_p)! como \lstinline[language=coq]!true!, por meio da tupla \lstinline[language=coq]!inE! (\lstinline[language=coq]!inE! é uma tupla de lemas e portanto quando usada para reescrita o \textit{Coq} tenta realizar a reescrita usando cada um dos membros da tupla). O resultado desta reescrita é então convertido para 1 (devido a \textit{coercion} de \lstinline[language=coq]!bool! para \lstinline[language=coq]!nat!); reescrita da soma de 1 à esquerda na forma da notação \lstinline[language=coq]!_.+1! (pelo lema \lstinline[language=coq]!add1n!); cancelamento da adição de 1 com a subtração de 1 (pelo lema \lstinline[language=coq]!pred_Sn!, onde o uso de \lstinline[language=coq]|-| antes do nome do lema indica a direção contrária a usual da rescrita, isto é, do padrão do lado direito para o padrão do lado esquerdo). Com estas reescritas o \textit{goal} se torna:
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 #|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = #|[predD1 'F_p & 0%R]|./2
                                         \end{lstlisting}
@@ -465,7 +467,10 @@ eqn (i.+1 - f i) 0
 #|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = 
         (#|[predI A & B]| + #|[seq f x  | x in [predI A & B]]|)./2
                                         \end{lstlisting}
-                                Por não ser trivial, é útil se analisar a prova deste \textit{subgoal}. Tal prova consiste no uso
+
+                                % A prova do \textit{subgoal} mencionado consiste na ideia de que é possível provar que os conjuntos \lstinline[language=coq]!#|[seq f x  | x in [predI A & B]]! e \lstinline[language=coq]!#|[predD A & B]|! são iguais 
+                                
+                                Por não ser trivial, é útil se analisar a prova do \textit{subgoal} mencionado. Tal prova consiste no uso
                                 das seguintes táticas:
                                 
                                         \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1, escapechar=\$]
@@ -474,11 +479,8 @@ rewrite !inE.
 rewrite -[in LHS](fI i).
 rewrite mem_map; last first.
       by move=> i1 j1 fiEfj; rewrite -[i1]fI fiEfj fI.
-have -> : (f i \in enum [predI A & B])  = ([predI A & B] (f i)).
-        have F (U: finType) (p1: pred U) (x: U): x \in enum p1 = p1 x.
-                by rewrite mem_enum.
-        by rewrite F.
-rewrite [LHS]/= !inE fI.
+rewrite mem_enum.
+rewrite [LHS]/= !inE fI !andbT.
 case: (i =P 0%R) => [->|]; 
         first by rewrite f_eq0.
 case: (f i =P 0%R) => [fi0|/eqP fi_neq0 /eqP i_neq0].
@@ -486,10 +488,54 @@ case: (f i =P 0%R) => [fi0|/eqP fi_neq0 /eqP i_neq0].
 case: ltngtP => // /eqP/val_eqP fiEi.
         by have := fI_neq0 i i_neq0; rewrite fiEi eqxx.
                                         \end{lstlisting}
-                                Explicando determinadas linhas da subprova têm-se:
-                                
-                                
+                                Explicando determinadas linhas (com o item de cada uma destas linhas) da subprova têm-se:
+                                        \begin{itemize}
+                                                \item[\textbf{(1)}] Transformação do \textit{goal} de uma igualdade entre cardinalidade em uma igualdade de conjunto, isto é, em:
+                                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+(i  \in [seq f x  | x in [predI A & B]]) = (i  \in [predD A & B])
+                                                        \end{lstlisting}        
+                                                
+                                                \item[\textbf{(2)}] Simplificação de expressões como \lstinline[language=coq]|x \in 'F_p| (que aparecem na expressão ``unfolded'') em \lstinline[language=coq]|true|. Com isso o \textit{goal} se torna:
+                                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+(i  \in [seq f x  | x in [predI A & B]]) 
+        = [&& ~~ (i < f i),  i != 0%R  & true]
+                                                        \end{lstlisting}
+                                                        
+                                                \item[\textbf{(3)}] Reescrita de \lstinline[language=coq]|i| como \lstinline[language=coq]|f (f i)| no lado esquerdo do \textit{goal}.
+                                                
+                                                \item[\textbf{(4)}] Reescrita de:
+                                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+(f (f i)  \in [seq f x  | x in [predI A & B]])
+                                                        \end{lstlisting}
+                                                como:
+                                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+((f i)  \in enum [predI A & B])
+                                                        \end{lstlisting}
+                                                o que é possível pois \lstinline[language=coq]|f| é injetora (\textit{subgoal} aberto por este \lstinline[language=coq]|rewrite| e provado na linha 5). Com isto o
+                                                \textit{goal} se torna:
+                                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+(f i  \in enum [predI A & B]) = [&& ~~ (i < f i),  i != 0%R  & true]
+                                                        \end{lstlisting}
+                                                onde \lstinline[language=coq]|enum| é uma função que retorna os elementos do tipo finito que atende a proposição booleana passada como argumento (o tipo finito é inferido pelo tipo do argumento de tais proposições), conforme consta na documentação da biblioteca\footnote{\url{https://math-comp.github.io/htmldoc_2_2_0/mathcomp.ssreflect.fintype.html}}.
 
+                                                \item[\textbf{(6)}] Reescrita de \lstinline[language=coq]|(f i  \in enum [predI A & B])| como \lstinline[language=coq]|(f i  \in [predI A & B])|.
+                                                
+                                                \item[\textbf{(7)}] Reescritas atráves da tupla \lstinline[language=coq]|inE|, reescrita de \lstinline[language=coq]!f (f i)! com \lstinline[language=coq]!i! e por fim reescritas conjunções booleanas com um dos elementos sendo \lstinline[language=coq]!true!. Assim obtêm-se o seguinte \textit{goal}:
+                                                        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+(f i != 0%R) && (f i < i) = ~~ (i < f i) && (i != 0%R)
+                                                        \end{lstlisting}
+                                                O \textit{goal} é agora considerávelmente trivial e pode ser resolvido por análise de caso, o que é feito nas linhas seguintes.
+
+                                                \item[\textbf{(8)}] Análise dos dois seguintes casos: \lstinline[language=coq]|i = 0%R| e \lstinline[language=coq]|i <> 0%R|, feito por meio do comando \lstinline[language=coq]|case| sobre a expressão \lstinline[language=coq]|i =P 0%R|. É resolvido o primeiro caso e então \lstinline[language=coq]|i <> 0%R| é uma hipótese no restante da resolução.
+                                                
+                                                \item[\textbf{(10)}] Análise dos dois seguintes casos análoga a linha anterior porém sobre o termo comando \lstinline[language=coq]|f i| ao invés de comando \lstinline[language=coq]|i|.
+                                                
+                                                \item[\textbf{(12)}] Análise dos casos:
+                                                \lstinline[language=coq]|i < f i|, \lstinline[language=coq]|i > f i| e por último \lstinline[language=coq]|i = f i|.
+                                                Os dois primeiros casos são resolvidos com a simplificação \lstinline[language=coq]|//| na mesma linha do \lstinline[language=coq]|case|, por isso se introduz a hipótese \lstinline[language=coq]|fiEi| apenas. Esta hipótese ao ser introduzida é reescrita por meio de \lstinline[language=coq]|/eqP| e \lstinline[language=coq]|/val_eqP|, o que retira a \textit{coercion} para \lstinline[language=coq]|nat| aplicada sobre \lstinline[language=coq]|f i| e sobre \lstinline[language=coq]|i|. A partir disso o \textit{goal} é resolvido na linha 12 obtêndo a partir da hipótese \lstinline[language=coq]|fI_neq0| (introduzida no perto do começo do código) e \lstinline[language=coq]|i_neq0| (de que \lstinline[language=coq]|i != 0|, introduzida na linha 10) para então se obter uma contradição junto a hipótese \lstinline[language=coq]|fiEi|. Com isto a prova do \textit{subgoal} se encerra.
+
+                                        \end{itemize}
+                                
                                 \item[\textbf{(13)}] Reescrita (e resolução do \textit{subgoal} aberto por tal tatíca) de:
 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
@@ -515,7 +561,7 @@ case: ltngtP => // /eqP/val_eqP fiEi.
 (i \in (fun i0 : 'F_p => eqn (i0.+1 - f i0) 0)) = (i \in [predI A & B])
                                         \end{lstlisting}
 
-                                \item[\textbf{(16)}] Ambas as expressões da igualdade podem ser simplificadas com o uso do lema \lstinline[language=coq]|inE| diversas vezes, portanto para realizar o máximo de reescritas possíveis é utilizado ``\lstinline[language=coq]|!|'' antes do nome do lema. Obtêm-se então a seguinte expressão no \textit{goal}:
+                                \item[\textbf{(16)}] Ambas as expressões da igualdade podem ser simplificadas com o uso da tupla \lstinline[language=coq]|inE| diversas vezes, por isso para realizar o máximo de reescritas possíveis é utilizado ``\lstinline[language=coq]|!|'' antes do nome da tupla. Obtêm-se então a seguinte expressão no \textit{goal}:
                                 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 (i < f i) = (i != 0%R) && true && (i < f i)
