@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.2)  6 NOV 2024 10:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.2)  6 NOV 2024 15:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1311,6 +1311,8 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 31.
 
 Underfull \hbox (badness 10000) in paragraph at lines 31--31
 
@@ -1331,8 +1333,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--31
 
  []
 
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 31.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 31.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1346,27 +1346,23 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has b
 l.61 	\include{Partes/Ficha}
                              [2
 
-] [3
+]
+\openout2 = `PreTextual/Pretexto.aux'.
+
+ (./PreTextual/Pretexto.tex [3
+
 
 
 
 ] [4
 
-]
-\openout2 = `PreTextual/Pretexto.aux'.
+] [5] [6
 
- (./PreTextual/Pretexto.tex [5
+] [7
 
+] [8
 
-] [6
-
-] [7] [8
-
-] [9
-
-] [10
-
-] [11] [12
+] [9] [10
 
 ])
 \openout2 = `PreTextual/Resumo.aux'.
@@ -1379,60 +1375,60 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--6
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/12'.
 (microtype)             Ignoring protrusion settings for this character.
-[13
+[11
+
+
+
+] [12
+
+])
+\openout2 = `PreTextual/Abstract.aux'.
+
+ (./PreTextual/Abstract.tex [13
 
 
 
 ] [14
 
 ])
-\openout2 = `PreTextual/Abstract.aux'.
+\openout2 = `PreTextual/Sumario.aux'.
 
- (./PreTextual/Abstract.tex [15
+ (./PreTextual/Sumario.tex (./main.lof) [15
 
 
 
 ] [16
 
-])
-\openout2 = `PreTextual/Sumario.aux'.
-
- (./PreTextual/Sumario.tex (./main.lof) [17
-
-
+] [17
 
 ] [18
 
-] [19
+] (./main.loa) [19
 
 ] [20
 
-] (./main.loa) [21
-
-] [22
-
 ] (./main.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 45.
+(Font)              <14.4> on input line 44.
 
-Overfull \hbox (5.1282pt too wide) in paragraph at lines 49--49
+Overfull \hbox (5.1282pt too wide) in paragraph at lines 48--48
  [][] [][][]\T1/lmr/bx/n/12 (-20) ALGORITMO DE TONELLI-SHANKS (OU 
  []
 
-[23{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]) [24]) (./Partes/Introducao.tex [25
+[21{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]) [22]) (./Partes/Introducao.tex [23
 
 
 
 
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}] [26] [27] [28]) (./Partes/Capitulo02.tex [29] [30
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}] [24] [25] [26]) (./Partes/Capitulo02.tex [27] [28
 
 ]
-<Figuras/ssreflect.png, id=384, 947.54pt x 782.925pt>
+<Figuras/ssreflect.png, id=372, 947.54pt x 782.925pt>
 File: Figuras/ssreflect.png Graphic file (type png)
 <use Figuras/ssreflect.png>
 Package pdftex.def Info: Figuras/ssreflect.png  used on input line 15.
 (pdftex.def)             Requested size: 273.00278pt x 225.57301pt.
- [31 <./Figuras/ssreflect.png>]
+ [29 <./Figuras/ssreflect.png>]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 26.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -1443,13 +1439,13 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 26.
- [32] [33] [34] [35] [36] [37] [38] [39] [40]
+ [30] [31] [32] [33] [34] [35] [36] [37] [38]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 387.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [41{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [42]) (./Partes/Capitulo03.tex [43] [44
+) [39{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [40]) (./Partes/Capitulo03.tex [41] [42
 
-] [45] [46] [47] [48]
+] [43] [44] [45] [46]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <17.28> on input line 197.
 
@@ -1461,7 +1457,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 197.
 
-[49] [50{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [51] [52]
+[47] [48{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [49] [50]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 361.
@@ -1474,31 +1470,31 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 361.
 
-[53] [54] [55] [56] [57] [58]
+[51] [52] [53] [54] [55] [56]
 Overfull \hbox (1.90671pt too wide) in paragraph at lines 618--620
 []\T1/lmr/m/it/12 (-20) Dado um nú-mero primo
  []
 
-[59] [60] [61] [62]) (./Partes/Capitulo04.tex [63] [64
+[57] [58] [59] [60]) (./Partes/Capitulo04.tex [61] [62
 
-] [65]
+] [63]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 90.
- [66] [67] [68] [69
+ [64] [65] [66] [67
 pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-92.\\thelstnumber\040}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.255 rewrite 
-              (bigD1 (f j)); last first.      $\label{line:31-item4-a}$] [70] [71
+              (bigD1 (f j)); last first.      $\label{line:31-item4-a}$] [68] [69
 pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-102.\\thelstnumber\040}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.343                         \item P
-                                     rimeiro \textit{goal}:] [72] [73] [74] [75] [76]
+                                     rimeiro \textit{goal}:] [70] [71] [72] [73] [74]
 Underfull \hbox (badness 10000) in paragraph at lines 610--614
 
  []
 
-[77]
+[75]
 Underfull \hbox (badness 10000) in paragraph at lines 622--626
 
  []
@@ -1513,36 +1509,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 646--650
 
  []
 
-) (./Partes/Conclusao.tex [78]) (./main.bbl (./main.brf)
+) (./Partes/Conclusao.tex [76]) (./main.bbl (./main.brf)
 \tf@brf=\write6
 \openout6 = `main.brf'.
 
- [79
+ [77
 
-] [80
+] [78
 
 ]
 bibitemlist
-[81]) [82]
+[79]) [80]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\uppercase' on input line 85.
 
-[83
+[81
+
+
+] [82]
+\openout2 = `Partes/ApendiceA.aux'.
+
+ (./Partes/ApendiceA.tex [83
 
 
 ] [84]
-\openout2 = `Partes/ApendiceA.aux'.
-
- (./Partes/ApendiceA.tex [85
-
-
-] [86]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 127.
 
-[87]
+[85]
 Overfull \hbox (19.07716pt too wide) detected at line 187
 []
  []
@@ -1550,7 +1546,7 @@ Overfull \hbox (19.07716pt too wide) detected at line 187
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [88]
+ [86]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 280.
@@ -1559,15 +1555,15 @@ LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 285.
 
-[89]) [90]
+[87]) [88]
 \openout2 = `Partes/ApendiceB.aux'.
 
- (./Partes/ApendiceB.tex [91
+ (./Partes/ApendiceB.tex [89
 
 
 
 
-] [92] [93] [94] [95] [96] [97] [98]) [99]
+] [90] [91] [92] [93] [94] [95] [96]) [97]
 \tf@lof=\write7
 \openout7 = `main.lof'.
 
@@ -1582,14 +1578,14 @@ LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: BEDA2B3CC77AAB7B103D0004B32FB754;3165.
+(rerunfilecheck)             Checksum: 21A57F15343CA48D7D2652582FB50EA8;3164.
  ) 
 Here is how much of TeX's memory you used:
- 41477 strings out of 476041
- 786673 string characters out of 5793174
+ 41481 strings out of 476041
+ 786789 string characters out of 5793174
  2180388 words of memory out of 6000000
- 59934 multiletter control sequences out of 15000+600000
- 649619 words of font info for 297 fonts, out of 8000000 for 9000
+ 59937 multiletter control sequences out of 15000+600000
+ 658640 words of font info for 302 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
  93i,25n,99p,1477b,1931s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
@@ -1599,10 +1595,10 @@ pdfTeX warning (dest): name{https://github.com/bruniculos08/TCC2005/blob/main/C\
 pdfTeX warning (dest): name{https://github.com/thery/mathcomp-extra/blob/master/euler.v} has been referenced but does not exist, replaced by a fixed one
 
 </usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (101 pages, 813654 bytes).
+Output written on main.pdf (99 pages, 814454 bytes).
 PDF statistics:
- 2086 PDF objects out of 2487 (max. 8388607)
- 1882 compressed objects within 19 object streams
- 861 named destinations out of 1000 (max. 500000)
- 76786 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 2071 PDF objects out of 2073 (max. 8388607)
+ 1869 compressed objects within 19 object streams
+ 856 named destinations out of 1000 (max. 500000)
+ 80874 words of extra memory for PDF output out of 89155 (max. 10000000)
 
