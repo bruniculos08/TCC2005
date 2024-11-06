@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.2)  6 NOV 2024 01:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.2)  6 NOV 2024 02:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1413,13 +1413,13 @@ Package microtype Info: Character `029' is missing
 
 ] (./main.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 44.
+(Font)              <14.4> on input line 45.
 
-Overfull \hbox (5.1282pt too wide) in paragraph at lines 48--48
+Overfull \hbox (5.1282pt too wide) in paragraph at lines 49--49
  [][] [][][]\T1/lmr/bx/n/12 (-20) ALGORITMO DE TONELLI-SHANKS (OU 
  []
 
-) [23{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}] [24]) (./Partes/Introducao.tex [25
+[23{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]) [24]) (./Partes/Introducao.tex [25
 
 
 
@@ -1482,52 +1482,51 @@ Overfull \hbox (1.90671pt too wide) in paragraph at lines 618--620
 [59] [60] [61] [62]) (./Partes/Capitulo04.tex [63] [64
 
 ] [65]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [66] [67]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 87.
- [68] [69] [70] [71
-pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-97.\\thelstnumber\040}) has been already used, duplicate ignored
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 90.
+ [66] [67] [68] [69
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-92.\\thelstnumber\040}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.277 
-      ] [72] [73
-pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-107.\\thelstnumber\040}) has been already used, duplicate ignored
+l.255 rewrite 
+              (bigD1 (f j)); last first.      $\label{line:31-item4-a}$] [70] [71
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-102.\\thelstnumber\040}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.369                                 j
-                                       unto a eliminação do $\forall$ e in...] [74] [75] [76] [77] [78]
-Underfull \hbox (badness 10000) in paragraph at lines 607--611
+l.343                         \item P
+                                     rimeiro \textit{goal}:] [72] [73] [74] [75] [76]
+Underfull \hbox (badness 10000) in paragraph at lines 610--614
+
+ []
+
+[77]
+Underfull \hbox (badness 10000) in paragraph at lines 622--626
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 619--623
+Underfull \hbox (badness 10000) in paragraph at lines 633--637
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 630--634
+Underfull \hbox (badness 10000) in paragraph at lines 646--650
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 643--647
-
- []
-
-[79]) (./main.bbl (./main.brf)
+) (./Partes/Conclusao.tex [78]) (./main.bbl (./main.brf)
 \tf@brf=\write6
 \openout6 = `main.brf'.
 
- [80]
-bibitemlist
-[81
+ [79
 
-]) [82]
+] [80
+
+]
+bibitemlist
+[81]) [82]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\uppercase' on input line 84.
+(hyperref)                removing `\uppercase' on input line 85.
 
 [83
 
@@ -1587,16 +1586,16 @@ LaTeX Warning: Command \ss invalid in math mode on input line 23.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: 0FB87F17A7427F37D74F86FE54E0B2AB;3237.
+(rerunfilecheck)             Checksum: BEDA2B3CC77AAB7B103D0004B32FB754;3165.
  ) 
 Here is how much of TeX's memory you used:
- 41515 strings out of 476041
- 787340 string characters out of 5793174
- 2208388 words of memory out of 6000000
- 59957 multiletter control sequences out of 15000+600000
+ 41477 strings out of 476041
+ 786673 string characters out of 5793174
+ 2180388 words of memory out of 6000000
+ 59934 multiletter control sequences out of 15000+600000
  649619 words of font info for 297 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 93i,25n,99p,1477b,1646s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,25n,99p,1477b,1931s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{https://github.com/bruniculos08/TCC2005/blob/main/C\303\263digo\040-\040Parte\04002/InversoMultiplicativo.v} has been referenced but does not exist, replaced by a fixed one
 
@@ -1604,10 +1603,10 @@ pdfTeX warning (dest): name{https://github.com/bruniculos08/TCC2005/blob/main/C\
 pdfTeX warning (dest): name{https://github.com/thery/mathcomp-extra/blob/master/euler.v} has been referenced but does not exist, replaced by a fixed one
 
 </usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (101 pages, 817364 bytes).
+Output written on main.pdf (101 pages, 813188 bytes).
 PDF statistics:
- 2115 PDF objects out of 2487 (max. 8388607)
- 1910 compressed objects within 20 object streams
- 879 named destinations out of 1000 (max. 500000)
+ 2086 PDF objects out of 2487 (max. 8388607)
+ 1882 compressed objects within 19 object streams
+ 861 named destinations out of 1000 (max. 500000)
  76786 words of extra memory for PDF output out of 89155 (max. 10000000)
 

@@ -15,12 +15,6 @@
 {BROCHERO, F.~E. et al. \emph{Teoria dos Números: um passeio com primos e outros números familiares pelo mundo inteiro}. 3. ed. Rio de Janeiro : IMPA: IMPA, 2013.  (Projeto Euclides).
 ISBN 978-85-2444-0312-5.}
 
-\bibitem[Cohen, Sakaguchi e Tassi 2020]{cohen_et_al:LIPIcs.FSCD.2020.34}
-\abntrefinfo{Cohen, Sakaguchi e Tassi}{COHEN; SAKAGUCHI; TASSI}{2020}
-{COHEN, C.; SAKAGUCHI, K.; TASSI, E. {Hierarchy Builder: Algebraic hierarchies Made Easy in Coq with Elpi}. In:  ARIOLA, Z.~M. (Ed.). \emph{5th International Conference on Formal Structures for Computation and Deduction (FSCD 2020)}. Dagstuhl, Germany: Schloss Dagstuhl -- Leibniz-Zentrum f{\"u}r Informatik, 2020.  (Leibniz International Proceedings in Informatics (LIPIcs), v.~167), p. 34:1--34:21.
-ISBN 978-3-95977-155-9.
-ISSN 1868-8969. Dispon{\'\i}vel em: \url{https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.FSCD.2020.34}.}
-
 \bibitem[Cook 2023]{johndcookQuadraticReciprocity}
 \abntrefinfo{Cook}{COOK}{2023}
 {COOK, J.~D. \emph{Quadratic reciprocity algorithm}. 2023.

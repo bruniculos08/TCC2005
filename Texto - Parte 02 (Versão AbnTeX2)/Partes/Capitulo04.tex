@@ -1,52 +1,55 @@
 \chapter{Implementação}
 \label{cap:implementacao}
 
-Neste capítulo será tratada a implementação do \textit{símbolo de Legendre}, trazendo um conteúdo dividido em três partes: apresentação do sistema de hierarquia de estruturas algébricas, discussão sobre implementações de outros conteúdos externos a este trabalho consideradas fundamentais para realização do objetivo proposto, e por fim as implementações realizadas no presente trabalho.
+% Neste capítulo será tratada a implementação do \textit{símbolo de Legendre}, trazendo um conteúdo dividido em três partes: apresentação do sistema de hierarquia de estruturas algébricas, discussão sobre implementações de outros conteúdos externos a este trabalho consideradas fundamentais para realização do objetivo proposto, e por fim as implementações realizadas no presente trabalho.
+Neste capítulo será tratada a implementação do \textit{símbolo de Legendre}, trazendo um conteúdo dividido em duas partes: discussão sobre implementações de implementações externas relacionadas a este trabalho (consideradas fundamentais para realização do objetivo proposto) e as implementações realizadas no presente trabalho.
         
 Anteriormente vale ressaltar que existem implementações sobre \textit{símbolo de Legendre} fora da biblioteca Mathematical Components. Como exemplo de tais implementações tem-se, utilizando o auxiliador de provas \textit{Lean}, na biblioteca Mathlib\footnote{Disponível em: https://github.com/leanprover-community/mathlib4}, tanto a implementação de \textit{símbolo de Legendre} quanto da \textit{Lei de Reciprocidade Quadrática}
 (tema este discutido no Apêndice \ref{cap:reciprocidadequadratica}). Há também a implementação de ambos os conteúdos mencionados em \textit{Coq} (porém sem utilização da biblioteca Mathematical Components) públicada em repositório\footnote{Disponível em: https://github.com/Ekdohibs/coq-proofs/tree/master/Reciprocity} de Nathanaëlle Courant disponível no GitHub.
 
-\section{Hierarquias entre Estruturas Algébricas}
+% \section{Hierarquias entre Estruturas Algébricas}
 
-Ao se utilizar a biblioteca Mathematical Components pela primeira vez o usuário tende a necessitar corriqueiramente da ferramenta de busca de teoremas, lemas e definições. Isto tende acontecer pois em geral o usuário precisa aprendar os nomes (e padrões destes) utilizados na biblioteca e o como são implementados. Como exemplo suponha que queira-se rescrever uma expressão com números naturais utilizando a propriedade de comutatividade: o lema para isto é dado por \lstinline[language = coq]!addnC! e pode ser notado como o lema que se deseja utilizar por sua definição:
-\begin{lstlisting}[language=coq]
-        Lemma addnC : commutative addn.
-\end{lstlisting}
-Agora, supondo que se tenha a mesma situação envolvendo números inteiros. É provável que não seja tão simples para o mesmo usuário encontrar o lema desejado, pois nesse caso, apesar da existência do lema \lstinline[language = coq]!addzC! com definição:
-\begin{lstlisting}[language=coq]
-        Lemma addzC : commutative addz.
-\end{lstlisting}
-pelo fato da notação \lstinline[language = coq]!+! não ser definida para a operação \lstinline[language = coq]!addz! (operação de soma entre inteiros) mas sim para determinadas operações binárias de estruturas semelhantes ao \textit{record} apresentado na Subseção \ref{sub:grupos}, tal lema não irá servir (exceto caso o usuário esteja utilizando a função \lstinline[language = coq]!addz! e não a notação \lstinline[language = coq]!+!).
+% Ao se utilizar a biblioteca Mathematical Components pela primeira vez o usuário tende a necessitar corriqueiramente da ferramenta de busca de teoremas, lemas e definições. Isto tende acontecer pois em geral o usuário precisa aprendar os nomes (e padrões destes) utilizados na biblioteca e o como são implementados. Como exemplo suponha que queira-se rescrever uma expressão com números naturais utilizando a propriedade de comutatividade: o lema para isto é dado por \lstinline[language = coq]!addnC! e pode ser notado como o lema que se deseja utilizar por sua definição:
+% \begin{lstlisting}[language=coq]
+%         Lemma addnC : commutative addn.
+% \end{lstlisting}
+% Agora, supondo que se tenha a mesma situação envolvendo números inteiros. É provável que não seja tão simples para o mesmo usuário encontrar o lema desejado, pois nesse caso, apesar da existência do lema \lstinline[language = coq]!addzC! com definição:
+% \begin{lstlisting}[language=coq]
+%         Lemma addzC : commutative addz.
+% \end{lstlisting}
+% pelo fato da notação \lstinline[language = coq]!+! não ser definida para a operação \lstinline[language = coq]!addz! (operação de soma entre inteiros) mas sim para determinadas operações binárias de estruturas semelhantes ao \textit{record} apresentado na Subseção \ref{sub:grupos}, tal lema não irá servir (exceto caso o usuário esteja utilizando a função \lstinline[language = coq]!addz! e não a notação \lstinline[language = coq]!+!).
 
-Sendo assim, para realizar a manipulação desejada, deve-se utilizar o lema \lstinline[language = coq]!addrC!, qual possui a seguinte definição: 
-\begin{lstlisting}[language=coq]
-        forall s : nmodType, commutative +%R
-\end{lstlisting}
-Note que o lema é definido pra uma estrutura \lstinline[language = coq]!nmodType!; estruturas como essa são muito comuns nos códigos da Mathematical Components, e, conforme apresentado no guia de contribuições da biblioteca\footnote{Disponível em: https://github.com/math-comp/math-comp/blob/master/CONTRIBUTING.md}, pode-se verificar, utilizando a linguagem HB \cite{cohen_et_al:LIPIcs.FSCD.2020.34} para hierarquia de estruturas algébricas, os lemas que caracterizam \lstinline[language = coq]!nmodType!, usando o seguinte comando: 
-\begin{lstlisting}[language=coq]
-        HB.about nmodType.
-\end{lstlisting}
-que irá apresentar uma mensagem contendo, em parte dela, o seguinte conteúdo:
-\begin{lstlisting}[language=coq-error]
-        HB: nmodType is a structure (from "./ssralg.v", line 589)
-        HB: nmodType characterizing operations and axioms are:
-        - add0r
-        - addrC
-        - addrA
-        - add
-        - zero
-\end{lstlisting}
-Verificando as definições dos nomes apresentados nesta mensagem podemos notar que tal estrutura possui uma operação (\lstinline[language = coq]!add!), um elemento neutro à esquerda (\lstinline[language = coq]!zero! e \lstinline[language = coq]!add0r!) e as propriedades de comutatividade e associatividade para tal operação (\lstinline[language = coq]!addrC! e \lstinline[language = coq]!addrA!).
-Usando o mesmo comando (\lstinline[language = coq]!HB.about!) sobre o tipo \lstinline[language = coq]!int!, tem-se como resultado na mensagem apresentada as estruturas com as quais o tipo está ``equipado'', e dentre estas tem-se \lstinline[language = coq]!GRing.Nmodule! (para qual \lstinline[language=coq]!nmodType! é um sinônimo). 
+% Sendo assim, para realizar a manipulação desejada, deve-se utilizar o lema \lstinline[language = coq]!addrC!, qual possui a seguinte definição: 
+% \begin{lstlisting}[language=coq]
+%         forall s : nmodType, commutative +%R
+% \end{lstlisting}
+% Note que o lema é definido pra uma estrutura \lstinline[language = coq]!nmodType!; estruturas como essa são muito comuns nos códigos da Mathematical Components, e, conforme apresentado no guia de contribuições da biblioteca\footnote{Disponível em: https://github.com/math-comp/math-comp/blob/master/CONTRIBUTING.md}, pode-se verificar, utilizando a linguagem HB \cite{cohen_et_al:LIPIcs.FSCD.2020.34} para hierarquia de estruturas algébricas, os lemas que caracterizam \lstinline[language = coq]!nmodType!, usando o seguinte comando: 
+% \begin{lstlisting}[language=coq]
+%         HB.about nmodType.
+% \end{lstlisting}
+% que irá apresentar uma mensagem contendo, em parte dela, o seguinte conteúdo:
+% \begin{lstlisting}[language=coq-error]
+%         HB: nmodType is a structure (from "./ssralg.v", line 589)
+%         HB: nmodType characterizing operations and axioms are:
+%         - add0r
+%         - addrC
+%         - addrA
+%         - add
+%         - zero
+% \end{lstlisting}
+% Verificando as definições dos nomes apresentados nesta mensagem podemos notar que tal estrutura possui uma operação (\lstinline[language = coq]!add!), um elemento neutro à esquerda (\lstinline[language = coq]!zero! e \lstinline[language = coq]!add0r!) e as propriedades de comutatividade e associatividade para tal operação (\lstinline[language = coq]!addrC! e \lstinline[language = coq]!addrA!).
+% Usando o mesmo comando (\lstinline[language = coq]!HB.about!) sobre o tipo \lstinline[language = coq]!int!, tem-se como resultado na mensagem apresentada as estruturas com as quais o tipo está ``equipado'', e dentre estas tem-se \lstinline[language = coq]!GRing.Nmodule! (para qual \lstinline[language=coq]!nmodType! é um sinônimo). 
 
-Tal organização presente na biblioteca, ao ser conhecida pelo usuário, torna mais fácil e organizada a manipulação de diferentes tipos, e é portanto uma informação importante para leitores deste trabalho que desejam futuramente fazer uso da mesma biblioteca. 
+% Tal organização presente na biblioteca, ao ser conhecida pelo usuário, torna mais fácil e organizada a manipulação de diferentes tipos, e é portanto uma informação importante para leitores deste trabalho que desejam futuramente fazer uso da mesma biblioteca. 
 
-\textcolor{red}{ Ainda da pra mexer nessa subseção, pra citar mais referências apesar de eu não ter precisado tanto por que as informações são meio obvias após algum tempo de uso da biblioteca, acho q é interessante citar pra dar mais segurança ao leitor (e a mim mesmo também)}
+% \textcolor{red}{ Ainda da pra mexer nessa subseção, pra citar mais referências apesar de eu não ter precisado tanto por que as informações são meio obvias após algum tempo de uso da biblioteca, acho q é interessante citar pra dar mais segurança ao leitor (e a mim mesmo também)}
 
-\textcolor{darkgreen}{\textbf{IDEIA}: jogar essa seção para o Capítulo 2.}
-% conforme apresentado em \cite{2023multipleinheritancehazardsdependentlytypedalgebraic}, são utilizadas para 
+% \textcolor{darkgreen}{\textbf{IDEIA}: jogar essa seção para o Capítulo 2.}
+% % conforme apresentado em \cite{2023multipleinheritancehazardsdependentlytypedalgebraic}, são utilizadas para 
 
 \section{Implementações Externas de Maior Relevância}
+\label{sec:implementacoes}
+
 Dentre os teoremas e lemas utilizados neste trabalho (dos quais a grande maioria são lemas simples da biblioteca Mathematical Components), existe um lema e um teorema que merecem destaque devido a complexidade para a prova dos mesmos. Este empecilho em suas respecitvas provas ocorre pela dificuldade em se fazer uma formalização com base nas ideias de prova manual para os mesmos (ambas apresentadas neste trabalho).
 
 O primeiro lema a ser mencionado trata do caso \ref{item:caso3wilson} do Teorema \ref{teorema : wilson} e tem na biblioteca o seguinte enunciado:

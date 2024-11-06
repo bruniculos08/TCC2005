@@ -32,9 +32,10 @@
 \contentsline {section}{\numberline {3.7}Congruência de Grau 2 e Símbolo de Legendre}{56}{section.3.7}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {4}\MakeUppercase []{Implementação}}{65}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Hierarquias entre Estruturas Algébricas}{65}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Implementações Externas de Maior Relevância}{67}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Formalização do Símbolo de Legendre}{78}{section.4.3}%
+\contentsline {section}{\numberline {4.1}Implementações Externas de Maior Relevância}{65}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Formalização do Símbolo de Legendre}{77}{section.4.2}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {5}\MakeUppercase []{Conclusão}}{79}{chapter.5}%
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \contentsline {chapter}{\MakeUppercase []{Refer\^encias}}{81}{section*.18}%
