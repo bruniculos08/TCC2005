@@ -800,20 +800,21 @@ Module inversezmodp.
     Proof.
     move=> pP pNDa aR.
     have -> : p.-1`! = \prod_(i in 'F_p | i != 0%R) i.
-    apply: etrans (_ : \prod_(i in 'F_p | i != 0 :> nat) i = _); last first.
-        by apply: eq_bigl => i.
-    Print pdiv.
-    Compute (Zp_trunc (pdiv 5)).+2.
-    Compute (pdiv 5).
-    rewrite /= Fp_cast //.
-    rewrite fact_prod big_add1 /= big_mkord.
-    case: p {pNDa aR}pP => //= p pP.
-    by rewrite [RHS]big_mkcond /= big_ord_recl /= mul1n.
+        (* "Subgoal para substituição:" *)
+        apply: etrans (_ : \prod_(i in 'F_p | i != 0 :> nat) i = _); last first.
+            by apply: eq_bigl => i.
+        rewrite /= Fp_cast //.
+        rewrite fact_prod big_add1 /= big_mkord.
+        case: p {pNDa aR}pP => //= p pP.
+        by rewrite [RHS]big_mkcond /= big_ord_recl /= mul1n.
+        (* "Fim do subgoal para substituição." *)
+    (* "Declarações de variáveis: " *)
     pose a' : 'F_p := inZp a.
+    (* "Declarações (e provas) de hipóteses: " *)
     have a'E : a' = a %% p :> nat by rewrite /= Fp_cast.
     have a'_neq0 : a' != 0%R.
-    apply/eqP/val_eqP. rewrite [val a']a'E /=.
-    by have /negPf := pNDa; rewrite /dvdn => ->.
+        apply/eqP/val_eqP. rewrite [val a']a'E /=.
+        by have /negPf := pNDa; rewrite /dvdn => ->.
     rewrite -modnXm -a'E.
     pose f (i : 'F_p) : 'F_p := (a' / i)%R.
     (* 
@@ -822,51 +823,51 @@ Module inversezmodp.
     *)
     have f_eq0 : f 0%R = 0%R by rewrite /f GRing.invr0 GRing.mulr0.
     have fM (i : 'F_p) : i != ord0 -> (f i * i = a')%R.
-    (* 
-        fM é um teorema que diz algo para todo (i : 'F_p),
-        não é uma função (é mas não é); neste caso, o que
-        fM diz é que se i != 0 então f i * i = a'.
-    *)
-    by move=> i_neq0; rewrite /f GRing.divfK.
+        (* 
+            fM é um teorema que diz algo para todo (i : 'F_p),
+            não é uma função (é mas não é); neste caso, o que
+            fM diz é que se i != 0 então f i * i = a'.
+        *)
+        by move=> i_neq0; rewrite /f GRing.divfK.
     have fI (i : 'F_p) : f (f i) = i.
-    (* 
-        fI é um teorema que (assim como em fM) para todo
-        (i : 'F_p) f é involutiva.
-    *)
-    by rewrite /f GRing.invf_div GRing.mulrC GRing.divfK.
+        (* 
+            fI é um teorema que (assim como em fM) para todo
+            (i : 'F_p) f é involutiva.
+        *)
+        by rewrite /f GRing.invf_div GRing.mulrC GRing.divfK.
     have fI_neq0 (i : 'F_p) : i != 0%R -> f i != i.
-    (* 
-        fI_neq0 é um teorema que diz que para todo (i : 'F_p),
-        se i != 0 então f(i) != i. 
-    *)
-    move=> i_neq0; apply/eqP => fiE.
-    have iL : i < p by rewrite -[X in _ < X]Fp_cast.
-    (* 
-        como i pertence a 'F_p pode-se então provar
-        que i < p.
-    *)
-    have /res_quadPn/(_ (Ordinal iL)) /= := aR.
-    (* 
-        o comando acima introduz a hipótese aR reescrita com
-        o teorema de reflect res_quadPn e instância o forall
-        para o ordinal i.
-    *)
-    have /val_eqP := fM _ i_neq0; rewrite fiE /=.
-    (* 
-        o comando acima introduz (fM _ i_neq0), isto é,
-            (f i * i) = a',
-        reescreve esta expressão trocando f i por i, tendo
-            i * i = a'
-        e, como nessa expressão (i : 'F_p) e (a' : 'F_p), usa-se
-        val_eqP (que é um reflect) para aplicar a conversão de i e a' 
-        para seus tipos carry (há uma conversão padrão e ela é 
-        injetora) mantendo a igualdade (pode-se aplicar a função de
-        conversão a ambos os lados que a igualdade se mantém), de onde 
-        se obtêm:
-            i * i  == a  %[mod (Zp_trunc (pdiv p)).+2]
-    *)
-    rewrite ![X in _ %% X]Fp_cast //= => /eqP->.
-    by rewrite Fp_cast // eqxx.
+        (* 
+            fI_neq0 é um teorema que diz que para todo (i : 'F_p),
+            se i != 0 então f(i) != i. 
+        *)
+        move=> i_neq0; apply/eqP => fiE.
+        have iL : i < p by rewrite -[X in _ < X]Fp_cast.
+        (* 
+            como i pertence a 'F_p pode-se então provar
+            que i < p.
+        *)
+        have /res_quadPn/(_ (Ordinal iL)) /= := aR.
+        (* 
+            o comando acima introduz a hipótese aR reescrita com
+            o teorema de reflect res_quadPn e instância o forall
+            para o ordinal i.
+        *)
+        have /val_eqP := fM _ i_neq0; rewrite fiE /=.
+        (* 
+            o comando acima introduz (fM _ i_neq0), isto é,
+                (f i * i) = a',
+            reescreve esta expressão trocando f i por i, tendo
+                i * i = a'
+            e, como nessa expressão (i : 'F_p) e (a' : 'F_p), usa-se
+            val_eqP (que é um reflect) para aplicar a conversão de i e a' 
+            para seus tipos carry (há uma conversão padrão e ela é 
+            injetora) mantendo a igualdade (pode-se aplicar a função de
+            conversão a ambos os lados que a igualdade se mantém), de onde 
+            se obtêm:
+                i * i  == a  %[mod (Zp_trunc (pdiv p)).+2]
+        *)
+        rewrite ![X in _ %% X]Fp_cast //= => /eqP->.
+        by rewrite Fp_cast // eqxx.
     (* 
         agora tem-se os seguintes lemas sobre a função f:
         "f_eq0" : f(0) = 0
@@ -880,7 +881,7 @@ Module inversezmodp.
         predicado i != ord0 e pelo tipo da função f) obedece a
         restrição imposta (i != ord0).
     *)
-    by exists f => j _; apply: fI.
+        by exists f => j _; apply: fI.
     (* 
         lembre-se que f é ser injetora significa que existe
         uma função g que é inversa de f, ou seja, tal que 
@@ -896,10 +897,12 @@ Module inversezmodp.
     pose can (i : 'F_p) :=  if i < (f i) then i else f i.
     (* 
         instânciando uma função 'can' que para um entrada
-        (i : 'I_p) retorna i se i < (f i) ou (f i) caso contrário 
+        (i : 'I_p) retorna i se i < (f i) ou (f i) caso contrário
+
+        retorna o menor entre i e f i
     *)
     have -> : \prod_(i in 'F_p | i != 0%R) i =
-    \prod_(j in 'F_p | (j < f j))
+        \prod_(j in 'F_p | (j < f j))
         \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i.
     (* 
         NOTE QUE:
@@ -912,6 +915,8 @@ Module inversezmodp.
             (a) quando i = j e portanto i < f(i), logo
             can i = i = j então i == j
 
+            caso (b) nunca ocorre pensando em relação ao j externo.
+
             (b) quando i = f(j) e portanto ~~(i < f(i)), logo
             can i = can (f(j)) = f(f(j)) = j então i == j
 
@@ -922,6 +927,9 @@ Module inversezmodp.
             um (j^-1 * a'), isto é, f(j), e que é único (pois
             caso contrário f não seria bijetora)
      *)
+    (* apply: partition_big. 
+    rewrite [X in forall i : X, _]/=. *)
+    (* => i. /andP[iF i_neq0]. *)
     apply: partition_big => i /andP[iF i_neq0].
     (* 
         note que em, no caso atual, será necessário provar:
@@ -935,33 +943,33 @@ Module inversezmodp.
         isto é:
         (i \in 'F_p && i != 0%R) -> ((can i) \in 'F_p && (can i) < (f (can i)))
     *)
-    rewrite andTb. rewrite /can. case: (leqP (S i) _) => //.
-    (* 
-        como o lado esquerdo do '&&' é trivial (can i \in 'F_p = true) se usa andTb para simplificar o '&&'.
+        rewrite andTb. rewrite /can. case: (leqP (S i) _) => //.
+        (* 
+            como o lado esquerdo do '&&' é trivial (can i \in 'F_p = true) se usa andTb para simplificar o '&&'.
 
-        o argumento inferido para o placeholder '_' é inferido
-        como f(i), assim está se tratando no case os casos 
-        (f i < i.+1) e (i.+1 < f i || i.+1 == f i) 
+            o argumento inferido para o placeholder '_' é inferido
+            como f(i), assim está se tratando no case os casos 
+            (f i < i.+1) e (i.+1 < f i || i.+1 == f i) 
 
-        OBS.: leq_xor_gtn é um tipo indutivo que tem os construtores 
-            LeqNotGtn : m <= n -> leq_xor_gtn m n m m n n true false
-            GtnNotLeq : n < m -> leq_xor_gtn m n n n m m false true
-        O lema leqP diz que a partir de quaisquer (m n : nat) pode-se
-        construir um habitante de leq_xor_gtn, portanto para tal par
-        de inteiros é possível fornecer a prova de m <= n ou n < m, por
-        isso fazer o case de tal habitante equivale a fazer um case em
-        m <= n \/ n < m.
-    *)
-    rewrite fI ltnS leq_eqVlt.
-    (* 
-        após este rewrite tem-se no goal:
-            (f i == i) || (f i < i) -> f i < i
-        mas note que pela hipótese fI_neq0 o lado esquerdo do '||'
-        é falso, assim pode-se reescrever o goal como:
-            f i < i -> f i < i
-        a simplificação e conclusão é feita no comando a seguir:
-    *)
-    by have /eqP/val_eqP/negPf/=-> := fI_neq0 _ i_neq0.
+            OBS.: leq_xor_gtn é um tipo indutivo que tem os construtores 
+                LeqNotGtn : m <= n -> leq_xor_gtn m n m m n n true false
+                GtnNotLeq : n < m -> leq_xor_gtn m n n n m m false true
+            O lema leqP diz que a partir de quaisquer (m n : nat) pode-se
+            construir um habitante de leq_xor_gtn, portanto para tal par
+            de inteiros é possível fornecer a prova de m <= n ou n < m, por
+            isso fazer o case de tal habitante equivale a fazer um case em
+            m <= n \/ n < m.
+        *)
+        rewrite fI ltnS leq_eqVlt.
+        (* 
+            após este rewrite tem-se no goal:
+                (f i == i) || (f i < i) -> f i < i
+            mas note que pela hipótese fI_neq0 o lado esquerdo do '||'
+            é falso, assim pode-se reescrever o goal como:
+                f i < i -> f i < i
+            a simplificação e conclusão é feita no comando a seguir:
+        *)
+        by have /eqP/val_eqP/negPf/=-> := fI_neq0 _ i_neq0.
     (*
         com o comando a seguir iremos provar a igualdade:
         \prod_(j in 'F_p | j < f j) \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i 
@@ -975,16 +983,19 @@ Module inversezmodp.
 
     *)
     apply: etrans (_ : \prod_(j in 'F_p | j < f j) (j * f j) = _ %[mod p]).
-    congr (_ %% _). apply: eq_bigr => j /andP[jF jLfj].
-    (*  o comando congr ([alguma função]) funciona como o f_equal.  *)
-    rewrite (bigD1 j); last first.
-    (*  A reescrita (bigD1 j) serve para 'retirar' o elemento j do
+        congr (_ %% _).
+        apply: eq_bigr => j /andP[jF jLfj].
+        (*  o comando congr ([alguma função]) funciona como o f_equal.  *)
+        rewrite (bigD1 j); last first.
+        (*  A reescrita (bigD1 j) serve para 'retirar' o elemento j do
         produtorio mas para isso deve então se provar que j cumpre 
         a restrição P do elementos do produtorio (last first faz com
-        se tenha que provar o cumprimento dessa restrição primeiro).    *)
-        rewrite jF /can jLfj eqxx andTb andbT.
-        by apply/eqP=> j_eq0; rewrite j_eq0 f_eq0 ltnn in jLfj.
-        rewrite /=. (*  "<= this computation simplifies 
+        se tenha que provar o cumprimento dessa restrição primeiro).    
+        *)
+            rewrite jF /can jLfj eqxx andTb andbT.
+            by apply/eqP=> j_eq0; rewrite j_eq0 f_eq0 ltnn in jLfj.
+    rewrite [LHS]/=.
+          (*  "<= this computation simplifies 
                         some types putting them as their 
                         coercions."   *)
     rewrite (bigD1 (f j)); last first.
@@ -1009,25 +1020,28 @@ Module inversezmodp.
             na expressão). 
         *)
         by rewrite fI -leqNgt ltnW.
+        
+
         (*
             o subgoal resolvido no comando acima surgiu pelo uso do
             lema ifN.
-        *)
-        rewrite /=. (* <= added just to simplify the expression *)
+        *) 
+    (* rewrite [LHS]/=. <= added just to simplify the expression *)
     rewrite big1 /= ?muln1 // => i.
+    Eval simpl in big1.
     (* 
         neste ponto é necessário provar o subgoal:
             (i != 0%R) && (can i == j) && (i != j) && (i != f j) -> i = 1
         devido ao uso do lema 'big1'.    
     *)
-    rewrite /can.
-    case: leqP; last by case: (i =P j); rewrite andbF.
+        rewrite /can.
+        case: leqP; last by case: (i =P j); rewrite andbF.
     (* 
         o 'case' de 'leqP' é feito em relação as variáveis da primeira
         operação '<=' ou '>' encontrada. 
     *)
-    case: (f i =P j); rewrite ?andbF // => <-.
-    by rewrite fI eqxx andbF.
+        case: (f i =P j); rewrite ?andbF // => <-.
+        by rewrite fI eqxx andbF.
     (* 
         o 'case' de uma igualdade da forma (x =P y) basicamente gera
         2 casos, um em que x = y e outro em que x <> y.
@@ -1041,31 +1055,49 @@ Module inversezmodp.
         deve-se provar que:
         \prod_(j in 'F_p | j < f j) (j * f j)  = \prod_(j in 'F_p | j < f j) a'  %[mod p]
     *)
-    rewrite -modn_prodm. congr (_ %% _). apply: eq_bigr => i /andP[_ iLfi].
-    have i_neq0 : i != 0%R.
+        rewrite -modn_prodm. congr (_ %% _). apply: eq_bigr => i /andP[_ iLfi].
+        have i_neq0 : i != 0%R.
         (*  
             é fácil provar nesse contexto que i != 0%R pois
             se i = 0%R, teria-se pelas hipóteses f_eq0 e iLfi que
             0%R < 0%R (false).
         *)
         by apply/eqP=> i_eq0; rewrite i_eq0 f_eq0 ltnn in iLfi.
-    rewrite -(fM i i_neq0) mulnC.
+        rewrite -(fM i i_neq0) mulnC.
     (* congr (_ %% _). rewrite Fp_cast //. *)
-    by congr (_ %% _); rewrite (Fp_cast pP).
+        by congr (_ %% _); rewrite (Fp_cast pP).
     congr (_ %% _).
     rewrite prod_nat_const.
+    rewrite [X in fun i : X => _]/=.
     congr (_ ^  _).
+    Print card.body.
+    Print mem_pred.
+    Print pred.
+    Check (pred_sort _).
     (*  Explicar a tática congr no TCC? *)
-    rewrite /=. rewrite ![X in _ %% X](Fp_cast pP). (* "<= I used it here to simplify the types "*)
+    (* rewrite /=. rewrite ![X in _ %% X](Fp_cast pP).  *)
+    (* "<= I used it here to simplify the types " *)
     (* 
         OBS.: creio que não da pra fazer nenhuma manipulação sobre
         termos que estão em operação direta com um argumento (a ser
         recebido) de uma função. 
     *)
+    Check (#|_|).
     rewrite -[p in RHS](card_Fp pP).
+    (* Set Printing Coercions. *)
     (*  Note que foi necessário especificar o termo
         do rewrite para que não ocorrer um erro.    *)
-    rewrite [in RHS](cardD1 0%R). rewrite inE add1n -pred_Sn.
+    rewrite [in RHS](cardD1 0%R). 
+    (* rewrite /predD1 /([pred x | _]). *)
+    Check card.body.
+    Check pred_of_argType.
+    Print card.body.
+    Compute card.body.
+    Print mem_pred.
+    (* rewrite /([fun x => _]). *)
+    Check ([fun x =>  (x != 0%R) && (x  \in 'F_p)]).
+    About simpl_fun.
+    rewrite inE add1n -pred_Sn.
     (* 
         NOTE: predD1 A & x siginifica recebe algum y e retorna
         y \in A && y != x.
@@ -1080,7 +1112,8 @@ Module inversezmodp.
         todos os elementos 
         
         obviamente que se A contém todo (i : 'F_p) tal que
-        i != 0 e B contém todo (i : 'F_p) tal que i < f i  
+        i != 0 e B contém todo (i : 'F_p) tal que i < f i,
+        a intersecação   
     *)
     have <- : #|image f [predI A & B]| = #|[predD A & B]|.
         (*  eq_card: se |A| = |B| então para todo x
@@ -1092,7 +1125,9 @@ Module inversezmodp.
             então i != 0 e se 'x \notin B' então ~~(i < f i):    *)
         rewrite -[in LHS](fI i).
         rewrite mem_map; last first.
-        by move=> i1 j1 fiEfj; rewrite -[i1]fI fiEfj fI.
+            by move=> i1 j1 fiEfj; rewrite -[i1]fI fiEfj fI.
+        Check (enum _).
+        About enum.
         (*  a função 'enum' de acordo com a documentação:
             'enum A == a duplicate-free list of all the x \in A, 
             where A is a collective predicate over T'   
@@ -1100,15 +1135,22 @@ Module inversezmodp.
             a expressão '[predI A & B]' é uma função de tipo pred T
             (T -> bool), por isso faz sentido esta aplicada sobre (f i) *)
         Print simpl_pred.
-        have -> : (f i  \in enum [predI A & B])  = ([predI A & B] (f i)).
-            have F (U : finType) (p1 : pred U) (x : U) : x \in enum p1 = p1 x.
+        rewrite mem_enum.
+        (* have -> : (f i \in enum [predI A & B])  = ([predI A & B] (f i)). *)
+            (* have F (U : finType) (p1 : pred U) (x : U) : x \in enum p1 = p1 x. *)
                 (*  utilizando o comando:
                     rewrite mem_enum /(_ \in _) /mem /=. 
                 pode-se verificar que (x  \in enum p1) é simplificado
                 para (p1 x) *)
-                by rewrite mem_enum .
-            by rewrite F.
-        rewrite [LHS]/= !inE fI.
+                (* by rewrite mem_enum . *)
+            (* by rewrite mem_enum. *)
+            (* by rewrite F. *)
+        
+        (* rewrite [LHS]/= !inE fI.
+        rewrite !andbT. *)
+        (* rewrite [LHS]/= !inE fI !andbT. *)
+        rewrite !inE fI !andbT.
+
         (*  LEMBRETE:
                 case sobre um expressão (x =P y) abre dois casos sobre
                 o goal: um em que x = y e outro em que x <> y.  *)
@@ -1116,7 +1158,12 @@ Module inversezmodp.
             first by rewrite f_eq0.
         case: (f i =P 0%R) => [fi0|/eqP fi_neq0 /eqP i_neq0].
             by case; rewrite -(fI i) fi0 f_eq0.
+        (* rewrite andbC -leqNgt ltn_neqAle fI_neq0 //. *)
+        (* case: ltngtP => // /eqP/val_eqP fiEi. *)
+        Set Printing Coercions.
         case: ltngtP => // /eqP/val_eqP fiEi.
+        (* case: ltngtP => // /eqP fiEi. *)
+        (* case: ltngtP => fiEi. *)
             by have := fI_neq0 i i_neq0; rewrite fiEi eqxx.
     (* card_image é um lema que diz que para um conjunto quaisquer A, 
         para toda f injetora tem-se:
@@ -1124,17 +1171,25 @@ Module inversezmodp.
         (a cardinalidade não conta membros repetidos se pensando A como
         uma lista)
     *)
-    rewrite card_image; last by move=> i j fiEfj; rewrite -[i]fI fiEfj fI.
+    rewrite card_image; 
+        last by move=> i j fiEfj; rewrite -[i]fI fiEfj fI.
     rewrite addnn (half_bit_double _ false).
-    apply: eq_card => i; rewrite !inE.
-    rewrite //= /(_ \in _) /mem /=.
+    apply: eq_card => i.
+    rewrite !inE.
+    (* rewrite [LHS]inE. *)
+    (* rewrite //= /(_ \in _) /mem /=. *)
     case: eqP => //. move=> -> /=.
         rewrite muln0 mod0n //=.
-    rewrite ![X in _ %% X](Fp_cast pP). rewrite -/(_ == _) -/(_ < _) /= => _.
+    (* rewrite ![X in _ %% X](Fp_cast pP). rewrite -/(_ == _) -/(_ < _) /= => _.
     congr (_ < _). 
     symmetry; rewrite [X in a %% X](Fp_cast pP).
-    by rewrite [X in _ %% X](Fp_cast pP) //.
+    by rewrite [X in _ %% X](Fp_cast pP) //. *)
     Qed.
+
+    Compute (1 \in (fun (x : nat) => 2 < x)).
+    Compute (mem (fun (x : nat) => 2 < x) 4).
+    Print mem.
+    Print mem_pred.
 
     Lemma euler_criterion a p : 
         prime p -> ~~ (p %| a) -> 

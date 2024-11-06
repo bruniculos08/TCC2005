@@ -69,27 +69,31 @@ Notation "[unify X 'with' Y ]" :=
         (let unification := erefl _ : X = Y in True).
 
 Fail Check (forall n (a : multiple n) (f : nat -> nat),
-        let LHS := [LHS of Ex2 _] in
+        let LHS := [LHS of exemplo_multiple_axiom _] in
         let RDX := (n %| (f a) * n) in
         [unify LHS with RDX]).
 
 Check (forall n (a : multiple n) (f : nat -> nat),
-        let LHS := [LHS of Ex2 (@Build n ((f a) * n) (Ex3 f a))] in
+        let LHS := [LHS of exemplo_multiple_axiom (@Build n ((f a) * n) (exemplo_aplicacao_f_mul f a))] in
         let RDX := (n %| (f a) * n) in
         [unify LHS with RDX]).
 
-Canonical f_mul_multiple (n : nat) (f : nat -> nat) (a : multiple n) := 
-        (@Build n ((f a) * n) (@Ex3 n f a)).
+Canonical f_mul_multiple {n : nat} (f : nat -> nat) (a : multiple n) := 
+        (@Build n ((f a) * n) (@exemplo_aplicacao_f_mul n f a)).
+
+Unset Printing Coercions.
 
 (* "Exemplo_a_provar" *)
 Lemma exemplo_a_provar {n}:
-        forall (a : multiple n), (n %| ((fun x => x + 8) (((fun x => 2 * x) a) * n)) * n).
+        forall (a : multiple n), (n %| ((((fun x => x + 2) a) * n))).
 Proof.
-move=> a //=.
-rewrite /is_true.
+(* move=> a //=. *)
+intros. simpl.
 rewrite addnC.
-rewrite Ex2.
-by [].
+(* rewrite exemplo_aplicacao_f_mul. *)
+rewrite exemplo_multiple_axiom.
+reflexivity.
+(* by []. *)
 Qed.
 
 (* Because of the last canonical the following works now: *)
