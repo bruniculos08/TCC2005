@@ -53,24 +53,24 @@ Anteriormente vale ressaltar que existem implementações sobre \textit{símbolo
 Dentre os teoremas e lemas utilizados neste trabalho (dos quais a grande maioria são lemas simples da biblioteca Mathematical Components), existe um lema e um teorema que merecem destaque devido a complexidade para a prova dos mesmos. Este empecilho em suas respecitvas provas ocorre pela dificuldade em se fazer uma formalização com base nas ideias de prova manual para os mesmos (ambas apresentadas neste trabalho).
 
 O primeiro lema a ser mencionado trata do caso \ref{item:caso3wilson} do Teorema \ref{teorema : wilson} e tem na biblioteca o seguinte enunciado:
-\begin{lstlisting}[language=coq]
-        Theorem Wilson p : p > 1 -> prime p = (p %| ((p.-1)`!).+1).
-\end{lstlisting}
+        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Theorem Wilson p : p > 1 -> prime p = (p %| ((p.-1)`!).+1).
+        \end{lstlisting}
 É importante notar, que, a igualdade entre as proposições booleanas \lstinline[language=coq]!prime p! e \lstinline[language=coq]!p %| ((p.-1)`!).+1! equivale a uma bi-implicação caso estas proposições não fossem booleanas. Além disso, vale aqui lembrar que, pela definição de equivalência em módulo $p$, há a seguinte bi-implicação:
 % Além disso, vale aqui lembrar da definição de equivalência em módulo $p$, e que portanto:
-\begin{equation}
-        p \mid (p-1)! + 1 \Longleftrightarrow (p-1)! \equiv -1 \pmod{p} 
-\end{equation}
+        \begin{equation}
+                p \mid (p-1)! + 1 \Longleftrightarrow (p-1)! \equiv -1 \pmod{p} 
+        \end{equation}
 
 Quanto ao segundo item a ser mencionado, este trata do Lema \ref{lema : modp-1fat} e foi provado por Laurent Théry durante o período de realiazação deste trabalho. A prova deste está disponível em: \hyperlink{https://github.com/thery/mathcomp-extra/blob/master/euler.v}{https://github.com/thery/mathcomp-extra/blob/master/euler.v} e tem a seguinte declaração:
-\begin{lstlisting}[language=coq]
-        Lemma fact_sqr_exp a p :
+        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma fact_sqr_exp a p :
         prime p -> ~~ (p %| a) -> ~~ res_quad p a -> (p.-1`!) = a ^ p.-1./2 %[mod p].
-\end{lstlisting}
+        \end{lstlisting}
 onde \lstinline[language=coq]!res_quad! tem a seguinte definição:
-\begin{lstlisting}[language=coq]
-        Definition res_quad p a := has (fun i => i * i == a %[mod p]) (iota 0 p).
-\end{lstlisting}
+        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Definition res_quad p a := has (fun i => i * i == a %[mod p]) (iota 0 p).
+        \end{lstlisting}
 em que, a função \lstinline[language=coq]!has! recebe um predicado booleano e uma lista, e então retorna \lstinline[language=coq]!true!
 se há algum elemento da lista que satisfaz o predicado e \lstinline[language=coq]!false! caso contrário. Já a função \lstinline[language=coq]!iota! recebe dois números naturais $m$ e $n$ e retorna uma lista crescente de todos os naturais de $m$ até $n-1+m$. Sendo assim, a função \lstinline[language=coq]!res_quad! é um método exaustivo para verificar se há um valor $r$ tal que $r^{2} \equiv a \pmod{p}$.
 
