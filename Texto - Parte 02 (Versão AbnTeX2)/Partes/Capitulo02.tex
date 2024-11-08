@@ -13,12 +13,12 @@ de tais módulos. A Figura \ref{fig:graph-mathcomp} apresenta uma parte desse gr
     \centering
     \caption{Grafo do módulo \textit{ssreflect}}
     \includegraphics[width=0.6\textwidth]{Figuras/ssreflect.png}\\
-    \footnotesize{Disponível em: <\url{https://math-comp.github.io/htmldoc_2_2_0/libgraph.html}>.
+    \footnotesize{Disponível em: \url{https://math-comp.github.io/htmldoc_2_2_0/libgraph.html}.
     Acesso em: 18 de maio de 2024.}
     \label{fig:graph-mathcomp}
 \end{figure}
 
-Os módulos principais para o desenvolvimento da prova sobre o algoritmo Tonelli-Shanks (com base no conteúdo de Teoria dos Números que sustenta a lógica do mesmo) são: \textit{all\_ssreflect} (que contém diversos outros módulos), \textit{ring\_quotient}, \textit{zmodp} e \textit{intdiv}.
+% Os módulos principais para o desenvolvimento da prova sobre o algoritmo Tonelli-Shanks (com base no conteúdo de Teoria dos Números que sustenta a lógica do mesmo) são: \textit{all\_ssreflect} (que contém diversos outros módulos), \textit{ring\_quotient}, \textit{zmodp} e \textit{intdiv}.
 
 \section{Igualdades}
 Na maior parte dos teoremas das bibliotecas nativas de \textit{Coq}, usa-se uma definição indutiva de igualdade, que é por sua vez equivalente a igualdade de Leibniz (isto pode ser provado). Por sua vez, essa definição de igualdade é dada pela seguinte proposição indutiva (de acordo com a documentação\footnote{\url{https://coq.inria.fr/doc/V8.18.0/refman/proofs/writing-proofs/equality.html}} \cite{coqteam2022manual}):
@@ -376,6 +376,51 @@ Proof.
 Qed.
     \end{lstlisting}
 Tal prova exemplifica como o uso dos mecanismos em \textit{Coq}, que foram apresentados neste capítulo, podem ser utilizados para que seja mais fácil trabalhar com um vasta quantidade de tipos que apresentam propriedades em comum (como é o caso dos grupos).
+
+\subsection{Uso do Sistema de Hierarquias entre Estruturas Algébricas}
+
+Para organizar estruturas algébricas semelhantes a apresentada na Subseção \ref{sub:grupos}, a biblioteca Mathematical Components utiliza uma linguagem chamada $\mathcal{HB}$. Esta é disponibilizada em \textit{Coq} por meio do \textit{addon} \lstinline[language=coq]|hierarchy-builder| e a motivação por trás de seu uso é facilitar aos usuários a criação, manutenção e padronização de estruturas como a mencionada anteriormente. Caso o leitor deseje um aprofundamento nestes assuntos recomenda-se a publicação \cite{cohen:hal-02478907} e o vídeo \cite{youtuCohen}, pois o sistema por trás do gerenciamento de tais estruturas não será aprofundado aqui. Pelo contrário, nesta Subseção se busca apenas mostrar como o usuário iniciante pode verificar quais são propriedades provadas sobre tipo, por meio de estruturas com a qual o tipo está ``equipado'', isto é, estruturas cujo o tipo pode formar um instância, como no caso de \lstinline[language=coq]|int| no exemplo apresentado na Subseção \ref{sub:grupos}.
+
+% Diversas estruturas como as algébricas, que guardam predicados sobre tipos, são utilizadas na biblioteca Mathematical, e suas declarações seguem um padrão chamado de 
+
+Ao se utilizar a biblioteca Mathematical Components pela primeira vez o usuário tende a necessitar corriqueiramente da ferramenta de busca de teoremas, lemas e definições. Isto tende acontecer pois em geral o usuário precisa aprendar os nomes (e padrões destes) utilizados na biblioteca e o como são implementados. Como exemplo suponha que queira-se rescrever uma expressão com números naturais utilizando a propriedade de comutatividade: o lema para isto é dado por \lstinline[language = coq]!addnC! e pode ser notado como o lema que se deseja utilizar por sua definição:
+\begin{lstlisting}[language=coq]
+        Lemma addnC : commutative addn.
+\end{lstlisting}
+Agora, supondo que se tenha a mesma situação envolvendo números inteiros. É provável que não seja tão simples para o mesmo usuário encontrar o lema desejado, pois nesse caso, apesar da existência do lema \lstinline[language = coq]!addzC! com definição:
+\begin{lstlisting}[language=coq]
+        Lemma addzC : commutative addz.
+\end{lstlisting}
+pelo fato da notação \lstinline[language = coq]!+! não ser definida para a operação \lstinline[language = coq]!addz! (operação de soma entre inteiros) mas sim para determinadas operações binárias de estruturas semelhantes ao \textit{record} apresentado na Subseção \ref{sub:grupos}, tal lema não irá servir (exceto caso o usuário esteja utilizando a função \lstinline[language = coq]!addz! e não a notação \lstinline[language = coq]!+!).
+
+Sendo assim, para realizar a manipulação desejada, deve-se utilizar o lema \lstinline[language = coq]!addrC!, qual possui a seguinte definição: 
+\begin{lstlisting}[language=coq]
+        forall s : nmodType, commutative +%R
+\end{lstlisting}
+Note que o lema é definido pra uma estrutura \lstinline[language = coq]!nmodType!; estruturas como essa são muito comuns nos códigos da Mathematical Components, e, conforme apresentado no guia de contribuições da biblioteca\footnote{Disponível em: \url{https://github.com/math-comp/math-comp/blob/master/CONTRIBUTING.md}}, pode-se verificar, utilizando a linguagem HB \cite{cohen:hal-02478907} para hierarquia de estruturas algébricas, os lemas que caracterizam \lstinline[language = coq]!nmodType!, usando o seguinte comando: 
+\begin{lstlisting}[language=coq]
+        HB.about nmodType.
+\end{lstlisting}
+que irá apresentar uma mensagem contendo, em parte dela, o seguinte conteúdo:
+\begin{lstlisting}[language=coq-error]
+        HB: nmodType is a structure (from "./ssralg.v", line 589)
+        HB: nmodType characterizing operations and axioms are:
+        - add0r
+        - addrC
+        - addrA
+        - add
+        - zero
+\end{lstlisting}
+Verificando as definições dos nomes apresentados nesta mensagem podemos notar que tal estrutura possui uma operação (\lstinline[language = coq]!add!), um elemento neutro à esquerda (\lstinline[language = coq]!zero! e \lstinline[language = coq]!add0r!) e as propriedades de comutatividade e associatividade para tal operação (\lstinline[language = coq]!addrC! e \lstinline[language = coq]!addrA!).
+Usando o mesmo comando (\lstinline[language = coq]!HB.about!) sobre o tipo \lstinline[language = coq]!int!, tem-se como resultado na mensagem apresentada as estruturas com as quais o tipo está ``equipado'', e dentre estas tem-se \lstinline[language = coq]!GRing.Nmodule! (em \lstinline[language=coq]!nmodType! é um \textit{alias} para \lstinline[language = coq]!GRing.Nmodule.type!). 
+
+Tal organização presente na biblioteca, ao ser conhecida pelo usuário, torna mais fácil e organizada a manipulação de diferentes tipos, e é portanto uma informação importante para leitores deste trabalho que desejam futuramente fazer uso da mesma biblioteca. 
+
+\textcolor{red}{ Ainda da pra mexer nessa subseção, pra citar mais referências apesar de eu não ter precisado tanto por que as informações são meio obvias após algum tempo de uso da biblioteca, acho q é interessante citar pra dar mais segurança ao leitor (e a mim mesmo também)}
+
+% \textcolor{darkgreen}{\textbf{IDEIA}: jogar essa seção para o Capítulo 2.}
+% conforme apresentado em \cite{2023multipleinheritancehazardsdependentlytypedalgebraic}, são utilizadas para
+
 
 \subsection{Mantendo Informações de um Record ou Structure}
 

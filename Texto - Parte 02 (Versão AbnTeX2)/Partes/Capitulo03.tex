@@ -95,7 +95,7 @@ Este algoritmo se baseia no seguinte lema:
     % \end{proof}
 % \end{lema}
 
-O algoritmo \hyperref[algo:euclides]{\textsc{Euclides}} é implementado da seguinte forma na biblioteca Mathematical Components (em sua versão para números naturais):
+O algoritmo \hyperref[algo:euclides]{\textsc{Euclides}} é implementado da seguinte forma \footnote{Pode-se observar nesta implementação e em outras apresentadas neste trabalho, o uso de notações como \codequotes\lstinline[language=coq-error]|_.+1|\codequotes, \codequotes\lstinline[language=coq]|_.-1|\codequotes, \codequotes\lstinline[language=coq]|_.+2|\codequotes, \codequotes\lstinline[language=coq]|_.-2|\codequotes, \codequotes\lstinline[language=coq]|_.*2|\codequotes\;e \codequotes\lstinline[language=coq]|_./2|\codequotes. Este uso serve para indicar as respectivas operações, dadas por cada notação, com precedência maior sobre outras no restante da expressão.} na biblioteca Mathematical Components (em sua versão para números naturais):
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Fixpoint gcdn m n :=
     let n' := n %% m in if n' is 0 then m else
@@ -177,7 +177,7 @@ Notation "m != n %[mod d ]" := (modz m d != modz n d) : int_scope.
 Deve-se observar que existem duas igualdades, sendo a primeira a de Leibniz e a segunda uma função booleana. O mesmo ocorre com as desigualdades (na mesma ordem).
 
 Tais definições são equivalentes a definição apresentada por \cite{book:2399854}, conforme é mostrado pelo lema \lstinline[language = coq]{eqz_mod_dvd} implementado na biblioteca \footnote{O operador 
-\lstinline[language = coq]{\%Z} serve para indicar o escopo da operação dentro do parênteses}:
+\lstinline[language = coq]{\%Z} serve para indicar o escopo padrão como \lstinline[language=coq]|int_scope|.}:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma eqz_mod_dvd d m n : (m == n %[mod d])%Z = (d %| m - n)%Z.
     \end{lstlisting}
@@ -282,7 +282,7 @@ Havendo conhecimento da definição de \textit{corpos}, tem-se o seguinte import
 %     $\forall n \in \mathbb{Z}, \mathbb{Z}/(n)$ é um corpo se e somente se $n$ é primo. 
 % \end{lema}
 
-Note que, pelo Lema 4, em um \textit{anel de inteiros módulo $n$}, só há inverso multiplicativo para um determinada \textit{classe de equivalência} $\overline{a}$ se $\mdc(a, n) = 1$, pois só assim existirá outra \textit{classe de equivalência} $\overline{b}$ tal que $\overline{a} \cdot \overline{b} = \overline{a \cdot b} = \overline{1}$ (onde $\overline{1}$ é o elemento neutro da operação $\cdot$).
+Observando o Lema \ref{lema : mdcinv}, em um \textit{anel de inteiros módulo $n$}, só há inverso multiplicativo para um determinada \textit{classe de equivalência} $\overline{a}$ se $\mdc(a, n) = 1$, pois só assim existirá outra \textit{classe de equivalência} $\overline{b}$ tal que $\overline{a} \cdot \overline{b} = \overline{a \cdot b} = \overline{1}$ (onde $\overline{1}$ é o elemento neutro da operação $\cdot$).
 
 Outro conceito importante originado a partir da definição de \textit{anéis de inteiros módulo $n$} é a definição de \textit{grupo de unidades}, denotado por $(\mathbb{Z}/(n))^{\times}$. Esse é um subconjunto formado pelas \textit{classes de equivalência} invertíveis de $\mathbb{Z}/(n)$, ou seja:
 \begin{equation} \label{def:totientset}

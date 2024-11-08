@@ -5,6 +5,11 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.7 }
 
+\bibitem[2020 2020]{youtuCohen}
+\abntrefinfo{2020}{2020}{2020}
+{2020, I.-F. \emph{Cyril Cohen: Hierarchy Builder: algebraic hierarchies made easy in Coq with Elpi (FSCD B)}. 2020. Youtube.
+Dispon{\'\i}vel em: $<$https://youtu.be/F6iRaTlQrlo?si=hvvWFH4WSAfHsd9X$>$.}
+
 \bibitem[Appel e Haken 1976]{bams/1183538218}
 \abntrefinfo{Appel e Haken}{APPEL; HAKEN}{1976}
 {APPEL, K.; HAKEN, W. {Every planar map is four colorable}.
@@ -14,6 +19,10 @@
 \abntrefinfo{Brochero et al.}{BROCHERO et al.}{2013}
 {BROCHERO, F.~E. et al. \emph{Teoria dos Números: um passeio com primos e outros números familiares pelo mundo inteiro}. 3. ed. Rio de Janeiro : IMPA: IMPA, 2013.  (Projeto Euclides).
 ISBN 978-85-2444-0312-5.}
+
+\bibitem[Cohen, Sakaguchi e Tassi 2020]{cohen:hal-02478907}
+\abntrefinfo{Cohen, Sakaguchi e Tassi}{COHEN; SAKAGUCHI; TASSI}{2020}
+{COHEN, C.; SAKAGUCHI, K.; TASSI, E. Hierarchy builder: algebraic hierarchies made easy in coq with elpi. In:  \emph{FSCD 2020 - 5th International Conference on Formal Structures for Computation and Deduction}. Paris, France: [s.n.], 2020. p. 34:1--34:21. Dispon{\'\i}vel em: \url{https://inria.hal.science/hal-02478907}.}
 
 \bibitem[Cook 2023]{johndcookQuadraticReciprocity}
 \abntrefinfo{Cook}{COOK}{2023}

@@ -1,0 +1,1 @@
+Pode-se observar nesta implementação e em outras apresentadas neste trabalho, o uso de notações como \text{\lstinline[language=coq-error]|"_.+1"|}, \lstinline[language=coq]|_.-1|, \lstinline[language=coq]|_.+2|, \lstinline[language=coq]|_.-2|, \lstinline[language=coq]|_.*2| e \lstinline[language=coq]|_./2| ^^E^^L 

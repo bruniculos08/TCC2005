@@ -19,7 +19,8 @@
 \contentsline {subsection}{\numberline {2.3.1}Comando Canonical}{32}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Comando Coercion}{35}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}Exemplo de Implementação de Grupos}{37}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Mantendo Informações de um Record ou Structure}{39}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.4}Uso do Sistema de Hierarquias entre Estruturas Algébricas}{38}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Mantendo Informações de um Record ou Structure}{40}{subsection.2.3.5}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {3}\MakeUppercase []{Base Teórica}}{43}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Máximo Divisor Comum}{43}{section.3.1}%
