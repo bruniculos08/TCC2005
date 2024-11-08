@@ -1264,8 +1264,7 @@ Module Legendre.
 
     Definition resz_quad p a := has (fun i => ((i * i)%:Z  == a %[mod p])%Z) (iota 0 `|p|).
 
-
-    Definition legendre_symb (p : int) (pL2 : (2 < p)%R) (pP : primez.primez p) (a : int) :=
+    Definition legendre_symb {p : int} (pL2 : (2 < p)%R) (pP : primez.primez p) (a : int) :=
         if (p %| a)%Z then 0%Z
         (* else if [exists i : 'I_`|p|, ((i * i)%:Z  == a %[mod p])%Z] *)
         else if (resz_quad p a)
@@ -1278,6 +1277,37 @@ Module Legendre.
         else (-1)%Z.
 
     Eval compute in (legendre_symb (_ : 2 < 7)%R (_ : primez.primez 7) 2).
+
+    HB.about nat.
+    HB.about GRing.Nmodule.
+    HB.about nmodType.
+    Print addrC.
+    HB.about GRing.Nmodule.type.
+    HB.about GRing.isNmodule.
+    Check GRing.add.
+    Print GRing.addrC.
+    Set Printing Notations.
+    Check (_ + _)%R.
+    Check (_ + _).
+    Check +%R.
+    Locate "+".
+    Check (GRing.add 1%Z 1%Z).
+    Print GRing.add.
+    Print addrC.
+    Set Printing Coercions.
+    Print addrC.
+    Check GRing.add.
+    Print GRing.add.
+    HB.about GRing.add.
+    Fail Check (1%Z + 1%Z).
+    Check (1%Z + 1%Z)%R.
+    Check (1%Z + 1%Z).
+    
+    Search (_ + _)%N.
+    Search commutative.
+
+    Print GRing.Nmodule.type.
+    Print GRing.Nmodule.axioms_.
     
     Theorem eulerz_criterion {p : int} (pL2 : (2 < p)%R) (pP : primez.primez p) (a : int) :
         (a ^ ((p - 1) %/ 2)%Z = (legendre_symb pL2 pP a) %[mod p])%Z.
