@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.2)  8 NOV 2024 13:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.2)  8 NOV 2024 18:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1064,11 +1064,11 @@ LaTeX Info: Redefining \cite on input line 618.
 \ABCItoken=\toks51
 )
 
-LaTeX Warning: \include should only be used after \begin{document} on input line 46.
+LaTeX Warning: \include should only be used after \begin{document} on input line 47.
 
 (./Partes/Capa.tex)
 
-LaTeX Warning: \include should only be used after \begin{document} on input line 48.
+LaTeX Warning: \include should only be used after \begin{document} on input line 49.
 
 (./Partes/Config.tex
 Package hyperref Info: Option `colorlinks' set `true' on input line 24.
@@ -1196,27 +1196,27 @@ LaTeX Warning: Label `line:50-item4b-item2' multiply defined.
 (./Partes/ApendiceA.aux) (./Partes/ApendiceB.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-Package hyperref Info: Link coloring ON on input line 53.
-LaTeX Info: Redefining \degres on input line 53.
-LaTeX Info: Redefining \up on input line 53.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+Package hyperref Info: Link coloring ON on input line 54.
+LaTeX Info: Redefining \degres on input line 54.
+LaTeX Info: Redefining \up on input line 54.
 \myptabbox=\box102
 \myptabboxwidth=\skip288
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1238,14 +1238,14 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Redefining \microtypecontext on input line 53.
+LaTeX Info: Redefining \microtypecontext on input line 54.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 53.
+LaTeX Info: Redefining \showhyphens on input line 54.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1258,35 +1258,35 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}] [2
 
 ]
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 61.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 62.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 61.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 62.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 61.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 62.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 61.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 62.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 61.
+(Font)              <12> on input line 62.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 61.
+(Font)              <8> on input line 62.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 61.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 61.
+(Font)              <6> on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 61.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -1295,7 +1295,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.61 	\imprimirfolhaderosto*{}
+l.62 	\imprimirfolhaderosto*{}
                                [1
 
 
@@ -1343,7 +1343,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.63 	\include{Partes/Ficha}
+l.64 	\include{Partes/Ficha}
                              [2
 
 ]
@@ -1440,12 +1440,322 @@ Package microtype Info: Loading generic protrusion settings for font family
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 26.
  [30] [31] [32] [33] [34] [35] [36] [37]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 382.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 386.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [38{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [39] [40] [41]) (./Partes/Capitulo03.tex [42] [43
+) [38] [39{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [40
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-49.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.461 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-52.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.461 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-52.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.461 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-52.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.461 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-52.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.461 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-52.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.461 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-52.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.461 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-52.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.461 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-52.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.461 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-52.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.461 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-52.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.461 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  ] [41
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-54.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.493 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-54.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.493 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-54.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.493 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-54.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.493 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-56.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.493 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-56.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.493 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-56.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.493 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-56.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.493 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-56.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.493 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-56.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.493 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-56.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.493 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-57.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.493 
+      ] [42
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-59.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.555 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-59.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.555 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-59.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.555 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-59.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.555 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-59.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.555 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-59.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.555 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-61.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.555 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-61.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.555 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-61.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.555 ...g}[language = coq,frame=single,tabsize=1]
+                                                  ] [43
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-63.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.582 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-63.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.582 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-63.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.582 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-64.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.582 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-66.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.582 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-66.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.582 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-66.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.582 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-66.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.582 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-66.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.582 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-66.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.582 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-66.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.582 ...g}[language = coq,frame=single,tabsize=1]
+                                                  ] [44
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-67.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-67.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-67.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-68.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-68.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-68.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-68.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-68.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-68.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-68.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-68.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-68.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 ...g}[language = coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-71.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 ...g}[language = coq,frame=single,tabsize=1]
+                                                  ]) (./Partes/Capitulo03.tex [45] [46
 
-] [44] [45] [46]
+] [47] [48] [49
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-77.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.135     \item $
+                 \forall c \in \mathbb{Z}, (\exists x, y \in \mathbb{Z}, a \...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-77.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.135     \item $
+                 \forall c \in \mathbb{Z}, (\exists x, y \in \mathbb{Z}, a \...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-78.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.135     \item $
+                 \forall c \in \mathbb{Z}, (\exists x, y \in \mathbb{Z}, a \...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-78.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.135     \item $
+                 \forall c \in \mathbb{Z}, (\exists x, y \in \mathbb{Z}, a \...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-78.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.135     \item $
+                 \forall c \in \mathbb{Z}, (\exists x, y \in \mathbb{Z}, a \...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-79.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.135     \item $
+                 \forall c \in \mathbb{Z}, (\exists x, y \in \mathbb{Z}, a \...] [50]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <17.28> on input line 197.
 
@@ -1457,7 +1767,77 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 197.
 
-[47] [48{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [49] [50]
+[51
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-80.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.206 \begin{equation*}
+                       
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-80.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.206 \begin{equation*}
+                       
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-80.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.206 \begin{equation*}
+                       ] [52{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [53] [54
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-84.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.326 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-84.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.326 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-85.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.326 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-85.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.326 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-85.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.326 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-86.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.326 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-87.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.326 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-87.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.326 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-87.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.326 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-87.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.326 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-87.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.326 ...ing}[language=coq,frame=single,tabsize=1]
+                                                  ]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 361.
@@ -1470,31 +1850,466 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 361.
 
-[51] [52] [53] [54] [55] [56]
+[55
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-89.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-89.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-89.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-90.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-90.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-90.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-90.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-90.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-91.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-91.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-91.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-91.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-91.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-91.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364     \begin{equation}
+                           \label{def:phi}] [56] [57] [58
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-92.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.474 \begin{equation}
+                       \label{eq : ax2bxc}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-93.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.474 \begin{equation}
+                       \label{eq : ax2bxc}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-94.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.474 \begin{equation}
+                       \label{eq : ax2bxc}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-95.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.474 \begin{equation}
+                       \label{eq : ax2bxc}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-96.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.474 \begin{equation}
+                       \label{eq : ax2bxc}] [59] [60]
 Overfull \hbox (1.90671pt too wide) in paragraph at lines 618--620
 []\T1/lmr/m/it/12 (-20) Dado um n�-mero primo
  []
 
-[57] [58] [59] [60]) (./Partes/Capitulo04.tex [61] [62
+[61] [62] [63] [64]) (./Partes/Capitulo04.tex [65] [66
 
-] [63]
+] [67]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 92.
- [64] [65] [66] [67
-pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-97.\\thelstnumber\040}) has been already used, duplicate ignored
+ [68
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-98.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.113 ...ber=1,tabsize=1,escapechar=@, name=proof]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-101.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.113 ...ber=1,tabsize=1,escapechar=@, name=proof]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-101.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.113 ...ber=1,tabsize=1,escapechar=@, name=proof]
+                                                  ] [69
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-103.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.159 \p
+        rod_(i in 'F_p | i != 0%R) i  = a' ^ p.-1./2  %[mod p]] [70
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-105.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.208  fintype_ordinal__canonical__fintype_Finite 
+                                                  (Zp_trunc (pdiv p)).+2,
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-105.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.208  fintype_ordinal__canonical__fintype_Finite 
+                                                  (Zp_trunc (pdiv p)).+2,
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-105.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.208  fintype_ordinal__canonical__fintype_Finite 
+                                                  (Zp_trunc (pdiv p)).+2,
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-106.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.208  fintype_ordinal__canonical__fintype_Finite 
+                                                  (Zp_trunc (pdiv p)).+2,
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-106.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.208  fintype_ordinal__canonical__fintype_Finite 
+                                                  (Zp_trunc (pdiv p)).+2,
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-106.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.208  fintype_ordinal__canonical__fintype_Finite 
+                                                  (Zp_trunc (pdiv p)).+2,
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-106.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.208  fintype_ordinal__canonical__fintype_Finite 
+                                                  (Zp_trunc (pdiv p)).+2,] [71
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-109.\\thelstnumber\040}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.259 rewrite 
-              big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$] [68] [69
-pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-107.\\thelstnumber\040}) has been already used, duplicate ignored
+              big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-112.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 rewrite 
+              big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-112.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 rewrite 
+              big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-113.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 rewrite 
+              big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-113.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 rewrite 
+              big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-113.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 rewrite 
+              big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-114.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 rewrite 
+              big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-115.25}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 rewrite 
+              big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-115.25}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 rewrite 
+              big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-115.25}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 rewrite 
+              big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-115.25}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 rewrite 
+              big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-115.25}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.259 rewrite 
+              big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-115.25}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.260         (*
+                ... prova do subgoal...*) [72
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-115.25}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.297 ...                         \end{lstlisting}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-115.25}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.297 ...                         \end{lstlisting}
+                                                  ] [73
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-120.0}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.349         = 
-                \prod_(j in 'F_p | j < f j) a'  %[mod p]] [70] [71] [72] [73] [74]
+                \prod_(j in 'F_p | j < f j) a'  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-120.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.349         = 
+                \prod_(j in 'F_p | j < f j) a'  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-121.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.349         = 
+                \prod_(j in 'F_p | j < f j) a'  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-123.25}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.349         = 
+                \prod_(j in 'F_p | j < f j) a'  %[mod p]
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-123.\\thelstnumber\040}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.349         = 
+                \prod_(j in 'F_p | j < f j) a'  %[mod p]] [74
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-124.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-125.35}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-125.35}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-125.35}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-125.35}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-129.39}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-129.39}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-129.39}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-129.39}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-129.39}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-129.39}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-129.39}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-129.39}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-129.39}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-129.39}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 apply:
+             eq_card => i.                                    @ \label{line:...] [75
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-129.62}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.458 ...em[\textbf{(\ref{line:46-item4b-item2})}]
+                                                   Reescrita de \lstinline[l...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-129.62}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.458 ...em[\textbf{(\ref{line:46-item4b-item2})}]
+                                                   Reescrita de \lstinline[l...
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-129.62}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.458 ...em[\textbf{(\ref{line:46-item4b-item2})}]
+                                                   Reescrita de \lstinline[l...] [76] [77
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-141.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.535 ...em[\textbf{(\ref{line:57-item4b-item2})}]
+                                                   Análise dos dois seguint...] [78]
 Underfull \hbox (badness 10000) in paragraph at lines 617--621
 
  []
 
-[75]
+[79
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-151.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.624 (a
+         == b %[mod p])%Z ->
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-151.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.624 (a
+         == b %[mod p])%Z ->
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-151.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.624 (a
+         == b %[mod p])%Z ->
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-151.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.624 (a
+         == b %[mod p])%Z ->
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-151.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.624 (a
+         == b %[mod p])%Z ->]
 Underfull \hbox (badness 10000) in paragraph at lines 629--633
 
  []
@@ -1514,36 +2329,81 @@ Overfull \hbox (5.5878pt too wide) in paragraph at lines 667--668
 \T1/lmr/m/n/12 (-20) github . com / bruniculos08 / TCC2005 / blob / main / Código-[]Parte02 / InversoMultiplicativo . v>[]$[][]. 
  []
 
-) (./Partes/Conclusao.tex [76]) (./main.bbl (./main.brf)
+) (./Partes/Conclusao.tex [80
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-154.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Conclusão}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-154.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Conclusão}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-154.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Conclusão}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-155.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Conclusão}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-155.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Conclusão}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-156.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Conclusão}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-156.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Conclusão}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-157.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Conclusão}
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-157.0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Conclusão}]) (./main.bbl (./main.brf)
 \tf@brf=\write6
 \openout6 = `main.brf'.
 
- [77
+ [81
 
-] [78
+] [82
 
 ]
 bibitemlist
-[79]) [80]
+[83]) [84]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\uppercase' on input line 87.
+(hyperref)                removing `\uppercase' on input line 88.
 
-[81
+[85
 
 
-] [82]
+] [86]
 \openout2 = `Partes/ApendiceA.aux'.
 
- (./Partes/ApendiceA.tex [83
+ (./Partes/ApendiceA.tex [87
 
 
-] [84]
+] [88]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 127.
 
-[85]
+[89]
 Overfull \hbox (19.07716pt too wide) detected at line 187
 []
  []
@@ -1551,7 +2411,7 @@ Overfull \hbox (19.07716pt too wide) detected at line 187
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [86]
+ [90]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 280.
@@ -1560,15 +2420,15 @@ LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 285.
 
-[87]) [88]
+[91]) [92]
 \openout2 = `Partes/ApendiceB.aux'.
 
- (./Partes/ApendiceB.tex [89
+ (./Partes/ApendiceB.tex [93
 
 
 
 
-] [90] [91] [92] [93] [94] [95] [96]) [97]
+] [94] [95] [96] [97] [98] [99] [100]) [101]
 \tf@lof=\write7
 \openout7 = `main.lof'.
 
@@ -1583,24 +2443,33 @@ LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: 5EEC70FBF16800BB487A04B298D0E82C;3341.
+(rerunfilecheck)             Checksum: C89CD8ECB0E458B845F906037A6B6884;3359.
  ) 
 Here is how much of TeX's memory you used:
- 41545 strings out of 476041
- 787648 string characters out of 5793174
- 2191388 words of memory out of 6000000
- 59979 multiletter control sequences out of 15000+600000
+ 41494 strings out of 476041
+ 787799 string characters out of 5793174
+ 2192388 words of memory out of 6000000
+ 60024 multiletter control sequences out of 15000+600000
  658594 words of font info for 302 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
  93i,25n,99p,1477b,1933s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
+pdfTeX warning (dest): name{lstnumber.-113.26} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{lstnumber.-105.1} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{lstnumber.-103.1} has been referenced but does not exist, replaced by a fixed one
+
+
 pdfTeX warning (dest): name{https://github.com/thery/mathcomp-extra/blob/master/euler.v} has been referenced but does not exist, replaced by a fixed one
 
 </usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (99 pages, 826877 bytes).
+Output written on main.pdf (103 pages, 828265 bytes).
 PDF statistics:
- 2132 PDF objects out of 2487 (max. 8388607)
- 1929 compressed objects within 20 object streams
- 878 named destinations out of 1000 (max. 500000)
+ 2025 PDF objects out of 2073 (max. 8388607)
+ 1819 compressed objects within 19 object streams
+ 782 named destinations out of 1000 (max. 500000)
  80882 words of extra memory for PDF output out of 89155 (max. 10000000)
 

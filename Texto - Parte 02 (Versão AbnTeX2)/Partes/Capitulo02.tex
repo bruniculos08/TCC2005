@@ -359,14 +359,18 @@ Usa-se então o comando \lstinline[language = coq]$Canonical$ para que o \textit
 Canonical int_group.
     \end{lstlisting}
 Com este conjunto de configurações passa a ser mais fácil a escrita e leitura de declarações relacionadas a grupos. Assim, torna-se então possível a formalização compacta de teoremas genéricos sobre quaisquer tipos presentes no campo \lstinline[language = coq]$sort$ de algum habitante de \lstinline[language = coq]$group$. Como exemplo, tem-se o seguinte teorema e sua respectiva prova:
-    \begin{lstlisting}[language = coq,frame=single,tabsize=1]
+    \begin{lstlisting}[language = coq,frame=single,tabsize=1, escapechar=@]
 Theorem exemplo_sobre_grupos: 
     \forall G : group, \forall a b : G, (a \otimes b) \otimes 0 = (a \otimes 0) \otimes b.
 Proof.
-    intros. rewrite (neutral_right G). rewrite (neutral_right G).
+    intros.
+    rewrite neutral_right. 
+    rewrite neutral_right.
     reflexivity. 
 Qed.
     \end{lstlisting}
+onde no lugar de \coqinline[]{neutral_right} seria equivalente utilizar \coqinline[]{(neutral_right _)} ou também \coqinline[]{(neutral_right G)}. 
+
 Como este teorema serve para qualquer grupo \lstinline[language = coq]$G$, esse pode então ser usado na seguinte prova:
     \begin{lstlisting}[language = coq,frame=single,tabsize=1]
 Theorem exemplo_sobre_int:
@@ -379,42 +383,165 @@ Tal prova exemplifica como o uso dos mecanismos em \textit{Coq}, que foram apres
 
 \subsection{Uso do Sistema de Hierarquias entre Estruturas Algébricas}
 
-Para organizar estruturas algébricas semelhantes a apresentada na Subseção \ref{sub:grupos}, a biblioteca Mathematical Components utiliza uma linguagem chamada $\mathcal{HB}$. Esta é disponibilizada em \textit{Coq} por meio do \textit{addon} \lstinline[language=coq]|hierarchy-builder| e a motivação por trás de seu uso é facilitar aos usuários a criação, manutenção e padronização de estruturas como a mencionada anteriormente. Caso o leitor deseje um aprofundamento nestes assuntos recomenda-se a publicação \cite{cohen:hal-02478907} e o vídeo \cite{youtuCohen}, pois o sistema por trás do gerenciamento de tais estruturas não será aprofundado aqui. Pelo contrário, nesta Subseção se busca apenas mostrar como o usuário iniciante pode verificar quais são propriedades provadas sobre tipo, por meio de estruturas com a qual o tipo está ``equipado'', isto é, estruturas cujo o tipo pode formar um instância, como no caso de \lstinline[language=coq]|int| no exemplo apresentado na Subseção \ref{sub:grupos}.
+Para organizar estruturas algébricas semelhantes a apresentada na Subseção \ref{sub:grupos}, a biblioteca Mathematical Components utiliza uma linguagem chamada $\mathcal{HB}$. Esta é disponibilizada em \textit{Coq} por meio do \textit{addon} \coqinline|hierarchy-builder| e a motivação por trás de seu uso é facilitar aos usuários a criação, manutenção e padronização de estruturas como a mencionada anteriormente. Caso o leitor deseje um aprofundamento nestes assuntos recomenda-se a publicação \cite{cohen:hal-02478907} e o vídeo \cite{youtuCohen}, pois o sistema por trás do gerenciamento de tais estruturas não será aprofundado aqui. Pelo contrário, nesta Subseção se busca apenas mostrar como o usuário iniciante pode verificar quais são propriedades provadas sobre tipo, por meio de estruturas com a qual o tipo está ``equipado'', isto é, estruturas cujo o tipo pode formar um instância, como no caso de \coqinline|int| no exemplo apresentado na Subseção \ref{sub:grupos}.
 
 % Diversas estruturas como as algébricas, que guardam predicados sobre tipos, são utilizadas na biblioteca Mathematical, e suas declarações seguem um padrão chamado de 
 
-Ao se utilizar a biblioteca Mathematical Components pela primeira vez o usuário tende a necessitar corriqueiramente da ferramenta de busca de teoremas, lemas e definições. Isto tende acontecer pois em geral o usuário precisa aprendar os nomes (e padrões destes) utilizados na biblioteca e o como são implementados. Como exemplo suponha que queira-se rescrever uma expressão com números naturais utilizando a propriedade de comutatividade: o lema para isto é dado por \lstinline[language = coq]!addnC! e pode ser notado como o lema que se deseja utilizar por sua definição:
-\begin{lstlisting}[language=coq]
-        Lemma addnC : commutative addn.
-\end{lstlisting}
-Agora, supondo que se tenha a mesma situação envolvendo números inteiros. É provável que não seja tão simples para o mesmo usuário encontrar o lema desejado, pois nesse caso, apesar da existência do lema \lstinline[language = coq]!addzC! com definição:
-\begin{lstlisting}[language=coq]
-        Lemma addzC : commutative addz.
-\end{lstlisting}
-pelo fato da notação \lstinline[language = coq]!+! não ser definida para a operação \lstinline[language = coq]!addz! (operação de soma entre inteiros) mas sim para determinadas operações binárias de estruturas semelhantes ao \textit{record} apresentado na Subseção \ref{sub:grupos}, tal lema não irá servir (exceto caso o usuário esteja utilizando a função \lstinline[language = coq]!addz! e não a notação \lstinline[language = coq]!+!).
+Ao se utilizar a biblioteca Mathematical Components pela primeira vez o usuário tende a necessitar corriqueiramente da ferramenta de busca de teoremas, lemas e definições. Isto tende acontecer pois em geral o usuário precisa aprendar os nomes (e padrões destes) utilizados na biblioteca e o como são implementados. Como exemplo suponha que queira-se rescrever uma expressão com números naturais utilizando a propriedade de comutatividade. Para isso, o usuário pode utilizar o comando \coqinline|Search| junto a um padrão para pesquisa:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Search (_ + _).
+    \end{lstlisting}
+ou, caso queira fazer uma pesquisa mais precisa dentro do escopo \coqinline|nat_scope|, pode usar:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Search (_ + _)%N.
+    \end{lstlisting}
+Este último comando trás a seguinte mensagem:
+    \begin{lstlisting}[language=coq-error,frame=single,tabsize=1, escapechar=@, escapechar=@, numbers=left]
+rshift: forall (m : nat) [n : nat], 'I_n -> 'I_(m + n)
+lshift: forall [m : nat] (n : nat), 'I_m -> 'I_(m + n)
+addnn: forall n : nat, n + n = n.*2
+leq_addl: forall m n : nat, n <= m + n
+leq_addr: forall m n : nat, n <= n + m      @ \Suppressnumber @
+    (*... continua...*)                     @ \Reactivatenumber @
+    \end{lstlisting}
+No entanto, nesta lista, o usuário provavelmente não encontrará o lema que necessita, que nesse caso é \coqinline|addnC|. Isto ocorre pois o enunciado desse lema não apresenta a notação \coqinline|+|. Entretanto, fazendo a seguinte pesquisa:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Search commutative.
+    \end{lstlisting}
+onde \coqinline|commutative| é uma \textit{definition},
+o lema aparece logo na linha \ref{coqlema:addn} da mensagem impressa: 
+    \begin{lstlisting}[language=coq-error,frame=single,tabsize=1, escapechar=@, numbers=left]
+intZmod.addzC: commutative intZmod.addz
+mulnC: commutative muln
+intRing.mulzC: commutative intRing.mulz
+addnC: commutative addn     @ \label{coqlema:addn} @
+maxnC: commutative maxn     @ \Suppressnumber @
+    (*... continua...*)
+    \end{lstlisting}
+Portanto o lema \coqinline|addnC| tem a seguinte definição:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma addnC : commutative addn.
+    \end{lstlisting}
+Agora, supõe-se a mesma situação envolvendo números inteiros. Nesse caso, a notação \coqinline|+| aparecera com escopo delimitado por \coqinline|%R| ou dentro do escopo \coqinline|ring_scope| ao qual \coqinline|%R| é um delimitador. A exemplo, fora de tal escopo um comando como \coqinline|Check (1%Z + 1%Z)| irá falhar, e portanto ao se executar um comando como:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Fail Check (1%Z + 1%Z).
+    \end{lstlisting}
+é apresentada a seguinte mensagem:
+    \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
+The command has indeed failed with message:
+The term "1%Z" has type "int" while it is expected to have type "nat".
+    \end{lstlisting}
+enquanto o comando \coqinline|Check (1%Z + 1%Z)%R| é executado com sucesso. 
 
-Sendo assim, para realizar a manipulação desejada, deve-se utilizar o lema \lstinline[language = coq]!addrC!, qual possui a seguinte definição: 
-\begin{lstlisting}[language=coq]
-        forall s : nmodType, commutative +%R
-\end{lstlisting}
-Note que o lema é definido pra uma estrutura \lstinline[language = coq]!nmodType!; estruturas como essa são muito comuns nos códigos da Mathematical Components, e, conforme apresentado no guia de contribuições da biblioteca\footnote{Disponível em: \url{https://github.com/math-comp/math-comp/blob/master/CONTRIBUTING.md}}, pode-se verificar, utilizando a linguagem HB \cite{cohen:hal-02478907} para hierarquia de estruturas algébricas, os lemas que caracterizam \lstinline[language = coq]!nmodType!, usando o seguinte comando: 
-\begin{lstlisting}[language=coq]
-        HB.about nmodType.
-\end{lstlisting}
-que irá apresentar uma mensagem contendo, em parte dela, o seguinte conteúdo:
-\begin{lstlisting}[language=coq-error]
-        HB: nmodType is a structure (from "./ssralg.v", line 589)
-        HB: nmodType characterizing operations and axioms are:
-        - add0r
-        - addrC
-        - addrA
-        - add
-        - zero
-\end{lstlisting}
-Verificando as definições dos nomes apresentados nesta mensagem podemos notar que tal estrutura possui uma operação (\lstinline[language = coq]!add!), um elemento neutro à esquerda (\lstinline[language = coq]!zero! e \lstinline[language = coq]!add0r!) e as propriedades de comutatividade e associatividade para tal operação (\lstinline[language = coq]!addrC! e \lstinline[language = coq]!addrA!).
-Usando o mesmo comando (\lstinline[language = coq]!HB.about!) sobre o tipo \lstinline[language = coq]!int!, tem-se como resultado na mensagem apresentada as estruturas com as quais o tipo está ``equipado'', e dentre estas tem-se \lstinline[language = coq]!GRing.Nmodule! (em \lstinline[language=coq]!nmodType! é um \textit{alias} para \lstinline[language = coq]!GRing.Nmodule.type!). 
+É provável então que não seja tão simples para o mesmo usuário encontrar o lema desejado, pois nesse caso, apesar da existência do lema \lstinline[language = coq]!addzC! com definição:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma addzC : commutative addz.
+    \end{lstlisting}
+pelo fato da notação \lstinline[language = coq]!+! não ser definida para a operação \lstinline[language = coq]!addz! (operação de soma entre inteiros), mesmo considerando o escopo \coqinline|ring_scope| não se pode utilizar tal lema para reescrita em uma expressão com a notação \lstinline[language = coq]!+!.
 
-Tal organização presente na biblioteca, ao ser conhecida pelo usuário, torna mais fácil e organizada a manipulação de diferentes tipos, e é portanto uma informação importante para leitores deste trabalho que desejam futuramente fazer uso da mesma biblioteca. 
+As definições de notações com utilização de um caracter como \lstinline[language = coq]!+! podem ser listadas por meio do comando \lstinline[language = coq]!Locate!, como feito a seguir:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Locate "+". 
+    \end{lstlisting}
+imprimindo a mensagem:
+    \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
+Notation "{ A } + { B }" := (sumbool A B) : type_scope (default interpretation)
+Notation "A + { B }" := (sumor A B) : type_scope (default interpretation)
+Notation "m + n" := (Nat.add m n) : coq_nat_scope
+Notation "A + B" := (addsmx.body A B) : matrix_set_scope
+Notation "m + n" := (addn_rec m n) : nat_rec_scope
+Notation "m + n" := (addn m n) : nat_scope (default interpretation)
+Notation "x + y" := (addq x y) : rat_scope
+Notation "x + y" := (GRing.add x y) : ring_scope
+Notation "x + y" := (GRing.Add x y) : term_scope
+Notation "x + y" := (sum x y) : type_scope
+Notation "U + V" := (addv U V) : vspace_scope
+    \end{lstlisting}
+Pode, por esta mensagem, se verificar que a notação serve para a função \coqinline|addn| no escopo \coqinline|nat_scope| e como uma interpretação padrão (\textit{default interpretation}). Também pode-se notar que a notação serve para a função \coqinline|GRing.add| (do módulo \coqinline|GRing|) no escopo \coqinline|ring_scope|, mas em nenhum momento a função \coqinline|addz| é mencionada. Verificando-se então o tipo de \coqinline|GRing.add| tem-se:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Print GRing.add.
+    \end{lstlisting}
+que gera a mensagem:
+    \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
+GRing.add =
+fun (s : nmodType) (H : s) => [eta GRing.isNmodule.add (GRing.Nmodule.class s) H]
+     : forall s : nmodType, s -> s -> s
+
+Arguments GRing.add {s} (_ _)%ring_scope
+    \end{lstlisting}
+Por esta mensagem temos que \coqinline{GRing.add} tem tipo \coqinline[]{forall s : nmodType, s -> s -> s}, no entanto note que a expressão \coqinline[]{GRing.add 1%Z 1%Z} é válida (isso pode ser feito com o comando \coqinline[]{Check}), o que pode parecer estranho mesmo com a possibilidade de uso do mecanismo \textit{canonical}, pois se esperava que recebesse um elemento de tipo \coqinline[]{nmodType} e retorna-se uma operação sobre o campo \coqinline[]{sort} da respectiva \textit{structure}. Todavia, se usarmos antes do comando \coqinline[]{Print GRing.add} o comando:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Set Printing Coercions.
+    \end{lstlisting}
+a mensagem impressa pelo comando \coqinline[]{Print GRing.add} será:
+    \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
+GRing.add =
+fun (s : nmodType) (H : GRing.Nmodule.sort s) =>
+[eta GRing.isNmodule.add
+(GRing.Nmodule.GRing_isNmodule_mixin (GRing.Nmodule.class s)) H]
+     : forall s : nmodType,
+GRing.Nmodule.sort s -> GRing.Nmodule.sort s -> GRing.Nmodule.sort s
+
+Arguments GRing.add {s} (_ _)%ring_scope
+    \end{lstlisting}
+pois agora são impressas todas as coerções, e então pode-se ver que o tipo de \coqinline[]{Print GRing.add} é:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+forall s : nmodType, 
+    GRing.Nmodule.sort s -> GRing.Nmodule.sort s -> GRing.Nmodule.sort s
+    \end{lstlisting}
+Ou seja, de fato, com o uso do mecanismo \textit{canonical}, há algum habitante do tipo \coqinline[]{nmodType} tal que, na expressão \coqinline[]{GRing.add 1%Z 1%Z} este habitante é inserido como o primeiro argumento de \coqinline[]{GRing.add} sendo implícito. Sendo assim, pode-se utilizar as propriedades contidas na estrutura \coqinline[]{nmodType} sobre elementos de tipo \coqinline[]{int} (assim como feito na Subseção \ref{sub:grupos}). 
+
+Conforme apresentado em \url{https://github.com/math-comp/math-comp/blob/master/CONTRIBUTING.md}, pode-se obter informações sobre uma estrutura por meio do comando \coqinline[]{HB.about}. Assim, usando:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+HB.about nmodType.
+    \end{lstlisting}
+obtêm-se uma mensagem que possui em parte o seguinte conteúdo:
+    \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
+HB: nmodType is a structure (from "./ssralg.v", line 589)
+HB: nmodType characterizing operations and axioms are:
+    - add0r
+    - addrC
+    - addrA
+    - add
+    - zero
+    \end{lstlisting}
+esta mensagem mostra as propriedades contidas na estrutura \coqinline[]{nmodType}, e dentre elas está a propriedade (lema) da qual o usuário necessita, \coqinline[]{addrC}, sobre qual, usando o comando:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Print addrC.
+    \end{lstlisting}
+é impresso:
+    \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
+addrC = @GRing.addrC
+     : forall s : nmodType, commutative +%R
+
+Arguments addrC [s] x y
+    \end{lstlisting}
+logo o lema \lstinline[language = coq]!addrC! possui exatamente o tipo (enunciado) que se esperava:
+% mas sim para determinadas operações binárias de estruturas semelhantes ao \textit{record} apresentado na Subseção \ref{sub:grupos}, tal lema não irá servir (exceto caso o usuário esteja utilizando a função \lstinline[language = coq]!addz! e não a notação \lstinline[language = coq]!+!).
+% Sendo assim, para realizar a manipulação desejada, deve-se utilizar o lema \lstinline[language = coq]!addrC!, qual possui a seguinte definição: 
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+forall s : nmodType, commutative +%R
+    \end{lstlisting}
+e então a situação do usuário pode ser resolvida o utilizando.
+
+% Note que o lema é definido pra uma estrutura \lstinline[language = coq]!nmodType!; estruturas como essa são muito comuns nos códigos da Mathematical Components, e, conforme apresentado no guia de contribuições da biblioteca\footnote{Disponível em: \url{https://github.com/math-comp/math-comp/blob/master/CONTRIBUTING.md}}, pode-se verificar, utilizando a linguagem HB \cite{cohen:hal-02478907} para hierarquia de estruturas algébricas, os lemas que caracterizam \lstinline[language = coq]!nmodType!, usando o seguinte comando: 
+% \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+%         HB.about nmodType.
+% \end{lstlisting}
+% que irá apresentar uma mensagem contendo, em parte dela, o seguinte conteúdo:
+% \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
+%         HB: nmodType is a structure (from "./ssralg.v", line 589)
+%         HB: nmodType characterizing operations and axioms are:
+%         - add0r
+%         - addrC
+%         - addrA
+%         - add
+%         - zero
+% \end{lstlisting}
+% Verificando as definições dos nomes apresentados nesta mensagem podemos notar que tal estrutura possui uma operação (\lstinline[language = coq]!add!), um elemento neutro à esquerda (\lstinline[language = coq]!zero! e \lstinline[language = coq]!add0r!) e as propriedades de comutatividade e associatividade para tal operação (\lstinline[language = coq]!addrC! e \lstinline[language = coq]!addrA!).
+% Usando o mesmo comando (\lstinline[language = coq]!HB.about!) sobre o tipo \lstinline[language = coq]!int!, tem-se como resultado na mensagem apresentada as estruturas com as quais o tipo está ``equipado'', e dentre estas tem-se \lstinline[language = coq]!GRing.Nmodule! (em \coqinline!nmodType! é um \textit{alias} para \lstinline[language = coq]!GRing.Nmodule.type!). 
+
+% Tal organização presente na biblioteca, ao ser conhecida pelo usuário, torna mais fácil e organizada a manipulação de diferentes tipos, e é portanto uma informação importante para leitores deste trabalho que desejam futuramente fazer uso da mesma biblioteca. 
 
 \textcolor{red}{ Ainda da pra mexer nessa subseção, pra citar mais referências apesar de eu não ter precisado tanto por que as informações são meio obvias após algum tempo de uso da biblioteca, acho q é interessante citar pra dar mais segurança ao leitor (e a mim mesmo também)}
 
