@@ -7,49 +7,49 @@
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {1}\MakeUppercase []{Introdução}}{23}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Objetivo Geral}{26}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Objetivos Específicos}{26}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Estrutura do Trabalho}{26}{section.1.3}%
+\contentsline {chapter}{\chapternumberline {1}\MakeUppercase []{Introdução}}{14}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Objetivo Geral}{17}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Objetivos Específicos}{17}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Estrutura do Trabalho}{17}{section.1.3}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {2}\MakeUppercase []{Biblioteca Mathematical Components}}{29}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Módulos}{29}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Igualdades}{30}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Structures e Records}{31}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Comando Canonical}{32}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Comando Coercion}{35}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Exemplo de Implementação de Grupos}{37}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Mecanismo para Hierarquias entre Estruturas Algébricas}{38}{subsection.2.3.4}%
-\contentsline {subsection}{\numberline {2.3.5}Mantendo Informações de um Record ou Structure}{46}{subsection.2.3.5}%
+\contentsline {chapter}{\chapternumberline {2}\MakeUppercase []{Biblioteca Mathematical Components}}{19}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Módulos}{19}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Igualdades}{20}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Structures e Records}{21}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Comando Canonical}{22}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Comando Coercion}{25}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Exemplo de Implementação de Grupos}{27}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Mecanismo para Hierarquias entre Estruturas Algébricas}{28}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Mantendo Informações de um Record ou Structure}{36}{subsection.2.3.5}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {3}\MakeUppercase []{Base Teórica}}{51}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Máximo Divisor Comum}{51}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Algoritmo de Euclides}{52}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Teorema Bachet-Bézout}{53}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Propriedades de Congruência}{54}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Anel de Inteiros Módulo $n$}{55}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Função $\varphi $ de Euler}{60}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Congruência de Grau 2 e Símbolo de Legendre}{62}{section.3.7}%
+\contentsline {chapter}{\chapternumberline {3}\MakeUppercase []{Base Teórica}}{40}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Máximo Divisor Comum}{40}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Algoritmo de Euclides}{41}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Teorema Bachet-Bézout}{42}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Propriedades de Congruência}{43}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Anel de Inteiros Módulo $n$}{44}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Função $\varphi $ de Euler}{49}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Congruência de Grau 2 e Símbolo de Legendre}{51}{section.3.7}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {4}\MakeUppercase []{Implementação}}{71}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Implementações Externas de Maior Relevância}{71}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Formalização do Símbolo de Legendre}{83}{section.4.2}%
+\contentsline {chapter}{\chapternumberline {4}\MakeUppercase []{Implementação}}{59}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Implementações Externas de Maior Relevância}{59}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Formalização do Símbolo de Legendre}{71}{section.4.2}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {5}\MakeUppercase []{Conclusão}}{85}{chapter.5}%
+\contentsline {chapter}{\chapternumberline {5}\MakeUppercase []{Conclusão}}{73}{chapter.5}%
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\MakeUppercase []{Refer\^encias}}{87}{section*.16}%
+\contentsline {chapter}{\MakeUppercase []{Refer\^encias}}{74}{section*.16}%
 \renewcommand *{\cftappendixname }{AP\^ENDICE \space }
 \setlength {\cftpartindent }{\cftlastnumwidth } \setlength {\cftpartnumwidth }{2em}
 \cftinsert {A}
-\contentsline {part}{\uppercase {Ap\^endices}}{89}{section*.17}%
+\contentsline {part}{\uppercase {Ap\^endices}}{76}{section*.17}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \cftinsert {A}
-\contentsline {appendix}{\chapternumberline {A}\MakeUppercase []{Algoritmo de Tonelli-Shanks (ou RESSOL)}}{91}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Descrição do Algoritmo}{91}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Prova Manual}{93}{section.A.2}%
+\contentsline {appendix}{\chapternumberline {A}\MakeUppercase []{Algoritmo de Tonelli-Shanks (ou RESSOL)}}{77}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Descrição do Algoritmo}{77}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Prova Manual}{79}{section.A.2}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \cftinsert {A}
-\contentsline {appendix}{\chapternumberline {B}\MakeUppercase []{Reciprocidade Quadrática}}{97}{appendix.B}%
+\contentsline {appendix}{\chapternumberline {B}\MakeUppercase []{Reciprocidade Quadrática}}{83}{appendix.B}%
