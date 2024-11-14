@@ -383,7 +383,7 @@ Tal prova exemplifica como o uso dos mecanismos em \textit{Coq}, que foram apres
 
 \subsection{Mecanismo para Hierarquias entre Estruturas Algébricas}
 
-Para organizar estruturas algébricas semelhantes a apresentada na Subseção \ref{sub:grupos}, a biblioteca Mathematical Components utiliza uma linguagem chamada $\mathcal{HB}$. Esta é disponibilizada em \textit{Coq} por meio do \textit{addon} \coqinline|hierarchy-builder| e a motivação por trás de seu uso é facilitar aos usuários a criação, manutenção e padronização destas estruturas. Caso o leitor deseje um aprofundamento nestes assuntos recomenda-se a publicação \cite{cohen:hal-02478907} e o vídeo \cite{youtuCohen}, pois o sistema por trás do gerenciamento de tais estruturas não será aprofundado aqui. Pelo contrário, nesta Subseção se busca apenas mostrar como o usuário pode pesquisar propriedades provadas sobre um determinado tipo por meio de estruturas com a qual o tipo está ``equipado'', expressão cujo significado será explicado adiante.
+Para organizar estruturas algébricas semelhantes a apresentada na Subseção \ref{sub:grupos}, a biblioteca Mathematical Components utiliza uma linguagem chamada $\mathcal{HB}$. Esta é disponibilizada em \textit{Coq} por meio do \textit{addon} \coqinline!hierarchy-builder! e a motivação por trás de seu uso é facilitar aos usuários a criação, manutenção e padronização destas estruturas. Caso o leitor deseje um aprofundamento nestes assuntos recomenda-se a publicação \cite{cohen:hal-02478907} e o vídeo \cite{youtuCohen}, pois o sistema por trás do gerenciamento de tais estruturas não será aprofundado aqui. Pelo contrário, nesta Subseção se busca apenas mostrar como o usuário pode pesquisar propriedades provadas sobre um determinado tipo por meio de estruturas com a qual o tipo está ``equipado'', expressão cujo significado será explicado adiante.
 
 % Diversas estruturas como as algébricas, que guardam predicados sobre tipos, são utilizadas na biblioteca Mathematical, e suas declarações seguem um padrão chamado de 
 
@@ -416,7 +416,7 @@ mulnC: commutative muln
 intRing.mulzC: commutative intRing.mulz
 addnC: commutative addn     @ \label{coqlema:addn} @
 maxnC: commutative maxn     @ \Suppressnumber @
-    (*... continua...*)
+    (*... continua...*)     @ \Reactivatenumber @
     \end{lstlisting}
 Portanto o lema \coqinline|addnC| tem a seguinte definição:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
@@ -484,12 +484,12 @@ GRing.Nmodule.sort s -> GRing.Nmodule.sort s -> GRing.Nmodule.sort s
 
 Arguments GRing.add {s} (_ _)%ring_scope
     \end{lstlisting}
-pois agora são impressas todas as coerções, e então pode-se ver que o tipo de \coqinline[]{Print GRing.add} é:
+pois agora são impressas todas as coerções, e então pode-se ver que o tipo de \coqinline[]{GRing.add} é:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 forall s : nmodType, 
     GRing.Nmodule.sort s -> GRing.Nmodule.sort s -> GRing.Nmodule.sort s
     \end{lstlisting}
-Ou seja, de fato, com o uso do mecanismo \textit{canonical}, há algum habitante do tipo \coqinline[]{nmodType} tal que, na expressão \coqinline[]{GRing.add 1%Z 1%Z} este habitante é inserido como o primeiro argumento de \coqinline[]{GRing.add} sendo implícito. Sendo assim, pode-se utilizar as propriedades contidas na estrutura \coqinline[]{nmodType} sobre elementos de tipo \coqinline[]{int} (assim como feito na Subseção \ref{sub:grupos}). 
+Ou seja, de fato, pelo uso do mecanismo \textit{canonical}, há algum habitante do tipo \coqinline[]{nmodType} tal que, na expressão \coqinline[]{GRing.add 1%Z 1%Z} este habitante é inserido como o primeiro argumento de \coqinline[]{GRing.add} sendo implícito. Sendo assim, pode-se utilizar as propriedades contidas na estrutura \coqinline[]{nmodType} sobre elementos de tipo \coqinline[]{int} (assim como feito na Subseção \ref{sub:grupos}). 
 
 Conforme apresentado em \url{https://github.com/math-comp/math-comp/blob/master/CONTRIBUTING.md}, pode-se obter informações sobre uma estrutura por meio do comando \coqinline[]{HB.about}. Assim, usando:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
@@ -523,7 +523,7 @@ logo o lema \lstinline[language = coq]!addrC! possui exatamente o tipo (enunciad
 forall s : nmodType, commutative +%R
     \end{lstlisting}
 e então a situação do usuário pode ser resolvida o utilizando. 
-Há também outra maneira de se resolver tal problema que é consideralvemente mais simples. Para tal será necessário trazer aqui um breve explicação sobre pelo menos uma das versões da hierarquia apresentada em \cite{cohen:hal-02478907}. A versão escolhida para ser tratada aqui é a chamada V1 que apesar de não abordar muitos conceitos sobre a linguagem $\mathcal{HB}$ é suficiente para o entendimento do leitor sobre como pesquisar e utilizar os lemas e teoremas disponíveis nas \textit{structures} geradas por tal linguagem.
+Há também outra maneira de se resolver tal problema que é consideralvemente mais simples. Para tal será necessário trazer aqui um breve explicação sobre pelo menos uma das versões da hierarquia apresentada em \cite{cohen:hal-02478907}. A versão escolhida para ser tratada aqui é a chamada V1, que apesar de não abordar muitos conceitos sobre a linguagem $\mathcal{HB}$, é suficiente para o entendimento do leitor sobre como pesquisar e utilizar os lemas e teoremas disponíveis nas \textit{structures} geradas por tal linguagem.
 
 O exemplo a ser apresentado está disponível em \url{https://github.com/math-comp/hierarchy-builder/blob/master/examples/FSCD2020_material/V1.v}. O código deste exemplo pode ser divido nas seguintes partes:
     \begin{enumerate}
@@ -537,7 +537,7 @@ Delimit Scope hb_scope with G.
 Open Scope hb_scope.
         \end{lstlisting}
     
-        \item \label{item:mixin-monoid} Declação de um \textit{mixin} por meio do comando \coqinline[]{HB.mixin}; este comando recebe um \textit{record} que deve possuir um parâmtero de tipo \coqinline[]{Type} junto com uma lista possívelmente vazia de dependências 
+        \item \label{item:mixin-monoid} Declação de um \textit{mixin} por meio do comando \coqinline[]{HB.mixin}; este comando recebe um \textit{record} que deve possuir um parâmetro de tipo \coqinline[]{Type} junto com uma lista possívelmente vazia de dependências 
         % como outros \textit{mixins} ou \textit{factories} aplicados cada um no primeiro parâmetro (este último tem um forma de declaração semelhante a de um \textit{mixin} porém não será discutido neste trabalho pois não aparece neste exemplo):
         aplicadas cada uma no primeiro parâmetro:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1, numbers=left]

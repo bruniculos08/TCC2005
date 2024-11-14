@@ -658,9 +658,9 @@ Lemma legendre_symb_Neg1 (p : int) (pL2 : (2 < p)%R)
         \item $\left(\frac{a \cdot b}{p}\right) = \left(\frac{a}{p}\right) \cdot \left(\frac{b}{p}\right)$, cuja declaração dada em \textit{Coq} é:
         \newline
                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Lemma legendre_symb_Neg1 (p : int) (pL2 : (2 < p)%R) 
-(pP : primez.primez p):
-((legendre_symb pL2 pP (-1)) == 1) = (p == 1 %[mod 4])%Z.
+Lemma legendre_symb_mul (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
+        (legendre_symb pL2 pP (a * b)%R) = 
+                ((legendre_symb pL2 pP a) * (legendre_symb pL2 pP b))%R.
                 \end{lstlisting}
         \end{enumerate}
 
