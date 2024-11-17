@@ -331,7 +331,9 @@ Check (1%Z ⊗ 1%Z).
 Theorem Ex9: 
     ∀ (G : group) (a b : G), (a ⊗ b) ⊗ 0 = (a ⊗ 0) ⊗ b.
 Proof.
-    intros. rewrite (neutral_right G). rewrite (neutral_right G).
+    intros.
+    rewrite neutral_right.
+    rewrite neutral_right.
     reflexivity. 
 Qed.
 
@@ -340,7 +342,8 @@ Qed.
 Theorem Ex10:
     ∀ a b : int, (a ⊗ b) ⊗ 0%Z = (a ⊗ 0%Z) ⊗ b.
 Proof.
-    move=> a b. 
+    move=> a b.
+    by rewrite !(neutral_right).
     rewrite ?addzC.
     rewrite /(_ ⊗ _) //=.
     rewrite addzC.

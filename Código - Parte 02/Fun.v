@@ -89,7 +89,7 @@ Qed.
 
 Check (leq _ 1).
 
-Lemma valZpK x : 
+(* Lemma valZpK x : 
     inZp x = x.
 Proof.
     apply: (@val_inj nat _ 'I_p). 
@@ -101,3 +101,7 @@ Lemma batata: ∀ x,
 Proof.
     intros. 
     rewrite addc.
+Abort. *)
+
+End Zmodp_Learn.
+

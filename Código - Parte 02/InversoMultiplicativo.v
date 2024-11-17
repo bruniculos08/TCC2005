@@ -14,71 +14,20 @@ Unset Printing Implicit Defensive.
 
 (*  Teoremas que deveriam estar na biblioteca: *)
 Module missing.
+    
     Lemma absz_div_mul (a n : int):
         ((a %/ n)%Z * n)%R = ((a %/ `|n|)%Z * `|n|)%R.
     Proof.
-    case: n => n.
-    { by []. }
-    { 
-        rewrite NegzE divzN -mulrzz mulNrNz mulrzz.
-        rewrite [X in _ = ((_ %/ X)%Z * X)%R]ltz0_abs; last by [].
-        by rewrite -mulrN1z mulNrNz mulrzz mulr1.
-    }
+    case: n => n //.
+    by rewrite NegzE divzN -mulrzz mulNrNz -abszE abszN absz_nat mulrzz.
     Qed. 
-
-    Lemma absz_le_mul (a n : int):
-        (((a %/ n)%Z * n)%R <= `|a|%R)%R.
-    Proof.
-    rewrite absz_div_mul.
-    case: a => a.
-    (* caso: a = |a| *)
-    {
-        rewrite -[X in (_ <= X)%R]abszE absz_nat divz_nat.
-        apply div.leq_trunc_div.
-    }
-    (* caso: a = -|a| *)
-    {
-        rewrite NegzE.
-        rewrite [X in (_ <= X)%R]ltz0_abs; last by [].
-        rewrite -mulrN1z -[X in (_ <= X)%R]mulrN1z.
-        rewrite mulrN1z mulNrNz mulrzz mulr1.
-        case Hn : `|n| => [|k]. 
-            rewrite -[X in ((_ %/ X)%Z * X <= _)%R]abszE Hn //=.
-        rewrite divNz_nat; last by rewrite Hn //=.
-        rewrite mulrC -mulrzz mulrNz. rewrite Hn.
-        rewrite -abszE Hn mulrzz. 
-        case H : (k.+1 * (div.divn a k.+1).+1) => [|x].
-            move: H => /eqP H. rewrite -eqz_nat //= in H.
-        move: H => /eqP H. rewrite -eqz_nat //= in H.
-    }
-    Qed.
 
     Lemma absz_mod (a n : int):
         (n != 0)%Z -> (a %% n)%Z = `|(a %% n)%Z|.
     Proof.
-    rewrite /modz absz_div_mul.
-    case: a => a.
-    {   (* caso a seja um número positivo: *)
-        rewrite abszE divz_nat subzn; 
-            last by rewrite div.leq_trunc_div.
-        by rewrite -abszE absz_nat. }
-    {   (* caso a seja um negativo: *)
-        rewrite NegzE => nD0.
-        rewrite divNz_nat. 
-        rewrite -[X in (_ + X)%R = _]mulrN1z.
-        rewrite abszE.
-        rewrite -[X in _ = `|(_ - X)|%R]mulrN1z.
-        rewrite mulNrNz mulrzz mulr1.
-        rewrite -[X in _ = `|_ + X|%R]mulrN1z.
-        rewrite mulNrNz mulrzz mulr1.
-        rewrite -mulrz_nat mulrzz mulr1.
-        rewrite addrC -abszE distnEl.
-            rewrite subzn. by rewrite -natz.
-            rewrite mulnC div.ltn_ceil //=.
-            by rewrite absz_gt0.
-            rewrite mulnC div.ltn_ceil //=.
-            by rewrite absz_gt0.
-            by rewrite absz_gt0.    }
+    move=> nD0.
+    rewrite gez0_abs //.
+    by apply modz_ge0.
     Qed.
 
     Lemma dvdN_mod (p a : int):
@@ -559,28 +508,6 @@ Module inversezmodp.
     rewrite [X in _ = ((_ %/ X)%Z * X)%R]ltz0_abs; last by [].
     by rewrite -mulrN1z mulNrNz mulrzz mulr1.
     Qed. 
-
-    Lemma absz_le_mul (a n : int):
-        (((a %/ n)%Z * n)%R <= `|a|%R)%R.
-    Proof.
-    rewrite absz_div_mul.
-    case: a => a.
-    (* caso: a = |a| *)
-        rewrite -[X in (_ <= X)%R]abszE absz_nat divz_nat.
-        apply div.leq_trunc_div.
-    (* caso: a = -|a| *)
-    rewrite NegzE.
-    rewrite [X in (_ <= X)%R]ltz0_abs; last by [].
-    rewrite -mulrN1z -[X in (_ <= X)%R]mulrN1z.
-    rewrite mulrN1z mulNrNz mulrzz mulr1.
-    case Hn : `|n| => [|k]. 
-        rewrite -[X in ((_ %/ X)%Z * X <= _)%R]abszE Hn //=.
-    rewrite divNz_nat; last by rewrite Hn //=.
-    rewrite mulrC -mulrzz mulrNz Hn -abszE Hn mulrzz. 
-    case H : (k.+1 * (div.divn a k.+1).+1) => [|x].
-        move: H => /eqP H. rewrite -eqz_nat //= in H.
-    move: H => /eqP H. rewrite -eqz_nat //= in H.
-    Qed.
 
     Lemma absz_mod (a n : int):
         (n != 0)%Z -> (a %% n)%Z = `|(a %% n)%Z|.
@@ -1281,6 +1208,14 @@ Module Legendre.
     HB.about nat.
     HB.about GRing.Nmodule.
     HB.about nmodType.
+    Print addNr.
+    Print GRing.add.
+    Print nmodType.
+    Print GRing.Nmodule.type.
+    Print GRing.Nmodule.axioms_.
+    Print Equality.eqtype_hasDecEq_mixin.
+    HB.about int.
+    HB.about GRing.Nmodule.
     Print addrC.
     HB.about GRing.Nmodule.type.
     HB.about GRing.isNmodule.
@@ -1300,11 +1235,13 @@ Module Legendre.
     Print GRing.add.
     HB.about GRing.add.
     Fail Check (1%Z + 1%Z).
+    (* Check (1%Z + 1%Z). *)
     Check (1%Z + 1%Z)%R.
-    Check (1%Z + 1%Z).
+
+    Print nmodType.
     
-    Search (_ + _)%N.
-    Search commutative.
+    (* Search (_ + _)%N.
+    Search commutative. *)
 
     Print GRing.Nmodule.type.
     Print GRing.Nmodule.axioms_.

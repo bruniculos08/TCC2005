@@ -1,5 +1,6 @@
 From mathcomp Require Import all_ssreflect.
 From mathcomp Require Import ssreflect.ssrnat.
+From HB Require Import structures.
 Require Export Arith.
 Require Export Bool.
 Require Export PeanoNat.
