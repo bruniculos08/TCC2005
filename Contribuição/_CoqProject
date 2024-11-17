@@ -1,0 +1,8 @@
+-arg -w -arg -notation-overridden
+-arg -w -arg -ambiguous-paths
+
+-I .
+-R contributions
+primez.v
+inversezmodp.v
+legendresymbz.v
