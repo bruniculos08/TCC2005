@@ -522,7 +522,18 @@ logo o lema \lstinline[language = coq]!addrC! possui exatamente o tipo (enunciad
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 forall s : nmodType, commutative +%R
     \end{lstlisting}
-e então a situação do usuário pode ser resolvida o utilizando. 
+e então a situação do usuário pode ser resolvida o utilizando.
+Apesar de já resolvido o problema inicial há um detalhe que deve ser destacado: utilizando o comando \coqinline[]{Print nmodType} tem-se a seguinte mensagem:
+    \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
+Notation nmodType := GRing.Nmodule.type
+    \end{lstlisting}
+ou seja, \coqinline[]{nmodType} é uma notação que gerada pelo \textit{addon} \coqinline[]{hierarchy-builder}, no arquivo \textit{ssralg} da biblioteca, por meio do seguinte comando:
+    \begin{lstlisting}[language=coq, frame=single, tabsize=1]
+#[short(type="nmodType")]
+HB.structure Definition Nmodule := {V of isNmodule V & Choice V}.
+    \end{lstlisting}
+isto é, acrescentando \coqinline[]{#[short(type="nmodType")]} antes da chamada do comando \coqinline[]{HB.structure} que gera a \textit{structure} \coqinline[]{GRing.Nmodule.type}, de maneira análoga ao exemplo que será explicado com maiores detalhes a seguir nesta Subseção.
+
 Há também outra maneira de se resolver tal problema que é consideralvemente mais simples. Para tal será necessário trazer aqui um breve explicação sobre pelo menos uma das versões da hierarquia apresentada em \cite{cohen:hal-02478907}. A versão escolhida para ser tratada aqui é a chamada V1, que apesar de não abordar muitos conceitos sobre a linguagem $\mathcal{HB}$, é suficiente para o entendimento do leitor sobre como pesquisar e utilizar os lemas e teoremas disponíveis nas \textit{structures} geradas por tal linguagem.
 
 O exemplo a ser apresentado está disponível em \url{https://github.com/math-comp/hierarchy-builder/blob/master/examples/FSCD2020_material/V1.v}. O código deste exemplo pode ser divido nas seguintes partes:

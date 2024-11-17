@@ -20,7 +20,7 @@
 \contentsline {subsection}{\numberline {2.3.2}Comando Coercion}{25}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}Exemplo de Implementação de Grupos}{27}{subsection.2.3.3}%
 \contentsline {subsection}{\numberline {2.3.4}Mecanismo para Hierarquias entre Estruturas Algébricas}{28}{subsection.2.3.4}%
-\contentsline {subsection}{\numberline {2.3.5}Mantendo Informações de um Record ou Structure}{36}{subsection.2.3.5}%
+\contentsline {subsection}{\numberline {2.3.5}Mantendo Informações de um Record ou Structure}{37}{subsection.2.3.5}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {3}\MakeUppercase []{Base Teórica}}{40}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Máximo Divisor Comum}{40}{section.3.1}%
