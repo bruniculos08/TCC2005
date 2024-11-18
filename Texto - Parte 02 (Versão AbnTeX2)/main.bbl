@@ -5,11 +5,6 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.7 }
 
-\bibitem[2020 2020]{youtuCohen}
-\abntrefinfo{2020}{2020}{2020}
-{2020, I.-F. \emph{Cyril Cohen: Hierarchy Builder: algebraic hierarchies made easy in Coq with Elpi (FSCD B)}. 2020. Youtube.
-Dispon{\'\i}vel em: $<$https://youtu.be/F6iRaTlQrlo?si=hvvWFH4WSAfHsd9X$>$.}
-
 \bibitem[Appel e Haken 1976]{bams/1183538218}
 \abntrefinfo{Appel e Haken}{APPEL; HAKEN}{1976}
 {APPEL, K.; HAKEN, W. {Every planar map is four colorable}.
@@ -39,6 +34,11 @@ Dispon{\'\i}vel em: \url{https://www.johndcook.com/blog/2023/01/01/quadratic-rec
 {HUYNH, E.
 \emph{Rabin's Cryptosystem}.
 39~p. Monografia (Bachelor) --- Linnaeus University, Department of Mathematics, Suécia, 2021.}
+
+\bibitem[{IJCAR-FSCD 2020} 2020]{youtuCohen}
+\abntrefinfo{{IJCAR-FSCD 2020}}{{IJCAR-FSCD 2020}}{2020}
+{{IJCAR-FSCD 2020}. \emph{Cyril Cohen: Hierarchy Builder: algebraic hierarchies made easy in Coq with Elpi (FSCD B)}. 2020. Youtube.
+Dispon{\'\i}vel em: \url{https://youtu.be/F6iRaTlQrlo?si=hvvWFH4WSAfHsd9X}.}
 
 \bibitem[Kumar 2020]{kumar2021algorithm}
 \abntrefinfo{Kumar}{KUMAR}{2020}
