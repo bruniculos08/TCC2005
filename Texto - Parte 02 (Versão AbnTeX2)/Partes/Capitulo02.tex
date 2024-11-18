@@ -319,7 +319,7 @@ forall (n : nat) (a : multiple n), a + 0 = 0
 \subsection{Exemplo de Implementação de Grupos}
 \label{sub:grupos}
 
-Um uso semelhante do mecanismo \textit{coercion}, junto ao \textit{canonical}, pode ser proposto com um tipo que representa grupos. Um grupo é uma estrutura algébrica dada por $(G, \otimes)$ onde:
+Um uso semelhante do mecanismo \textit{coercion}, junto ao \textit{canonical}, pode ser proposto com um tipo que representa grupos. Um grupo é uma estrutura algébrica dada por $(G, \otimes)$ onde $G$ é um conjunto e:
 \begin{enumerate}
     \item $\otimes$ é uma operação binária sobre $G$, isto é, $\otimes$ é uma função tal que $\otimes : (G \times G) \rightarrow G$.
     \item $\otimes$ é associativa, ou seja, $\forall a, b \in G, (a \otimes b) \otimes c = a \otimes (b \otimes c)$.
@@ -383,11 +383,11 @@ Tal prova exemplifica como o uso dos mecanismos em \textit{Coq}, que foram apres
 
 \subsection{Mecanismo para Hierarquias entre Estruturas Algébricas}
 
-Para organizar estruturas algébricas semelhantes a apresentada na Subseção \ref{sub:grupos}, a biblioteca Mathematical Components utiliza uma linguagem chamada $\mathcal{HB}$. Esta é disponibilizada em \textit{Coq} por meio do \textit{addon} \coqinline!hierarchy-builder! e a motivação por trás de seu uso é facilitar aos usuários a criação, manutenção e padronização destas estruturas. Caso o leitor deseje um aprofundamento nestes assuntos recomenda-se a publicação \cite{cohen:hal-02478907} e o vídeo \cite{youtuCohen}, pois o sistema por trás do gerenciamento de tais estruturas não será aprofundado aqui. Pelo contrário, nesta Subseção se busca apenas mostrar como o usuário pode pesquisar propriedades provadas sobre um determinado tipo por meio de estruturas com a qual o tipo está ``equipado'', expressão cujo significado será explicado adiante.
+Para organizar estruturas algébricas semelhantes a apresentada na Subseção \ref{sub:grupos}, a biblioteca Mathematical Components utiliza uma linguagem chamada $\mathcal{HB}$. Esta é disponibilizada em \textit{Coq} por meio do \textit{addon} \coqinline!hierarchy-builder! e a motivação por trás de seu uso é facilitar aos usuários a criação, manutenção e padronização destas estruturas. Caso o leitor deseje um aprofundamento nestes assuntos recomenda-se a publicação \cite{cohen:hal-02478907} e o vídeo \cite{youtuCohen}, uma vez que o sistema por trás do gerenciamento de tais estruturas não faz parte do escopo deste trabalho. Nesta subseção se busca apenas mostrar como o usuário pode pesquisar propriedades provadas sobre um determinado tipo por meio de estruturas com a qual o tipo está ``equipado'', expressão cujo significado será explicado adiante.
 
 % Diversas estruturas como as algébricas, que guardam predicados sobre tipos, são utilizadas na biblioteca Mathematical, e suas declarações seguem um padrão chamado de 
 
-Ao se utilizar a biblioteca Mathematical Components pela primeira vez o usuário tende a necessitar corriqueiramente da ferramenta de busca de teoremas, lemas e definições. Isto tende acontecer pois em geral o usuário precisa aprendar os nomes (e padrões destes) utilizados na biblioteca e o como são implementados. Como exemplo suponha que queira-se rescrever uma expressão com números naturais utilizando a propriedade de comutatividade. Para isso, o usuário pode utilizar o comando \coqinline|Search| junto a um padrão para pesquisa:
+Ao se utilizar a biblioteca Mathematical Components pela primeira vez o usuário tende a necessitar corriqueiramente da ferramenta de busca de teoremas, lemas e definições. Isto tende acontecer pois em geral o usuário precisa aprender os nomes (e padrões destes) utilizados na biblioteca e como são implementados. Como exemplo, suponha que queira-se rescrever uma expressão com números naturais utilizando a propriedade de comutatividade. Para isso, o usuário pode utilizar o comando \coqinline|Search| junto a um padrão para pesquisa:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Search (_ + _).
     \end{lstlisting}
@@ -395,7 +395,7 @@ ou, caso queira fazer uma pesquisa mais precisa dentro do escopo \coqinline|nat_
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Search (_ + _)%N.
     \end{lstlisting}
-Este último comando trás a seguinte mensagem:
+Este último comando traz a seguinte mensagem:
     \begin{lstlisting}[language=coq-error,frame=single,tabsize=1, escapechar=@, escapechar=@, numbers=left]
 rshift: forall (m : nat) [n : nat], 'I_n -> 'I_(m + n)
 lshift: forall [m : nat] (n : nat), 'I_m -> 'I_(m + n)
@@ -422,7 +422,7 @@ Portanto o lema \coqinline|addnC| tem a seguinte definição:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma addnC : commutative addn.
     \end{lstlisting}
-Agora, supõe-se a mesma situação envolvendo números inteiros. Nesse caso, a notação \coqinline|+| aparecera com escopo delimitado por \coqinline|%R| ou dentro do escopo \coqinline|ring_scope| ao qual \coqinline|%R| é um delimitador. A exemplo, fora de tal escopo um comando como \coqinline|Check (1%Z + 1%Z)| irá falhar, e portanto ao se executar:
+Agora, supõe-se a mesma situação envolvendo números inteiros. Nesse caso, a notação \coqinline|+| aparecerá com escopo delimitado por \coqinline|%R| ou dentro do escopo \coqinline|ring_scope| ao qual \coqinline|%R| é um delimitador. A exemplo, fora de tal escopo um comando como \coqinline|Check (1%Z + 1%Z)| irá falhar, e portanto ao se executar:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Fail Check (1%Z + 1%Z).
     \end{lstlisting}
@@ -437,7 +437,8 @@ enquanto o comando \coqinline|Check (1%Z + 1%Z)%R| é executado com sucesso.
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma addzC : commutative addz.
     \end{lstlisting}
-pelo fato da notação \lstinline[language = coq]!+! não ser definida para a operação \lstinline[language = coq]!addz! (operação de soma entre inteiros), mesmo considerando o escopo \coqinline|ring_scope| não se pode utilizar tal lema para reescrita em uma expressão com a notação \lstinline[language = coq]!+!.
+% pelo fato da notação \lstinline[language = coq]!+! não ser definida para a operação \lstinline[language = coq]!addz! (operação de soma entre inteiros), mesmo considerando o escopo \coqinline|ring_scope| não se pode utilizar tal lema para reescrita em uma expressão com a notação \lstinline[language = coq]!+!.
+mesmo considerando o escopo \coqinline|ring_scope| não se pode utilizar tal lema para reescrita em uma expressão com a notação \lstinline[language = coq]!+!, isto pelo fato da notação \lstinline[language = coq]!+! não se referir a operação \lstinline[language = coq]!addz! a qual o lema trata. Ao invés disso, a notação mencionada se refere a operação \coqinline[]{GRing.add}, como será mosrado a seguir.
 
 As definições de notações com utilização de um caracter como \lstinline[language = coq]!+! podem ser listadas por meio do comando \lstinline[language = coq]!Locate!, como feito a seguir:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
@@ -469,7 +470,7 @@ fun (s : nmodType) (H : s) => [eta GRing.isNmodule.add (GRing.Nmodule.class s) H
 
 Arguments GRing.add {s} (_ _)%ring_scope
     \end{lstlisting}
-Por esta mensagem temos que \coqinline{GRing.add} tem tipo \coqinline[]{forall s : nmodType, s -> s -> s}, no entanto note que a expressão \coqinline[]{GRing.add 1%Z 1%Z} é válida (isso pode ser feito com o comando \coqinline[]{Check} ou \coqinline[]{Compute}), o que pode parecer estranho mesmo com a possibilidade de uso do mecanismo \textit{canonical}, pois se esperava que \coqinline{GRing.add} recebesse um elemento de tipo \coqinline[]{nmodType} e retorna-se uma operação sobre o campo \coqinline[]{sort} da \textit{structure} \coqinline[]{nmodType}. Todavia, se usarmos antes do comando \coqinline[]{Print GRing.add} o comando:
+Por esta mensagem temos que \coqinline{GRing.add} tem tipo \coqinline[]{forall s : nmodType, s -> s -> s}, no entanto note que a expressão \coqinline[]{GRing.add 1%Z 1%Z} é válida (isso pode ser feito com o comando \coqinline[]{Check} ou \coqinline[]{Compute}). Isto pode parecer estranho mesmo com a possibilidade de uso do mecanismo \textit{canonical}, pois se esperava que \coqinline{GRing.add} recebesse um elemento de tipo \coqinline[]{nmodType} e retorna-se uma operação sobre o campo \coqinline[]{sort} da \textit{structure} \coqinline[]{nmodType}. Todavia, se usarmos antes do comando \coqinline[]{Print GRing.add} o comando:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Set Printing Coercions.
     \end{lstlisting}
@@ -495,7 +496,7 @@ Conforme apresentado em \url{https://github.com/math-comp/math-comp/blob/master/
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 HB.about nmodType.
     \end{lstlisting}
-obtêm-se uma mensagem que possui em parte o seguinte conteúdo:
+obtem-se uma mensagem que possui em parte o seguinte conteúdo:
     \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
 HB: nmodType is a structure (from "./ssralg.v", line 589)
 HB: nmodType characterizing operations and axioms are:
@@ -548,7 +549,7 @@ Delimit Scope hb_scope with G.
 Open Scope hb_scope.
         \end{lstlisting}
     
-        \item \label{item:mixin-monoid} Declação de um \textit{mixin} por meio do comando \coqinline[]{HB.mixin}; este comando recebe um \textit{record} que deve possuir um parâmetro de tipo \coqinline[]{Type} junto com uma lista possívelmente vazia de dependências 
+        \item \label{item:mixin-monoid} Declação de um \textit{mixin} por meio do comando \coqinline[]{HB.mixin}; este comando recebe um \textit{record} que deve possuir um parâmetro de tipo \coqinline[]{Type} junto com uma lista possivelmente vazia de dependências 
         % como outros \textit{mixins} ou \textit{factories} aplicados cada um no primeiro parâmetro (este último tem um forma de declaração semelhante a de um \textit{mixin} porém não será discutido neste trabalho pois não aparece neste exemplo):
         aplicadas cada uma no primeiro parâmetro:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1, numbers=left]
@@ -600,16 +601,16 @@ HB.mixin Record Ring_of_Monoid R of Monoid R := {
     mulrDr : right_distributive mul add;
 }.
             \end{lstlisting}    
-        Note que na declaração do \textit{mixin} há uma \textit{dependencie} \coqinline[]{Monoid R}, assim as operações, propriedades e constantes de que tornam \coqinline[]{R} um monoide podem ser utilizadas para expressar os campos de \coqinline[]{Ring_of_Monoid}, qual por sua vez contém então as propriedades, operações e constantes para tornar um tipo que já é um monoide em um anel.
+        Note que na declaração do \textit{mixin} há uma \textit{dependencie} \coqinline[]{Monoid R}. Assim, as operações, propriedades e constantes de que tornam \coqinline[]{R} um monoide podem ser utilizadas para expressar os campos de \coqinline[]{Ring_of_Monoid}, qual por sua vez contém então as propriedades, operações e constantes para tornar um tipo que já é um monoide em um anel.
         
         \item Define-se então a \textit{structure} para anéis:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
 HB.structure Definition Ring := { R of Monoid R & Ring_of_Monoid R }.
             \end{lstlisting}
-        onde esta portanto possui duas \textit{dependencies} e agora as propriedades
-        que caracterizam um monoide juntos a restantes para que um monoide seja uma anel estão encapsuladas em \coqinline[]{Ring.type}.
+        onde esta possui duas \textit{dependencies} e agora as propriedades
+        que caracterizam um monoide junto as que caracterizam um monoide como um anel estão encapsuladas em \coqinline[]{Ring.type}.
 
-        \item Em seguida defini-se então novas notações: 
+        \item Em seguida defini-se novas notações: 
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
 Notation "1" := one : hb_scope.
 Notation "- x" := (@opp _ x) : hb_scope.
@@ -636,9 +637,9 @@ HB.instance Definition Z_Ring_axioms : Ring_of_Monoid Z :=
     Z.mul_add_distr_r Z.mul_add_distr_l.
             \end{lstlisting}
 
-        Note que na última instanciação não é necessário passar como argumento do construtor os argumentos para formação de um monoide. Isto ocorre pois estes construtores, conforme \cite{cohen:hal-02478907}, não são simplesmente construtores como os de \textit{records} e o addon \coqinline[]{hierarchy-builder} é infere estes argumentos automaticamente verificando a existência da instância declarada anteriormente com \coqinline[]{Z_Monoid_axioms}.
+        Note que na última instanciação não é necessário passar como argumento do construtor os argumentos para formação de um monoide. Isto ocorre pois estes construtores, conforme \cite{cohen:hal-02478907}, não são simplesmente construtores como os de \textit{records}, e o addon \coqinline[]{hierarchy-builder} infere estes argumentos automaticamente verificando a existência da instância declarada anteriormente com \coqinline[]{Z_Monoid_axioms}.
 
-        \item Com estas instânciações as propriedades das \textit{structures} \coqinline[]{Ring} e \coqinline[]{Monoid} podem ser utilizadas com inteiros e todas as \textit{coercions} e declarações com \textit{canonical} necessárias para tal já estão feitas automaticamente. Tal uso pode ser é exemplificado com o a seguinte prova:
+        \item Com estas instanciações as propriedades das \textit{structures} \coqinline[]{Ring} e \coqinline[]{Monoid} podem ser utilizadas com inteiros e todas as \textit{coercions} e declarações com \textit{canonical} necessárias para tal já estão feitas automaticamente. Tal uso pode ser exemplificado com o a seguinte prova:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
 Lemma exercise (m n : Z) : (n + m) - n * 1 = m.
 Proof. by rewrite mulr1 (addrC n) -(addrA m) addrN addr0. Qed.
@@ -679,7 +680,7 @@ HB: Ring inherits from:
     - Monoid
 HB: Ring is inherited by:
             \end{lstlisting}
-    Atráves dessa mensagens pode-se verificar todas as propriedades (operações e axiomas) encapsulados em \coqinline[]{Ring.type} que portanto podem ser usados sobre o tipo \coqinline[]{Z}, e além disso é indicado na mensagem que a \coqinline[]{structure} \coqinline[]{Ring} herda a \coqinline[]{structure} \coqinline[]{Monoid}. Também pode-se usar então o comando \coqinline[]{HB.about Monoid} para obter as informações sobre mais propriedades que podem ser utilizadas para elementos do tipo \coqinline[]{Z}.
+    Atráves dessa mensagens pode-se verificar todas as propriedades (operações e axiomas) encapsulados em \coqinline[]{Ring.type} que podem ser usados sobre o tipo \coqinline[]{Z}, e além disso é indicado na mensagem que a \textit{structure}{structure} \coqinline[]{Ring} herda a \textit{structure} \coqinline[]{Monoid}. Também pode-se usar então o comando \coqinline[]{HB.about Monoid} para obter as informações sobre mais propriedades que podem ser utilizadas para elementos do tipo \coqinline[]{Z}.
 
 
     \end{enumerate}

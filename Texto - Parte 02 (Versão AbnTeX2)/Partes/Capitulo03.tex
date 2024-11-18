@@ -134,37 +134,73 @@ Como exemplo de consequências deste teorema têm-se:
     \item $\forall c \in \mathbb{Z}, c \mid a \land c \mid b \Rightarrow c \mid \mdc(a, b)$, ou seja, caso $c$ divida tanto $a$ quanto $b$ então $c$ divide $\mdc(a, b)$.
     \item $\forall c \in \mathbb{Z}, (\exists x, y \in \mathbb{Z}, a \cdot x + b \cdot y = c) \Longleftrightarrow \mdc(a, b) \mid c $, ou seja, a equação $a \cdot x + b \cdot y = c$ tem solução se e somente se $\mdc(a, b)$ divide $c$.
 \end{enumerate}
-A prova manual do Teorema \ref{teorema : bachetbezout} e das consequências mencionadas se encontra em \cite{book:2399854}.
+A prova manual do Teorema \ref{teorema : bachetbezout} e das consequências mencionadas se encontra em \cite[p.~20-21]{book:2399854}. 
 
     Em relação à biblioteca Mathematical Components e se tratando do Teorema \ref{teorema : bachetbezout}, essa possui a implementação de um algoritmo
     % do algoritmo conhecido como "algoritmo de Euclides extendido" (
     que encontra os coeficientes $x$ e $y$ e o valor de $\mdc(a,b)$. Este algoritmo possui duas versões, sendo identificado na biblioteca como \lstinline[language = coq]{egcdn} para naturais e \lstinline[language = coq]{egcdz} para inteiros. Além disso, existem os lemas \lstinline[language = coq]{egcdn_spec} e \lstinline[language = coq]{egcdz_spec}, tratando da corretude desses algoritmos (respectivamente) e para o caso dos números inteiros, há o lema \lstinline[language = coq]{Bezoutz} que é equivalente ao Teorema \ref{teorema : bachetbezout}.
 
 \section{Propriedades de Congruência}
-As propriedade da relação de congruência serão usadas com muita frequência (e de maneira implícita) no decorrer desse documento. Por essa razão, nesta seção serão listadas essas propriedades. Recomenda-se então ao leitor consultar o conteúdo aqui apresentado em caso de dúvidas no desenvolvimento de equações modulares.
+As propriedade da relação de congruência serão usadas com muita frequência (e de maneira implícita) no decorrer desse documento. Por essa razão, nesta seção será apresentada uma lista de propriedades semelhante à apresentada em \cite[p.~34]{book:2399854}, para qual a demonstração de tais propriedades se encontra em \cite[p.~34-35]{book:2399854}. Recomenda-se então ao leitor consultar o conteúdo aqui apresentado em caso de dúvidas no desenvolvimento de equações modulares.
     
     Seguindo para as propriedades, para todo $a,b, c, d, n \in \mathbb{Z}$ têm-se:
 \begin{enumerate}
-    \item (\textit{Reflexividade}) $a \equiv a \pmod{n}$
-    \item (\textit{Simetria}) $a \equiv b \pmod{n} \Longrightarrow b \equiv a \pmod{n}$
-    \item (\textit{Transitividade}) $a \equiv b \pmod{n} \land b \equiv c \pmod{n} \Longrightarrow a \equiv c \pmod{n}$
-    \item (\textit{Compatibilidade com a soma})
-    \begin{equation*}
-        a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a + c \equiv b + d \pmod{n}
-    \end{equation*}
-    \item (\textit{Compatibilidade com a diferença})
-    \begin{equation*}
-        a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a - c \equiv b - d \pmod{n}
-    \end{equation*}
-    \item \label{item:propcong6-produto} (\textit{Compatibilidade com o produto})
-    \begin{equation*}
-        a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a \cdot c \equiv b \cdot d \pmod{n}
-    \end{equation*}
+    \item \textit{Reflexividade}: 
+    \\
+    $a \equiv a \pmod{n}$
+    % \begin{equation*} 
+    %     a \equiv a \pmod{n}
+    % \end{equation*}
+    
+    \item \textit{Simetria}: 
+    \\ 
+    $a \equiv b \pmod{n} \Longrightarrow b \equiv a \pmod{n}$
+    % \begin{equation*}
+    %     a \equiv b \pmod{n} \Longrightarrow b \equiv a \pmod{n}
+    % \end{equation*}
+    
+    \item \textit{Transitividade}: 
+    \\
+    $a \equiv b \pmod{n} \land b \equiv c \pmod{n} \Longrightarrow a \equiv c \pmod{n}$
+        % \begin{equation*}
+        %     a \equiv b \pmod{n} \land b \equiv c \pmod{n} \Longrightarrow a \equiv c \pmod{n}            
+        % \end{equation*}
+    
+    \item \textit{Compatibilidade com a soma}: 
+    \\
+    $a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a + c \equiv b + d \pmod{n}$
+        % \begin{equation*}
+        %     a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a + c \equiv b + d \pmod{n}
+        % \end{equation*}
+
+    \item \textit{Compatibilidade com a diferença}: 
+    \\
+    $a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a - c \equiv b - d \pmod{n}$
+        % \begin{equation*}
+        %     a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a - c \equiv b - d \pmod{n}
+        % \end{equation*}
+
+    \item \label{item:propcong6-produto} \textit{Compatibilidade com o produto}: 
+    \\
+    $a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a \cdot c \equiv b \cdot d \pmod{n}$ 
+    \\
+        % \begin{equation*}
+        %     a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a \cdot c \equiv b \cdot d \pmod{n}
+        % \end{equation*}
     A partir dessa propriedade, note que, para todo $k \in \mathbb{N}$:
-    \begin{equation*}
-        a \equiv b \pmod{n} \Longrightarrow a^k \equiv b^k \pmod{n}
-    \end{equation*}
-    \item \label{item:propcong7-cancelamento} (\textit{Cancelamento}) $\mdc(c, n) = 1 \Longrightarrow (a \cdot c \equiv b \cdot c \pmod{n} \Longleftrightarrow a \equiv b \pmod{n})$   
+    \\
+    $a \equiv b \pmod{n} \Longrightarrow a^k \equiv b^k \pmod{n}$
+        % \begin{equation*}
+        %     a \equiv b \pmod{n} \Longrightarrow a^k \equiv b^k \pmod{n}
+        % \end{equation*}
+
+    \item \label{item:propcong7-cancelamento} \textit{Cancelamento}:
+    \\
+    $\mdc(c, n) = 1 \Longrightarrow (a \cdot c \equiv b \cdot c \pmod{n} \Longleftrightarrow a \equiv b \pmod{n})$
+    \\
+        % \begin{equation*}
+        %     \mdc(c, n) = 1 \Longrightarrow (a \cdot c \equiv b \cdot c \pmod{n} \Longleftrightarrow a \equiv b \pmod{n})   
+        % \end{equation*}
 \end{enumerate}
 
 Na biblioteca Mathematical Components, as relações de módulo são definidas pelas seguintes notações:
@@ -196,13 +232,13 @@ possuem a mesma utilidade.
 
 \section{Anel de Inteiros Módulo $n$}
 
-Uma estrutura que será utilizada no presente trabalho, e que pode ser implementada usando elementos disponíveis na biblioteca Mathcomp, são os anéis de inteiros módulo $n$. De acordo com \cite{book:2399854}, dada a relação $\sim$ sobre um conjunto $X$, se esta relação é uma relação de equivalência, isto é, possui as seguintes propriedades:
+Uma estrutura que será utilizada no presente trabalho, e que pode ser implementada usando elementos disponíveis na biblioteca Mathcomp, são os anéis de inteiros módulo $n$. De acordo com \cite[p.40-41]{book:2399854}, dada a relação $\sim$ sobre um conjunto $X$, se esta relação é uma relação de equivalência, isto é, possui as seguintes propriedades:
 \begin{enumerate}
     \item \textbf{\textit{reflexividade}}: $\forall x \in X, x \sim x$
     \item \textbf{\textit{transitividade}}: $\forall x, y, z \in X, x \sim y \land y \sim z \rightarrow x \sim z$
     \item \textbf{\textit{simetria}}: $\forall x y \in X, x \sim y \leftrightarrow y \sim x$
 \end{enumerate}
-Como exposto em \cite{book:2399854}, estabelecer uma relação de equivalência sobre um conjunto $X$ é o mesmo que definir um partição sobre o mesmo, isto é, dividir $X$ em subconjuntos, em que, sendo cada subconjunto identificado como $X_\lambda$ onde $\lambda$ pertence a um conjunto $\Lambda$, então
+Como exposto em \cite[p.~40]{book:2399854}, estabelecer uma relação de equivalência sobre um conjunto $X$ é o mesmo que definir um partição sobre o mesmo, isto é, dividir $X$ em subconjuntos, em que, sendo cada subconjunto identificado como $X_\lambda$ onde $\lambda$ pertence a um conjunto $\Lambda$, então
 \begin{equation*}
     X = \bigcup_{\lambda \in \Lambda} X_{\lambda}
 \end{equation*}
@@ -240,7 +276,7 @@ Se define então as operações de soma, subtração e multiplicação em $\math
     \item $\overline{a} - \overline{b} = \overline{a - b}$
     \item $\overline{a} \cdot \overline{b} = \overline{a \cdot b}$
 \end{itemize}
-Como explicado em \cite{book:2399854} e devido a estas operações, o nome \textit{anel de inteiros módulo $n$} é justificado pela definição de \textit{anel}: qualquer conjunto $A$ com duas operações binárias $+$ e $\cdot$, de modo que $A$ satisfaz as seguintes propriedades:
+Como explicado em \cite[p.~46-47]{book:2399854} e devido a estas operações, o nome \textit{anel de inteiros módulo $n$} é justificado pela definição de \textit{anel}: qualquer conjunto $A$ com duas operações binárias $+$ e $\cdot$, de modo que $A$ satisfaz as seguintes propriedades:
 % é um \textit{grupo abeliano}, isto é, um grupo que além das condições para ser um grupo, é comutativo, ou seja, se $A$ é um grupo por meio da operação binária $\cdot$, então:
 % \begin{equation*}
 %     \forall a, b \in A, a \cdot b = b \otimes a
@@ -267,7 +303,7 @@ Com esta definição de \textit{anel} chega-se em outras também importantes:
 \end{itemize}
 
 % coisa q to mudando:
-Havendo conhecimento da definição de \textit{corpos}, tem-se o seguinte importante Lema apresentado em \cite{book:2399854} (cuja a prova depende fortemente do Lema \ref{lema : mdcinv}):
+Havendo conhecimento da definição de \textit{corpos}, tem-se o seguinte importante Lema apresentado em \cite[p.47]{book:2399854} (cuja a prova depende fortemente do Lema \ref{lema : mdcinv}):
     \begin{lema}
         $\forall n \in \mathbb{Z}, \mathbb{Z}/(n)$ é um corpo se e somente se $n$ é primo. 
     \end{lema}
@@ -289,7 +325,7 @@ Outro conceito importante originado a partir da definição de \textit{anéis de
     (\mathbb{Z}/(n))^{\times} = \{\overline{a} \in \mathbb{Z}/(n) | \mdc(a, n) = 1\}
 \end{equation}
 
-Sobre a implementação de \textit{anéis de inteiros módulo $n$} na biblioteca Mathematical Components, conforme é apresentado em \cite{assia_mahboubi_2022_7118596}, essa implementação envolve o tipo \lstinline[language = coq]{ordinal}. Este é declarado da seguinte forma (junto de sua notação e \textit{coercion} para \lstinline[language=coq]|nat|):
+Sobre a implementação de \textit{anéis de inteiros módulo $n$} na biblioteca Mathematical Components, conforme é apresentado em \cite[p.~145]{assia_mahboubi_2022_7118596}, essa implementação envolve o tipo \lstinline[language = coq]{ordinal}. Este é declarado da seguinte forma (junto de sua notação e \textit{coercion} para \lstinline[language=coq]|nat|):
 % Este é idêntico ao \textit{record} \lstinline[language = coq]{smaller} (usado como exemplo na Subseção \ref{subsection:coercion}), porém é declarado da seguinte forma (junto de sua notação e \textit{coercion} relacionada):
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Inductive ordinal n := Ordinal m of m < n.
@@ -328,14 +364,14 @@ Definition ord0 := Ordinal (ltn0Sn n').
     \end{lstlisting}
 ou seja, \lstinline[language = coq]{ord0} é sempre o elemento de \lstinline[language = coq]{'I_p} construído com \lstinline[language = coq]{m} sendo 0 (em que \lstinline[language = coq]{p} é um valor inferido pelo \textit{Coq}).
 
-A partir disso podem ser provados os lemas que tornam o conjunto \lstinline[language = coq]{'I_p} dotado das operações definidas com \lstinline[language = coq]{inZp} em um \textit{grupo abeliano} (conforme a definição mais em \cite{book:2399854}):
+A partir disso podem ser provados os lemas que tornam o conjunto \lstinline[language = coq]{'I_p} dotado das operações definidas com \lstinline[language = coq]{inZp} em um \textit{grupo abeliano} (conforme a definição em \cite[p.~41-46]{book:2399854}):
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma Zp_add0z : left_id Zp0 Zp_add.
 Lemma Zp_addNz : left_inverse Zp0 Zp_opp Zp_add.
 Lemma Zp_addA : associative Zp_add.
 Lemma Zp_addC : commutative Zp_add.
     \end{lstlisting}
-e também podem ser então provados os lemas que farão de \lstinline[language = coq]{'I_p} um \textit{anel comutativo} (de acordo com \cite{book:2399854}), considereando as operações binárilas \lstinline[language = coq]{Zp_add} e \lstinline[language = coq]{Zp_mul}:
+e também podem ser então provados os lemas que farão de \lstinline[language = coq]{'I_p} um \textit{anel comutativo} (de acordo com \cite[p.~46-47]{book:2399854}), considereando as operações binárilas \lstinline[language = coq]{Zp_add} e \lstinline[language = coq]{Zp_mul}:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma Zp_mulz1 : right_id Zp1 Zp_mul. (* Elemento neutro do produto a direita *)
 Lemma Zp_mulC : commutative Zp_mul. (* Comutatividade do produto *)
@@ -360,7 +396,7 @@ onde a notação \lstinline[language=coq]|'Z_p| sempre retorna um tipo \lstinlin
 
 \section{Função $\varphi$ de Euler}
 
-Uma função muito presente em grande parte dos conteúdos de teoria dos números é a função $\varphi$ de Euler. Essa também é conhecida como função totiente de Euler e conforme \cite{book:2399854}, para quaisquer $n$ inteiro positivo, é definida como:
+Uma função muito presente em grande parte dos conteúdos de teoria dos números é a função $\varphi$ de Euler. Essa também é conhecida como função totiente de Euler e conforme \cite[p.~48-49]{book:2399854}, para quaisquer $n$ inteiro positivo, é definida como:
     \begin{equation} \label{def:phi}
         \varphi(n) = |(\mathbb{Z}/(n))^{\times}|
     \end{equation}
@@ -377,7 +413,7 @@ e essa possui algumas propriedades importantes a serem destacadas:
         \end{equation}
     \end{enumerate}
 
-Além dessas propriedade existem dois teoremas apresentados em \cite{book:2399854} que devem ser notados, que são eles:
+Além dessas propriedade existem dois teoremas apresentados em \cite[p.~49-50]{book:2399854} que devem ser notados, que são eles:
 
 \begin{teorema}[\textit{Teorema de Euler-Fermat}]
 \label{eq : euler-fermat}
@@ -462,7 +498,7 @@ Também há um lema equivalente a propriedade \ref{item:prop-phi-4} (em que a co
 Lemma totient_coprime m n :
     coprime m n -> totient (m * n) = totient m * totient n.
 \end{lstlisting}
-Por último, há também um lema que estabelece a equivalência entre a definição da função $\varphi$ de Euler exposta em \cite{book:2399854} (Definição \ref{def:phi}) e a definição da biblioteca baseada na Equação \ref{lema:phi-formula}\footnote{Vale aqui observar que novamente há uma \textit{coercion} de \lstinline[language = coq]{bool} para \lstinline[language = coq]{nat} sobre o retorna da função \lstinline[language = coq]{coprime} (a \textit{coercion} converte \lstinline[language = coq]{false} para $0$ e \lstinline[language = coq]{true} para $1$), dado que o somatório requer valores numéricos.}%colocar aqui q retorna 0 se false e 1 se true?
+Por último, há também um lema que estabelece a equivalência entre a definição da função $\varphi$ de Euler exposta em \cite[p.~48]{book:2399854} (Definição \ref{def:phi}) e a definição da biblioteca baseada na Equação \ref{lema:phi-formula}\footnote{Vale aqui observar que novamente há uma \textit{coercion} de \lstinline[language = coq]{bool} para \lstinline[language = coq]{nat} sobre o retorna da função \lstinline[language = coq]{coprime} (a \textit{coercion} converte \lstinline[language = coq]{false} para $0$ e \lstinline[language = coq]{true} para $1$), dado que o somatório requer valores numéricos.}%colocar aqui q retorna 0 se false e 1 se true?
 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
     Lemma totient_count_coprime n : 
         totient n = \sum_(0 <= d < n) coprime n d.
@@ -494,7 +530,7 @@ Pode se verificar que resolver a Equação \ref{eq : ax2bxc}  é equivalente a r
 \begin{equation} \label{eq : quadcong}
     X^2 \equiv d \pmod p
 \end{equation}
-Com isso, note que um problema mais complexo (Equação \ref{eq : ax2bxc}) foi transformado em um problema mais simples (Equação \ref{eq : quadcong}). Sobre esse último, se possui solução, isto é, $d$ é um quadrado perfeito em $\mathbb{Z}/(p)$, então, se diz que $d$ é um \textit{resíduo quadrático} módulo $p$. Além disso, conforme \cite{book:2399854}, existem precisamente $\frac{p+1}{2}$ resíduos quadráticos módulo $p$ (valores de $d$ menores que $p$ para os quais \ref{eq : quadcong} tem solução), que são neste caso:
+Com isso, note que um problema mais complexo (Equação \ref{eq : ax2bxc}) foi transformado em um problema mais simples (Equação \ref{eq : quadcong}). Sobre esse último, se possui solução, isto é, $d$ é um quadrado perfeito em $\mathbb{Z}/(p)$, então, se diz que $d$ é um \textit{resíduo quadrático} módulo $p$. Além disso, conforme \cite[p.~86]{book:2399854}, existem precisamente $\frac{p+1}{2}$ resíduos quadráticos módulo $p$ (valores de $d$ menores que $p$ para os quais \ref{eq : quadcong} tem solução), que são neste caso:
 \begin{equation} \label{eq : listquadres}
     0^2 \bmod{p}, 1^2 \bmod{p}, 2^2 \bmod{p}, 3^2 \bmod{p}, ..., \left(\frac{p -1}{2} \right)^2 \bmod{p} 
 \end{equation}
