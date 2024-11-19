@@ -4,8 +4,8 @@
 % Neste capítulo será tratada a implementação do \textit{símbolo de Legendre}, trazendo um conteúdo dividido em três partes: apresentação do sistema de hierarquia de estruturas algébricas, discussão sobre implementações de outros conteúdos externos a este trabalho consideradas fundamentais para realização do objetivo proposto, e por fim as implementações realizadas no presente trabalho.
 Neste capítulo será tratada a implementação do \textit{símbolo de Legendre}, trazendo um conteúdo dividido em duas partes: discussão sobre implementações externas relacionadas a este trabalho (consideradas fundamentais para realização do objetivo proposto) e as implementações realizadas no presente trabalho.
         
-Anteriormente vale ressaltar que existem implementações sobre \textit{símbolo de Legendre} fora da biblioteca Mathematical Components. Como exemplo de tais implementações tem-se, na biblioteca Mathlib\footnote{Disponível em: \url{https://github.com/leanprover-community/mathlib4}}, do auxiliador de provas \textit{Lean}, tanto a implementação de \textit{símbolo de Legendre} quanto da \textit{Lei de Reciprocidade Quadrática}
-(tema este discutido no Apêndice \ref{cap:reciprocidadequadratica}). Há também a implementação de tais conteúdos em \textit{Coq} (sem utilização da biblioteca Mathematical Components) publicada em repositório\footnote{Disponível em: \url{https://github.com/Ekdohibs/coq-proofs/tree/master/Reciprocity}} de Nathanaëlle Courant disponível no GitHub.
+Vale ressaltar que existem implementações sobre \textit{símbolo de Legendre} fora da biblioteca Mathematical Components. Como exemplo de tais implementações tem-se, na biblioteca Mathlib\footnote{Disponível em: \url{https://github.com/leanprover-community/mathlib4}} do auxiliador de provas \textit{Lean}, tanto a implementação de \textit{símbolo de Legendre} quanto da \textit{Lei de Reciprocidade Quadrática}
+(tema este discutido no Apêndice \ref{cap:reciprocidadequadratica}). Há também a implementação de tais conteúdos em \textit{Coq} (sem utilização da biblioteca Mathematical Components) publicada em repositório\footnote{Disponível em: \url{https://github.com/Ekdohibs/coq-proofs/tree/master/Reciprocity}} de Nathanaëlle Courant disponível no GitHub. Ainda assim, a implementação aqui realizada tem contribuição significativa, uma vez que muito do desenvolvimento de provas matemáticas em \textit{Coq} ocorre através do uso da Mathematical Components.
 
 % \section{Hierarquias entre Estruturas Algébricas}
 
@@ -50,7 +50,7 @@ Anteriormente vale ressaltar que existem implementações sobre \textit{símbolo
 \section{Implementações Externas de Maior Relevância}
 \label{sec:implementacoes}
 
-Dentre os teoremas e lemas utilizados neste trabalho (dos quais a grande maioria são lemas simples da biblioteca Mathematical Components), existe um lema e um teorema que merecem destaque devido a complexidade para a prova dos mesmos. Este empecilho em suas respecitvas provas ocorre pela dificuldade em se fazer uma formalização com base nas ideias de prova manual para os mesmos (ambas apresentadas neste trabalho).
+Dentre os teoremas e lemas utilizados neste trabalho (dos quais a grande maioria são lemas simples da biblioteca Mathematical Components), existe um lema e um teorema que merecem destaque devido a complexidade para a prova dos mesmos. Este empecilho em suas respectivas provas ocorre pela dificuldade em se fazer uma formalização com base nas ideias de prova manual para os mesmos (ambas apresentadas neste trabalho).
 
 O primeiro lema a ser mencionado trata do caso \ref{item:caso3wilson} do Teorema \ref{teorema : wilson} e possui, na biblioteca, o seguinte enunciado:
         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
@@ -74,7 +74,7 @@ Definition res_quad p a := has (fun i => i * i == a %[mod p]) (iota 0 p).
 em que, a função \lstinline[language=coq]!has! recebe um predicado booleano e uma lista, e então retorna \lstinline[language=coq]!true!
 se há algum elemento da lista que satisfaz o predicado e \lstinline[language=coq]!false! caso contrário. Já a função \lstinline[language=coq]!iota! recebe dois números naturais $m$ e $n$ e retorna uma lista crescente de todos os naturais de $m$ até $n-1+m$. Sendo assim, a função \lstinline[language=coq]!res_quad! é um método exaustivo para verificar se há um valor $r$ tal que $r^{2} \equiv a \pmod{p}$.
 
-As dificuldades relacionadas às provas destas declarações em \textit{Coq}, se baseando nas ideias de provais manuais apresentadas neste trabalho, deve-se ao fato de que tais ideias sugerem a reorganização de todos os termos de produtórios com tamanho arbitrário. Tais provas não podem ser evitadas na implementação de \textit{símbolo de Legendre} em \textit{Coq} dado que tratam de conteúdos diretamente relacionados (principalmente ao se considerar o Teorema \ref{teorema:criteriodeeuler}).
+As dificuldades relacionadas às provas destas declarações em \textit{Coq}, se baseando nas ideias de provais manuais apresentadas neste trabalho, devem-se ao fato de que tais ideias sugerem a reorganização de todos os termos de produtórios com tamanho arbitrário. Tais provas não podem ser evitadas na implementação de \textit{símbolo de Legendre} em \textit{Coq} dado que tratam de conteúdos diretamente relacionados (principalmente ao se considerar o Teorema \ref{teorema:criteriodeeuler}).
 
 Devido a essa dificuldade, que pode vir a aparecer em diversas situações onde tem-se uma ideia de prova semelhante a ser formalizada, as implementações das provas do Teorema \ref{teorema : wilson} e do Lema \ref{lema : modp-1fat}, em \textit{Coq}, são interessantes de serem analisadas. A prova do Lema \ref{lema : modp-1fat} foi realiza por Laurent Théry e o código pode ser divido nas seguintes etapas:
 
@@ -98,7 +98,7 @@ have -> : p.-1`! = \prod_(i in 'F_p | i != 0%R) i.
         \begin{enumerate}
                 \item[\textbf{(1)}] Introdução dos precedentes do \textit{goal} para hipóteses com os nomes \lstinline[language=coq]|pP|, \lstinline[language=coq]|pNDa| e \lstinline[language=coq]|aR| respectivamente.
                 
-                \item[\textbf{(2)}] Reescrita de $(p-1)!$ como $\prod_{i \in (\mathbb{F}_p - \{0\})} i$ (o que por sua vez abre um \textit{subgoal}, que é por sua vez trivial).
+                \item[\textbf{(2)}] Reescrita de $(p-1)!$ como $\prod_{i \in (\mathbb{F}_p - \{0\})} i$ (o que abre um \textit{subgoal}, que é por sua vez trivial).
                 
                 % \item[\textbf{(3)}] resolução do \textit{subgoal} aberto na linha 2.
         \end{enumerate}
@@ -297,7 +297,7 @@ j * \prod_(i < (Zp_trunc (pdiv p)).+2 | (i != 0%R) && (can i == j) && (i != j)) 
                                 \end{lstlisting}
                         em que \lstinline[language=coq]|(Zp_trunc (pdiv p)).+2| é igual a \lstinline[language=coq]|p|, o que é provado pelo lema \lstinline[language=coq]|Fp_cast|.
                         
-                        \item[\textbf{(\ref{line:31-item4-a})}] Reescrita análoga a feita na linha 3, porém retirando o elemento \lstinline[language=coq]|f j| do produtório, de modo que o \textit{goal} se torne então:
+                        \item[\textbf{(\ref{line:31-item4-a})}] Reescrita análoga a feita na linha \ref{line:28-item4-a}, porém retirando o elemento \lstinline[language=coq]|f j| do produtório, de modo que o \textit{goal} se torne então:
                         
                                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 j * ssrnat_muln__canonical__SemiGroup_ComLaw (f j)
@@ -316,7 +316,7 @@ Lemma big1 {R : Type} {idx : R} {op : Monoid.law idx} I r (P : pred I) F :
                                 \end{lstlisting}
                         seguindo de computação (dada por \lstinline[language=coq]|/=|), reescrita da multiplicação por 1 (omissão), resolução do goal por meio de \lstinline[language=coq]|//| (semelhante ao comando \lstinline[language=coq]|simplify|) e eliminação do $\forall$ (com "\lstinline[language=coq]|=> i|") do \textit{subgoal} aberto pelo uso do lema \lstinline[language=coq]|big1|. 
                                 
-                        Este \textit{subgoal} aberto consiste em provar que: o termo geral é sempre igual a 1 ou que as condições do produtório nunca serão atendidas (que é o caso desta prova) e portanto o produtório retorna apenas 1. 
+                        Este \textit{subgoal} aberto consiste em provar que o termo geral é sempre igual a 1 ou que as condições do produtório nunca serão atendidas (que é o caso desta prova) e portanto o produtório retorna apenas 1. 
                         
                         Após a prova deste \textit{subgoal} resta então apenas o segundo \textit{goal} gerado na aplicação da tática \lstinline[language=coq]|etrans|.
                 
@@ -427,7 +427,7 @@ a' ^ #|(fun i : fintype_ordinal__canonical__fintype_Finite
 fintype_ordinal__canonical__fintype_Finite 
         (Zp_trunc (pdiv p)).+2
                                         \end{lstlisting}
-                                é equivalente à \lstinline[language=coq]|'F_p|, e portanto ao se executar uma computação sobre tal expressão ela resulta em \lstinline[language=coq]|'F_p|. Esta computação é então realizada na linha \ref{line:42-item4b-item2} (qual não estava no código de Laurent), e assim, tem-se no \textit{goal}:
+                                é equivalente à \lstinline[language=coq]|'F_p|, e portanto, ao se executar uma computação sobre tal expressão, ela resulta em \lstinline[language=coq]|'F_p|. Esta computação é então realizada na linha \ref{line:42-item4b-item2} (qual não estava no código de Laurent), e assim, tem-se no \textit{goal}:
                                 % é equivalente à \lstinline[language=coq]|'F_p|, pois ao se executar uma computação ela resulta em \lstinline[language=coq]|'F_p|. Esta computação é então realizada na linha 3, e assim, tem-se no \textit{goal}:
 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
@@ -438,7 +438,7 @@ a' ^ #|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = a' ^ p.-1./2
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 eqn (i.+1 - f i) 0
                                         \end{lstlisting}
-                                é a operação \lstinline[language=coq]|<| (a notação está ``unfolded''). Pode-se notar aqui que o conjunto não é definido por uma lista, mas sim por um predicado booleano, cujo domínio é um tipo finito (\lstinline[language=coq]|'F_p| neste caso).
+                                é a operação \lstinline[language=coq]|<| (a notação está \textit{``unfolded''}). Pode-se notar aqui que o conjunto não é definido por uma lista, mas sim por um predicado booleano, cujo domínio é um tipo finito (\lstinline[language=coq]|'F_p| neste caso).
 
                                 \item[\textbf{(\ref{line:43-item4b-item2})}] Tranformação do \textit{goal} em uma igualdade entre os expoentes, dado que em cada lado da equação do \textit{goal} haviam exponenciações de mesma base. Com isto o \textit{goal} se torna:
                                 
@@ -501,7 +501,7 @@ case: ltngtP => // /eqP/val_eqP fiEi.                           @ \label{line:61
 (i  \in [seq f x  | x in [predI A & B]]) = (i  \in [predD A & B])
                                                         \end{lstlisting}        
                                                 
-                                                \item[\textbf{(\ref{line:51-item4b-item2})}] Simplificação de expressões como \lstinline[language=coq]|x \in 'F_p| (que aparecem na expressão ``unfolded'') em \lstinline[language=coq]|true|. Com isso o \textit{goal} se torna:
+                                                \item[\textbf{(\ref{line:51-item4b-item2})}] Simplificação de expressões como \lstinline[language=coq]|x \in 'F_p| (que aparecem na expressão \textit{``unfolded''}) em \lstinline[language=coq]|true|. Com isso o \textit{goal} se torna:
                                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 (i  \in [seq f x  | x in [predI A & B]]) 
         = [&& ~~ (i < f i),  i != 0%R  & true]
@@ -613,7 +613,8 @@ Compute (legendre_symb (_ : 2 < 7)%R (_ : primez.primez 7) 2).
         \end{lstlisting}
 que neste caso irá retornar $1$.
 
-Havendo a definição de \textit{símbolo de Legendre} resta então provar as suas principais propriedades, que podem vir a ser úteis em trabalhos futuros. Se baseando em \cite{book:2399854}, as principais propriedades do \textit{símbolo de Legendre}, considerando um número primo $p > 2$, são, para todo $a, b \in \mathbb{Z}$:
+% Havendo a definição de \textit{símbolo de Legendre} resta então provar as suas principais propriedades, que podem vir a ser úteis em trabalhos futuros. Se baseando em \cite{book:2399854}, as principais propriedades do \textit{símbolo de Legendre}, considerando um número primo $p > 2$, são, para todo $a, b \in \mathbb{Z}$:
+Havendo a definição de \textit{símbolo de Legendre} resta então provar as suas principais propriedades. Se baseando em \cite{book:2399854}, as principais propriedades do \textit{símbolo de Legendre}, considerando um número primo $p > 2$, são, para todo $a, b \in \mathbb{Z}$:
         \begin{enumerate}
         \item $a \equiv b \pmod{p} \rightarrow \left(\frac{a}{p}\right) = \left(\frac{b}{p}\right)$, cuja declaração dada em \textit{Coq} é:
         \newline
@@ -665,7 +666,7 @@ Lemma legendre_symb_mul (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
                 \end{lstlisting}
         \end{enumerate}
 
-        Nas provas destes lemas foram utilizadas implementações da biblioteca Mathematical Components (sendo importados os módulos \textit{all\_ssreflect} e \textit{all\_algebra}), do repositório \textit{mathcomp-extra} (disponível em \url{https://github.com/thery/mathcomp-extra}) que contém os conteúdos apresentados na Seção \ref{sec:implementacoes} e por fim o módulo \textit{primez} disponível no repositório disponibilizado neste trabalho.
+        Nas provas destas propriedades foram utilizadas implementações da biblioteca Mathematical Components (sendo importados os módulos \textit{all\_ssreflect} e \textit{all\_algebra}), do repositório \textit{mathcomp-extra} (disponível em \url{https://github.com/thery/mathcomp-extra} e que contém os conteúdos apresentados na Seção \ref{sec:implementacoes}) e por fim o módulo \textit{primez} disponível no repositório disponibilizado neste trabalho.
 
         Apesar de longas, as provas realizadas para tais lemas não são de uma complexidade que torne oportuno tratar sobre estas aqui. No entanto convém relatar que, justamente pelo tamanho de tais provas e outros detalhes relacionados a boas práticas para contribuições na biblioteca Mathematical Components (assunto tratado em \url{https://github.com/math-comp/math-comp/blob/master/CONTRIBUTING.md}), essas implementações provavelmente deverão ser refatoradas para que possam ser incluídas na biblioteca.
 
