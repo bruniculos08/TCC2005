@@ -1,0 +1,61 @@
+\begin{frame}[fragile]{Função $\varphi$ de Euler}
+    \begin{definicao}[Função $\varphi$ de Euler] Para quaisquer $n$ inteiro positivo, a função $\varphi(n)$ é definida como: 
+        \begin{equation} \label{def:phi}
+            \varphi(n) = |(\mathbb{Z}/(n))^{\times}|
+        \end{equation}
+    \end{definicao}
+\end{frame}
+
+\begin{frame}[fragile]{Função $\varphi$ de Euler}
+    Algumas propriedades da função $\varphi$ de Euler são:
+    \begin{enumerate}
+        \item $\varphi(1) = \varphi(2) = 1$
+        \item \label{item:prop-phi-2} $\forall n, n > 2 \Rightarrow 1 < \varphi(n) < n$
+        \item \label{item:prop-phi-3} $\forall p,$ se $p$ é primo então $\forall k \in \mathbb{N} - \{0\}, \varphi(p^k) = p^k - p^{k-1}$, portanto, $\varphi(p) = p - 1$
+        % \item \label{item:prop-phi-4} $\forall n, m \in \mathbb{N} - \{0\}, \mdc(n, m) = 1 \Rightarrow \varphi(n \cdot m) = \varphi(n) \cdot \varphi(m) $
+        % \item \label{item:prop-phi-5} $\forall n \in \mathbb{N} - \{0\}$, se a fatoração de $n$ em potências de primos distintos é dada por $n = p_{1}^{\alpha_{1}} \cdot ... \cdot p_{k}^{\alpha_{k}}$, então:
+        %     \begin{equation} \label{lema:phi-formula}
+        %         \varphi(n) = \prod_{1 \leq i \leq k} \varphi(p_{i}^{\alpha_{i}}) = \prod_{1 \leq i \leq k} p_{i}^{\alpha_{i}} - p_{i}^{\alpha_{i} - 1} = n \cdot \prod_{1 \leq i \leq k} \left( 1 - \frac{1}{p_{i}} \right)
+        %     \end{equation}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Função $\varphi$ de Euler}
+    % Algumas propriedades da função $\varphi$ de Euler são:
+    \begin{enumerate}
+        \setcounter{enumi}{3}
+        % \item $\varphi(1) = \varphi(2) = 1$
+        % \item \label{item:prop-phi-2} $\forall n, n > 2 \Rightarrow 1 < \varphi(n) < n$
+        % \item \label{item:prop-phi-3} $\forall p,$ se $p$ é primo então $\forall k \in \mathbb{N} - \{0\}, \varphi(p^k) = p^k - p^{k-1}$, portanto, $\varphi(p) = p - 1$
+        \item \label{item:prop-phi-4} $\forall n, m \in \mathbb{N} - \{0\}, \mdc(n, m) = 1 \Rightarrow \varphi(n \cdot m) = \varphi(n) \cdot \varphi(m) $
+        \item \label{item:prop-phi-5} $\forall n \in \mathbb{N} - \{0\}$, se a fatoração de $n$ em potências de primos distintos é dada por $n = p_{1}^{\alpha_{1}} \cdot ... \cdot p_{k}^{\alpha_{k}}$, então:
+            % \begin{equation} \label{lema:phi-formula}
+            %     \varphi(n) = \prod_{1 \leq i \leq k} \varphi(p_{i}^{\alpha_{i}}) = \prod_{1 \leq i \leq k} p_{i}^{\alpha_{i}} - p_{i}^{\alpha_{i} - 1} = n \cdot \prod_{1 \leq i \leq k} \left( 1 - \frac{1}{p_{i}} \right)
+            % \end{equation}
+            \begin{equation} \label{lema:phi-formula}
+                \begin{split}
+                    \varphi(n) \; & = \; \prod_{1 \leq i \leq k} \varphi(p_{i}^{\alpha_{i}}) \\ 
+                    & = \; \prod_{1 \leq i \leq k} p_{i}^{\alpha_{i}} - p_{i}^{\alpha_{i} - 1} \\ 
+                    & = \; n \cdot \prod_{1 \leq i \leq k} \left( 1 - \frac{1}{p_{i}} \right)
+                \end{split}
+            \end{equation}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Função $\varphi$ de Euler}
+    \begin{teorema}[\textit{Teorema de Euler-Fermat}]
+        \label{eq : euler-fermat}
+        Para todo $a, m \in \mathbb{Z},$ se  $ m > 0$  e $\mdc(a,m) = 1$ então:
+        \begin{equation*}
+            a^{\varphi(m)} \equiv 1 \pmod{m}
+        \end{equation*}
+    \end{teorema}
+
+    \begin{teorema}[\textit{Pequeno Teorema de Fermat}]
+        \label{eq : pequeno-fermat}
+        Para todo $a \in \mathbb{N} - \{0\}$, dado um número primo $p$, tem-se que:
+        \begin{equation*}
+            a^p \equiv a \pmod{p}
+        \end{equation*}
+    \end{teorema}
+\end{frame}

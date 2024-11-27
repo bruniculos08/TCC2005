@@ -1,0 +1,68 @@
+\begin{frame}{Introdução}
+    \begin{itemize}
+        \item A Teoria dos Números é um ramo da matemática que lida, em sua maior parte, com  propriedades de números inteiros;
+        \item É muito presente em temas relacionados a criptografia;
+        \item Envolve definições de diversas relações em $\mathbb{Z}$, sendo duas dessas as relações de divisibilidade e congruência;
+        \item Neste contexto que se apresenta o \textit{símbolo de Legendre}, o qual possui relação com o algoritmo \textit{RESSOL} e está presente na \textit{Lei de Reciprocidade Quadrática}.
+        % algoritmo \textit{RESSOL}, também conhecido como algoritmo de Tonelli-Shanks, e a Lei de Reciprocidade Quadrática;
+        \item A seguir se apresentam as definições de divisibilidade e congruência.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Introdução}
+    \begin{definicao}[\textit{Divisibilidade}]
+            $\forall d, a \in \mathbb{Z}$, \textbf{$d$ divide $a$} (ou em outras palavras: $a$ é um múltiplo de $d$) se e somente se a seguinte proposição é verdadeira:
+            \begin{equation*}
+                \exists q \in \mathbb{Z}, a = d \cdot q
+            \end{equation*}
+            assim, se tal proposição é verdadeira e portanto $d$ divide $a$, tem-se a seguinte notação que representa tal afirmação:
+            \begin{equation*}
+                d \mid a
+            \end{equation*}
+            caso contrário, a negação de tal afirmação ($d$ não divide $a$) é representada por:
+            \begin{equation*}
+                d \nmid a
+            \end{equation*}
+    \end{definicao}
+\end{frame}
+
+\begin{frame}{Introdução}
+    \begin{definicao}[\textit{Congruência}]
+        Para todo $a, b, n \in \mathbb{Z}$, $a$ é congruente a $b$ módulo $n$ se e somente se, pela divisão euclidiana $\frac{a}{n}$ e $\frac{b}{n}$ (onde $0 \leq r_{a} < |n|$ e $0 \leq r_b < |n|$) tem-se
+        \begin{equation*}
+            a = n \cdot q_a + r_a
+        \end{equation*}
+        e
+        \begin{equation*}
+            b = n \cdot q_b + r_b
+        \end{equation*}
+        com $r_a = r_b$, o que também equivale a dizer que:
+        \begin{equation*}
+            n \mid a - b
+        \end{equation*}
+        tal relação entre os inteiros $a$, $b$ e $n$ é representada por:
+        \begin{equation*}
+            a \equiv b \pmod{n}
+        \end{equation*}
+    \end{definicao}
+\end{frame}
+
+% \begin{frame}{Introdução}
+%     \begin{itemize}
+%         \item Sendo $p$ um número primo e $r, n \in \mathbb{Z}$, uma congruência quadrática é uma equação da seguinte forma:
+%         \begin{equation*}
+%             r^2 \equiv n \pmod{p}
+%         \end{equation*}
+%         \item O objetivo do algoritmo \textit{RESSOL} é, tendo os valores de $p$ e $n$, computar um valor de $r$ que satisfaça tal equação;
+%         \item Inicialmente, um algoritmo para resolução deste problema foi publicado em \cite{Tonelli1891};
+%         \item Mais tarde foi publicada uma nova versão em \apud{danielShanks}{Maheswari}, que é a versão a ser tratada neste trabalho;
+%         \item Algumas de suas aplicações são: \textit{Rabin Cryptosystem} \cite{Huynh1581080} e sistemas de criptografia que envolvem curvas elípticas \cite{PalashSarkar2024AdvancesinMathematicsofCommunications}.
+%         % \cite{kumar2021algorithm} e \cite{7133812}.
+%     \end{itemize}
+% \end{frame}
+
+% \begin{frame}{Introdução}
+%     \begin{itemize}
+%         \item Outro tema também abordado neste trabalho (porém não nesta apresentação) é a Lei de Reciprocidade Quadrática.
+%     \end{itemize}
+% \end{frame}

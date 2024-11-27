@@ -1,0 +1,45 @@
+\begin{frame}[fragile]{Propriedades de Congruência}
+    \begin{enumerate}
+        \item (\textit{Reflexividade}) $a \equiv a \pmod{n}$
+        \item (\textit{Simetria}) $a \equiv b \pmod{n} \Longrightarrow b \equiv a \pmod{n}$
+        \item (\textit{Transitividade})
+            \begin{equation*}
+                a \equiv b \pmod{n} \; \land \; b \equiv c \pmod{n} \Rightarrow a \equiv c \pmod{n}
+            \end{equation*}
+        \item (\textit{Compatibilidade com a soma})
+            \begin{equation*}
+                a \equiv b \pmod{n} \; \land \; c \equiv d \pmod{n} \Rightarrow a + c \equiv b + d \pmod{n}
+            \end{equation*}
+        \item (\textit{Compatibilidade com a diferença})
+            \begin{equation*}
+                a \equiv b \pmod{n} \; \land \; c \equiv d \pmod{n} \Rightarrow a - c \equiv b - d \pmod{n}
+            \end{equation*}
+        % \item \label{item:propcong6-produto} (\textit{Compatibilidade com o produto})
+        % \begin{equation*}
+        %     a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a \cdot c \equiv b \cdot d \pmod{n}
+        % \end{equation*}
+        % A partir dessa propriedade, note que, para todo $k \in \mathbb{N}$:
+        % \begin{equation*}
+        %     a \equiv b \pmod{n} \Longrightarrow a^k \equiv b^k \pmod{n}
+        % \end{equation*}
+        % \item \label{item:propcong7-cancelamento} (\textit{Cancelamento}) $\mdc(c, n) = 1 \Longrightarrow (a \cdot c \equiv b \cdot c \pmod{n} \Longleftrightarrow a \equiv b \pmod{n})$   
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Propriedades de Congruência}
+    \begin{enumerate}
+          \setcounter{enumi}{5}
+        \item \label{item:propcong6-produto} (\textit{Compatibilidade com o produto})
+        \begin{equation*}
+            a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a \cdot c \equiv b \cdot d \pmod{n}
+        \end{equation*}
+        A partir dessa propriedade, note que, para todo $k \in \mathbb{N}$:
+        \begin{equation*}
+            a \equiv b \pmod{n} \Longrightarrow a^k \equiv b^k \pmod{n}
+        \end{equation*}
+        \item \label{item:propcong7-cancelamento} (\textit{Cancelamento}) 
+        \begin{equation*}
+            \mdc(c, n) = 1 \Longrightarrow (a \cdot c \equiv b \cdot c \pmod{n} \Longleftrightarrow a \equiv b \pmod{n})
+        \end{equation*}
+    \end{enumerate}
+\end{frame}

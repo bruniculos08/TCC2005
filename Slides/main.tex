@@ -1,0 +1,247 @@
+\documentclass[xcolor=table]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[alf]{abntex2cite}
+\usepackage{Estilos/udesc}
+\usepackage{amsfonts,amsmath,amssymb,mathtools}
+\usepackage{verbatim}
+% \usepackage{listings, lstCoq} % Highlighting de código Coq
+\usepackage[ddmmyyyy]{datetime}
+\usepackage{hyperref, url}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage{multirow}
+\usepackage{changepage}
+\usepackage{xspace}
+\usepackage[normalem]{ulem}
+
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\definecolor{darkorange}{rgb}{0.8,0.4,0.2}
+\definecolor{darkred}{rgb}{0.8,0,0}
+
+\usepackage{svg}
+\setsvg{inkscapeexe=inkscape}
+\setsvg{inkscapeopt=-z -D}
+
+\makeatletter
+\patchcmd{\beamer@sectionintoc}
+  {\ifnum\beamer@tempcount>0}
+  {\ifnum\beamer@tempcount>-1}
+  {}
+  {}
+% \beamer@tocsectionnumber=-1
+\beamer@tocsectionnumber=0
+\makeatother
+% \setcounter{section}{-1}
+\setcounter{section}{0} % O João tinha iniciado no 0 por que era colóquio, mas creio que nas regras da ABNT começa em 1.
+
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
+\newcommand{\uglyphi}{\phi} % mantendo o \phi velho
+\renewcommand \phi{\varphi}
+\let \emptyset \varnothing
+
+\newcommand{\Ltac}{$\mathcal{L}$\unskip tac}
+
+\graphicspath{{Figuras/}}
+\setbeamertemplate{frametitle continuation}{}
+
+% suprimindo warnings do hyperref
+\pdfstringdefDisableCommands{%
+  \def\\{}%
+  \def\texttt#1{<#1>}%
+  \def\smallskip{}%
+  \def\medskip{}%
+}
+
+% Adições de Bruno:
+% (0) Alguma coisa tipo \begin{equation} mas não sei qual a diferença:
+\usepackage{mathpartir}
+
+% (1) Meus estilos do Coq:
+\usepackage{listings, Estilos/coq, Estilos/coq-error}
+
+% (2) Para teoremas e etc.:
+\newtheorem{definicao}{Definição}
+\newtheorem{teorema}{Teorema}
+\newtheorem{lema}{Lema}
+\DeclareMathOperator{\mdc}{mdc}
+\DeclareMathOperator{\mmc}{mmc}
+\DeclareMathOperator{\ndiv}{$\hspace{-4pt}\not|\hspace{2pt}$}
+\setbeamertemplate{theorems}[numbered] % para númerar automaticamente
+\renewcommand\qedsymbol{$\blacksquare$}
+
+% (3) Para poder colar lstinline em math mode:
+\usepackage{etoolbox}
+\expandafter\patchcmd\csname \string\lstinline\endcsname{%
+        \leavevmode
+        \bgroup
+    }{%
+        \leavevmode
+        \ifmmode\hbox\fi
+        \bgroup
+    } {}
+    {%
+        \typeout{Patching of \string\lstinline\space failed!}%
+}
+
+% (4) Para os algoritmos:
+\usepackage[portuguese,linesnumbered,boxruled,noend]{algorithm2e}
+
+% (5) Fonte em algoritmos: 
+\SetArgSty{textnormal}
+\makeatletter
+\let\original@algocf@latexcaption\algocf@latexcaption
+\long\def\algocf@latexcaption#1[#2]{%
+  \@ifundefined{NR@gettitle}{%
+    \def\@currentlabelname{#2}%
+    \def\@currentlabelname{\textsc{#2}}
+  }{%
+    \NR@gettitle{#2}%
+  }%
+  \original@algocf@latexcaption{#1}[{#2}]%
+}
+\makeatother
+
+% (6) Alguma coisa de margem nos algoritmos:
+\SetNlSty{textbf}{}{:}
+\setlength{\algomargin}{2em}
+
+% (7) Para separar o algoritmo RESSOL em dois frames:
+\usepackage{trimclip}
+\usepackage[bahasa]{babel}
+\newsavebox\mydef
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+% (8) Para arrumar o bug de referências:
+% \usepackage{bookmark}
+
+% (9) Para adicionar alguns símbolos:
+\usepackage{fdsymbol}
+
+% (10) Comandos para suprimir e reativar numeração em lstlisting:
+\let\origthelstnumber\thelstnumber
+\makeatletter
+\newcommand*\Suppressnumber{%
+\lst@AddToHook{OnNewLine}{%
+    \let\thelstnumber\relax%
+    \advance\c@lstnumber-\@ne\relax%
+    }%
+}
+
+\newcommand*\Reactivatenumber{%
+\lst@AddToHook{OnNewLine}{%
+\let\thelstnumber\origthelstnumber%
+\advance\c@lstnumber\@ne\relax}%
+}
+\makeatother
+
+% (11) Comando para \vdots customizado:
+\makeatletter
+\DeclareRobustCommand{\rvdots}{%
+\vbox{
+	\baselineskip4\p@\lineskiplimit\z@
+	\kern-\p@
+	\hbox{.}\hbox{.}\hbox{.}
+}}
+\makeatother
+
+% (12) Comandos para códigos em Coq:
+\newcommand{\codequotes}{\lstinline[language=coq]|"|}
+\newcommand{\coqinline}[1][]{\lstinline[language=coq]}
+
+% Fim das adições de Bruno.
+
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabela}
+\sloppy
+\title[]{Formalização do Algoritmo RESSOL utilizando Coq}
+
+\author[Bruno Rafael dos Santos]{
+    Bruno Rafael dos Santos\\\smallskip
+    {\scriptsize Universidade do Estado de Santa Catarina \\\smallskip
+    \texttt{bruniculos2014@gmail.com
+    }\\\medskip
+    {Orientadora: Dra Karina Girardi Roggia}\\
+    {Coorientador: Me Paulo Henrique Torrens}\\
+    }
+}
+
+% \date{\today}
+% \date{26/06/2024}
+\date{29/11/2024}
+
+\titlegraphic{\includegraphics[scale=.15]{Logo-Função.png}}
+% Abaixo é o que o João tinha colocado:
+    % \titlegraphic{Apoio:\\\includegraphics[scale=.15,keepaspectratio]{Logo-CNPq.png}}
+    % \logo{\includegraphics[scale=.05,keepaspectratio]{Logo-Função.png}}
+
+\begin{document}
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+    \begin{frame}{Sumário}
+        % \tableofcontents
+        \tableofcontents[sections=0-3]
+        % \framebreak
+        % \tableofcontents[sections=4-10]
+    \end{frame}
+    
+    \begin{frame}{Sumário}
+        \tableofcontents[sections=4-10]
+    \end{frame}
+
+    \section[]{Introdução}
+    
+        \include{Sections/Introducao/Introducao}
+    
+    \section[]{Objetivos}
+
+        \include{Sections/Objetivos/Objetivos}
+
+    % \section[]{Biblioteca Mathematical Components}
+
+        % \include{Sections/Biblioteca/Biblioteca}
+        % \subsection[]{Structures e Records} \label{sub:structures-records}
+        % \include{Sections/Biblioteca/StructuresRecords}
+        % \subsection[]{Comando Canonical} \label{sub:comando-canonical}
+        % \include{Sections/Biblioteca/Canonical}
+        % \subsection[]{Comando Coercion} \label{sub:comando-coercion}
+        % \include{Sections/Biblioteca/Coercion}
+
+    \section[]{Base Teórica} 
+
+        \include{Sections/BaseTeorica/BaseTeorica}
+        \subsection[]{Propriedades de Congruência} \label{sub:prop-cong}
+        \include{Sections/BaseTeorica/PropriedadesDeCongruencia}
+        \subsection[]{Função $\varphi$ de Euler} \label{sub:funcao-phi}
+        \include{Sections/BaseTeorica/FuncaoPhiDeEuler}
+        \subsection[]{Congruência de Grau 2 e Símbolos de Legendre} \label{sub:cong-grau2}
+        \include{Sections/BaseTeorica/CongruenciaDeGrau2}      
+
+    % \section[]{Algoritmo de Tonelli-Shanks (ou RESSOL)}
+    
+    % \include{Sections/AlgoritmoRessol/AlgoritmoRessol}
+    % \subsection[]{Descrição do Algoritmo} \label{sub:descricao-alg}
+    % \include{Sections/AlgoritmoRessol/Descricao}
+    % \subsection[]{Prova Manual} \label{sub:prova-manual}
+    % \include{Sections/AlgoritmoRessol/ProvaManual}
+    
+    \section[]{Implementação}
+
+        \include{Sections/Implementacao/Formalizacao}
+
+    \section[]{Conclusões}
+
+        % \include{Sections/Conclusao/Conclusao}
+   
+    \section[]{Referências}
+    \begin{frame}[allowframebreaks]{Referências}
+        \bibliography{referencias}
+    \end{frame}
+
+\end{document}

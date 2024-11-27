@@ -1,0 +1,10 @@
+\babel@toc {bahasa}{}\relax 
+\beamer@sectionintoc {1}{Introdução}{4}{0}{1}
+\beamer@sectionintoc {2}{Objetivos}{7}{0}{2}
+\beamer@sectionintoc {3}{Base Teórica}{9}{0}{3}
+\beamer@subsectionintoc {3}{1}{Propriedades de Congruência}{10}{0}{3}
+\beamer@subsectionintoc {3}{2}{Função $\varphi $ de Euler}{12}{0}{3}
+\beamer@subsectionintoc {3}{3}{Congruência de Grau 2 e Símbolos de Legendre}{16}{0}{3}
+\beamer@sectionintoc {4}{Implementação}{28}{0}{4}
+\beamer@sectionintoc {5}{Conclusões}{29}{0}{5}
+\beamer@sectionintoc {6}{Referências}{29}{0}{6}
