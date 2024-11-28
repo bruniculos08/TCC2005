@@ -33,30 +33,8 @@ Module missing.
     Lemma dvdN_mod (p a : int):
         ~ (p %| a)%Z -> ~ (p %| (a %% p))%Z.
     Proof.
-    rewrite !dvdzE -modz_abs.
-    case: `|p| => {}p.
-    by rewrite //= modz0 ; rewrite //=.
-    have: `|(a %% p.+1)%Z| < `|p.+1|.
-        rewrite -ltz_nat -absz_mod.
-        by apply ltz_mod.
-        by rewrite //=.
-    rewrite //=. 
-    move=> xDSp SpNDa SpDx.
-    case Hx: `|(a %% p.+1)%Z| => [|x].
-    move: Hx => /eqP.
-    rewrite -eqz_nat -(absz_mod a).
-    move=> /eqP /dvdz_mod0P => SpDa.
-    rewrite dvdzE //= in SpDa. rewrite //=.
-    move: Hx => /eqP.
-    rewrite -eqz_nat -(absz_mod a).
-    move=> /eqP => Hx.
-    rewrite Hx in SpDx ; rewrite Hx in xDSp.
-    have: p.+1 <= x.+1.
-        apply dvdn_leq.
-        by [].
-        by [].
-    rewrite //= in xDSp ; rewrite //= in SpDx.
-    rewrite leqNgt xDSp //=. rewrite //=.
+    rewrite -{1}(subr0 a) -{1}(subr0 (a %% p)%Z) -!eqz_mod_dvd.
+    by rewrite modz_mod.
     Qed.
             
 End missing.
@@ -1030,9 +1008,22 @@ Module inversezmodp.
         y \in A && y != x.
     *)
     (*  Conjuto A: todo elemento de 'F_p diferente de 0%R *)
+    Set Printing Coercions.
+    Check [predD1 _ & _].
+    Check pred_sort.
+    Print pred_sort.
+    Check predType.
+    Locate "[pred _ | _]".
+    Print PoszD.
+    Print rmorphXn.
+    Check modz_nat.
+    Print GRing.addrC.
+    Check GRing.mulrC.
+    Check mulrC.
     set A := [predD1 'F_p & 0%R].
     (*  Conjuto B: todo elemento i em 'F_p tal que i < f i *)
     pose B := [pred i |  (i : 'F_p) < f i].
+    Print pred.
     (*  A = (A intersec B) + (A - B)    *)
     rewrite -(cardID B A).
     (*  image f [...] é a lista [...] com f aplicada sobre
@@ -1352,7 +1343,7 @@ Module Legendre.
     by [].
     Qed.
 
-    Lemma legendre_symb_Ndvd (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
+    Lemma legendre_symb_sqr (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
         ~~(p %| a)%Z -> (legendre_symb pL2 pP (a^2)) == 1.
     Proof.
     rewrite /legendre_symb.
@@ -1523,8 +1514,10 @@ Module Legendre.
     rewrite -modzMml -modzMmr.
     pose m := `|(a %% p)%Z|.
     pose n := `|(b %% p)%Z|.
-    rewrite (missing.absz_mod a).
-    rewrite (missing.absz_mod b).
+    rewrite -(@gez0_abs (a %% (Posz p))%Z); first last.
+        apply modz_ge0. rewrite -absz_gt0 //= prime_gt0 //.
+    rewrite -(@gez0_abs (b %% (Posz p))%Z); first last.
+        apply modz_ge0. rewrite -absz_gt0 //= prime_gt0 //.
     rewrite -/m -/n -PoszM modz_nat !absz_nat /inversezmodp.res_quad modn_mod.
     have pDm : ~~ (p %| m).
         rewrite /m -{1}(absz_nat p) -dvdzE.
