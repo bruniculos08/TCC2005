@@ -1,17 +1,26 @@
-\frametitle{Formalização do Símbolo de Legendre}
-\begin{itemize}
-        \item Para manipulações de expressões com \coqinline[]{int} não se utilizam lemas específicos para este tipo (por motivo explicado na Subsessão $2.3.4$);
-            \begin{itemize}
-                \item[$\blacktriangleright$] para comutatividade da adição, por exemplo, se usa \coqinline[]{addrC}, para o qual o comando \coqinline[]{Print} traz a mensagem:
-                    \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
-GRing.addrC =
-fun s : nmodType =>
-GRing.isNmodule.addrC
-    (GRing.Nmodule.GRing_isNmodule_mixin
-        (GRing.Nmodule.class s))
-            : forall s : nmodType, commutative +%R
-
-Arguments GRing.addrC {s} x y
-                    \end{lstlisting}
-            \end{itemize}
-    \end{itemize}
+\frametitle{Propriedades de Congruência}
+\begin{enumerate}
+        \item (\textit{Reflexividade}) $a \equiv a \pmod{n}$
+        \item (\textit{Simetria}) $a \equiv b \pmod{n} \Longrightarrow b \equiv a \pmod{n}$
+        \item (\textit{Transitividade})
+            \begin{equation*}
+                a \equiv b \pmod{n} \; \land \; b \equiv c \pmod{n} \Rightarrow a \equiv c \pmod{n}
+            \end{equation*}
+        \item (\textit{Compatibilidade com a soma})
+            \begin{equation*}
+                a \equiv b \pmod{n} \; \land \; c \equiv d \pmod{n} \Rightarrow a + c \equiv b + d \pmod{n}
+            \end{equation*}
+        \item (\textit{Compatibilidade com a diferença})
+            \begin{equation*}
+                a \equiv b \pmod{n} \; \land \; c \equiv d \pmod{n} \Rightarrow a - c \equiv b - d \pmod{n}
+            \end{equation*}
+        % \item \label{item:propcong6-produto} (\textit{Compatibilidade com o produto})
+        % \begin{equation*}
+        %     a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a \cdot c \equiv b \cdot d \pmod{n}
+        % \end{equation*}
+        % A partir dessa propriedade, note que, para todo $k \in \mathbb{N}$:
+        % \begin{equation*}
+        %     a \equiv b \pmod{n} \Longrightarrow a^k \equiv b^k \pmod{n}
+        % \end{equation*}
+        % \item \label{item:propcong7-cancelamento} (\textit{Cancelamento}) $\mdc(c, n) = 1 \Longrightarrow (a \cdot c \equiv b \cdot c \pmod{n} \Longleftrightarrow a \equiv b \pmod{n})$
+    \end{enumerate}

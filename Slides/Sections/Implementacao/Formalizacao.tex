@@ -206,7 +206,7 @@ Lemma rmorphXn n : {morph f : x / x ^+ n}.
     \begin{itemize}
         \item Para manipulações de expressões com \coqinline[]{int} não se utilizam lemas específicos para este tipo (por motivo explicado na Subsessão $2.3.4$);
             \begin{itemize}
-                \item[$\blacktriangleright$] para comutatividade da adição, por exemplo, se usa \coqinline[]{addrC}, para o qual o comando \coqinline[]{Print} traz a mensagem:
+                \item[$\blacktriangleright$] Para comutatividade da adição, por exemplo, se usa \coqinline[]{addrC}, para o qual o comando \coqinline[]{Print} traz a mensagem:
                     \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
 GRing.addrC =
 fun s : nmodType =>
@@ -218,5 +218,28 @@ GRing.isNmodule.addrC
 Arguments GRing.addrC {s} x y
                     \end{lstlisting}
             \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Formalização do Símbolo de Legendre}
+    \begin{itemize}
+        \item Para lidar com o tipo \coqinline[]{ordinal} e coerções:
+            \begin{itemize}
+                \item[$\blacktriangleright$] Para uma hipótese da forma:
+                    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+H : forall i : 'I_p, P i
+                    \end{lstlisting}
+                tendo no contexto as variáveis \coqinline[]{p : int} e \coqinline[]{x : 'Z_p}, não é possível instânciar tal hipótese com \coqinline[]{x} pois é necessário que a 
+                função aplicada sobre \coqinline[]{p} na notação resulte em \coqinline[]{p}, ou seja, é necessário escrever \coqinline[]{p} como alguma variável somada a $2$ o que pode ser resolvido pelo uso sucessivo da tática \coqinline[]{case: p => p}. 
+                % Anotação: pois se p = 0 ou p = 1 então tem-se 'I_0 ou 'I_1 mas x, de tipo 'Z_1 ou 'Z_0 (frase talvez imprecisa), terá tipo 'I_2.
+                \item[]
+                \item[{$\blacktriangleright$}] A notação \coqinline[]{:> X} após uma igualdade indica uma coerção de ambos os lados da equação para o tipo \coqinline[]{X}; como exemplo tem-se o lema:
+                    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma natz (n : nat) : n%:R = n%:Z :> int.
+                    \end{lstlisting}
+                
+
+            \end{itemize}
+            
     \end{itemize}
 \end{frame}

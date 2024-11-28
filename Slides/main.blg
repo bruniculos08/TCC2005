@@ -8,6 +8,7 @@ A level-1 auxiliary file: Sections/BaseTeorica/PropriedadesDeCongruencia.aux
 A level-1 auxiliary file: Sections/BaseTeorica/CongruenciaDeGrau2.aux
 A level-1 auxiliary file: Sections/Implementacao/ImplementacoesExternas.aux
 A level-1 auxiliary file: Sections/Implementacao/Formalizacao.aux
+A level-1 auxiliary file: Sections/Conclusao/Conclusao.aux
 The style file: abntex2-alf.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -35,7 +36,7 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 +---------------------------------------------------------+
 You've used 7 entries,
             6714 wiz_defined-function locations,
-            1255 strings with 11013 characters,
+            1256 strings with 11045 characters,
 and the built_in function-call counts, 10027 in all, are:
 = -- 1257
 > -- 154
