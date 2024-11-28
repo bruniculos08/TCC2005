@@ -1,12 +1,13 @@
-\frametitle{Formalização}
-\begin{itemize}
-        \item O símbolo foi implementado por meio da seguinte função:
-        \noindent
-        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Definition legendre_symb {p : int} (pL2 : (2 < p)%R)
-    (pP : primez.primez p) (a : int) :=
-        if (p %| a)%Z then 0%Z else if (resz_quad p a)
-        then 1%Z else (-1)%Z.
-        \end{lstlisting}
-        onde \coqinline[]{resz_quad}
+\frametitle{Formalização do Símbolo de Legendre}
+
+    \begin{itemize}
+        \item $\left(\frac{a \cdot b}{p}\right) = \left(\frac{a}{p}\right) \cdot \left(\frac{b}{p}\right)$, cuja declaração dada em \textit{Coq} é:
+        \newline
+            \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma legendre_symb_mul (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
+    (legendre_symb pL2 pP (a * b)%R) =
+    ((legendre_symb pL2 pP a) *
+        (legendre_symb pL2 pP b))%R.
+            \end{lstlisting}
     \end{itemize}
+

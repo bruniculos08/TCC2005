@@ -5,8 +5,8 @@ A level-1 auxiliary file: Sections/Introducao/Introducao.aux
 A level-1 auxiliary file: Sections/Objetivos/Objetivos.aux
 A level-1 auxiliary file: Sections/BaseTeorica/BaseTeorica.aux
 A level-1 auxiliary file: Sections/BaseTeorica/PropriedadesDeCongruencia.aux
-A level-1 auxiliary file: Sections/BaseTeorica/FuncaoPhiDeEuler.aux
 A level-1 auxiliary file: Sections/BaseTeorica/CongruenciaDeGrau2.aux
+A level-1 auxiliary file: Sections/Implementacao/ImplementacoesExternas.aux
 A level-1 auxiliary file: Sections/Implementacao/Formalizacao.aux
 The style file: abntex2-alf.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -20,6 +20,10 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Database file #1: abntex2-options.bib
 Database file #2: referencias.bib
+Warning--entry type for "johndcookQuadraticReciprocity" isn't style-file defined
+--line 122 of file referencias.bib
+Warning--entry type for "kumar2021algorithm" isn't style-file defined
+--line 289 of file referencias.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=200001) to 20 items from 10.
@@ -29,44 +33,45 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 2 entries,
+You've used 8 entries,
             6714 wiz_defined-function locations,
-            1212 strings with 9868 characters,
-and the built_in function-call counts, 1838 in all, are:
-= -- 266
-> -- 42
-< -- 1
-+ -- 62
-- -- 12
-* -- 109
-:= -- 302
-add.period$ -- 6
-call.type$ -- 2
-change.case$ -- 17
-chr.to.int$ -- 5
-cite$ -- 1
-duplicate$ -- 50
-empty$ -- 106
-format.name$ -- 61
-if$ -- 434
+            1261 strings with 11142 characters,
+and the built_in function-call counts, 11589 in all, are:
+= -- 1444
+> -- 186
+< -- 271
++ -- 378
+- -- 57
+* -- 699
+:= -- 1478
+add.period$ -- 38
+call.type$ -- 8
+change.case$ -- 69
+chr.to.int$ -- 14
+cite$ -- 7
+duplicate$ -- 1064
+empty$ -- 518
+format.name$ -- 270
+if$ -- 2398
 int.to.chr$ -- 0
 int.to.str$ -- 0
-missing$ -- 32
-newline$ -- 13
-num.names$ -- 5
-pop$ -- 55
+missing$ -- 136
+newline$ -- 44
+num.names$ -- 35
+pop$ -- 192
 preamble$ -- 1
-purify$ -- 8
+purify$ -- 29
 quote$ -- 0
-skip$ -- 124
+skip$ -- 1145
 stack$ -- 1
-substring$ -- 67
-swap$ -- 23
-text.length$ -- 0
+substring$ -- 519
+swap$ -- 397
+text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
+type$ -- 1
 warning$ -- 0
-while$ -- 8
+while$ -- 55
 width$ -- 0
-write$ -- 25
+write$ -- 125
+(There were 2 warnings)

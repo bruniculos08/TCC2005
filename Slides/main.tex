@@ -153,6 +153,19 @@
 \newcommand{\codequotes}{\lstinline[language=coq]|"|}
 \newcommand{\coqinline}[1][]{\lstinline[language=coq]}
 
+% (13) Para colocar frame de inicio de seção:
+% \AtBeginSection[]{
+%   \begin{frame}
+%   \vfill
+%   \centering
+%   \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+%     \usebeamerfont{title}\insertsectionhead\par%
+%   \end{beamercolorbox}
+%   \vfill
+%   \end{frame}
+% }
+
+
 % Fim das adições de Bruno.
 
 \renewcommand{\figurename}{Figura}
@@ -218,8 +231,8 @@
         \include{Sections/BaseTeorica/BaseTeorica}
         \subsection[]{Propriedades de Congruência} \label{sub:prop-cong}
         \include{Sections/BaseTeorica/PropriedadesDeCongruencia}
-        \subsection[]{Função $\varphi$ de Euler} \label{sub:funcao-phi}
-        \include{Sections/BaseTeorica/FuncaoPhiDeEuler}
+        % \subsection[]{Função $\varphi$ de Euler} \label{sub:funcao-phi}
+        % \include{Sections/BaseTeorica/FuncaoPhiDeEuler}
         \subsection[]{Congruência de Grau 2 e Símbolos de Legendre} \label{sub:cong-grau2}
         \include{Sections/BaseTeorica/CongruenciaDeGrau2}      
 
@@ -233,6 +246,7 @@
     
     \section[]{Implementação}
 
+        \include{Sections/Implementacao/ImplementacoesExternas}
         \include{Sections/Implementacao/Formalizacao}
 
     \section[]{Conclusões}

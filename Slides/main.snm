@@ -1,27 +1,13 @@
-\beamer@slide {item:propcong6-produto}{11}
-\beamer@slide {item:propcong7-cancelamento}{11}
-\beamer@slide {sub:prop-cong}{10}
-\beamer@slide {def:phi}{12}
-\beamer@slide {item:prop-phi-2}{13}
-\beamer@slide {item:prop-phi-3}{13}
-\beamer@slide {item:prop-phi-4}{14}
-\beamer@slide {item:prop-phi-5}{14}
-\beamer@slide {lema:phi-formula}{14}
-\beamer@slide {eq : euler-fermat}{15}
-\beamer@slide {eq : pequeno-fermat}{15}
-\beamer@slide {sub:funcao-phi}{12}
-\beamer@slide {eq : ax2bxc}{16}
-\beamer@slide {eq : bhaskara}{16}
-\beamer@slide {eq : quadcong}{17}
-\beamer@slide {eq : listquadres}{18}
-\beamer@slide {eq : ordivp}{19}
-\beamer@slide {lema:existnonquadratic}{20}
-\beamer@slide {teorema:criteriodeeuler}{22}
-\beamer@slide {lema : mdcinv}{23}
-\beamer@slide {lema : invmod}{24}
-\beamer@slide {lema : hkequivamodp}{24}
-\beamer@slide {lema : kk'modp}{25}
-\beamer@slide {lema : modp-1fat}{25}
-\beamer@slide {lema : eq1modp}{26}
-\beamer@slide {teorema : wilson}{26}
-\beamer@slide {sub:cong-grau2}{16}
+\beamer@slide {item:propcong6-produto}{12}
+\beamer@slide {item:propcong7-cancelamento}{12}
+\beamer@slide {sub:prop-cong}{11}
+\beamer@slide {eq : ax2bxc}{13}
+\beamer@slide {eq : bhaskara}{13}
+\beamer@slide {eq : quadcong}{14}
+\beamer@slide {eq : listquadres}{15}
+\beamer@slide {eq : ordivp}{16}
+\beamer@slide {lema:existnonquadratic}{17}
+\beamer@slide {teorema:criteriodeeuler}{19}
+\beamer@slide {lema : modp-1fat}{20}
+\beamer@slide {teorema : wilson}{21}
+\beamer@slide {sub:cong-grau2}{13}

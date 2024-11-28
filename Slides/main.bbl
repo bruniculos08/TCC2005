@@ -10,4 +10,35 @@
 {BROCHERO, F.~E. et al. \emph{Teoria dos Números: um passeio com primos e outros números familiares pelo mundo inteiro}. 3. ed. Rio de Janeiro : IMPA: IMPA, 2013.  (Projeto Euclides).
 ISBN 978-85-2444-0312-5.}
 
+\bibitem[Cook 2023]{johndcookQuadraticReciprocity}
+\abntrefinfo{Cook}{COOK}{2023}
+{COOK, J.~D. \emph{Quadratic reciprocity algorithm}. 2023.
+Dispon{\'\i}vel em: \url{https://www.johndcook.com/blog/2023/01/01/quadratic-reciprocity-algorithm/}. Acesso em: 06 de jun. de 2024.}
+
+\bibitem[Kumar 2020]{kumar2021algorithm}
+\abntrefinfo{Kumar}{KUMAR}{2020}
+{KUMAR, R. \emph{An algorithm for finding square root modulo p}. 2020.
+Dispon{\'\i}vel em: \url{https://doi.org/10.48550/arXiv.2008.11814}. Acesso em: 15 de maio de 2024.}
+
+\bibitem[Li, Dong e Cao 2014]{7133812}
+\abntrefinfo{Li, Dong e Cao}{LI; DONG; CAO}{2014}
+{LI, Z.; DONG, X.; CAO, Z. Generalized cipolla-lehmer root computation in finite fields. In:  ICINS 2014 - 2014 INTERNATIONAL CONFERENCE ON INFORMATION AND NETWORK SECURITY, CP657. \emph{ICINS 2014 - 2014 International Conference on Information and Network Security}. Pequim, China, 2014. p. 163--168.}
+
+\bibitem[Mahboubi e Tassi 2022]{assia_mahboubi_2022_7118596}
+\abntrefinfo{Mahboubi e Tassi}{MAHBOUBI; TASSI}{2022}
+{MAHBOUBI, A.; TASSI, E. \emph{Mathematical Components}. Zenodo, 2022. Dispon{\'\i}vel em: \url{https://doi.org/10.5281/zenodo.7118596}.}
+
+\bibitem[Sarkar 2024]{PalashSarkar2024AdvancesinMathematicsofCommunications}
+\abntrefinfo{Sarkar}{SARKAR}{2024}
+{SARKAR, P. Computing square roots faster than the tonelli-shanks/bernstein algorithm.
+\emph{Advances in Mathematics of Communications}, v.~18, n.~1, p. 141--162, 2024.
+Dispon{\'\i}vel em: \url{https://www.aimsciences.org/article/id/6212ee892d80b75aa4a24c21}.}
+
+\bibitem[Wright 2016]{Wright2016}
+\abntrefinfo{Wright}{WRIGHT}{2016}
+{WRIGHT, S. Four interesting applications of quadratic reciprocity.
+In:  \underline{\ \ \ \ \ \ \ \ }. \emph{Quadratic Residues and Non-Residues: Selected Topics}. Suíça: Springer Cham, 2016. p. 79--118.
+ISBN 978-3-319-45955-4.
+Dispon{\'\i}vel em: \url{https://doi.org/10.1007/978-3-319-45955-4\_4}.}
+
 \end{thebibliography}

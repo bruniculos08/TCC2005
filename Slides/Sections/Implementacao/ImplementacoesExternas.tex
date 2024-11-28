@@ -1,0 +1,50 @@
+\begin{frame}[fragile]{Implementações Externas}
+    Os enunciados dos lemas provados por Laurent Théry em \textit{Coq} são:
+
+    \begin{itemize}
+        \item Lema \ref{lema : modp-1fat}:
+            \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma fact_sqr_exp a p :
+    prime p -> ~~ res_quad p a -> 
+        (p.-1`!) = a ^ p.-1./2 %[mod p].              
+            \end{lstlisting}
+
+        \item Critério de Euler para números naturais (e desconsiderando o caso em que $p \mid a$):
+            \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma euler_criterion a p : 
+  prime p -> ~~ (p %| a) -> 
+  a ^ p.-1./2 = (if res_quad p a then 1 else p.-1) %[mod p].
+            \end{lstlisting}
+    \end{itemize}
+
+    Onde \coqinline[]{res_quad} é uma função definida como:
+        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Definition res_quad p a := has (fun i => i * i == a %[mod p]) (iota 0 p).
+        \end{lstlisting}
+    
+\end{frame}
+
+% \begin{frame}[fragile]{Implementações Externas}
+    
+%     Onde \coqinline[]{res_quad} é uma função definida como:
+%         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+% Definition res_quad p a := has (fun i => i * i == a %[mod p]) (iota 0 p).
+%         \end{lstlisting}
+    
+% \end{frame}
+
+\begin{frame}[fragile]{Implementações Externas}
+    
+    A prova do Lema \ref{lema : modp-1fat} em \textit{Coq} é bastante complexa, por isso existem alguns pontos que a serem mencionadas aqui:
+
+    \begin{itemize}
+        \item A prova faz um uso extenso do operador \coqinline[]{bigop} que é utilizado na representação de somatórios e produtórios na biblioteca Mathematical Components; este operador, de acordo com \cite{assia_mahboubi_2022_7118596}, pode ser definido:
+        
+        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Definition res_quad p a := has (fun i => i * i == a %[mod p]) (iota 0 p).
+        \end{lstlisting}
+        
+        
+    \end{itemize}
+    
+\end{frame}

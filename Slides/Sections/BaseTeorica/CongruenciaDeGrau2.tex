@@ -1,4 +1,6 @@
 \begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
+    Motivação sobre a resolução de congruências de grau 2:
+    \vspace{4mm}
     \begin{itemize}
         \item Sendo $p$ um número primo maior que $2$ e $a,b,c \in \mathbb{Z}$ números não divisíveis por $p$, como motivação suponha que se deseje resolver a seguinte equação:
         \begin{equation} \label{eq : ax2bxc}
@@ -12,16 +14,19 @@
 \end{frame}
 
 \begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
+    Motivação sobre a resolução de congruências de grau 2: 
+    (continuação)
+    \vspace{4mm}
     \begin{itemize}
         \item Realizando a substituição $X = 2 \cdot a \cdot x + b$ e $d = b^2 - 4 \cdot a \cdot c$ na Equação \ref{eq : bhaskara}, tem-se:
         \begin{equation} \label{eq : quadcong}
             X^2 \equiv d \pmod p
         \end{equation}
-        Portanto, resolver a Equação \ref{eq : ax2bxc} é equivalente a resolver a Equação \ref{eq : quadcong};
-
-    \item Sobre a Equação \ref{eq : quadcong}, se diz que $d$ é um quadrado perfeito em $\mathbb{Z}/(p)$ e também que $d$ é um \textit{resíduo quadrático módulo $p$}.
-    
+        Portanto, resolver a Equação \ref{eq : ax2bxc} é equivalente a resolver a Equação \ref{eq : quadcong}.
     \end{itemize}
+    \vspace{4mm}
+    Sobre a Equação \ref{eq : quadcong}, se diz que $d$ é um quadrado perfeito em $\mathbb{Z}/(p)$ e também que $d$ é um \textit{resíduo quadrático módulo $p$}.
+
 \end{frame}
 
 \begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
@@ -76,7 +81,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
-    Uma maneira de se computar o valor de um \textit{símbolo de Legendre} é por meio do \textit{Critério de Euler}, descrito a seguir:
+    Pode-se dizer que a relação entre o \textit{símbolo de Legendre} e função $\varphi$ de Euler, que para um número primo $p$ é $\varphi(p) = p - 1$, se dá pelo seguinte teorema:
     \begin{teorema}[\textit{Critério de Euler}] Para todo $a \in \mathbb{Z}$, seja $p > 2$ um número primo, então: \label{teorema:criteriodeeuler}
         \begin{equation*}
             \left( \frac{a}{p} \right) \equiv a^{\frac{p-1}{2}} \pmod p
@@ -85,38 +90,8 @@
 \end{frame}
 
 \begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
-    Para a se realizar a prova do \textit{Critério de Euler} são necessários as definições, lemas e teoremas dados a seguir:
 
-        \begin{definicao}[\textit{Inverso multiplicativo módulo $n$}]
-            Dados $a, m, n \in \mathbb{Z}$, se $a \cdot m \equiv 1 \pmod n$, se diz que $m$ é um \textit{inverso de $a$ módulo $n$}, e pode ser denotado por $a^{-1}$.
-        \end{definicao}
-
-        \begin{lema} \label{lema : mdcinv}
-            Para todo $a, n \in \mathbb{Z}$, se $n > 0$, então, existe $b \in \mathbb{Z}$ tal que $a \cdot b \equiv 1 \pmod{n}$ se, e somente se, $\mdc(a, n) = 1$.
-        \end{lema}
-    
-\end{frame}
-
-\begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
-
-    \begin{lema}[\textit{Unicidade de inverso multiplicativo módulo p}] Dado um número primo $p$, seja 
-        $a \in [1, p-1]$, existe $k \in [1, p-1]$ tal que $ a \cdot k \equiv 1 \pmod p$ e $k$ é portanto o único inverso multiplicativo de  módulo $p$ de $a$ no intervalo $[1, p-1]$. \label{lema : invmod}
-    \end{lema}
-
-    \begin{lema} 
-    Seja $a \in [1, p-1]$ em que $p$ é um número primo maior que $2$, se $x^2 \equiv a \pmod p$ não tem solução, então para todo $h \in [1, p-1]$ existe $k \in [1, p-1]$, tal que: \label{lema : hkequivamodp}
-        \begin{equation*} 
-            h \neq k \land h \cdot k \equiv a \pmod p 
-        \end{equation*}
-    \end{lema}
-
-\end{frame}
-
-\begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
-
-    \begin{lema} \label{lema : kk'modp}
-    Seja $a, h, k, k' \in [1, p-1]$, se $k \cdot h \equiv a \pmod{p}$ e $k' \cdot h \equiv a \pmod{p}$ então $k = k'$ ($k$ é único).
-    \end{lema}
+    Para a prova do Critério de Euler, tanto na versão feita por Laurent Théry (que auxilou na realização deste trabalho) quanto na prova manual apresentada neste trabalho foram necessários os seguintes teoremas: 
 
     \begin{lema} \label{lema : modp-1fat}
     Seja $p > 2$ um número primo, para todo $a \in \mathbb{Z}$, se $\mdc(a, p) = 1$ e $x^2 \equiv a \pmod p$ não tem solução então:
@@ -124,39 +99,43 @@
             (p - 1)! \equiv a^{\frac{p-1}{2}} \pmod{p}
         \end{equation*}
     \end{lema}
+
+    % \begin{teorema}[\textit{Teorema de Wilson}] \label{teorema : wilson}
+    %     Seja número composto um número que pode ser escrito como a multiplicação de dois outros números menores então, dado $n > 1$:
+    %     \begin{equation*}
+    %         (n - 1)! \equiv \begin{cases}
+    %                         -1 \pmod{n} \; \textit{se $n$ é primo} \\
+    %                         0 \pmod{n} \; \textit{se $n$ é composto e $n \neq 4$}
+    %                         \end{cases}
+    %     \end{equation*}
+    % \end{teorema}
         
+    % Em que, o Lema \ref{{lema : modp-1fat}} junto ao Critério de Euler foram provados por Laurent Théry durante o período de realização deste trabalho, enquanto o Teorema de Wilson já se encontrava na biblioteca.
+
 \end{frame}
 
 \begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
 
-        \begin{lema} Seja $p$ um número primo, então para quaisquer soluções de $x^2 \equiv 1 \pmod{p}$ têm-se que $x \equiv 1 \pmod{p}$ ou $x \equiv -1 \pmod{p}$. Portanto para qualquer outro valor $y$ que não é uma solução, $y \not\equiv y^{-1} \pmod{p}$.
-        \label{lema : eq1modp}
-        \end{lema}
+    % Para a prova do Critério de Euler, tanto na biblioteca Mathematical Components quanto na prova manual apresentada neste trabalho foram necessários os seguintes teoremas: 
 
-        \begin{teorema}[\textit{Teorema de Wilson}] \label{teorema : wilson}
-            Seja número composto um número que pode ser escrito como a multiplicação de dois outros números menores então, dado $n > 1$:
-            \begin{equation*}
-                (n - 1)! \equiv \begin{cases}
-                                -1 \pmod{n} \; \textit{se $n$ é primo} \\
-                                0 \pmod{n} \; \textit{se $n$ é composto e $n \neq 4$}
-                                \end{cases}
-            \end{equation*}
-        \end{teorema}
+    % \begin{lema} \label{lema : modp-1fat}
+    % Seja $p > 2$ um número primo, para todo $a \in \mathbb{Z}$, se $\mdc(a, p) = 1$ e $x^2 \equiv a \pmod p$ não tem solução então:
+    %     \begin{equation*}
+    %         (p - 1)! \equiv a^{\frac{p-1}{2}} \pmod{p}
+    %     \end{equation*}
+    % \end{lema}
+
+    \begin{teorema}[\textit{Teorema de Wilson}] \label{teorema : wilson}
+        Seja número composto um número que pode ser escrito como a multiplicação de dois outros números menores então, dado $n > 1$:
+        \begin{equation*}
+            (n - 1)! \equiv \begin{cases}
+                            -1 \pmod{n} \; \textit{se $n$ é primo} \\
+                            0 \pmod{n} \; \textit{se $n$ é composto e $n \neq 4$}
+                            \end{cases}
+        \end{equation*}
+    \end{teorema}
         
+    Em que, o Lema \ref{lema : modp-1fat} junto a uma versão do Critério de Euler para números naturais foram provados por Laurent Théry durante o período de realização deste trabalho, enquanto o Teorema de Wilson já se encontrava na biblioteca.
+
 \end{frame}
 
-% \begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
-%     \begin{itemize}
-%         \item Com esses itens pode ser realizada a prova do \textit{Critério de Euler};
-
-%         \item Todos esses itens junto ao \textit{Critério de Euler} não estão implementados na biblioteca Mathematical Components, portanto constituem uma etapa intermediária para que se alcance o objetivo deste trabalho.
-%     \end{itemize}
-% \end{frame}
-
-\begin{frame}{Congruência de Grau 2 e Símbolos de Legendre}
-        Com esses itens apresentados pode ser realizada a prova do \textit{Critério de Euler}, qual é por sua vez o teorema mais importante para a formalização do algoritmo \textit{RESSOL}.
-        \smallskip
-        \smallskip
-
-        \textbf{Obs.:} todos esses itens junto ao \textit{Critério de Euler} não estão implementados na biblioteca Mathematical Components, portanto constituem uma etapa intermediária para que se alcance o objetivo deste trabalho.
-\end{frame}
