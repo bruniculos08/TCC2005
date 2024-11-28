@@ -1,50 +1,204 @@
 \begin{frame}[fragile]{Implementações Externas}
     Os enunciados dos lemas provados por Laurent Théry em \textit{Coq} são:
-
     \begin{itemize}
-        \item Lema \ref{lema : modp-1fat}:
+        \item Para o Lema \ref{lema : modp-1fat}:
             \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma fact_sqr_exp a p :
     prime p -> ~~ res_quad p a -> 
         (p.-1`!) = a ^ p.-1./2 %[mod p].              
             \end{lstlisting}
-
-        \item Critério de Euler para números naturais (e desconsiderando o caso em que $p \mid a$):
+        \item Para a versão do Critério de Euler com números naturais (e desconsiderando o caso em que $p \mid a$):
             \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma euler_criterion a p : 
   prime p -> ~~ (p %| a) -> 
   a ^ p.-1./2 = (if res_quad p a then 1 else p.-1) %[mod p].
             \end{lstlisting}
     \end{itemize}
-
-    Onde \coqinline[]{res_quad} é uma função definida como:
-        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Definition res_quad p a := has (fun i => i * i == a %[mod p]) (iota 0 p).
-        \end{lstlisting}
-    
-\end{frame}
-
-% \begin{frame}[fragile]{Implementações Externas}
-    
 %     Onde \coqinline[]{res_quad} é uma função definida como:
 %         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-% Definition res_quad p a := has (fun i => i * i == a %[mod p]) (iota 0 p).
+% Definition res_quad p a := has (fun i => i * i == a %[mod p]) 
+%     (iota 0 p).
 %         \end{lstlisting}
-    
-% \end{frame}
+\end{frame}
 
 \begin{frame}[fragile]{Implementações Externas}
-    
-    A prova do Lema \ref{lema : modp-1fat} em \textit{Coq} é bastante complexa, por isso existem alguns pontos que a serem mencionadas aqui:
+%     \begin{itemize}
+%         \item Para a versão do Critério de Euler com números naturais (e desconsiderando o caso em que $p \mid a$):
+%         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+% Lemma euler_criterion a p : 
+% prime p -> ~~ (p %| a) -> 
+% a ^ p.-1./2 = (if res_quad p a then 1 else p.-1) %[mod p].
+%         \end{lstlisting}
+%     \end{itemize}
+onde \coqinline[]{res_quad} é uma função definida como:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Definition res_quad p a := 
+    has (fun i => i * i == a %[mod p]) (iota 0 p).
+    \end{lstlisting}
+\end{frame}
 
+
+\begin{frame}[fragile]{Implementações Externas}
+    A prova do Lema \coqinline[]{fact_sqr_exp} é bastante complexa, por isso existem alguns pontos a serem mencionados aqui:
     \begin{itemize}
-        \item A prova faz um uso extenso do operador \coqinline[]{bigop} que é utilizado na representação de somatórios e produtórios na biblioteca Mathematical Components; este operador, de acordo com \cite{assia_mahboubi_2022_7118596}, pode ser definido:
-        
-        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Definition res_quad p a := has (fun i => i * i == a %[mod p]) (iota 0 p).
-        \end{lstlisting}
-        
-        
+        \item Na prova é feito o uso extenso de estruturas como anéis e corpos (\textit{fields}), relacionadas pelo seguinte lema:
+            \begin{lema} \label{lema : anel:corpo}
+                $\forall n \in \mathbb{Z}, \mathbb{Z}/(n)$ é um corpo se e somente se $n$ é primo. 
+            \end{lema}
+        Quanto a implementação destas estruturas na biblioteca tem-se:
+            \begin{itemize}
+                \item[$\blacktriangleright$] O tipo \coqinline[]{ordinal}:
+                
+                    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Inductive ordinal n := Ordinal m of m < n.
+Notation "'I_' n" := (ordinal n).
+Coercion nat_of_ord n (i : 'I_n) := 
+    let: @Ordinal _ m _ := i in m.
+                    \end{lstlisting}
+            \end{itemize}
     \end{itemize}
-    
+\end{frame}
+
+\begin{frame}[fragile]{Implementações Externas}
+    \begin{itemize}
+        \item[] 
+            \begin{itemize}
+                \item[$\blacktriangleright$] A função \coqinline[]{inZp}:
+                    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Definition inZp i := 
+    @Ordinal p (i %% p) (ltn_pmod i (ltn0Sn p')).
+                    \end{lstlisting}
+                \item[$\blacktriangleright$] A implementação de anéis (com elementos neutros diferentes para cada operação) e corpos na biblioteca:
+                    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Definition Zp_trunc p := p.-2.
+
+Notation "''Z_' p" := 'I_(Zp_trunc p).+2
+  (at level 8, p at level 2, format "''Z_' p") : type_scope.
+
+Notation "''F_' p" := 'Z_(pdiv p)
+  (at level 8, p at level 2, format "''F_' p") : type_scope.
+                    \end{lstlisting}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Implementações Externas}
+    \begin{itemize}
+        % \item A prova faz um uso extenso do operador \coqinline[]{bigop} que é utilizado na representação de somatórios e produtórios na biblioteca Mathematical Components:
+        \item A prova feita por Laurent, semelhante a prova manual, se baseia na reorganização de um produtório de tamanho arbitrário, logo há o uso extenso do operador \coqinline[]{bigop} sobre o qual tem-se:
+        \begin{itemize}
+            \item[$\blacktriangleright$] Definição do operador \coqinline[]{bigop}:
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Definition bigop R I idx op r (P : pred I) (F : I -> R) : 
+    R := foldr (fun i x => if P i then op (F i) x else x) 
+        idx r.
+                \end{lstlisting}
+                                
+            \item[$\blacktriangleright$] Notação para o operador \coqinline[]{bigop}:
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+ Notation "\big [ op / idx ]_ ( i <- r | P ) F" :=
+    (bigop idx op r (fun i => P%B) (fun i => F)) : big_scope.
+                \end{lstlisting}
+        \end{itemize}
+        % \item A prova feita por Laurent é semelhante a prova manual no sentido de que se baseia na reorganização de um produtório ($(p-1)!$) de tamanho arbitrário 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Implementações Externas}
+    \begin{itemize}
+        \item[]
+        \begin{itemize}
+            \item[$\blacktriangleright$] Lema \coqinline[]{partition_big} que permite ``quebrar'' uma aplicação de \coqinline[]{bigop} em duas aplicações aninhadas:
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma partition_big {R : Type} {idx : R} 
+{op : Monoid.com_law idx} {I : Type} {s : seq I} 
+{J : finType} {P : pred I} (p : I -> J) (Q : pred J) 
+{F : I -> R} :
+(\forall i : I, P i -> Q (p i)) ->
+    \big[op/idx]_(i <- s | P i) F i =
+        \big[op/idx]_(j | Q j) \big[op/idx]_(i <- s | P i && (p i == j)) F i
+                \end{lstlisting}
+
+%             \item[$\blacktriangleright$] Lema \coqinline[]{eq_bigr} útil para provar a igualdade entre duas aplicações do operador \coqinline[]{bigop}:
+%                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+% Lemma eq_bigr r (P : pred I) F1 F2 : (forall i, P i -> F1 i = F2 i) ->
+%         \big[op/idx]_(i <- r | P i) F1 i = \big[op/idx]_(i <- r | P i) F2 i.
+%                 \end{lstlisting}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Implementações Externas}
+    \begin{itemize}
+        \item[]
+        \begin{itemize}
+%             \item[$\blacktriangleright$] Lema \coqinline[]{partition_big} que permite ``quebrar'' uma aplicação de \coqinline[]{bigop} em duas aplicações aninhadas:
+%                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+% Lemma partition_big {R : Type} {idx : R} 
+% {op : Monoid.com_law idx} {I : Type} {s : seq I} 
+% {J : finType} {P : pred I} (p : I -> J) (Q : pred J) 
+% {F : I -> R} :
+% (\forall i : I, P i -> Q (p i)) ->
+%     \big[op/idx]_(i <- s | P i) F i =
+%         \big[op/idx]_(j | Q j) \big[op/idx]_(i <- s | P i && (p i == j)) F i
+%                 \end{lstlisting}
+                
+            \item[$\blacktriangleright$] Lema \coqinline[]{eq_bigr} útil para provar a igualdade entre duas aplicações do operador \coqinline[]{bigop}:
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma eq_bigr r (P : pred I) F1 F2 : 
+    (forall i, P i -> F1 i = F2 i) ->
+        \big[op/idx]_(i <- r | P i) F1 i = 
+            \big[op/idx]_(i <- r | P i) F2 i.
+                \end{lstlisting}
+
+            \item [$\blacktriangleright$] Lema \coqinline[]{big1} útil para provar que um resultado de uma aplicação de \coqinline[]{bigop} é igual ao elemento \coqinline[]{idx}:
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma big1 {R : Type} {idx : R} {op : Monoid.law idx} I r 
+    (P : pred I) F :
+    (forall i : I, P i -> F i = idx) -> 
+        \big[op/idx]_(i <- r | P i) F i = idx.
+                \end{lstlisting}
+            \textbf{Obs.:} no uso deste lema com \coqinline[]{apply} pode-se ao invés de provar que o termo geral é sempre igual a \coqinline[]{idx}, provar que nenhum tempo do tipo \coqinline[]{I} satisfaz o predicado \coqinline[]{P}.
+                
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Implementações Externas}
+    \begin{itemize}
+        \item[]
+        \begin{itemize}
+            \item[$\blacktriangleright$] Existem diversas notações relacionadas ao operador \coqinline[]{bigop} para casos específicos da aplicação deste, como para produtórios, e:
+            
+            \begin{itemize}
+                \item[$\blackdiamond$] Para cada caso específico, em geral existe mais de uma notação;
+                
+                \item[$\blackdiamond$] Algumas destas se aproveitam da existência de tipos finitos (para os quais há uma lista que contém todos os elementos), como nas seguintes expressões que aparecem durante a prova:
+            
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+\prod_(i in 'F_p | i != 0%R) i
+                \end{lstlisting}
+
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+\prod_(j in 'F_p | j < f j) (j * f j)
+                \end{lstlisting}
+
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Implementações Externas}
+    \begin{itemize}
+        \item Durante a prova aparecem diversos conjuntos que são definidos por meio de predicados sobre tipos finitos como em:
+            \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+set A := [predD1 'F_p & 0%R].
+            \end{lstlisting}
+
+            \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+pose B := [pred i |  (i : 'F_p) < f i].
+            \end{lstlisting}
+
+        assim \coqinline[]{A} é contém os elementos de \coqinline[]{'F_p} diferentes de \coqinline[]{0} e \coqinline[]{B} é contém todos os elementos de \coqinline[]{'F_p} tal que \coqinline[]{i < f i}. 
+    \end{itemize}
 \end{frame}

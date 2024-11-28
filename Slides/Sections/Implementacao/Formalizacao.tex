@@ -24,8 +24,6 @@ Compute (legendre_symb (_ : 2 < 7)%R
     (_ : primez.primez 7) 2).
             \end{lstlisting}
 
-    A prova de corretude foi implementada usando o tipo indutivo \coqinline[]{reflect} e divido em duas partes por fins práticos (uso em táticas da \textit{ssreflect}).
-
 \end{frame}
 
 \begin{frame}[fragile]{Formalização do Símbolo de Legendre}
@@ -114,4 +112,111 @@ Lemma legendre_symb_mul (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
             \end{lstlisting}
     \end{itemize}
 
+\end{frame}
+
+\begin{frame}[fragile]{Formalização do Símbolo de Legendre}
+
+    \begin{itemize}
+        \item $\left(\frac{a \cdot b}{p}\right) = \left(\frac{a}{p}\right) \cdot \left(\frac{b}{p}\right)$, cuja declaração dada em \textit{Coq} é:
+        \newline
+            \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma legendre_symb_mul (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
+    (legendre_symb pL2 pP (a * b)%R) = 
+    ((legendre_symb pL2 pP a) * 
+        (legendre_symb pL2 pP b))%R.
+            \end{lstlisting}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Formalização do Símbolo de Legendre}
+    Algumas informações usadas durante as provas destes enunciados são muito úteis para futuros usuários da biblioteca; se destacam os seguintes itens:
+    \begin{itemize}
+        \item Os números inteiros são definidos da seguinte forma na biblioteca:
+            \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Variant int : Set := Posz of nat | Negz of nat.
+            \end{lstlisting}
+        e \coqinline[]{Posz} é uma definida como coerção de \coqinline[]{nat} para \coqinline[]{int}, o que permite utilizar naturais em expressões com números inteiros.
+
+%         \item  A aplicação do construtor \coqinline[]{Posz} não é impressa, o que gera ambiguidades como entre as expressões \coqinline[]{Posz (a - b)} e \coqinline[]{Posz a - Posz b} que são impressas como \coqinline[]{a - b}; 
+%             \begin{itemize}
+%                 \item[$\blacktriangleright$] caso o usuário deseje imprimir as aplicações de \coqinline[]{Posz} ele pode usar o comando:
+%                     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+% Set Printing Coercions.
+%                     \end{lstlisting}
+%             \end{itemize}
+        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Formalização do Símbolo de Legendre}
+
+    \begin{itemize}
+
+        \item  A aplicação do construtor \coqinline[]{Posz} não é impressa, o que gera ambiguidades como entre as expressões \coqinline[]{Posz (a - b)} e \coqinline[]{Posz a - Posz b} que são impressas como \coqinline[]{a - b}; 
+            \begin{itemize}
+                \item[$\blacktriangleright$] caso o usuário deseje imprimir as aplicações de \coqinline[]{Posz} ele pode usar o comando:
+                    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Set Printing Coercions.
+                    \end{lstlisting}
+            \end{itemize}
+
+        \item A aplicação da função \coqinline[]{Posz} possui certas propriedades, por exemplo:
+            \begin{itemize}
+                \item[$\blacktriangleright$] É sempre o caso de que \coqinline[]{Posz m + n = Posz m + Posz n}, assim tal reescrita pode ser feita utilizando o lema:
+                    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma PoszD : {morph Posz : m n / (m + n)%N >-> m + n}. 
+                    \end{lstlisting}
+                e para multiplicação, de forma análoga, pode ser utilizado o lema \coqinline[]{PoszM}.
+
+%                 \item[$\blacktriangleright$] Quando \coqinline[]{n <= n} tem-se \coqinline[]{Posz m - n = Posz m - Posz n}, assim tal reescrita pode ser feita utilizando o lema:
+%                     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+%  Lemma subzn (m n : nat) : 
+%     (n <= m)%N -> m%:Z - n%:Z = (m - n)%N. 
+%                     \end{lstlisting}
+
+                % \item[$\blacktriangleright$] há também lemas para fazer manipulações semelhantes com outras operações (mas as vezes é necessário reescrever o operador como sua versão para aneis).
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Formalização do Símbolo de Legendre}
+    \begin{itemize}
+        \item[]
+        \begin{itemize}
+            \item[$\blacktriangleright$] Quando \coqinline[]{n <= n} tem-se \coqinline[]{Posz m - n = Posz m - Posz n}, assim tal reescrita pode ser feita utilizando o lema:
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+ Lemma subzn (m n : nat) : 
+    (n <= m)%N -> m%:Z - n%:Z = (m - n)%N. 
+                \end{lstlisting}
+
+            \item[$\blacktriangleright$] Para operação de resto da divisão tem-se o lema:
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma modz_nat (m d : nat) : (m %% d)%Z = (m %% d)%N.
+                \end{lstlisting}
+            \item[$\blacktriangleright$] Há também lemas para fazer manipulações semelhantes com outras operações (mas as vezes é necessário reescrever o operador em sua versão para aneis):
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma rmorphXn n : {morph f : x / x ^+ n}.
+                \end{lstlisting}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Formalização do Símbolo de Legendre}
+    \begin{itemize}
+        \item Para manipulações de expressões com \coqinline[]{int} não se utilizam lemas específicos para este tipo (por motivo explicado na Subsessão $2.3.4$);
+            \begin{itemize}
+                \item[$\blacktriangleright$] para comutatividade da adição, por exemplo, se usa \coqinline[]{addrC}, para o qual o comando \coqinline[]{Print} traz a mensagem:
+                    \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
+GRing.addrC =
+fun s : nmodType =>
+GRing.isNmodule.addrC
+    (GRing.Nmodule.GRing_isNmodule_mixin 
+        (GRing.Nmodule.class s))
+            : forall s : nmodType, commutative +%R
+
+Arguments GRing.addrC {s} x y
+                    \end{lstlisting}
+            \end{itemize}
+    \end{itemize}
 \end{frame}

@@ -1,13 +1,17 @@
 \frametitle{Formalização do Símbolo de Legendre}
+\begin{itemize}
+        \item Para manipulações de expressões com \coqinline[]{int} não se utilizam lemas específicos para este tipo (por motivo explicado na Subsessão $2.3.4$);
+            \begin{itemize}
+                \item[$\blacktriangleright$] para comutatividade da adição, por exemplo, se usa \coqinline[]{addrC}, para o qual o comando \coqinline[]{Print} traz a mensagem:
+                    \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
+GRing.addrC =
+fun s : nmodType =>
+GRing.isNmodule.addrC
+    (GRing.Nmodule.GRing_isNmodule_mixin
+        (GRing.Nmodule.class s))
+            : forall s : nmodType, commutative +%R
 
-    \begin{itemize}
-        \item $\left(\frac{a \cdot b}{p}\right) = \left(\frac{a}{p}\right) \cdot \left(\frac{b}{p}\right)$, cuja declaração dada em \textit{Coq} é:
-        \newline
-            \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Lemma legendre_symb_mul (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
-    (legendre_symb pL2 pP (a * b)%R) =
-    ((legendre_symb pL2 pP a) *
-        (legendre_symb pL2 pP b))%R.
-            \end{lstlisting}
+Arguments GRing.addrC {s} x y
+                    \end{lstlisting}
+            \end{itemize}
     \end{itemize}
-
