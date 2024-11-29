@@ -30,6 +30,11 @@ Dispon{\'\i}vel em: \url{https://doi.org/10.48550/arXiv.2008.11814}. Acesso em: 
 \emph{Advances in Mathematics of Communications}, v.~18, n.~1, p. 141--162, 2024.
 Dispon{\'\i}vel em: \url{https://www.aimsciences.org/article/id/6212ee892d80b75aa4a24c21}.}
 
+\bibitem[{The Mathematical Components Team} 2024]{mathcomp_ssrint}
+\abntrefinfo{{The Mathematical Components Team}}{{The Mathematical Components Team}}{2024}
+{{The Mathematical Components Team}. \emph{ssrint.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/4e22e030a74e7b68980049577a418b792ad29bf7/mathcomp/algebra/ssrint.v}.}
+
 \bibitem[Wright 2016]{Wright2016}
 \abntrefinfo{Wright}{WRIGHT}{2016}
 {WRIGHT, S. Four interesting applications of quadratic reciprocity.
