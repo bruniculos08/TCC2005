@@ -5,5 +5,8 @@
 \beamer@subsectionintoc {3}{1}{Propriedades de Congruência}{11}{0}{3}
 \beamer@subsectionintoc {3}{2}{Congruência de Grau 2 e Símbolos de Legendre}{13}{0}{3}
 \beamer@sectionintoc {4}{Implementação}{22}{0}{4}
+\beamer@subsectionintoc {4}{1}{Implementação Externas}{22}{0}{4}
+\beamer@subsectionintoc {4}{2}{Informações Úteis}{24}{0}{4}
+\beamer@subsectionintoc {4}{3}{Formalização}{31}{0}{4}
 \beamer@sectionintoc {5}{Conclusões}{44}{0}{5}
 \beamer@sectionintoc {6}{Referências}{46}{0}{6}
