@@ -35,6 +35,11 @@ onde \coqinline[]{res_quad} é uma função definida como:
 Definition res_quad p a := 
     has (fun i => i * i == a %[mod p]) (iota 0 p).
     \end{lstlisting}
+
+    O enunciado do Teorema de Wilson em \textit{Coq} é:
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Theorem Wilson p : p > 1 -> prime p = (p %| ((p.-1)`!).+1).
+    \end{lstlisting}
 \end{frame}
 
 % \subsection[]{Informações Úteis}

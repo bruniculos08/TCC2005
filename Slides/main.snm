@@ -4,11 +4,8 @@
 \beamer@slide {eq : ax2bxc}{13}
 \beamer@slide {eq : bhaskara}{13}
 \beamer@slide {eq : quadcong}{14}
-\beamer@slide {eq : listquadres}{15}
-\beamer@slide {eq : ordivp}{16}
-\beamer@slide {lema:existnonquadratic}{17}
-\beamer@slide {teorema:criteriodeeuler}{19}
-\beamer@slide {lema : modp-1fat}{20}
-\beamer@slide {teorema : wilson}{21}
+\beamer@slide {teorema:criteriodeeuler}{16}
+\beamer@slide {lema : modp-1fat}{17}
+\beamer@slide {teorema : wilson}{18}
 \beamer@slide {sub:cong-grau2}{13}
-\beamer@slide {lema : anel:corpo}{24}
+\beamer@slide {lema : anel:corpo}{21}

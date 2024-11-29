@@ -29,41 +29,41 @@
 
 \end{frame}
 
-\begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
-    Conforme \cite{book:2399854}, existem $\frac{p+1}{2}$ resíduos quadráticos módulo $p$, que são:
-        \begin{equation} \label{eq : listquadres}
-            0^2 \bmod{p}, 1^2 \bmod{p}, 2^2 \bmod{p}, ..., \left(\frac{p -1}{2} \right)^2 \bmod{p} 
-        \end{equation}
-    pois note que, para todo $x \in \mathbb{Z}$ existe algum $i \in [0, \frac{p-1}{2}]$ tal que $x \equiv i \pmod{p}$ ou $x \equiv -i \pmod{p}$, logo $x^2 \equiv i^2 \pmod{p}$ (usando a propriedade do Item \ref{item:propcong6-produto}) e $i^2$ está na Lista \ref{eq : listquadres}.
-\end{frame}
+% \begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
+%     Conforme \cite{book:2399854}, existem $\frac{p+1}{2}$ resíduos quadráticos módulo $p$, que são:
+%         \begin{equation} \label{eq : listquadres}
+%             0^2 \bmod{p}, 1^2 \bmod{p}, 2^2 \bmod{p}, ..., \left(\frac{p -1}{2} \right)^2 \bmod{p} 
+%         \end{equation}
+%     pois note que, para todo $x \in \mathbb{Z}$ existe algum $i \in [0, \frac{p-1}{2}]$ tal que $x \equiv i \pmod{p}$ ou $x \equiv -i \pmod{p}$, logo $x^2 \equiv i^2 \pmod{p}$ (usando a propriedade do Item \ref{item:propcong6-produto}) e $i^2$ está na Lista \ref{eq : listquadres}.
+% \end{frame}
 
-\begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
-    Além disso, todos os os valores na Lista \ref{eq : listquadres} são distintos em módulo $p$, pois para todo $i, j \in \left[0, \frac{p-1}{2}\right]$:
-    \begin{align}
-        i^2 \equiv j^2 \pmod p
-        &\begin{aligned}
-            \;\; \Longleftrightarrow p \mid (i^2- j^2)
-        \end{aligned} \\
-        &\begin{aligned}
-            \;\; \Longleftrightarrow p \mid (i -j)\cdot(i + j)
-        \end{aligned} \\
-        &\begin{aligned} \label{eq : ordivp}
-            \;\; \Longleftrightarrow p \mid (i -j) \lor p \mid (i + j)
-        \end{aligned}
-    \end{align}
-    Com isso, dado o intervalo de $i$ e $j$, então $0 \leq i + j \leq p - 1$, assim existem as seguintes possibilidades:
-        \begin{enumerate}
-            \item $i = j = 0$ e portanto $i \equiv j \pmod p$;
-            \item $0 < i + j \leq p-1$, portanto $p \nmid i + j$, e então pela disjunção em \ref{eq : ordivp} resta que $p \mid (i - j)$, o que equivale a $i \equiv j \pmod p$, ou seja, $i$ é igual $j$ módulo $p$ se e somente se seus quadrados também são.
-        \end{enumerate}
-\end{frame}
+% \begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
+%     Além disso, todos os os valores na Lista \ref{eq : listquadres} são distintos em módulo $p$, pois para todo $i, j \in \left[0, \frac{p-1}{2}\right]$:
+%     \begin{align}
+%         i^2 \equiv j^2 \pmod p
+%         &\begin{aligned}
+%             \;\; \Longleftrightarrow p \mid (i^2- j^2)
+%         \end{aligned} \\
+%         &\begin{aligned}
+%             \;\; \Longleftrightarrow p \mid (i -j)\cdot(i + j)
+%         \end{aligned} \\
+%         &\begin{aligned} \label{eq : ordivp}
+%             \;\; \Longleftrightarrow p \mid (i -j) \lor p \mid (i + j)
+%         \end{aligned}
+%     \end{align}
+%     Com isso, dado o intervalo de $i$ e $j$, então $0 \leq i + j \leq p - 1$, assim existem as seguintes possibilidades:
+%         \begin{enumerate}
+%             \item $i = j = 0$ e portanto $i \equiv j \pmod p$;
+%             \item $0 < i + j \leq p-1$, portanto $p \nmid i + j$, e então pela disjunção em \ref{eq : ordivp} resta que $p \mid (i - j)$, o que equivale a $i \equiv j \pmod p$, ou seja, $i$ é igual $j$ módulo $p$ se e somente se seus quadrados também são.
+%         \end{enumerate}
+% \end{frame}
 
-\begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
-    Com essas conclusões (de que a Lista \ref{eq : listquadres} contém todos os resíduos quadráticos módulo $p$ e que todos os valores dela são distintos em módulo $p$) pode ser provado o seguinte lema:
-        \begin{lema} \label{lema:existnonquadratic}
-            Seja $p > 2$ um número primo, existem exatamente $\frac{p+1}{2}$ resíduos quadráticos módulo $p$ e $\frac{p-1}{2}$ resíduos não quadráticos módulo $p$.
-        \end{lema}
-\end{frame}
+% \begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
+%     Com essas conclusões (de que a Lista \ref{eq : listquadres} contém todos os resíduos quadráticos módulo $p$ e que todos os valores dela são distintos em módulo $p$) pode ser provado o seguinte lema:
+%         \begin{lema} \label{lema:existnonquadratic}
+%             Seja $p > 2$ um número primo, existem exatamente $\frac{p+1}{2}$ resíduos quadráticos módulo $p$ e $\frac{p-1}{2}$ resíduos não quadráticos módulo $p$.
+%         \end{lema}
+% \end{frame}
 
 \begin{frame}[fragile]{Congruência de Grau 2 e Símbolos de Legendre}
     \begin{definicao}[Símbolo de Legendre]
