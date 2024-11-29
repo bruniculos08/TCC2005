@@ -24,16 +24,16 @@ Dispon{\'\i}vel em: \url{https://doi.org/10.48550/arXiv.2008.11814}. Acesso em: 
 \abntrefinfo{Li, Dong e Cao}{LI; DONG; CAO}{2014}
 {LI, Z.; DONG, X.; CAO, Z. Generalized cipolla-lehmer root computation in finite fields. In:  ICINS 2014 - 2014 INTERNATIONAL CONFERENCE ON INFORMATION AND NETWORK SECURITY, CP657. \emph{ICINS 2014 - 2014 International Conference on Information and Network Security}. Pequim, China, 2014. p. 163--168.}
 
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-ssrint}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024}
+{{Mathematical Components Team}. \emph{ssrint.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/4e22e030a74e7b68980049577a418b792ad29bf7/mathcomp/algebra/ssrint.v}.}
+
 \bibitem[Sarkar 2024]{PalashSarkar2024AdvancesinMathematicsofCommunications}
 \abntrefinfo{Sarkar}{SARKAR}{2024}
 {SARKAR, P. Computing square roots faster than the tonelli-shanks/bernstein algorithm.
 \emph{Advances in Mathematics of Communications}, v.~18, n.~1, p. 141--162, 2024.
 Dispon{\'\i}vel em: \url{https://www.aimsciences.org/article/id/6212ee892d80b75aa4a24c21}.}
-
-\bibitem[{The Mathematical Components Team} 2024]{mathcomp_ssrint}
-\abntrefinfo{{The Mathematical Components Team}}{{The Mathematical Components Team}}{2024}
-{{The Mathematical Components Team}. \emph{ssrint.v}. 2024. Github.
-Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/4e22e030a74e7b68980049577a418b792ad29bf7/mathcomp/algebra/ssrint.v}.}
 
 \bibitem[Wright 2016]{Wright2016}
 \abntrefinfo{Wright}{WRIGHT}{2016}

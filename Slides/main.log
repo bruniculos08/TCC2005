@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.14)  29 NOV 2024 14:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.14)  29 NOV 2024 14:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -510,4 +510,939 @@ LaTeX Info: Redefining \Bigg on input line 725.
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \macc@depth=\count327
-LaTeX Info: Redefining \bmod
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count328
+\dotsspace@=\muskip17
+\c@parentequation=\count329
+\dspbrk@lvl=\count330
+\tag@help=\toks37
+\row@=\count331
+\column@=\count332
+\maxfields@=\count333
+\andhelp@=\toks38
+\eqnshift@=\dimen288
+\alignsep@=\dimen289
+\tagshift@=\dimen290
+\tagwidth@=\dimen291
+\totwidth@=\dimen292
+\lineht@=\dimen293
+\@envbody=\toks39
+\multlinegap=\skip63
+\multlinetaggap=\skip64
+\mathdisplay@stack=\toks40
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+) (/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks41
+\thm@bodyfont=\toks42
+\thm@headfont=\toks43
+\thm@notefont=\toks44
+\thm@headpunct=\toks45
+\thm@preskip=\skip65
+\thm@postskip=\skip66
+\thm@headsep=\skip67
+\dth@everypar=\toks46
+)
+\c@theorem=\count334
+) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasethemes.sty)) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerthemedefault.sty (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerfontthemedefault.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemedefault.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerinnerthemedefault.sty
+\beamer@dima=\dimen294
+\beamer@dimb=\dimen295
+) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty))) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks47
+\inpenc@posthook=\toks48
+) (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+) (/usr/share/texlive/texmf-dist/tex/latex/abntex2/abntex2cite.sty
+Package: abntex2cite 2018/11/24 v-1.9.7 abnTeX2
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count335
+\calc@Bcount=\count336
+\calc@Adimen=\dimen296
+\calc@Bdimen=\dimen297
+\calc@Askip=\skip68
+\calc@Bskip=\skip69
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count337
+\calc@Cskip=\skip70
+) (/usr/share/texlive/texmf-dist/tex/latex/abntex2/abntex2abrev.sty) (/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+)
+\bibindent=\skip71
+\minimumbiblabelwidth=\skip72
+\ABCIauxlen=\skip73
+\c@ABCIaux=\count338
+\c@ABCImax=\count339
+ (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifpdf.sty
+Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
+) (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+) (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+\biblabelsep=\skip74
+LaTeX Info: Redefining \newblock on input line 591.
+LaTeX Info: Redefining \cite on input line 618.
+\ABCItoken=\toks49
+) (./Estilos/udesc.sty (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemesplit.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerinnerthemerounded.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemestructure.sty)) (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2022/06/29 v1.29 mathematical typesetting tools
+ (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
+)
+\g_MT_multlinerow_int=\count340
+\l_MT_multwidth_dim=\dimen298
+\origjot=\skip75
+\l_MT_shortvdotswithinadjustabove_dim=\dimen299
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen300
+\l_MT_above_intertext_sep=\dimen301
+\l_MT_below_intertext_sep=\dimen302
+\l_MT_above_shortintertext_sep=\dimen303
+\l_MT_below_shortintertext_sep=\dimen304
+\xmathstrut@box=\box78
+\xmathstrut@dim=\dimen305
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2022-07-02 v1.5u LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks50
+\verbatim@line=\toks51
+\verbatim@in@stream=\read3
+) (/usr/share/texlive/texmf-dist/tex/latex/datetime/datetime.sty
+Package: datetime 2015/03/20 v2.60 Date Time Package
+ (/usr/share/texlive/texmf-dist/tex/latex/fmtcount/fmtcount.sty
+Package: fmtcount 2020/01/30 v3.07
+ (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+ (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks52
+\XKV@tempa@toks=\toks53
+)
+\XKV@depth=\count341
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+)) (/usr/share/texlive/texmf-dist/tex/latex/fmtcount/fcprefix.sty
+Package: fcprefix 2012/09/28
+ (/usr/share/texlive/texmf-dist/tex/latex/fmtcount/fcnumparser.sty
+Package: fcnumparser 2017/06/15
+\fc@digit@counter=\count342
+))
+\c@padzeroesN=\count343
+\fc@tmpcatcode=\count344
+\@DT@modctr=\count345
+\@ordinalctr=\count346
+\@orgargctr=\count347
+\@strctr=\count348
+\@tmpstrctr=\count349
+\@DT@loopN=\count350
+\@DT@X=\count351
+) (/usr/share/texlive/texmf-dist/tex/latex/datetime/datetime-defaults.sty
+Package: datetime-defaults 2013/09/10
+)
+\@day=\count352
+\@month=\count353
+\@year=\count354
+\c@HOUR=\count355
+\c@HOURXII=\count356
+\c@MINUTE=\count357
+\c@TOHOUR=\count358
+\c@TOMINUTE=\count359
+\c@SECOND=\count360
+\currenthour=\count361
+\currentminute=\count362
+\currentsecond=\count363
+Package datetime Info: No datetime.cfg file found, using default settings on input line 308.
+\@dtctr=\count364
+\dayofyear=\count365
+\dayofweek=\count366
+LaTeX Info: Redefining \today on input line 736.
+\dt@a=\toks54
+\dt@b=\toks55
+) (/usr/share/texlive/texmf-dist/tex/latex/bussproofs/bussproofs.sty
+Proof Tree (bussproofs) style macros. Version 1.1.
+\theLevel=\count367
+\myMaxLevel=\count368
+\myBoxA=\box79
+\myBoxB=\box80
+\myBoxC=\box81
+\myBoxD=\box82
+\myBoxLL=\box83
+\myBoxRL=\box84
+\thisAboveSkip=\dimen306
+\thisBelowSkip=\dimen307
+\newScoreStart=\dimen308
+\newScoreEnd=\dimen309
+\newCenter=\dimen310
+\displace=\dimen311
+\leftLowerAmt=\dimen312
+\rightLowerAmt=\dimen313
+\scoreHeight=\dimen314
+\scoreDepth=\dimen315
+\htLbox=\dimen316
+\htRbox=\dimen317
+\htRRbox=\dimen318
+\htRRRbox=\dimen319
+\htAbox=\dimen320
+\htCbox=\dimen321
+) (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip76
+\multirow@cntb=\count369
+\multirow@dima=\skip77
+\bigstrutjot=\dimen322
+) (/usr/share/texlive/texmf-dist/tex/latex/changepage/changepage.sty
+Package: changepage 2009/10/20 v1.0c check page and change page layout
+\c@cp@cntr=\count370
+\cp@tempcnt=\count371
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+) (/usr/share/texlive/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box85
+\UL@hyphenbox=\box86
+\UL@skip=\skip78
+\UL@hook=\toks56
+\UL@height=\dimen323
+\UL@pe=\count372
+\UL@pixel=\dimen324
+\ULC@box=\box87
+Package: ulem 2019/11/18
+\ULdepth=\dimen325
+) (/usr/share/texlive/texmf-dist/tex/latex/svg/svg.sty
+Package: svg 2020/11/26 v2.02k (include SVG pictures)
+ (/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2022/10/12 v3.38 KOMA-Script package (KOMA-Script-independent basics and keyval usage)
+Applying: [2021/05/01] Usage of raw or classic option list on input line 252.
+Already applied: [0000/00/00] Usage of raw or classic option list on input line 368.
+) (/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
+Package shellesc Info: Restricted shell escape enabled on input line 77.
+)
+\c@svg@param@lastpage=\count373
+\svg@box=\box88
+\c@svg@param@currpage=\count374
+) (/usr/share/texlive/texmf-dist/tex/latex/transparent/transparent.sty
+Package: transparent 2022-10-27 v1.5 Transparency with color stacks
+ (/usr/share/texlive/texmf-dist/tex/latex/transparent/transparent-nometadata.sty
+Package: transparent-nometadata 2022-10-27 v1.5 Transparency via pdfTeX's color stack (HO)
+)) (/usr/share/texlive/texmf-dist/tex/latex/mathpartir/mathpartir.sty
+Package: mathpartir 2016/02/24 version 1.3.2 Math Paragraph for Typesetting Inference Rules
+\mpr@andskip=\skip79
+\mpr@lista=\toks57
+\mpr@listb=\toks58
+\mpr@hlist=\box89
+\mpr@vlist=\box90
+\mpr@right=\box91
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count375
+\lst@gtempboxa=\box92
+\lst@token=\toks59
+\lst@length=\count376
+\lst@currlwidth=\dimen326
+\lst@column=\count377
+\lst@pos=\count378
+\lst@lostspace=\dimen327
+\lst@width=\dimen328
+\lst@newlines=\count379
+\lst@lineno=\count380
+\lst@maxwidth=\dimen329
+ (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
+\c@lstnumber=\count381
+\lst@skipnumbers=\count382
+\lst@framebox=\box93
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2023/02/27 1.9 listings configuration
+))
+Package: listings 2023/02/27 1.9 (Carsten Heinz)
+ (./Estilos/coq.sty) (./Estilos/coq-error.sty)
+\c@definicao=\count383
+\c@teorema=\count384
+\c@lema=\count385
+ (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count386
+\algocf@hangindent=\skip80
+ (/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count387
+LaTeX Info: Redefining \checkoddpage on input line 45.
+)
+\skiptotal=\skip81
+\skiplinenumber=\skip82
+\skiprule=\skip83
+\skiphlne=\skip84
+\skiptext=\skip85
+\skiplength=\skip86
+\algomargin=\skip87
+\skipalgocfslide=\skip88
+\algowidth=\dimen330
+\inoutsize=\dimen331
+\inoutindent=\dimen332
+\interspacetitleruled=\dimen333
+\interspacealgoruled=\dimen334
+\interspacetitleboxruled=\dimen335
+\algocf@ruledwidth=\skip89
+\algocf@inoutbox=\box94
+\algocf@inputbox=\box95
+\AlCapSkip=\skip90
+\AlCapHSkip=\skip91
+\algoskipindent=\skip92
+\algocf@nlbox=\box96
+\algocf@hangingbox=\box97
+\algocf@untilbox=\box98
+\algocf@skipuntil=\skip93
+\algocf@capbox=\box99
+\algocf@lcaptionbox=\skip94
+\algoheightruledefault=\skip95
+\algoheightrule=\skip96
+\algotitleheightruledefault=\skip97
+\algotitleheightrule=\skip98
+\c@algocfline=\count388
+\c@algocfproc=\count389
+\c@algocf=\count390
+\algocf@algoframe=\box100
+\algocf@algobox=\box101
+) (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
+ (/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
+\collectedbox=\box102
+) (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back-ends (calc, etex, pgfmath)
+)
+\tc@llx=\dimen336
+\tc@lly=\dimen337
+\tc@urx=\dimen338
+\tc@ury=\dimen339
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+ (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
+)) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2023/02/13 3.86 The Babel package
+\babel@savecnt=\count391
+\U@D=\dimen340
+\l@unhyphenated=\language85
+ (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read4
+LaTeX Info: Redefining \textlatin on input line 4088.
+\bbl@dirlevel=\count392
+ (/usr/share/texlive/texmf-dist/tex/generic/babel-indonesian/bahasa.ldf
+Language: bahasa 2017/02/15 v1.0m Bahasa Indonesia support from the babel system
+ (/usr/share/texlive/texmf-dist/tex/generic/babel-indonesian/indonesian.ldf
+Language: indonesian 2017/02/15 v1.0m Bahasa Indonesia support from the babel system
+)))
+\mydef=\box103
+ (/usr/share/texlive/texmf-dist/tex/latex/fdsymbol/fdsymbol.sty
+Package: fdsymbol 2011/11/01 v0.8 FdSymbol support package
+ (/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)
+LaTeX Info: Redefining \dagger on input line 81.
+LaTeX Info: Redefining \ddagger on input line 82.
+LaTeX Info: Redefining \mathparagraph on input line 83.
+LaTeX Info: Redefining \mathsection on input line 84.
+LaTeX Info: Redefining \mathdollar on input line 85.
+LaTeX Info: Redefining \mathsterling on input line 86.
+LaTeX Info: Redefining \yen on input line 87.
+LaTeX Info: Redefining \circledR on input line 88.
+LaTeX Info: Redefining \circledS on input line 90.
+LaTeX Info: Redefining \Re on input line 92.
+LaTeX Info: Redefining \Im on input line 93.
+LaTeX Info: Redefining \thicksim on input line 95.
+LaTeX Info: Redefining \thickapprox on input line 96.
+LaTeX Info: Redefining \centerdot on input line 101.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 180.
+LaTeX Font Info:    Encoding `OMS' has changed to `U' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 180.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> U/FdSymbolA/m/n on input line 180.
+LaTeX Font Info:    Encoding `OMS' has changed to `U' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 180.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> U/FdSymbolA/m/n on input line 180.
+\symrelations=\mathgroup6
+\symarrows=\mathgroup7
+\symnarrows=\mathgroup8
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 184.
+LaTeX Font Info:    Encoding `OMX' has changed to `U' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 184.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> U/FdSymbolE/m/n on input line 184.
+LaTeX Font Info:    Encoding `OMX' has changed to `U' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 184.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> U/FdSymbolE/m/n on input line 184.
+\symdelimiters=\mathgroup9
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  U/FdSymbolA/m/n --> U/FdSymbolA/b/n on input line 186.
+LaTeX Font Info:    Overwriting symbol font `relations' in version `bold'
+(Font)                  U/FdSymbolB/m/n --> U/FdSymbolB/b/n on input line 187.
+LaTeX Font Info:    Overwriting symbol font `arrows' in version `bold'
+(Font)                  U/FdSymbolC/m/n --> U/FdSymbolC/b/n on input line 188.
+LaTeX Font Info:    Overwriting symbol font `narrows' in version `bold'
+(Font)                  U/FdSymbolD/m/n --> U/FdSymbolD/b/n on input line 189.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  U/FdSymbolE/m/n --> U/FdSymbolE/b/n on input line 190.
+LaTeX Font Info:    Overwriting symbol font `delimiters' in version `bold'
+(Font)                  U/FdSymbolF/m/n --> U/FdSymbolF/b/n on input line 191.
+LaTeX Font Info:    Redeclaring math alphabet \mathcal on input line 192.
+LaTeX Font Info:    Overwriting math alphabet `\mathcal' in version `bold'
+(Font)                  OMS/cmsy/m/n --> OMS/cmsy/b/n on input line 193.
+LaTeX Font Info:    Redeclaring math alphabet \mathbb on input line 194.
+LaTeX Font Info:    Redeclaring math alphabet \mathfrak on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `normal'
+(Font)                  U/euf/m/n --> U/euf/m/n on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/b/n --> U/euf/m/n on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 196.
+LaTeX Info: Redefining \vdots on input line 221.
+LaTeX Info: Redefining \relbar on input line 1205.
+LaTeX Info: Redefining \Relbar on input line 1206.
+LaTeX Font Info:    Redeclaring math accent \widehat on input line 1796.
+LaTeX Font Info:    Redeclaring math accent \widetilde on input line 1797.
+LaTeX Font Info:    Redeclaring math accent \vec on input line 1799.
+LaTeX Font Info:    Redeclaring math symbol \setminus on input line 1902.
+LaTeX Font Info:    Redeclaring math symbol \mid on input line 1907.
+LaTeX Font Info:    Redeclaring math symbol \nmid on input line 1908.
+LaTeX Font Info:    Redeclaring math symbol \parallel on input line 1912.
+LaTeX Font Info:    Redeclaring math symbol \nparallel on input line 1913.
+LaTeX Font Info:    Redeclaring math symbol \shortmid on input line 1921.
+LaTeX Font Info:    Redeclaring math symbol \nshortmid on input line 1922.
+LaTeX Font Info:    Redeclaring math symbol \shortparallel on input line 1923.
+LaTeX Font Info:    Redeclaring math symbol \nshortparallel on input line 1924.
+LaTeX Font Info:    Redeclaring math symbol \braceld on input line 1944.
+LaTeX Font Info:    Redeclaring math symbol \bracelu on input line 1945.
+LaTeX Font Info:    Redeclaring math symbol \bracerd on input line 1946.
+LaTeX Font Info:    Redeclaring math symbol \braceru on input line 1947.
+LaTeX Info: Redefining \overbrace on input line 1963.
+LaTeX Info: Redefining \underbrace on input line 1966.
+LaTeX Font Info:    Redeclaring math symbol \surd on input line 1980.
+) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count393
+\l__pdf_internal_box=\box104
+) (./main.aux (./Sections/Introducao/Introducao.aux) (./Sections/Objetivos/Objetivos.aux) (./Sections/BaseTeorica/BaseTeorica.aux) (./Sections/BaseTeorica/PropriedadesDeCongruencia.aux) (./Sections/BaseTeorica/CongruenciaDeGrau2.aux) (./Sections/Implementacao/ImplementacoesExternas.aux) (./Sections/Implementacao/Informacoes.aux) (./Sections/Implementacao/Formalizacao.aux) (./Sections/Conclusao/Conclusao.aux))
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: includehead includefoot 
+* h-part:(L,W,R)=(28.45274pt, 307.28987pt, 28.45274pt)
+* v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
+* \paperwidth=364.19536pt
+* \paperheight=273.14662pt
+* \textwidth=307.28987pt
+* \textheight=244.6939pt
+* \oddsidemargin=-43.81725pt
+* \evensidemargin=-43.81725pt
+* \topmargin=-72.26999pt
+* \headheight=14.22636pt
+* \headsep=0.0pt
+* \topskip=11.0pt
+* \footskip=14.22636pt
+* \marginparwidth=4.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count394
+\scratchdimen=\dimen341
+\scratchbox=\box105
+\nofMPsegments=\count395
+\nofMParguments=\count396
+\everyMPshowfont=\toks60
+\MPscratchCnt=\count397
+\MPscratchDim=\dimen342
+\MPnumerator=\count398
+\makeMPintoPDFobject=\count399
+\everyMPtoPDFconversion=\toks61
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+Package hyperref Info: Link coloring OFF on input line 195.
+ (./main.out) (./main.out)
+\@outlinefile=\write5
+\openout5 = `main.out'.
+
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 195.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 195.
+\symnumbers=\mathgroup10
+\sympureletters=\mathgroup11
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/cmss/m/n --> T1/cmr/m/n on input line 195.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> T1/cmss/b/n on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> T1/cmss/b/n on input line 195.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> T1/cmss/m/n on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> T1/cmss/m/n on input line 195.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> T1/cmss/m/it on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> T1/cmss/m/it on input line 195.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 195.
+LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
+(Font)                  T1/cmss/m/n --> T1/cmss/b/n on input line 195.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  T1/cmss/m/it --> T1/cmss/b/it on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  OT1/cmss/b/n --> T1/cmr/b/n on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  T1/cmss/b/n --> T1/cmss/b/n on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  T1/cmss/m/n --> T1/cmss/b/n on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  T1/cmss/m/it --> T1/cmss/b/it on input line 195.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  T1/cmtt/m/n --> T1/cmtt/b/n on input line 195.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 195.
+LaTeX Font Info:    Encoding `T1' has changed to `OT1' for symbol font
+(Font)              `pureletters' in the math version `normal' on input line 195.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
+(Font)                  T1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 195.
+LaTeX Font Info:    Encoding `T1' has changed to `OT1' for symbol font
+(Font)              `pureletters' in the math version `bold' on input line 195.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  T1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 195.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 195.
+ (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
+Dictionary: translator-basic-dictionary, Language: English 
+) (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-bibliography-dictionary-English.dict
+Dictionary: translator-bibliography-dictionary, Language: English 
+) (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-environment-dictionary-English.dict
+Dictionary: translator-environment-dictionary, Language: English 
+) (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-months-dictionary-English.dict
+Dictionary: translator-months-dictionary, Language: English 
+) (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-numbers-dictionary-English.dict
+Dictionary: translator-numbers-dictionary, Language: English 
+) (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-theorem-dictionary-English.dict
+Dictionary: translator-theorem-dictionary, Language: English 
+)
+\c@lstlisting=\count400
+ (./main.nav)
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 198.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+<Logo-Função.png, id=63, 376.40625pt x 376.40625pt>
+File: Logo-Função.png Graphic file (type png)
+<use Logo-Função.png>
+Package pdftex.def Info: Logo-Função.png  used on input line 198.
+(pdftex.def)             Requested size: 56.4585pt x 56.4585pt.
+ [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./udesc_background.pdf> <./Logo-Função.png>] (./main.toc) [2
+
+] (./main.toc) [3
+
+]
+\openout2 = `Sections/Introducao/Introducao.aux'.
+
+ (./Sections/Introducao/Introducao.tex
+LaTeX Font Info:    Font shape `U/FdSymbolA/m/n' will be
+(Font)              scaled to size 10.95pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolA/m/n' will be
+(Font)              scaled to size 8.0pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolA/m/n' will be
+(Font)              scaled to size 6.0pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolE/m/n' will be
+(Font)              scaled to size 10.95pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolE/m/n' will be
+(Font)              scaled to size 8.0pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolE/m/n' will be
+(Font)              scaled to size 6.0pt on input line 10.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 10.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 10.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `U/FdSymbolB/m/n' will be
+(Font)              scaled to size 10.95pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolB/m/n' will be
+(Font)              scaled to size 8.0pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolB/m/n' will be
+(Font)              scaled to size 6.0pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolC/m/n' will be
+(Font)              scaled to size 10.95pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolC/m/n' will be
+(Font)              scaled to size 8.0pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolC/m/n' will be
+(Font)              scaled to size 6.0pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolD/m/n' will be
+(Font)              scaled to size 10.95pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolD/m/n' will be
+(Font)              scaled to size 8.0pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolD/m/n' will be
+(Font)              scaled to size 6.0pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolF/m/n' will be
+(Font)              scaled to size 10.95pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 10.
+LaTeX Font Info:    Font shape `U/FdSymbolF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 10.
+LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 10.
+ (/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
+File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mathkerncmss.
+) [4
+
+
+] [5
+
+] [6
+
+] [7
+
+])
+\openout2 = `Sections/Objetivos/Objetivos.aux'.
+
+ (./Sections/Objetivos/Objetivos.tex [8
+
+
+
+
+] [9
+
+])
+\openout2 = `Sections/BaseTeorica/BaseTeorica.aux'.
+
+ (./Sections/BaseTeorica/BaseTeorica.tex [10
+
+
+
+
+])
+\openout2 = `Sections/BaseTeorica/PropriedadesDeCongruencia.aux'.
+
+ (./Sections/BaseTeorica/PropriedadesDeCongruencia.tex
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [11
+
+
+
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb
+Overfull \hbox (5.80313pt too wide) detected at line 15
+[]\U/FdSymbolF/m/n/10.95 ^^@\OT1/mathkerncmss/m/sl/10.95 c\OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 n\U/FdSymbolF/m/n/10.95 ^^F \U/FdSymbolB/m/n/10.95 ^^@ \T1/cmss/m/n/10.95 1 \U/FdSymbolC/m/n/10.95 � \U/FdSymbolF/m/n/10.95 ^^@\OT1/mathkerncmss/m/sl/10.95 a \U/FdSymbolA/m/n/10.95 ^^@ \OT1/mathkerncmss/m/sl/10.95 c \U/FdSymbolB/m/n/10.95 ^^A \OT1/mathkerncmss/m/sl/10.95 b \U/FdSymbolA/m/n/10.95 ^^@ \OT1/mathkerncmss/m/sl/10.95 c\U/FdSymbolF/m/n/10.95 ^^@[]\OT1/mathkerncmss/m/sl/10.95 n\U/FdSymbolF/m/n/10.95 ^^F \U/FdSymbolC/m/n/10.95 � \OT1/mathkerncmss/m/sl/10.95 a \U/FdSymbolB/m/n/10.95 ^^A \OT1/mathkerncmss/m/sl/10.95 b\U/FdSymbolF/m/n/10.95 ^^@[]\OT1/mathkerncmss/m/sl/10.95 n\U/FdSymbolF/m/n/10.95 ^^F^^F
+ []
+
+) [12
+
+])
+\openout2 = `Sections/BaseTeorica/CongruenciaDeGrau2.aux'.
+
+ (./Sections/BaseTeorica/CongruenciaDeGrau2.tex
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [13
+
+
+
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [14
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [15
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [16
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [17
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [18
+
+])
+\openout2 = `Sections/Implementacao/ImplementacoesExternas.aux'.
+
+ (./Sections/Implementacao/ImplementacoesExternas.tex
+\openout4 = `main.vrb'.
+
+ (./main.vrb
+LaTeX Font Info:    Font shape `U/FdSymbolA/m/n' will be
+(Font)              scaled to size 10.0pt on input line 7.
+LaTeX Font Info:    Font shape `U/FdSymbolA/m/n' will be
+(Font)              scaled to size 7.0pt on input line 7.
+LaTeX Font Info:    Font shape `U/FdSymbolE/m/n' will be
+(Font)              scaled to size 10.0pt on input line 7.
+LaTeX Font Info:    Font shape `U/FdSymbolE/m/n' will be
+(Font)              scaled to size 7.0pt on input line 7.
+LaTeX Font Info:    Font shape `U/FdSymbolB/m/n' will be
+(Font)              scaled to size 10.0pt on input line 7.
+LaTeX Font Info:    Font shape `U/FdSymbolB/m/n' will be
+(Font)              scaled to size 7.0pt on input line 7.
+LaTeX Font Info:    Font shape `U/FdSymbolC/m/n' will be
+(Font)              scaled to size 10.0pt on input line 7.
+LaTeX Font Info:    Font shape `U/FdSymbolC/m/n' will be
+(Font)              scaled to size 7.0pt on input line 7.
+LaTeX Font Info:    Font shape `U/FdSymbolD/m/n' will be
+(Font)              scaled to size 10.0pt on input line 7.
+LaTeX Font Info:    Font shape `U/FdSymbolD/m/n' will be
+(Font)              scaled to size 7.0pt on input line 7.
+LaTeX Font Info:    Font shape `U/FdSymbolF/m/n' will be
+(Font)              scaled to size 10.0pt on input line 7.
+LaTeX Font Info:    Font shape `U/FdSymbolF/m/n' will be
+(Font)              scaled to size 7.0pt on input line 7.
+LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 8.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmss.fd
+File: ts1cmss.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)) [19
+
+
+
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [20
+
+])
+\openout2 = `Sections/Implementacao/Informacoes.aux'.
+
+ (./Sections/Implementacao/Informacoes.tex
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [21
+
+
+
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [22
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [23
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [24
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [25
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb
+LaTeX Font Info:    Font shape `U/FdSymbolA/m/n' will be
+(Font)              scaled to size 9.0pt on input line 8.
+LaTeX Font Info:    Font shape `U/FdSymbolE/m/n' will be
+(Font)              scaled to size 9.0pt on input line 8.
+LaTeX Font Info:    Font shape `U/FdSymbolB/m/n' will be
+(Font)              scaled to size 9.0pt on input line 8.
+LaTeX Font Info:    Font shape `U/FdSymbolC/m/n' will be
+(Font)              scaled to size 9.0pt on input line 8.
+LaTeX Font Info:    Font shape `U/FdSymbolD/m/n' will be
+(Font)              scaled to size 9.0pt on input line 8.
+LaTeX Font Info:    Font shape `U/FdSymbolF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 8.
+) [26
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [27
+
+])
+\openout2 = `Sections/Implementacao/Formalizacao.aux'.
+
+ (./Sections/Implementacao/Formalizacao.tex
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [28
+
+
+
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [29
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [30
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [31
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [32
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [33
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [34
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [35
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [36
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [37
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [38
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [39
+
+]
+\openout4 = `main.vrb'.
+
+ (./main.vrb) [40
+
+])
+\openout2 = `Sections/Conclusao/Conclusao.aux'.
+
+ (./Sections/Conclusao/Conclusao.tex [41
+
+
+
+
+] [42
+
+]) (./main.bbl) [43
+
+
+
+ </usr/share/texlive/texmf-dist/tex/latex/beamer/beamericonarticle.pdf>] [44
+
+
+] [45
+
+
+]
+\tf@nav=\write6
+\openout6 = `main.nav'.
+
+\tf@toc=\write7
+\openout7 = `main.toc'.
+
+\tf@snm=\write8
+\openout8 = `main.snm'.
+
+ (./main.aux (./Sections/Introducao/Introducao.aux) (./Sections/Objetivos/Objetivos.aux) (./Sections/BaseTeorica/BaseTeorica.aux) (./Sections/BaseTeorica/PropriedadesDeCongruencia.aux) (./Sections/BaseTeorica/CongruenciaDeGrau2.aux) (./Sections/Implementacao/ImplementacoesExternas.aux) (./Sections/Implementacao/Informacoes.aux) (./Sections/Implementacao/Formalizacao.aux) (./Sections/Conclusao/Conclusao.aux))
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 5BD9BD6AF3DEA87F953D506B21271D03;1572.
+ ) 
+Here is how much of TeX's memory you used:
+ 33134 strings out of 476041
+ 620810 string characters out of 5793173
+ 2053388 words of memory out of 6000000
+ 52653 multiletter control sequences out of 15000+600000
+ 550312 words of font info for 130 fonts, out of 8000000 for 9000
+ 1137 hyphenation exceptions out of 8191
+ 128i,18n,122p,1065b,1389s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/fdsymbol/FdSymbolA-Book.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fdsymbol/FdSymbolB-Book.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fdsymbol/FdSymbolC-Book.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fdsymbol/FdSymbolF-Book.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfsi1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfsi1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfsi1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfso1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfss0900.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfsx1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on main.pdf (45 pages, 488746 bytes).
+PDF statistics:
+ 643 PDF objects out of 1000 (max. 8388607)
+ 474 compressed objects within 5 object streams
+ 120 named destinations out of 1000 (max. 500000)
+ 401 words of extra memory for PDF output out of 10000 (max. 10000000)
+

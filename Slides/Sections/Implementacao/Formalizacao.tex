@@ -152,7 +152,7 @@ Variant int : Set := Posz of nat | Negz of nat.
 
     \begin{itemize}
 
-        \item  A aplicação do construtor \coqinline[]{Posz} não é impressa, o que gera ambiguidades como entre as expressões \coqinline[]{Posz (a - b)} e \coqinline[]{Posz a - Posz b} que são impressas como \coqinline[]{a - b} \cite{mathcomp_ssrint}; 
+        \item  A aplicação do construtor \coqinline[]{Posz} não é impressa, o que gera ambiguidades como entre as expressões \coqinline[]{Posz (a - b)} e \coqinline[]{Posz a - Posz b} que são impressas como \coqinline[]{a - b} \cite{mathcomp-ssrint}; 
             \begin{itemize}
                 \item[$\blacktriangleright$] caso o usuário deseje imprimir as aplicações de \coqinline[]{Posz} ele pode usar o comando:
                     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
