@@ -6,4 +6,4 @@
 \beamer@subsectionintoc {3}{2}{Congruência de Grau 2 e Símbolos de Legendre}{13}{0}{3}
 \beamer@sectionintoc {4}{Implementação}{22}{0}{4}
 \beamer@sectionintoc {5}{Conclusões}{44}{0}{5}
-\beamer@sectionintoc {6}{Referências}{45}{0}{6}
+\beamer@sectionintoc {6}{Referências}{46}{0}{6}

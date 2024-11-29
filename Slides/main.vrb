@@ -1,26 +1,21 @@
-\frametitle{Propriedades de Congruência}
-\begin{enumerate}
-        \item (\textit{Reflexividade}) $a \equiv a \pmod{n}$
-        \item (\textit{Simetria}) $a \equiv b \pmod{n} \Longrightarrow b \equiv a \pmod{n}$
-        \item (\textit{Transitividade})
-            \begin{equation*}
-                a \equiv b \pmod{n} \; \land \; b \equiv c \pmod{n} \Rightarrow a \equiv c \pmod{n}
-            \end{equation*}
-        \item (\textit{Compatibilidade com a soma})
-            \begin{equation*}
-                a \equiv b \pmod{n} \; \land \; c \equiv d \pmod{n} \Rightarrow a + c \equiv b + d \pmod{n}
-            \end{equation*}
-        \item (\textit{Compatibilidade com a diferença})
-            \begin{equation*}
-                a \equiv b \pmod{n} \; \land \; c \equiv d \pmod{n} \Rightarrow a - c \equiv b - d \pmod{n}
-            \end{equation*}
-        % \item \label{item:propcong6-produto} (\textit{Compatibilidade com o produto})
-        % \begin{equation*}
-        %     a \equiv b \pmod{n} \land c \equiv d \pmod{n} \Longrightarrow a \cdot c \equiv b \cdot d \pmod{n}
-        % \end{equation*}
-        % A partir dessa propriedade, note que, para todo $k \in \mathbb{N}$:
-        % \begin{equation*}
-        %     a \equiv b \pmod{n} \Longrightarrow a^k \equiv b^k \pmod{n}
-        % \end{equation*}
-        % \item \label{item:propcong7-cancelamento} (\textit{Cancelamento}) $\mdc(c, n) = 1 \Longrightarrow (a \cdot c \equiv b \cdot c \pmod{n} \Longleftrightarrow a \equiv b \pmod{n})$
-    \end{enumerate}
+\frametitle{Formalização do Símbolo de Legendre}
+\begin{itemize}
+        \item Para lidar com o tipo \coqinline[]{ordinal} e coerções:
+            \begin{itemize}
+                \item[$\blacktriangleright$] Para uma hipótese da forma:
+                    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+H : forall i : 'I_p, P i
+                    \end{lstlisting}
+                tendo no contexto as variáveis \coqinline[]{p : int} e \coqinline[]{x : 'Z_p}, não é possível instânciar tal hipótese com \coqinline[]{x} pois é necessário que a
+                função aplicada sobre \coqinline[]{p} na notação resulte em \coqinline[]{p}, ou seja, é necessário escrever \coqinline[]{p} como alguma variável somada a $2$ o que pode ser resolvido pelo uso sucessivo da tática \coqinline[]{case: p => p}.
+                % Anotação: pois se p = 0 ou p = 1 então tem-se 'I_0 ou 'I_1 mas x, de tipo 'Z_1 ou 'Z_0 (frase talvez imprecisa), terá tipo 'I_2.
+                \item[]
+                \item[{$\blacktriangleright$}] A notação \coqinline[]{:> X} após uma igualdade indica uma coerção de ambos os lados da equação para o tipo \coqinline[]{X}; como exemplo tem-se o lema:
+                    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma natz (n : nat) : n%:R = n%:Z :> int.
+                    \end{lstlisting}
+
+
+            \end{itemize}
+
+    \end{itemize}

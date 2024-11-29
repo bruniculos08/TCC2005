@@ -1,7 +1,19 @@
 \begin{frame}{Conclusão}
     Neste trabalho foi feito(a):
     \begin{itemize}
-        \item Implementação do \textit{símbolo de Legendre} e 
+        \item Implementação do \textit{símbolo de Legendre};
+        \item Prova de corretude da função que representa \textit{símbolo de Legendre};
+        \item Prova das propriedades sobre o \textit{símbolo de Legendre} apresentadas em \cite{book:2399854};
+        \item Alguns lemas simples relacionados a números primos inteiros (a biblioteca só trata de números primos naturais);
+        
+        \item[] \textbf{Obs.:} também foram implementados conteúdos em relação ao \textit{inverso multiplicativo módulo $n$}, porém tais conteúdos não foram utilizados na implementação do \textit{símbolo de Legendre} e podem ser inúteis, visto que a intenção em tê-los poderia ser satisfeita com o uso de \textit{corpos} (já implementados na biblioteca).
     \end{itemize}
+\end{frame}
 
+\begin{frame}{Conclusão}
+    Quanto a trabalhos futuros:
+    \begin{itemize}
+        \item Com as implementações obtidas aqui, e principalmente tendo conhecimento da implementação do Critério de Euler feita por Laurent Théry (considerando a possibilidade de tratar apenas de números naturais), é facilitada a implementação do algoritmo \textit{RESSOL} na biblioteca;
+        \item O conhecimento obtido pela análise da prova do enunciado \coqinline[]{fact_sqr_exp} (e a própria prova) sobre manipulação do operador \coqinline[]{bigop} e de conjuntos abre caminho para a prova da \textit{Lei de Reciprocidade Quadrática} (dada sua prova manual).
+    \end{itemize}
 \end{frame}
