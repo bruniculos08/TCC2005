@@ -593,7 +593,7 @@ case: ltngtP => // /eqP/val_eqP fiEi.                           @ \label{line:61
 \section{Formalização do Símbolo de Legendre}
 \label{sec:form-legendre}
 
-A formalização a ser apresentada seguiu a ideia utilizada (e recomendada) por Laurent Théry, de se utilizar uma função exaustiva para verificar se um determinado número é um resíduo quadrático módulo $p$. Com isso, tem-se uma função que é pelo menos computável (apesar de sua ineficácia). Fez-se então neste trabalho a seguinte implementação do \textit{símbolo de Legendre}:
+A formalização a ser apresentada seguiu a ideia utilizada (e recomendada) por Laurent Théry, de se utilizar uma função exaustiva para verificar se um determinado número é um resíduo quadrático módulo $p$. Com isso, tem-se uma função que é pelo menos computável (apesar de sua ineficiência). Fez-se então neste trabalho a seguinte implementação do \textit{símbolo de Legendre}:
 % Seguindo a ideia utilizada (e recomendada) por Laurent Théry, em se utilizar uma função exaustiva para verificar se um determinado número é um resíduo quadrático módulo $p$ (em que $p$ é um número primo), e portanto, ter-se uma função que é pelo menos computável (apesar de sua ineficácia), fez-se neste trabalho a seguinte definição para o \textit{símbolo de Legendre}:
         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition legendre_symb {p : int} (pL2 : (2 < p)%R) (pP : primez.primez p) 
