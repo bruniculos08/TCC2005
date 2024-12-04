@@ -614,17 +614,39 @@ Compute (legendre_symb (_ : 2 < 7)%R (_ : primez.primez 7) 2).
 que neste caso irá retornar $1$.
 
 % Havendo a definição de \textit{símbolo de Legendre} resta então provar as suas principais propriedades, que podem vir a ser úteis em trabalhos futuros. Se baseando em \cite{book:2399854}, as principais propriedades do \textit{símbolo de Legendre}, considerando um número primo $p > 2$, são, para todo $a, b \in \mathbb{Z}$:
-Havendo a definição de \textit{símbolo de Legendre} resta então provar as suas principais propriedades. Se baseando em \cite{book:2399854}, as principais propriedades do \textit{símbolo de Legendre}, considerando um número primo $p > 2$, são, para todo $a, b \in \mathbb{Z}$:
+Havendo a definição de \textit{símbolo de Legendre} provou-se então a corretude da função que o implementa, qual foi feita utilizando o tipo indutivo \coqinline[]{reflect} pois teoremas sobre a habitantes desse tipo podem são usados em táticas da linguagem \textit{SSReflect}. Esse tipo tem a seguinte definição:
+        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Inductive reflect (P : Prop) : bool -> Set :=
+        | ReflectT : P -> reflect P true
+        | ReflectF : ~ P -> reflect P false.
+        \end{lstlisting}
+A corretude foi então separada em 2 enunciados para melhor usabilidade em outras provas:
+        \begin{lstlisting}[language=coq,frame=single,tabsize=1, escapechar=@]
+Theorem legendre_symbP {p : int} (pL2 : (2 < p)%R) (pP : primez p) (a : int):
+    reflect (exists x, x^2 = a %[mod p]) (if (p %| a)%Z then
+        ((legendre_symb pL2 pP a) == 0) else ((legendre_symb pL2 pP a) == 1)).
+Proof.
+@ \rvdots @
+Qed.
+
+Theorem legendre_symbPn {p : int} (pL2 : (2 < p)%R) (pP : primez p) (a : int):
+    reflect (~ exists x, x^2 = a %[mod p]) ((legendre_symb pL2 pP a) == -1).
+Proof.
+@ \rvdots @
+Qed.
+        \end{lstlisting}
+        
+Foram também provadas as principais propriedades apresentadas em \cite{book:2399854} sobre \textit{símbolo de Legendre}. Listando os enunciados dessas propriedades, para um número primo $p > 2$, são, para todo $a, b \in \mathbb{Z}$:
+% Havendo a definição de \textit{símbolo de Legendre} resta então provar as suas principais propriedades. Se baseando em \cite{book:2399854}, as principais propriedades do \textit{símbolo de Legendre}, considerando um número primo $p > 2$, são, para todo $a, b \in \mathbb{Z}$:
         \begin{enumerate}
         \item $a \equiv b \pmod{p} \rightarrow \left(\frac{a}{p}\right) = \left(\frac{b}{p}\right)$, cuja declaração dada em \textit{Coq} é:
         \newline
                 % \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
                 % \begin{lstlisting}[language=coq]
                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Lemma legendre_symbE (p a b : int) (pL2 : (2 < p)%R) 
-(pP : primez.primez p):
-(a == b %[mod p])%Z -> 
-        ((legendre_symb pL2 pP a) == (legendre_symb pL2 pP b)).
+Lemma legendre_symbE (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
+        (a == b %[mod p])%Z -> 
+                ((legendre_symb pL2 pP a) == (legendre_symb pL2 pP b)).
                 \end{lstlisting}
                 % \end{tcolorbox}
         
@@ -633,9 +655,8 @@ Lemma legendre_symbE (p a b : int) (pL2 : (2 < p)%R)
                 % \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
                 % \begin{lstlisting}[language=coq]
                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Lemma legendre_symb_Ndvd (p a b : int) (pL2 : (2 < p)%R) 
-(pP : primez.primez p):
-~~(p %| a)%Z -> (legendre_symb pL2 pP (a^2)) == 1.
+Lemma legendre_symb_Ndvd (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
+        ~~(p %| a)%Z -> (legendre_symb pL2 pP (a^2)) == 1.
                 \end{lstlisting}
                 % \end{tcolorbox}
         
@@ -644,9 +665,8 @@ Lemma legendre_symb_Ndvd (p a b : int) (pL2 : (2 < p)%R)
                 % \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
                 % \begin{lstlisting}[language=coq]
                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Lemma legendre_symb_Neg1 (p : int) (pL2 : (2 < p)%R) 
-(pP : primez.primez p):
-((legendre_symb pL2 pP (-1)) == 1) = (p == 1 %[mod 4])%Z.
+Lemma legendre_symb_Neg1 (p : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
+        ((legendre_symb pL2 pP (-1)) == 1) = (p == 1 %[mod 4])%Z.
                 \end{lstlisting}
                 % \end{tcolorbox}
         

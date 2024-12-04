@@ -43,7 +43,7 @@ O algoritmo de Euclides é um método de computar o $\mdc$ entre dois números i
         \end{algorithm}
 
 \noindent
-Este algoritmo se baseia no seguinte lema:
+Esse algoritmo se baseia no seguinte lema:
 \begin{lema} \label{lema:euclides}
     $\forall a, b \in \mathbb{Z}$, seja $a = b \cdot q  + r$, onde $0 \leq r < |b|$, então:
     \begin{equation*}
@@ -95,7 +95,7 @@ Este algoritmo se baseia no seguinte lema:
     % \end{proof}
 % \end{lema}
 
-O algoritmo \hyperref[algo:euclides]{\textsc{Euclides}} é implementado da seguinte forma \footnote{Pode-se observar nesta implementação e em outras apresentadas neste trabalho, o uso de notações como \codequotes\lstinline[language=coq-error]|_.+1|\codequotes, \codequotes\lstinline[language=coq]|_.-1|\codequotes, \codequotes\lstinline[language=coq]|_.+2|\codequotes, \codequotes\lstinline[language=coq]|_.-2|\codequotes, \codequotes\lstinline[language=coq]|_.*2|\codequotes\;e \codequotes\lstinline[language=coq]|_./2|\codequotes. Este uso serve para indicar as respectivas operações, dadas por cada notação, com precedência maior sobre outras no restante da expressão.} na biblioteca Mathematical Components (em sua versão para números naturais):
+O algoritmo \hyperref[algo:euclides]{\textsc{Euclides}} é implementado da seguinte forma \footnote{Pode-se observar nesta implementação e em outras apresentadas neste trabalho, o uso de notações como \codequotes\lstinline[language=coq-error]|_.+1|\codequotes, \codequotes\lstinline[language=coq]|_.-1|\codequotes, \codequotes\lstinline[language=coq]|_.+2|\codequotes, \codequotes\lstinline[language=coq]|_.-2|\codequotes, \codequotes\lstinline[language=coq]|_.*2|\codequotes\;e \codequotes\lstinline[language=coq]|_./2|\codequotes. Esse uso serve para indicar as respectivas operações, dadas por cada notação, com precedência maior sobre outras no restante da expressão.} na biblioteca Mathematical Components (em sua versão para números naturais):
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Fixpoint gcdn m n :=
     let n' := n %% m in if n' is 0 then m else
@@ -138,7 +138,7 @@ A prova manual do Teorema \ref{teorema : bachetbezout} e das consequências menc
 
     Em relação à biblioteca Mathematical Components e se tratando do Teorema \ref{teorema : bachetbezout}, essa possui a implementação de um algoritmo
     % do algoritmo conhecido como "algoritmo de Euclides extendido" (
-    que encontra os coeficientes $x$ e $y$ e o valor de $\mdc(a,b)$. Este algoritmo possui duas versões, sendo identificado na biblioteca como \lstinline[language = coq]{egcdn} para naturais e \lstinline[language = coq]{egcdz} para inteiros. Além disso, existem os lemas \lstinline[language = coq]{egcdn_spec} e \lstinline[language = coq]{egcdz_spec}, tratando da corretude desses algoritmos (respectivamente) e para o caso dos números inteiros, há o lema \lstinline[language = coq]{Bezoutz} que é equivalente ao Teorema \ref{teorema : bachetbezout}.
+    que encontra os coeficientes $x$ e $y$ e o valor de $\mdc(a,b)$. Esse algoritmo possui duas versões, sendo identificado na biblioteca como \lstinline[language = coq]{egcdn} para naturais e \lstinline[language = coq]{egcdz} para inteiros. Além disso, existem os lemas \lstinline[language = coq]{egcdnP} e \lstinline[language = coq]{egcdzP}, tratando da corretude desses algoritmos (respectivamente) e para o caso dos números inteiros, há o lema \lstinline[language = coq]{Bezoutz} que é equivalente ao Teorema \ref{teorema : bachetbezout}.
 
 \section{Propriedades de Congruência}
 As propriedade da relação de congruência serão usadas com muita frequência (e de maneira implícita) no decorrer desse documento. Por essa razão, nesta seção será apresentada uma lista de propriedades semelhante à apresentada em \cite[p.~34]{book:2399854}, para qual a demonstração de tais propriedades se encontra em \cite[p.~34-35]{book:2399854}. Recomenda-se então ao leitor consultar o conteúdo aqui apresentado em caso de dúvidas no desenvolvimento de equações modulares.
@@ -270,7 +270,7 @@ Com isso, dada que as seguintes propriedades são válidas para as relações de
     \item $a \equiv b \mod n \land c \equiv d \pmod{n} \Rightarrow a - c \equiv b - d \pmod{n}$
     \item $a \equiv b \mod n \land c \equiv d \pmod{n} \Rightarrow a \cdot c \equiv b \cdot d \pmod{n}$
 \end{itemize}
-Se define então as operações de soma, subtração e multiplicação em $\mathbb{Z}/(n)$, das seguintes formas para todo $\overline{a}, \overline{b} \in \mathbb{Z}/(n)$
+São definidas então as operações de soma, subtração e multiplicação em $\mathbb{Z}/(n)$, das seguintes formas para todo $\overline{a}, \overline{b} \in \mathbb{Z}/(n)$
 \begin{itemize}
     \item $\overline{a} + \overline{b} = \overline{a + b}$
     \item $\overline{a} - \overline{b} = \overline{a - b}$
@@ -371,7 +371,7 @@ Lemma Zp_addNz : left_inverse Zp0 Zp_opp Zp_add.
 Lemma Zp_addA : associative Zp_add.
 Lemma Zp_addC : commutative Zp_add.
     \end{lstlisting}
-e também podem ser então provados os lemas que farão de \lstinline[language = coq]{'I_p} um \textit{anel comutativo} (de acordo com \cite[p.~46-47]{book:2399854}), considereando as operações binárilas \lstinline[language = coq]{Zp_add} e \lstinline[language = coq]{Zp_mul}:
+e também podem ser então provados os lemas que farão de \lstinline[language = coq]{'I_p} um \textit{anel comutativo} (de acordo com \cite[p.~46-47]{book:2399854}), considereando as operações binárias \lstinline[language = coq]{Zp_add} e \lstinline[language = coq]{Zp_mul}:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma Zp_mulz1 : right_id Zp1 Zp_mul. (* Elemento neutro do produto a direita *)
 Lemma Zp_mulC : commutative Zp_mul. (* Comutatividade do produto *)
@@ -399,6 +399,10 @@ onde a notação \lstinline[language=coq]|'Z_p| sempre retorna um tipo \lstinlin
 Uma função muito presente em grande parte dos conteúdos de teoria dos números é a função $\varphi$ de Euler. Essa também é conhecida como função totiente de Euler e conforme \cite[p.~48-49]{book:2399854}, para quaisquer $n$ inteiro positivo, é definida como:
     \begin{equation} \label{def:phi}
         \varphi(n) = |(\mathbb{Z}/(n))^{\times}|
+    \end{equation}
+isto é equivalente a:
+    \begin{equation}
+        \varphi(n) = |\{x \in \mathbb{Z} | 0 \leq x \leq n-1 \land mdc(x,n) = 1 \}|
     \end{equation}
 e essa possui algumas propriedades importantes a serem destacadas:
 %(estas são apresentadas em \cite{book:2399854} \textcolor{red}{e maior parte das provas não apresentadas aqui se encontram neste livro}):
@@ -736,6 +740,8 @@ Note que o lado esquerdo da equação é uma multiplicação entre todos os valo
     \end{equation*}
     \qed
 
+Como exemplo, escolhendo $n = 3$, esse não é resíduo não quadrático em módulo $7$ (verificação deixada a cargo do leitor) e $7 \nmid 3$, assim, dado que $3^{\frac{7-1}{2}} = 27$ e $(7 - 1)! = 720$, como esperado, $27 \bmod{p} = 720 \bmod{p} = 6$. O mesmo não ocorre tendo $n = 4$, pois apesar de $7 \nmid 4$ para $x = 2$ vale $x ^ 2 \equiv 4 \pmod{7}$, e realizando os cálculos $(4-1)! \bmod{7} = 6 \bmod{7} = 6$ e $4^{\frac{7 - 1}{2}} \bmod{7} = 64 \bmod{7} = 1$.
+
 \begin{lema} Seja $p$ um número primo, então para quaisquer soluções de $x^2 \equiv 1 \pmod{p}$ têm-se que $x \equiv 1 \pmod{p}$ ou $x \equiv -1 \pmod{p}$. Portanto para qualquer outro valor $y$ que não é uma solução, $y \not\equiv y^{-1} \pmod{p}$.
 \label{lema : eq1modp}
 \end{lema}
@@ -776,7 +782,9 @@ Portanto, para qualquer valor $y$ tal que $y^2 \not\equiv 1 \pmod{p}$ tem-se que
 \qed
 \end{enumerate}
 
-Este teorema possui implementação na biblioteca Mathematical Components, e esta será implementação será apresentada em \ref{sec:implementacoes}. 
+A exemplo, para $n = 19$ (que é um número primo) e portanto $(n - 1)! = 6402373705728000$, o resultado de $6402373705728000 \bmod{19}$ é $18$. Escolhendo um número composto $n = 20$, então $(n - 1)! = 121645100408832000$ e $121645100408832000 \bmod{20}$ é $19$.
+
+Esse teorema possui implementação na biblioteca Mathematical Components, e esta será implementação será apresentada em \ref{sec:implementacoes}. 
 Agora será então apresentada a demonstração do \textit{Critério de Euler}.
 % Demonstração do Critério de Euler
 \\

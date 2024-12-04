@@ -36,7 +36,7 @@ onde \lstinline[language = coq]$~~$ é a operação de negação definida na bib
 
 Outra informação relevante ao se tratar do conteúdo da biblioteca é o tipo \lstinline[language = coq]$eqType$: para que seja construído qualquer habitante desse tipo é necessário um elemento \lstinline[language = coq]$T$ de tipo 
 \lstinline[language = coq]$Type$, uma função \lstinline[language = coq]$eq_op$ de tipo \lstinline[language = coq]$T -> T -> bool$
-e um elemento \lstinline[language = coq]$eqP$ cujo tipo é um teorema relacionando a igualdade de Leibniz com \lstinline[language = coq]$T$ e \lstinline[language = coq]$eq_op$. Este último possui, na biblioteca, uma notação de nome \lstinline[language = coq]$eq_axiom$, e sua descrição é:
+e um elemento \lstinline[language = coq]$eqP$ cujo tipo é um teorema relacionando a igualdade de Leibniz com \lstinline[language = coq]$T$ e \lstinline[language = coq]$eq_op$. Esse último possui, na biblioteca, uma notação de nome \lstinline[language = coq]$eq_axiom$, e sua descrição é:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition eq_axiom: forall (T : Type) (e : rel T), forall x x0 : T, 
     reflect (x = x0) (e x x0)
@@ -60,7 +60,7 @@ A utilização de um tipo como \lstinline[language = coq]$eqType$ facilita que s
 
 \lstinline[language = coq]$Structure$ e \lstinline[language = coq]$Record$ são comandos sinônimos para geração de tipos indutivos que possuem somente um construtor e cujo os campos são dependentemente tipados, isto é, o tipo de cada campo pode depender dos valores de campos anteriores, assim como nas definições indutivas \cite{assia_mahboubi_2022_7118596}. A vantagem do uso desses comandos é que por meio desses são geradas automaticamente funções para extrair valores dos argumentos do construtor do tipo declarado.
 
-Estes comandos são frequentemente utilizados na biblioteca Mathematical Components para definir interfaces (como o \lstinline[language = coq]$eqType$) e subtipos (ex.: tipo em que os habitantes são todos os números naturais menores que $8$). Para melhor entendimento do leitor, tem-se a seguir um exemplo semelhante ao tipo \lstinline[language = coq]$eqType$ definido na biblioteca, apresentado em \cite{assia_mahboubi_2022_7118596}:
+Esses comandos são frequentemente utilizados na biblioteca Mathematical Components para definir interfaces (como o \lstinline[language = coq]$eqType$) e subtipos (ex.: tipo em que os habitantes são todos os números naturais menores que $8$). Para melhor entendimento do leitor, tem-se a seguir um exemplo semelhante ao tipo \lstinline[language = coq]$eqType$ definido na biblioteca, apresentado em \cite{assia_mahboubi_2022_7118596}:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Record eqType : Type := Pack
 {
@@ -395,7 +395,7 @@ ou, caso queira fazer uma pesquisa mais precisa dentro do escopo \coqinline|nat_
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Search (_ + _)%N.
     \end{lstlisting}
-Este último comando traz a seguinte mensagem:
+Esse último comando traz a seguinte mensagem:
     \begin{lstlisting}[language=coq-error,frame=single,tabsize=1, escapechar=@, escapechar=@, numbers=left]
 rshift: forall (m : nat) [n : nat], 'I_n -> 'I_(m + n)
 lshift: forall [m : nat] (n : nat), 'I_m -> 'I_(m + n)

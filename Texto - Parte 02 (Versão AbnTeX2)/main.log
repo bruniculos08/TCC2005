@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.14)  2 DEC 2024 11:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.14)  3 DEC 2024 22:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1461,7 +1461,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 397.
 
 [48] [49] [50] [51] [52] [53]
-Overfull \hbox (1.90671pt too wide) in paragraph at lines 654--656
+Overfull \hbox (1.90671pt too wide) in paragraph at lines 658--660
 []\T1/lmr/m/it/12 (-20) Dado um nú-mero primo
  []
 
@@ -1479,61 +1479,61 @@ pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-140
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.345                         \item P
-                                     rimeiro \textit{goal}:] [65] [66] [67] [68] [69]
-Underfull \hbox (badness 10000) in paragraph at lines 619--623
-
- []
-
-[70]
-Underfull \hbox (badness 10000) in paragraph at lines 631--635
-
- []
-
-
+                                     rimeiro \textit{goal}:] [65] [66] [67] [68] [69] [70]
 Underfull \hbox (badness 10000) in paragraph at lines 642--646
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 660--662
+Underfull \hbox (badness 10000) in paragraph at lines 653--657
 
  []
 
-) (./Partes/Conclusao.tex [71] [72
+
+Underfull \hbox (badness 10000) in paragraph at lines 663--667
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 680--682
+
+ []
+
+[71]) (./Partes/Conclusao.tex [72] [73
 
 ]) (./main.bbl (./main.brf)
 \tf@brf=\write6
 \openout6 = `main.brf'.
 
- [73]
+ [74]
 bibitemlist
-[74
+[75
 
-]) [75]
+]) [76]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\uppercase' on input line 91.
 
-[76
+[77
 
 
 ]
 \openout2 = `Partes/ApendiceA.aux'.
 
- (./Partes/ApendiceA.tex [77
+ (./Partes/ApendiceA.tex [78
 
 
-] [78]
+] [79]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 127.
 
-[79]
+[80]
 Overfull \hbox (19.07716pt too wide) detected at line 187
 []
  []
 
-[80]
+[81]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 280.
@@ -1542,15 +1542,15 @@ LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 285.
 
-[81]) [82]
+[82]) [83]
 \openout2 = `Partes/ApendiceB.aux'.
 
- (./Partes/ApendiceB.tex [83
+ (./Partes/ApendiceB.tex [84
 
 
 
 
-] [84] [85] [86] [87] [88] [89] [90]) [91]
+] [85] [86] [87] [88] [89] [90] [91]) [92]
 \tf@lof=\write7
 \openout7 = `main.lof'.
 
@@ -1565,24 +1565,24 @@ LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: BA46DC73534BC15E026365BB1B6D9B84;3450.
+(rerunfilecheck)             Checksum: 0C8AB9640BB8108B4B41EB510182294F;3451.
  ) 
 Here is how much of TeX's memory you used:
- 41824 strings out of 476041
- 791731 string characters out of 5793173
- 2180388 words of memory out of 6000000
- 60085 multiletter control sequences out of 15000+600000
- 659114 words of font info for 306 fonts, out of 8000000 for 9000
+ 41842 strings out of 476041
+ 792017 string characters out of 5793173
+ 2181388 words of memory out of 6000000
+ 60089 multiletter control sequences out of 15000+600000
+ 659027 words of font info for 305 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
  93i,25n,99p,1477b,1933s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{https://github.com/thery/mathcomp-extra/} has been referenced but does not exist, replaced by a fixed one
 
 </usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (92 pages, 848654 bytes).
+Output written on main.pdf (93 pages, 852282 bytes).
 PDF statistics:
- 2337 PDF objects out of 2487 (max. 8388607)
- 2139 compressed objects within 22 object streams
- 1043 named destinations out of 1200 (max. 500000)
+ 2361 PDF objects out of 2487 (max. 8388607)
+ 2162 compressed objects within 22 object streams
+ 1059 named destinations out of 1200 (max. 500000)
  80874 words of extra memory for PDF output out of 89155 (max. 10000000)
 
