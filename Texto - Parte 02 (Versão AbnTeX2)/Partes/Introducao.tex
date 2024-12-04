@@ -3,51 +3,51 @@
 
 \label{chap:intro}
 
-Durante os cursos de Ciência da Computação, são vistas estruturas matemáticas muito diferentes daquelas as quais alunos de ensino médio estão habituados. No geral, grande parte destas estruturas são abstratas por não parecerem uma representação de um objeto real ou por, apesar de parecer, a razão de sua formulação não ser bem motivada de início. A exemplo de tais estruturas temos vetores, matrizes, filas e grafos, utilizados na modelagem de diversos problemas. Apesar destas ferramentas serem extremamente úteis, há um tipo de objeto matemático sempre presente na maioria dos problemas e que muitas vezes são considerados limitados e apenas objetos auxiliares demasiadamente utilizados: estes são os números inteiros. O conjunto dos números inteiros, apesar de ser formado por objetos (números) vistos como simples, possui diversas endorrelações que levam a conclusões e invenções de grande importância, principalmente para o campo da criptografia. Dentre estas relações, duas delas são pilares fundamentais para tais conclusões e invenções: a relação de divisibilidade e de congruência. A primeira é definida da seguinte forma \cite{book:2399854}:
-\\
-\begin{definição}
-        $\forall d, a \in \mathbb{Z}$, \textbf{$d$ divide $a$} (ou em outras palavras: $a$ é um múltiplo de $d$) se e somente se a seguinte proposição é verdadeira:
-    \begin{equation*}
-        \exists q \in \mathbb{Z}, a = d \cdot q
-    \end{equation*}
-    assim, se tal proposição é verdadeira e portanto $d$ divide $a$, tem-se a seguinte notação que representa tal afirmação:
-    \begin{equation*}
-        d \mid a
-    \end{equation*}
-    caso contrário, a negação de tal afirmação ($d$ não divide $a$) é representada por:
-    \begin{equation*}
-        d \nmid a
-    \end{equation*}
-\end{definição}
+% Durante os cursos de Ciência da Computação, são vistas estruturas matemáticas muito diferentes daquelas as quais alunos de ensino médio estão habituados. No geral, grande parte destas estruturas são abstratas por não parecerem uma representação de um objeto real ou por, apesar de parecer, a razão de sua formulação não ser bem motivada de início. A exemplo de tais estruturas temos vetores, matrizes, filas e grafos, utilizados na modelagem de diversos problemas. Apesar destas ferramentas serem extremamente úteis, há um tipo de objeto matemático sempre presente na maioria dos problemas e que muitas vezes são considerados limitados e apenas objetos auxiliares demasiadamente utilizados: estes são os números inteiros. O conjunto dos números inteiros, apesar de ser formado por objetos (números) vistos como simples, possui diversas endorrelações que levam a conclusões e invenções de grande importância, principalmente para o campo da criptografia. Dentre estas relações, duas delas são pilares fundamentais para tais conclusões e invenções: a relação de divisibilidade e de congruência. A primeira é definida da seguinte forma \cite{book:2399854}:
+% \\
+% \begin{definição}
+%         $\forall d, a \in \mathbb{Z}$, \textbf{$d$ divide $a$} (ou em outras palavras: $a$ é um múltiplo de $d$) se e somente se a seguinte proposição é verdadeira:
+%     \begin{equation*}
+%         \exists q \in \mathbb{Z}, a = d \cdot q
+%     \end{equation*}
+%     assim, se tal proposição é verdadeira e portanto $d$ divide $a$, tem-se a seguinte notação que representa tal afirmação:
+%     \begin{equation*}
+%         d \mid a
+%     \end{equation*}
+%     caso contrário, a negação de tal afirmação ($d$ não divide $a$) é representada por:
+%     \begin{equation*}
+%         d \nmid a
+%     \end{equation*}
+% \end{definição}
 
-Introduz-se também aqui o conceito de resto da divisão, para o qual deve-se lembrar da divisão euclidiana, também conhecida como divisão com resto. Todo algoritmo equivalente a tal divisão tem como resultados um quociente $q$ e um resto $r$, de forma que a seguinte proposição é verdadeira:
+% Introduz-se também aqui o conceito de resto da divisão, para o qual deve-se lembrar da divisão euclidiana, também conhecida como divisão com resto. Todo algoritmo equivalente a tal divisão tem como resultados um quociente $q$ e um resto $r$, de forma que a seguinte proposição é verdadeira:
 
-\begin{equation*}
-        \forall a, b \in \mathbb{Z}, \exists q, r \in \mathbb{Z}, (a = b \cdot q + r \land 0 \leq r < \abs{b})
-\end{equation*}
+% \begin{equation*}
+%         \forall a, b \in \mathbb{Z}, \exists q, r \in \mathbb{Z}, (a = b \cdot q + r \land 0 \leq r < \abs{b})
+% \end{equation*}
 
-Define-se então o que se chama de congruência módulo $n$, para algum $n \in \mathbb{N}$ \cite{book:2399854}:
+% Define-se então o que se chama de congruência módulo $n$, para algum $n \in \mathbb{N}$ \cite{book:2399854}:
 
-\begin{definição}
-    Para todo $a, b, n \in \mathbb{Z}$, $a$ é congruente a $b$ módulo $n$ se e somente se, pela divisão euclidiana $a/n$ e $b/n$ (onde $0 \leq r_a < \abs{n}$ e $0 \leq r_b < \abs{n}$) tem-se
-    \begin{equation*}
-        a = n \cdot q_a + r_a
-    \end{equation*}
-    e
-    \begin{equation*}
-        b = n \cdot q_b + r_b
-    \end{equation*}
-    com $r_a = r_b$, o que também equivale a dizer que:
-    \begin{equation*}
-        n \mid a - b
-    \end{equation*}
-    tal relação entre os inteiros $a$, $b$ e $n$ é representada por:
-    \begin{equation*}
-        a \equiv b \pmod{n}
-    \end{equation*}
-\end{definição}
+% \begin{definição}
+%     Para todo $a, b, n \in \mathbb{Z}$, $a$ é congruente a $b$ módulo $n$ se e somente se, pela divisão euclidiana $a/n$ e $b/n$ (onde $0 \leq r_a < \abs{n}$ e $0 \leq r_b < \abs{n}$) tem-se
+%     \begin{equation*}
+%         a = n \cdot q_a + r_a
+%     \end{equation*}
+%     e
+%     \begin{equation*}
+%         b = n \cdot q_b + r_b
+%     \end{equation*}
+%     com $r_a = r_b$, o que também equivale a dizer que:
+%     \begin{equation*}
+%         n \mid a - b
+%     \end{equation*}
+%     tal relação entre os inteiros $a$, $b$ e $n$ é representada por:
+%     \begin{equation*}
+%         a \equiv b \pmod{n}
+%     \end{equation*}
+% \end{definição}
 
-Tais definições levam a uma série de teoremas como os relacionados à função $\varphi$ de Euler, muito utilizados em criptografia, e além disso, à criação de estruturas mais complexas a partir do conjunto dos números inteiros, como os anéis e grupos de unidades \cite{book:2399854}.
+% Tais definições levam a uma série de teoremas como os relacionados à função $\varphi$ de Euler, muito utilizados em criptografia, e além disso, à criação de estruturas mais complexas a partir do conjunto dos números inteiros, como os anéis e grupos de unidades \cite{book:2399854}.
 
 % Um conteúdo que carece de formalizações e provas, e possui relação com o conteúdo a ser apresentado neste trabalho, é o algoritmo de Tonelli-Shanks, também conhecido como Algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} \cite{Huynh1581080}, acrônimo este que significa \textit{Residue Solver} de acordo com \cite{Niven1915}. Esse método resolve congruências quadráticas, isto é, equações da seguinte forma:
 % \begin{equation}
@@ -58,7 +58,13 @@ Tais definições levam a uma série de teoremas como os relacionados à funçã
 % % Este método foi proposto inicialmente em \cite{Tonelli1891}, porém foi aprimorado anos depois em \apud{danielShanks}{Kumar2020AnAF}.
 % Como motivação ao leitor, uma das utilidades deste algoritmo está relacionada ao \textit{Rabin Cryptosystem}, visto que esse sistema tem relações com resíduos quadráticos \cite{Huynh1581080}. No entanto esse não é único contexto em que aparecem equações com resíduos quadráticos, por isso, pode-se dizer que existe uma vasta quantidade de aplicações do Algoritmo \hyperref[algo:ressol]{\textsc{Ressol}}. Um exemplo adicional são os sistemas de criptografia que utilizam curvas elípticas, conforme mencionado em \cite{PalashSarkar2024AdvancesinMathematicsofCommunications}, \cite{kumar2021algorithm} e \cite{7133812}. 
 
-Um conteúdo que carece de formalizações e provas, e possui relação com o que será apresentado neste trabalho, é o algoritmo de Tonelli-Shanks, também conhecido como Algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} \cite{Huynh1581080}, acrônimo este que significa \textit{Residue Solver} de acordo com \cite{Niven1915}. Esse método resolve congruências quadráticas, isto é, equações da seguinte forma:
+Durante os cursos de Ciência da Computação, são vistas estruturas matemáticas muito diferentes daquelas as quais alunos de ensino médio estão habituados. No geral, grande parte destas estruturas são abstratas por não parecerem uma representação de um objeto real ou por, apesar de parecer, a razão de sua formulação não ser bem motivada de início. A exemplo de tais estruturas temos vetores, matrizes, filas e grafos, utilizados na modelagem de diversos problemas. Apesar destas ferramentas serem extremamente úteis, há um tipo de objeto matemático sempre presente na maioria dos problemas e que muitas vezes são considerados limitados e apenas objetos auxiliares demasiadamente utilizados: estes são os números inteiros.
+
+O conjunto dos números inteiros, apesar de ser formado por objetos (números) vistos como simples, possui diversas endorrelações. Essas propriedades são, em boa parte, estudadas no ramo da matemática conhecido como Teoria dos Números. Na Ciência da Computação esta área possui especial importância nos estudos da criptografia que possibilita a comunicação segura entre dois ou mais computadores. 
+
+Um dos conceitos mais presentes em Teoria dos Números é o de congruência que define uma relação entre dois números que divididos por um mesmo módulo possuem o mesmo resto (onde o resto é sempre um inteiro positivo menor que os dividendos). Essa relação é representada como: $a \equiv b \pmod{m}$, significando que $a$ é congruente a $b$ no módulo $m$, e é equivalente a dizer que $m \mid a - b$, isto é, $m$ divide $a - b$\footnote{A notação para dizer que um número $m$ não divide outro número $n$ será usada neste texto, e é dada por $m \nmid n$.}.
+
+Dentro da área de discutida até então, um conteúdo que carece de formalizações e provas, e possui relação com o que será apresentado neste trabalho, é o algoritmo de Tonelli-Shanks, também conhecido como Algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} \cite{Huynh1581080}, acrônimo este que significa \textit{Residue Solver} de acordo com \cite{Niven1915}. Esse método resolve congruências quadráticas, isto é, equações da seguinte forma:
 \begin{equation}
     \label{eq:congruenciaquadratica}
     r^2 \equiv n \pmod p

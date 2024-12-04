@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.14)  3 DEC 2024 22:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.14)  3 DEC 2024 22:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1407,13 +1407,13 @@ Overfull \hbox (5.1282pt too wide) in paragraph at lines 49--49
 
 
 
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}] [14] [15] [16]) (./Partes/Capitulo02.tex [17]
-<Figuras/ssreflect.png, id=322, 947.54pt x 782.925pt>
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}] [14] [15]) (./Partes/Capitulo02.tex [16]
+<Figuras/ssreflect.png, id=311, 947.54pt x 782.925pt>
 File: Figuras/ssreflect.png Graphic file (type png)
 <use Figuras/ssreflect.png>
 Package pdftex.def Info: Figuras/ssreflect.png  used on input line 15.
 (pdftex.def)             Requested size: 273.00278pt x 225.57301pt.
- [18
+ [17
 
  <./Figuras/ssreflect.png>]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 26.
@@ -1426,13 +1426,13 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 26.
- [19] [20] [21] [22] [23] [24] [25] [26]
+ [18] [19] [20] [21] [22] [23] [24] [25]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 386.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [27] [28{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [29] [30] [31] [32] [33] [34] [35] [36] [37]) (./Partes/Capitulo03.tex [38] [39
+) [26] [27{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [28] [29] [30] [31] [32] [33] [34] [35] [36]) (./Partes/Capitulo03.tex [37] [38
 
-] [40] [41] [42]
+] [39] [40] [41]
 Underfull \hbox (badness 10000) in paragraph at lines 197--204
 
  []
@@ -1447,7 +1447,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 233.
 
-[43] [44{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [45] [46] [47]
+[42] [43{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [44] [45] [46]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 397.
@@ -1460,26 +1460,26 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 397.
 
-[48] [49] [50] [51] [52] [53]
+[47] [48] [49] [50] [51] [52]
 Overfull \hbox (1.90671pt too wide) in paragraph at lines 658--660
 []\T1/lmr/m/it/12 (-20) Dado um nú-mero primo
  []
 
-[54] [55] [56]) (./Partes/Capitulo04.tex [57] [58
+[53] [54] [55]) (./Partes/Capitulo04.tex [56] [57
 
 ]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 92.
- [59] [60] [61] [62
+ [58] [59] [60] [61
 pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-130.\\thelstnumber\040}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.257 rewrite 
-              (bigD1 (f j)); last first.      $\label{line:31-item4-a}$] [63] [64
+              (bigD1 (f j)); last first.      $\label{line:31-item4-a}$] [62] [63
 pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-140.\\thelstnumber\040}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.345                         \item P
-                                     rimeiro \textit{goal}:] [65] [66] [67] [68] [69] [70]
+                                     rimeiro \textit{goal}:] [64] [65] [66] [67] [68] [69]
 Underfull \hbox (badness 10000) in paragraph at lines 642--646
 
  []
@@ -1499,41 +1499,41 @@ Underfull \hbox (badness 10000) in paragraph at lines 680--682
 
  []
 
-[71]) (./Partes/Conclusao.tex [72] [73
+[70]) (./Partes/Conclusao.tex [71] [72
 
 ]) (./main.bbl (./main.brf)
 \tf@brf=\write6
 \openout6 = `main.brf'.
 
- [74]
+ [73]
 bibitemlist
-[75
+[74
 
-]) [76]
+]) [75]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\uppercase' on input line 91.
 
-[77
+[76
 
 
 ]
 \openout2 = `Partes/ApendiceA.aux'.
 
- (./Partes/ApendiceA.tex [78
+ (./Partes/ApendiceA.tex [77
 
 
-] [79]
+] [78]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 127.
 
-[80]
+[79]
 Overfull \hbox (19.07716pt too wide) detected at line 187
 []
  []
 
-[81]
+[80]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 280.
@@ -1542,15 +1542,15 @@ LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 285.
 
-[82]) [83]
+[81]) [82]
 \openout2 = `Partes/ApendiceB.aux'.
 
- (./Partes/ApendiceB.tex [84
+ (./Partes/ApendiceB.tex [83
 
 
 
 
-] [85] [86] [87] [88] [89] [90] [91]) [92]
+] [84] [85] [86] [87] [88] [89] [90]) [91]
 \tf@lof=\write7
 \openout7 = `main.lof'.
 
@@ -1565,24 +1565,24 @@ LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: 0C8AB9640BB8108B4B41EB510182294F;3451.
+(rerunfilecheck)             Checksum: 157F63159B1377743B1EB43572104EB6;3300.
  ) 
 Here is how much of TeX's memory you used:
  41842 strings out of 476041
- 792017 string characters out of 5793173
+ 791990 string characters out of 5793173
  2181388 words of memory out of 6000000
  60089 multiletter control sequences out of 15000+600000
- 659027 words of font info for 305 fonts, out of 8000000 for 9000
+ 659110 words of font info for 306 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
  93i,25n,99p,1477b,1933s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{https://github.com/thery/mathcomp-extra/} has been referenced but does not exist, replaced by a fixed one
 
 </usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (93 pages, 852282 bytes).
+Output written on main.pdf (92 pages, 850977 bytes).
 PDF statistics:
- 2361 PDF objects out of 2487 (max. 8388607)
- 2162 compressed objects within 22 object streams
- 1059 named destinations out of 1200 (max. 500000)
+ 2349 PDF objects out of 2487 (max. 8388607)
+ 2151 compressed objects within 22 object streams
+ 1057 named destinations out of 1200 (max. 500000)
  80874 words of extra memory for PDF output out of 89155 (max. 10000000)
 
