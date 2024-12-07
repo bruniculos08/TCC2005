@@ -141,7 +141,7 @@ A prova manual do Teorema \ref{teorema : bachetbezout} e das consequências menc
     que encontra os coeficientes $x$ e $y$ e o valor de $\mdc(a,b)$. Esse algoritmo possui duas versões, sendo identificado na biblioteca como \lstinline[language = coq]{egcdn} para naturais e \lstinline[language = coq]{egcdz} para inteiros. Além disso, existem os lemas \lstinline[language = coq]{egcdnP} e \lstinline[language = coq]{egcdzP}, tratando da corretude desses algoritmos (respectivamente) e para o caso dos números inteiros, há o lema \lstinline[language = coq]{Bezoutz} que é equivalente ao Teorema \ref{teorema : bachetbezout}.
 
 \section{Propriedades de Congruência}
-As propriedade da relação de congruência serão usadas com muita frequência (e de maneira implícita) no decorrer desse documento. Por essa razão, nesta seção será apresentada uma lista de propriedades semelhante à apresentada em \cite[p.~34]{book:2399854}, para qual a demonstração de tais propriedades se encontra em \cite[p.~34-35]{book:2399854}. Recomenda-se então ao leitor consultar o conteúdo aqui apresentado em caso de dúvidas no desenvolvimento de equações modulares.
+As propriedade da relação de congruência serão usadas com muita frequência (e de maneira implícita) no decorrer desse documento. Por essa razão, nesta seção será apresentada uma lista de propriedades semelhante à apresentada em \cite[p.~34]{book:2399854}, para qual a demonstração de maioria dessas propriedades se encontra em \cite[p.~34-35]{book:2399854}. Recomenda-se então ao leitor consultar o conteúdo aqui apresentado em caso de dúvidas no desenvolvimento de equações modulares.
     
     Seguindo para as propriedades, para todo $a,b, c, d, n \in \mathbb{Z}$ têm-se:
 \begin{enumerate}
@@ -212,7 +212,7 @@ Notation "m != n %[mod d ]" := (modz m d != modz n d) : int_scope.
     \end{lstlisting}
 Deve-se observar que existem duas igualdades, sendo a primeira a de Leibniz e a segunda uma função booleana. O mesmo ocorre com as desigualdades (na mesma ordem).
 
-Tais definições são equivalentes a definição apresentada por \cite{book:2399854}, conforme é mostrado pelo lema \lstinline[language = coq]{eqz_mod_dvd} implementado na biblioteca \footnote{O operador 
+Tais definições são equivalentes a definição apresentada em \cite[p.~34]{book:2399854}, conforme é mostrado pelo lema \lstinline[language = coq]{eqz_mod_dvd} (no caso do tipo \coqinline[]{int}) implementado na biblioteca \footnote{O operador 
 \lstinline[language = coq]{\%Z} serve para indicar o escopo padrão como \lstinline[language=coq]|int_scope|.}:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma eqz_mod_dvd d m n : (m == n %[mod d])%Z = (d %| m - n)%Z.
@@ -232,7 +232,7 @@ possuem a mesma utilidade.
 
 \section{Anel de Inteiros Módulo $n$}
 
-Uma estrutura que será utilizada no presente trabalho, e que pode ser implementada usando elementos disponíveis na biblioteca Mathcomp, são os anéis de inteiros módulo $n$. De acordo com \cite[p.40-41]{book:2399854}, dada a relação $\sim$ sobre um conjunto $X$, se esta relação é uma relação de equivalência, isto é, possui as seguintes propriedades:
+Uma estrutura que será utilizada no presente trabalho, e que pode ser implementada usando elementos disponíveis na biblioteca Mathcomp, são os anéis de inteiros módulo $n$. De acordo com \cite[p.~40-41]{book:2399854}, dada a relação $\sim$ sobre um conjunto $X$, se esta relação é uma relação de equivalência, isto é, possui as seguintes propriedades:
 \begin{enumerate}
     \item \textbf{\textit{reflexividade}}: $\forall x \in X, x \sim x$
     \item \textbf{\textit{transitividade}}: $\forall x, y, z \in X, x \sim y \land y \sim z \rightarrow x \sim z$
@@ -365,6 +365,7 @@ Definition ord0 := Ordinal (ltn0Sn n').
 ou seja, \lstinline[language = coq]{ord0} é sempre o elemento de \lstinline[language = coq]{'I_p} construído com \lstinline[language = coq]{m} sendo 0 (em que \lstinline[language = coq]{p} é um valor inferido pelo \textit{Coq}).
 
 A partir disso podem ser provados os lemas que tornam o conjunto \lstinline[language = coq]{'I_p} dotado das operações definidas com \lstinline[language = coq]{inZp} em um \textit{grupo abeliano} (conforme a definição em \cite[p.~41-46]{book:2399854}):
+% aqui acho que é só a página 46
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma Zp_add0z : left_id Zp0 Zp_add.
 Lemma Zp_addNz : left_inverse Zp0 Zp_opp Zp_add.
@@ -396,7 +397,7 @@ onde a notação \lstinline[language=coq]|'Z_p| sempre retorna um tipo \lstinlin
 
 \section{Função $\varphi$ de Euler}
 
-Uma função muito presente em grande parte dos conteúdos de teoria dos números é a função $\varphi$ de Euler. Essa também é conhecida como função totiente de Euler e conforme \cite[p.~48-49]{book:2399854}, para quaisquer $n$ inteiro positivo, é definida como:
+Uma função muito presente em grande parte dos conteúdos de teoria dos números é a função $\varphi$ de Euler. Essa também é conhecida como função totiente de Euler e conforme \cite[p.~48]{book:2399854}, para quaisquer $n$ inteiro positivo, é definida como:
     \begin{equation} \label{def:phi}
         \varphi(n) = |(\mathbb{Z}/(n))^{\times}|
     \end{equation}
@@ -404,7 +405,7 @@ isto é equivalente a:
     \begin{equation}
         \varphi(n) = |\{x \in \mathbb{Z} | 0 \leq x \leq n-1 \land mdc(x,n) = 1 \}|
     \end{equation}
-e essa possui algumas propriedades importantes a serem destacadas:
+Essa função possui algumas propriedades importantes apresentadas em \cite[p.~48-49]{book:2399854}:
 %(estas são apresentadas em \cite{book:2399854} \textcolor{red}{e maior parte das provas não apresentadas aqui se encontram neste livro}):
     \begin{enumerate}
     \item $\varphi(1) = \varphi(2) = 1$
@@ -417,7 +418,7 @@ e essa possui algumas propriedades importantes a serem destacadas:
         \end{equation}
     \end{enumerate}
 
-Além dessas propriedade existem dois teoremas apresentados em \cite[p.~49-50]{book:2399854} que devem ser notados, que são eles:
+Além dessas propriedade existem dois teoremas apresentados em \cite[p.~49-50]{book:2399854} que devem ser notados, e são eles:
 
 \begin{teorema}[\textit{Teorema de Euler-Fermat}]
 \label{eq : euler-fermat}
