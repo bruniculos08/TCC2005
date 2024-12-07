@@ -596,7 +596,7 @@ case: ltngtP => // /eqP/val_eqP fiEi.                           @ \label{line:61
 A formalização a ser apresentada seguiu a ideia utilizada (e recomendada) por Laurent Théry, de se utilizar uma função exaustiva para verificar se um determinado número é um resíduo quadrático módulo $p$. Com isso, tem-se uma função que é pelo menos computável (apesar de sua ineficiência). Fez-se então neste trabalho a seguinte implementação do \textit{símbolo de Legendre}:
 % Seguindo a ideia utilizada (e recomendada) por Laurent Théry, em se utilizar uma função exaustiva para verificar se um determinado número é um resíduo quadrático módulo $p$ (em que $p$ é um número primo), e portanto, ter-se uma função que é pelo menos computável (apesar de sua ineficácia), fez-se neste trabalho a seguinte definição para o \textit{símbolo de Legendre}:
         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Definition legendre_symb {p : int} (pL2 : (2 < p)%R) (pP : primez.primez p) 
+Definition legendre_symb {p : int} (pL2 : (2 < p)%R) (pP : primez p) 
         (a : int) :=
         if (p %| a)%Z then 0%Z
         else if (resz_quad p a)
@@ -609,7 +609,7 @@ Definition resz_quad p a := has (fun i => ((i * i)%:Z  == a %[mod p])%Z) (iota 0
         \end{lstlisting}
 Nesta implementação, o \textit{símbolo de Legendre} é portanto uma função que recebe um número inteiro $p$, uma prova de que $2 < p$, uma prova de que $p$ é um número primo e por último um número inteiro $a$, retornando um valor inteiro. Note que os argumentos que constituem provas podem ser gerados automaticamente pelo usuário dado que as funções \lstinline[language=coq]!<! e \lstinline[language=coq]!primez! são computáveis. Como exemplo de uso da função tem-se portanto:
         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Compute (legendre_symb (_ : 2 < 7)%R (_ : primez.primez 7) 2).
+Compute (legendre_symb (_ : 2 < 7)%R (_ : primez 7) 2).
         \end{lstlisting}
 que neste caso irá retornar $1$.
 
@@ -645,7 +645,7 @@ Foram também provadas as principais propriedades apresentadas em \cite[p.~87-88
                 % \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
                 % \begin{lstlisting}[language=coq]
                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Lemma legendre_symbE (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
+Lemma legendre_symbE (p a b : int) (pL2 : (2 < p)%R) (pP : primez p):
         (a == b %[mod p])%Z -> 
                 ((legendre_symb pL2 pP a) == (legendre_symb pL2 pP b)).
                 \end{lstlisting}
@@ -656,7 +656,7 @@ Lemma legendre_symbE (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
                 % \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
                 % \begin{lstlisting}[language=coq]
                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Lemma legendre_symb_Ndvd (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
+Lemma legendre_symb_Ndvd (p a b : int) (pL2 : (2 < p)%R) (pP : primez p):
         ~~(p %| a)%Z -> (legendre_symb pL2 pP (a^2)) == 1.
                 \end{lstlisting}
                 % \end{tcolorbox}
@@ -666,7 +666,7 @@ Lemma legendre_symb_Ndvd (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
                 % \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,width=14cm]
                 % \begin{lstlisting}[language=coq]
                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Lemma legendre_symb_Neg1 (p : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
+Lemma legendre_symb_Neg1 (p : int) (pL2 : (2 < p)%R) (pP : primez p):
         ((legendre_symb pL2 pP (-1)) == 1) = (p == 1 %[mod 4])%Z.
                 \end{lstlisting}
                 % \end{tcolorbox}
@@ -681,7 +681,7 @@ Lemma legendre_symb_Neg1 (p : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
         \item $\left(\frac{a \cdot b}{p}\right) = \left(\frac{a}{p}\right) \cdot \left(\frac{b}{p}\right)$, cuja declaração dada em \textit{Coq} é:
         \newline
                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Lemma legendre_symb_mul (p a b : int) (pL2 : (2 < p)%R) (pP : primez.primez p):
+Lemma legendre_symb_mul (p a b : int) (pL2 : (2 < p)%R) (pP : primez p):
         (legendre_symb pL2 pP (a * b)%R) = 
                 ((legendre_symb pL2 pP a) * (legendre_symb pL2 pP b))%R.
                 \end{lstlisting}
