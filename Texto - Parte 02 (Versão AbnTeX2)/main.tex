@@ -25,6 +25,18 @@
 \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
 \newcommand{\codequotes}{\lstinline[language=coq]|"|}
 \newcommand{\coqinline}[1][]{\lstinline[language=coq]}
+\usepackage{mdframed}
+\usepackage{lastpage}
+\usepackage{xstring}
+% \newcommand{\invertname}[1]{%
+% 	\StrBehind{#1}{{}}, \StrBefore{#1}{{}}%
+% }%
+% \newcommand{\invertname}[1]{%
+% 	\StrBehind{#1}{ }[\lastname]%
+% 	\StrBefore{#1}{{}}[\firstname]%
+%   	\lastname, \firstname%
+% }
+
 
 % Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2:
 \usepackage{lipsum}

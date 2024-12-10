@@ -1,33 +1,93 @@
+% \begin{fichacatalografica}
+% 	\sffamily
+% 	\vspace*{\fill}					% Posição vertical
+% 	\begin{center}					% Minipage Centralizado
+% 	\fbox{
+%         \begin{minipage}[c][7cm]{12.5cm}		% Largura
+%         % \begin{minipage}[c][8cm]{13.5cm}		% Largura
+%         \small
+%         \imprimirautor
+%         %Sobrenome, Nome do autor
+        
+%         \hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
+%         \imprimirlocal, \imprimirdata-
+        
+%         \hspace{0.5cm} \thelastpage p. : il. (algumas color.) ; 30 cm.\\
+        
+%         % \hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
+%         % Editado por Bruno (parte de orientador e coorientador):
+%         \hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador
+%         \par \hspace{0.5cm} \imprimircoorientadorRotulo~\imprimircoorientador \\
+        
+%         \hspace{0.5cm}
+%         \parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\\\imprimirinstituicao,
+%         \imprimirdata.}\\
+        
+%         \hspace{0.5cm}
+%             1. símbolo de Legendre.
+%             2. criptografia.
+%             3. Teoria dos Números.
+%             I. Karina Girardi Roggia.
+%             II. Universidade do Estado de Santa Catarina.
+%             III. Faculdade de Ciência da Computação.
+%             IV. Formalização do \textit{Símbolo de Legendre} em \textit{Coq}. 			
+%         \end{minipage}
+%     }
+% 	\end{center}
+% \end{fichacatalografica}
+
+% Código de ficha catalográfica do .tex da UDESC:
+
 \begin{fichacatalografica}
-	\sffamily
+	%\sffamily
+	%\rmfamily
+	\ttfamily \hbadness=10000
 	\vspace*{\fill}					% Posição vertical
 	\begin{center}					% Minipage Centralizado
+	% Para gerar a ficha catalográfica de teses e \\ 
+	% dissertações acessar o link:  \\
+	% https://www.udesc.br/bu/manuais/ficha
+	
+	\vspace*{8pt}
+	
+%	\begin{minipage}[c]{8cm}
+%	\centering \sffamily
+%	 Ficha catalográfica elaborada pelo(a) autor(a), com auxílio do programa de geração automática da Biblioteca Setorial do CCT/UDESC
+%	\end{minipage}
 	\fbox{
-        \begin{minipage}[c][8cm]{13.5cm}		% Largura
-        \small
-        \imprimirautor
-        %Sobrenome, Nome do autor
-        
-        \hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
-        \imprimirlocal, \imprimirdata-
-        
-        \hspace{0.5cm} \thelastpage p. : il. (algumas color.) ; 30 cm.\\
-        
-        \hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
-        
-        \hspace{0.5cm}
-        \parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
-        \imprimirdata.}\\
-        
-        \hspace{0.5cm}
-            1. Algoritmo \textit{RESSOL}.
-            2. Algoritmo Tonelli-Shanks.
-            2. Lei de Reciprocidade Quadrática.
-            I. Karina Girardi Roggia.
-            II. Universidade do Estado de Santa Catarina.
-            III. Faculdade de Ciência da Computação.
-            IV. Formalização do Algoritmo \textit{RESSOL} utilizando Coq. 			
-        \end{minipage}
-    }
+        \begin{minipage}[c]{12.5cm}		% Largura
+	        \flushright
+            {
+                \begin{minipage}[c]{10.5cm}		% Largura
+                \vspace{1.25cm}
+                %\footnotesize
+                \setlength{\parindent}{1.5em}
+                % \noindent \invertname{\imprimirautor} \par
+                \noindent dos Santos, Bruno Rafael \par
+                \imprimirtitulo{ }/{ }\imprimirautor. -- \imprimirlocal, \imprimirdata .\par
+                \pageref{LastPage} p. : il. ; 30 cm.\par
+                \vspace{1.5em}
+                \imprimirorientadorRotulo~\imprimirorientador.\par
+                \imprimircoorientadorRotulo~\imprimircoorientador.\par
+                \imprimirtipotrabalho~--~\imprimirinstituicao, \imprimirlocal, \imprimirdata.\par
+                \vspace{1.5em}
+                    1. símbolo de Legendre.
+                    2. criptografia.
+                    3. Teoria dos Números.
+                    % 4. Palavra-chave.
+                    % 5. Palavra-chave.
+                    % I. \invertname{\imprimirorientador}.
+                    I. Roggia, Karina Girardi.
+                    % II. \invertname{\imprimircoorientador}.
+                    II. Torrens, Paulo Henrique.
+                    III. \imprimirinstituicao.
+                    % IV. Título. %
+                    IV. Formalização do \textit{Símbolo de Legendre} em \textit{Coq}. %
+                \vspace{1.25cm}	%		
+                \end{minipage}%
+            }% 
+	    \end{minipage}
+    }%
+	\vspace*{0.5cm}
 	\end{center}
 \end{fichacatalografica}

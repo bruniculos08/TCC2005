@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.14)  7 DEC 2024 19:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.14)  10 DEC 2024 12:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1029,28 +1029,142 @@ File: tikzlibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbposter.code.tex
 Library (tcolorbox): 'tcbposter.code.tex' version '6.0.3'
-)) (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty (/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/mdframed/mdframed.sty
+Package: mdframed 2013/07/01 1.9b: mdframed
+ (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2023-02-22 L3 programming layer (loader) 
  (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count399
 \l__pdf_internal_box=\box85
 ))
+Package: xparse 2023-02-02 L3 Experimental document command parser
+) (/usr/share/texlive/texmf-dist/tex/latex/zref/zref-abspage.sty
+Package: zref-abspage 2022-04-07 v2.34 Module abspage for zref (HO)
+ (/usr/share/texlive/texmf-dist/tex/latex/zref/zref-base.sty
+Package: zref-base 2022-04-07 v2.34 Module base for zref (HO)
+Package zref Info: New property list: main on input line 767.
+Package zref Info: New property: default on input line 768.
+Package zref Info: New property: page on input line 769.
+)
+\c@abspage=\count400
+Package zref Info: New property: abspage on input line 65.
+)
+\mdf@templength=\skip261
+\c@mdf@globalstyle@cnt=\count401
+\mdf@skipabove@length=\skip262
+\mdf@skipbelow@length=\skip263
+\mdf@leftmargin@length=\skip264
+\mdf@rightmargin@length=\skip265
+\mdf@innerleftmargin@length=\skip266
+\mdf@innerrightmargin@length=\skip267
+\mdf@innertopmargin@length=\skip268
+\mdf@innerbottommargin@length=\skip269
+\mdf@splittopskip@length=\skip270
+\mdf@splitbottomskip@length=\skip271
+\mdf@outermargin@length=\skip272
+\mdf@innermargin@length=\skip273
+\mdf@linewidth@length=\skip274
+\mdf@innerlinewidth@length=\skip275
+\mdf@middlelinewidth@length=\skip276
+\mdf@outerlinewidth@length=\skip277
+\mdf@roundcorner@length=\skip278
+\mdf@footenotedistance@length=\skip279
+\mdf@userdefinedwidth@length=\skip280
+\mdf@needspace@length=\skip281
+\mdf@frametitleaboveskip@length=\skip282
+\mdf@frametitlebelowskip@length=\skip283
+\mdf@frametitlerulewidth@length=\skip284
+\mdf@frametitleleftmargin@length=\skip285
+\mdf@frametitlerightmargin@length=\skip286
+\mdf@shadowsize@length=\skip287
+\mdf@extratopheight@length=\skip288
+\mdf@subtitleabovelinewidth@length=\skip289
+\mdf@subtitlebelowlinewidth@length=\skip290
+\mdf@subtitleaboveskip@length=\skip291
+\mdf@subtitlebelowskip@length=\skip292
+\mdf@subtitleinneraboveskip@length=\skip293
+\mdf@subtitleinnerbelowskip@length=\skip294
+\mdf@subsubtitleabovelinewidth@length=\skip295
+\mdf@subsubtitlebelowlinewidth@length=\skip296
+\mdf@subsubtitleaboveskip@length=\skip297
+\mdf@subsubtitlebelowskip@length=\skip298
+\mdf@subsubtitleinneraboveskip@length=\skip299
+\mdf@subsubtitleinnerbelowskip@length=\skip300
+ (/usr/share/texlive/texmf-dist/tex/latex/mdframed/md-frame-0.mdf
+File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
+)
+\mdf@frametitlebox=\box86
+\mdf@footnotebox=\box87
+\mdf@splitbox@one=\box88
+\mdf@splitbox@two=\box89
+\mdf@splitbox@save=\box90
+\mdfsplitboxwidth=\skip301
+\mdfsplitboxtotalwidth=\skip302
+\mdfsplitboxheight=\skip303
+\mdfsplitboxdepth=\skip304
+\mdfsplitboxtotalheight=\skip305
+\mdfframetitleboxwidth=\skip306
+\mdfframetitleboxtotalwidth=\skip307
+\mdfframetitleboxheight=\skip308
+\mdfframetitleboxdepth=\skip309
+\mdfframetitleboxtotalheight=\skip310
+\mdffootnoteboxwidth=\skip311
+\mdffootnoteboxtotalwidth=\skip312
+\mdffootnoteboxheight=\skip313
+\mdffootnoteboxdepth=\skip314
+\mdffootnoteboxtotalheight=\skip315
+\mdftotallinewidth=\skip316
+\mdfboundingboxwidth=\skip317
+\mdfboundingboxtotalwidth=\skip318
+\mdfboundingboxheight=\skip319
+\mdfboundingboxdepth=\skip320
+\mdfboundingboxtotalheight=\skip321
+\mdf@freevspace@length=\skip322
+\mdf@horizontalwidthofbox@length=\skip323
+\mdf@verticalmarginwhole@length=\skip324
+\mdf@horizontalspaceofbox=\skip325
+\mdfsubtitleheight=\skip326
+\mdfsubsubtitleheight=\skip327
+\c@mdfcountframes=\count402
+
+****** mdframed patching \endmdf@trivlist
+
+****** -- success******
+
+\mdf@envdepth=\count403
+\c@mdf@env@i=\count404
+\c@mdf@env@ii=\count405
+\c@mdf@zref@counter=\count406
+Package zref Info: New property: mdf@pagevalue on input line 895.
+) (/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
+Package: lastpage 2023/03/07 v2.0a lastpage: 2.09 or 2e? (HMM)
+ (/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage2e.sty
+Package: lastpage2e 2023/03/07 v2.0a Decide which 2e lastpage version to use (HMM)
+ (/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpagemodern.sty
+Package: lastpagemodern 2023-03-07 v2.0a Refers to last page's name (HMM; JPG)
+) 
+)) (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
+\integerpart=\count407
+\decimalpart=\count408
+)
+Package: xstring 2023/01/14 v1.85 String manipulations (CT)
+) (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty (/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2023-02-02 LaTeX2e option processing using LaTeX3 keys
 )
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count400
-\l__lipsum_a_int=\count401
-\l__lipsum_b_int=\count402
+\g__lipsum_par_int=\count409
+\l__lipsum_a_int=\count410
+\l__lipsum_b_int=\count411
  (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/backref.sty
 Package: backref 2021/02/04 v1.41 Bibliographical back referencing
 ) (/usr/share/texlive/texmf-dist/tex/latex/abntex2/abntex2cite.sty
 Package: abntex2cite 2018/11/24 v-1.9.7 abnTeX2
  (/usr/share/texlive/texmf-dist/tex/latex/abntex2/abntex2abrev.sty)
-\minimumbiblabelwidth=\skip261
-\ABCIauxlen=\skip262
-\c@ABCIaux=\count403
-\c@ABCImax=\count404
+\minimumbiblabelwidth=\skip328
+\ABCIauxlen=\skip329
+\c@ABCIaux=\count412
+\c@ABCImax=\count413
  (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifpdf.sty
 Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 ) (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifxetex.sty
@@ -1058,28 +1172,28 @@ Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 ) (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
-\biblabelsep=\skip263
+\biblabelsep=\skip330
 LaTeX Info: Redefining \newblock on input line 591.
 LaTeX Info: Redefining \cite on input line 618.
 \ABCItoken=\toks51
 )
 
-LaTeX Warning: \include should only be used after \begin{document} on input line 50.
+LaTeX Warning: \include should only be used after \begin{document} on input line 62.
 
 (./Partes/Capa.tex)
 
-LaTeX Warning: \include should only be used after \begin{document} on input line 52.
+LaTeX Warning: \include should only be used after \begin{document} on input line 64.
 
 (./Partes/Config.tex
 Package hyperref Info: Option `colorlinks' set `true' on input line 24.
-\c@quadro=\count405
-\c@loqdepth=\count406
-\cftbeforequadroskip=\skip264
-\cftquadroindent=\skip265
-\cftquadronumwidth=\skip266
-\c@definição=\count407
-\c@teorema=\count408
-\c@lema=\count409
+\c@quadro=\count414
+\c@loqdepth=\count415
+\cftbeforequadroskip=\skip331
+\cftquadroindent=\skip332
+\cftquadronumwidth=\skip333
+\c@definição=\count416
+\c@teorema=\count417
+\c@lema=\count418
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
@@ -1094,16 +1208,16 @@ Package: mathtools 2022/06/29 v1.29 mathematical typesetting tools
  (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count410
+\g_MT_multlinerow_int=\count419
 \l_MT_multwidth_dim=\dimen329
-\origjot=\skip267
+\origjot=\skip334
 \l_MT_shortvdotswithinadjustabove_dim=\dimen330
 \l_MT_shortvdotswithinadjustbelow_dim=\dimen331
 \l_MT_above_intertext_sep=\dimen332
 \l_MT_below_intertext_sep=\dimen333
 \l_MT_above_shortintertext_sep=\dimen334
 \l_MT_below_shortintertext_sep=\dimen335
-\xmathstrut@box=\box86
+\xmathstrut@box=\box91
 \xmathstrut@dim=\dimen336
 ) (/usr/share/texlive/texmf-dist/tex/latex/lkproof/proof.sty
 \inferLineSkip=\dimen337
@@ -1125,64 +1239,64 @@ Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 \HLabelAdjust=\dimen353
 \VLabelAdjust=\dimen354
 \WidthAdjust=\dimen355
-\@UpperPart=\box87
-\@LowerPart=\box88
-\@LabelPart=\box89
-\ResultBox=\box90
+\@UpperPart=\box92
+\@LowerPart=\box93
+\@LabelPart=\box94
+\ResultBox=\box95
 ) (/usr/share/texlive/texmf-dist/tex/latex/mathpartir/mathpartir.sty
 Package: mathpartir 2016/02/24 version 1.3.2 Math Paragraph for Typesetting Inference Rules
-\mpr@andskip=\skip268
+\mpr@andskip=\skip335
 \mpr@lista=\toks52
 \mpr@listb=\toks53
-\mpr@hlist=\box91
-\mpr@vlist=\box92
-\mpr@right=\box93
+\mpr@hlist=\box96
+\mpr@vlist=\box97
+\mpr@right=\box98
 ) (./Estilos/coq.sty) (./Estilos/coq-error.sty) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
-\c@AlgoLine=\count411
-\algocf@hangindent=\skip269
+\c@AlgoLine=\count420
+\algocf@hangindent=\skip336
  (/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
-\c@checkoddpage=\count412
+\c@checkoddpage=\count421
 LaTeX Info: Redefining \checkoddpage on input line 45.
 ) (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
-\skiptotal=\skip270
-\skiplinenumber=\skip271
-\skiprule=\skip272
-\skiphlne=\skip273
-\skiptext=\skip274
-\skiplength=\skip275
-\algomargin=\skip276
-\skipalgocfslide=\skip277
+\skiptotal=\skip337
+\skiplinenumber=\skip338
+\skiprule=\skip339
+\skiphlne=\skip340
+\skiptext=\skip341
+\skiplength=\skip342
+\algomargin=\skip343
+\skipalgocfslide=\skip344
 \algowidth=\dimen356
 \inoutsize=\dimen357
 \inoutindent=\dimen358
 \interspacetitleruled=\dimen359
 \interspacealgoruled=\dimen360
 \interspacetitleboxruled=\dimen361
-\algocf@ruledwidth=\skip278
-\algocf@inoutbox=\box94
-\algocf@inputbox=\box95
-\AlCapSkip=\skip279
-\AlCapHSkip=\skip280
-\algoskipindent=\skip281
-\algocf@nlbox=\box96
-\algocf@hangingbox=\box97
-\algocf@untilbox=\box98
-\algocf@skipuntil=\skip282
-\algocf@capbox=\box99
-\algocf@lcaptionbox=\skip283
-\algoheightruledefault=\skip284
-\algoheightrule=\skip285
-\algotitleheightruledefault=\skip286
-\algotitleheightrule=\skip287
-\c@algocfline=\count413
-\c@algocfproc=\count414
-\c@algocf=\count415
-\algocf@algoframe=\box100
-\algocf@algobox=\box101
+\algocf@ruledwidth=\skip345
+\algocf@inoutbox=\box99
+\algocf@inputbox=\box100
+\AlCapSkip=\skip346
+\AlCapHSkip=\skip347
+\algoskipindent=\skip348
+\algocf@nlbox=\box101
+\algocf@hangingbox=\box102
+\algocf@untilbox=\box103
+\algocf@skipuntil=\skip349
+\algocf@capbox=\box104
+\algocf@lcaptionbox=\skip350
+\algoheightruledefault=\skip351
+\algoheightrule=\skip352
+\algotitleheightruledefault=\skip353
+\algotitleheightrule=\skip354
+\c@algocfline=\count422
+\c@algocfproc=\count423
+\c@algocf=\count424
+\algocf@algoframe=\box105
+\algocf@algobox=\box106
 ))
 \main@idxfile=\write5
 \openout5 = `main.idx'.
@@ -1196,41 +1310,41 @@ LaTeX Warning: Label `line:50-item4b-item2' multiply defined.
 (./Partes/ApendiceA.aux) (./Partes/ApendiceB.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-Package hyperref Info: Link coloring ON on input line 57.
-LaTeX Info: Redefining \degres on input line 57.
-LaTeX Info: Redefining \up on input line 57.
-\myptabbox=\box102
-\myptabboxwidth=\skip288
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+Package hyperref Info: Link coloring ON on input line 69.
+LaTeX Info: Redefining \degres on input line 69.
+LaTeX Info: Redefining \up on input line 69.
+\myptabbox=\box107
+\myptabboxwidth=\skip355
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count416
+\scratchcounter=\count425
 \scratchdimen=\dimen362
-\scratchbox=\box103
-\nofMPsegments=\count417
-\nofMParguments=\count418
+\scratchbox=\box108
+\nofMPsegments=\count426
+\nofMParguments=\count427
 \everyMPshowfont=\toks54
-\MPscratchCnt=\count419
+\MPscratchCnt=\count428
 \MPscratchDim=\dimen363
-\MPnumerator=\count420
-\makeMPintoPDFobject=\count421
+\MPnumerator=\count429
+\makeMPintoPDFobject=\count430
 \everyMPtoPDFconversion=\toks55
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1238,53 +1352,53 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Redefining \microtypecontext on input line 57.
+LaTeX Info: Redefining \microtypecontext on input line 69.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 57.
+LaTeX Info: Redefining \showhyphens on input line 69.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
  (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-\c@lstlisting=\count422
+\c@lstlisting=\count431
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 65.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 77.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 65.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 77.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 65.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 77.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 65.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 77.
  (/usr/share/texlive/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 65.
+(Font)              <12> on input line 77.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 65.
+(Font)              <8> on input line 77.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 65.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 65.
+(Font)              <6> on input line 77.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 77.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 65.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 77.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -1293,7 +1407,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.65 	\imprimirfolhaderosto*{}
+l.77 	\imprimirfolhaderosto*{}
                                [1
 
 
@@ -1302,42 +1416,20 @@ l.65 	\imprimirfolhaderosto*{}
 \openout2 = `Partes/Ficha.aux'.
 
  (./Partes/Ficha.tex
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 2.
- (/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmss.fd
-File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 44.
+ (/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `lmss' (encoding: T1).
+(microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 31.
-
-Underfull \hbox (badness 10000) in paragraph at lines 31--31
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 31--31
-
- []
-
-
-Overfull \hbox (16.6597pt too wide) in paragraph at lines 31--31
-[]  [] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 31--31
-
- []
-
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 31.
+(Font)              <10> on input line 90.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 31.
+(Font)              <7> on input line 90.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 31.
+(Font)              <5> on input line 90.
 ) [2
 
 ]
@@ -1408,7 +1500,7 @@ Overfull \hbox (5.1282pt too wide) in paragraph at lines 49--49
 
 
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}] [14] [15]) (./Partes/Capitulo02.tex [16]
-<Figuras/ssreflect.png, id=311, 947.54pt x 782.925pt>
+<Figuras/ssreflect.png, id=313, 947.54pt x 782.925pt>
 File: Figuras/ssreflect.png Graphic file (type png)
 <use Figuras/ssreflect.png>
 Package pdftex.def Info: Figuras/ssreflect.png  used on input line 15.
@@ -1416,14 +1508,6 @@ Package pdftex.def Info: Figuras/ssreflect.png  used on input line 15.
  [17
 
  <./Figuras/ssreflect.png>]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 26.
- (/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `lmtt' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 26.
  [18] [19] [20] [21] [22] [23] [24] [25]
@@ -1512,7 +1596,7 @@ bibitemlist
 ]) [75]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\uppercase' on input line 91.
+(hyperref)                removing `\uppercase' on input line 103.
 
 [76
 
@@ -1560,7 +1644,9 @@ LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 \tf@toc=\write9
 \openout9 = `main.toc'.
 
- (./main.aux (./Partes/Ficha.aux) (./PreTextual/Pretexto.aux) (./PreTextual/Resumo.aux) (./PreTextual/Abstract.aux) (./PreTextual/Sumario.aux) (./Partes/ApendiceA.aux) (./Partes/ApendiceB.aux))
+ 
+enddocument/afterlastpage: lastpage setting LastPage.
+(./main.aux (./Partes/Ficha.aux) (./PreTextual/Pretexto.aux) (./PreTextual/Resumo.aux) (./PreTextual/Abstract.aux) (./PreTextual/Sumario.aux) (./Partes/ApendiceA.aux) (./Partes/ApendiceB.aux))
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1568,21 +1654,21 @@ Package rerunfilecheck Info: File `main.brf' has not changed.
 (rerunfilecheck)             Checksum: 90F2A84E196C165764F366EF4E042B7A;3352.
  ) 
 Here is how much of TeX's memory you used:
- 41842 strings out of 476041
- 791992 string characters out of 5793173
+ 43000 strings out of 476041
+ 815429 string characters out of 5793173
  2181388 words of memory out of 6000000
- 60089 multiletter control sequences out of 15000+600000
- 659110 words of font info for 306 fonts, out of 8000000 for 9000
+ 61236 multiletter control sequences out of 15000+600000
+ 650389 words of font info for 296 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
  93i,25n,99p,1477b,1933s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{https://github.com/thery/mathcomp-extra/} has been referenced but does not exist, replaced by a fixed one
 
-</usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (92 pages, 851191 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (92 pages, 823645 bytes).
 PDF statistics:
- 2352 PDF objects out of 2487 (max. 8388607)
- 2154 compressed objects within 22 object streams
+ 2348 PDF objects out of 2487 (max. 8388607)
+ 2152 compressed objects within 22 object streams
  1057 named destinations out of 1200 (max. 500000)
- 80874 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 75754 words of extra memory for PDF output out of 89155 (max. 10000000)
 
