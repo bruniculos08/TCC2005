@@ -594,7 +594,7 @@ case: ltngtP => // /eqP/val_eqP fiEi.                           @ \label{line:61
 
 \end{enumerate}
 
-        Com uso do lema \coqinline[]{fact_sqr_exp} e do teorema \coqinline[]{Wilson} foi provada por Laurent Théry a seguinte versão do \textit{Critério de Euler} (Teorema \ref{teorema:criteriodeeuler}) para números naturais:
+        Com uso do lema \coqinline[]{fact_sqr_exp} e do teorema \coqinline[]{Wilson} foi provada, por Laurent Théry, a seguinte versão do \textit{Critério de Euler} (Teorema \ref{teorema:criteriodeeuler}) para números naturais:
         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma euler_criterion a p : 
         prime p -> ~~ (p %| a) -> 
@@ -705,7 +705,7 @@ Lemma eulerz_criterion {p : int} (pL2 : (2 < p)%R) (pP : primez p) (a : int):
     (a ^ ((p - 1) %/ 2)%Z = (legendre_symb pL2 pP a) %[mod p])%Z.
         \end{lstlisting}
 
-        Nas provas destas propriedades foram utilizadas implementações da biblioteca Mathematical Components (sendo importados os módulos \textit{all\_ssreflect} e \textit{all\_algebra}), do repositório \textit{mathcomp-extra} (disponível em \url{https://github.com/thery/mathcomp-extra} e que contém os conteúdos apresentados na Seção \ref{sec:implementacoes}) e por fim o módulo \textit{primez} disponível no repositório disponibilizado neste trabalho.
+        Nas provas destes itens foram utilizadas implementações da biblioteca Mathematical Components (sendo importados os módulos \textit{all\_ssreflect} e \textit{all\_algebra}), do repositório \textit{mathcomp-extra} (disponível em \url{https://github.com/thery/mathcomp-extra} e que contém os conteúdos apresentados na Seção \ref{sec:implementacoes}) e por fim o módulo \textit{primez} disponível no repositório disponibilizado neste trabalho.
 
         Apesar de longas, as provas realizadas para tais lemas não são de uma complexidade que torne oportuno tratar sobre estas aqui. No entanto convém relatar que, justamente pelo tamanho de tais provas e outros detalhes relacionados a boas práticas para contribuições na biblioteca Mathematical Components (assunto tratado em \url{https://github.com/math-comp/math-comp/blob/master/CONTRIBUTING.md}), essas implementações provavelmente deverão ser refatoradas para que possam ser incluídas na biblioteca.
 
