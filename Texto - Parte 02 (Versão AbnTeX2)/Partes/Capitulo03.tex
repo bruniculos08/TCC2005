@@ -134,7 +134,7 @@ Como exemplo de consequências deste teorema têm-se:
     \item $\forall c \in \mathbb{Z}, c \mid a \land c \mid b \Rightarrow c \mid \mdc(a, b)$, ou seja, caso $c$ divida tanto $a$ quanto $b$ então $c$ divide $\mdc(a, b)$.
     \item $\forall c \in \mathbb{Z}, (\exists x, y \in \mathbb{Z}, a \cdot x + b \cdot y = c) \Longleftrightarrow \mdc(a, b) \mid c $, ou seja, a equação $a \cdot x + b \cdot y = c$ tem solução se e somente se $\mdc(a, b)$ divide $c$.
 \end{enumerate}
-A prova manual do Teorema \ref{teorema : bachetbezout} e das consequências mencionadas se encontra em \cite[p.~20-21]{book:2399854}. 
+A prova manual do Teorema \ref{teorema : bachetbezout} e as provas das consequências mencionadas se encontram em \cite[p.~20-21]{book:2399854}. 
 
     Em relação à biblioteca Mathematical Components e se tratando do Teorema \ref{teorema : bachetbezout}, essa possui a implementação de um algoritmo
     % do algoritmo conhecido como "algoritmo de Euclides extendido" (
@@ -232,13 +232,15 @@ possuem a mesma utilidade.
 
 \section{Anel de Inteiros Módulo $n$}
 
-Uma estrutura que será utilizada no presente trabalho, e que pode ser implementada usando elementos disponíveis na biblioteca Mathcomp, são os anéis de inteiros módulo $n$. De acordo com \cite[p.~40-41]{book:2399854}, dada a relação $\sim$ sobre um conjunto $X$, se esta relação é uma relação de equivalência, isto é, possui as seguintes propriedades:
+Uma estrutura que será utilizada no presente trabalho, e que pode ser implementada usando elementos disponíveis na biblioteca Mathcomp, são os anéis de inteiros módulo $n$. De acordo com \cite[p.~40]{book:2399854}, dada a relação $\sim$ sobre um conjunto $X$, se esta relação é uma relação de equivalência ela possui as seguintes propriedades:
+% acima era \cite[p.~40-41]{book:2399854} mas mudei para \cite[p.~40]{book:2399854}
 \begin{enumerate}
     \item \textbf{\textit{reflexividade}}: $\forall x \in X, x \sim x$
     \item \textbf{\textit{transitividade}}: $\forall x, y, z \in X, x \sim y \land y \sim z \rightarrow x \sim z$
     \item \textbf{\textit{simetria}}: $\forall x y \in X, x \sim y \leftrightarrow y \sim x$
 \end{enumerate}
-Como exposto em \cite[p.~40]{book:2399854}, estabelecer uma relação de equivalência sobre um conjunto $X$ é o mesmo que definir um partição sobre o mesmo, isto é, dividir $X$ em subconjuntos, em que, sendo cada subconjunto identificado como $X_\lambda$ onde $\lambda$ pertence a um conjunto $\Lambda$, então
+Como exposto em \cite[p.~40-41]{book:2399854}, estabelecer uma relação de equivalência sobre um conjunto $X$ é o mesmo que definir um partição sobre o mesmo, isto é, dividir $X$ em subconjuntos, em que, sendo cada subconjunto identificado como $X_\lambda$ onde $\lambda$ pertence a um conjunto $\Lambda$, então
+% acima era \cite[p.~40]{book:2399854} mas mudei para \cite[p.~40-41]{book:2399854}
 \begin{equation*}
     X = \bigcup_{\lambda \in \Lambda} X_{\lambda}
 \end{equation*}
@@ -287,7 +289,8 @@ Como explicado em \cite[p.~46-47]{book:2399854} e devido a estas operações, o 
     \begin{equation*}
         \forall a, b \in A, a + b = b + a
     \end{equation*}
-    com elemento neutro $0$ (neste caso $0$ é um elemento quaisquer, e não necessariamente o número $0$).
+    com elemento neutro que será denotado por $0$ (neste caso $0$ é um elemento quaisquer, e não necessariamente o número $0$).
+    % pedaço de texto comentado acima pois era redundante (um grupo já tem um elemento neutro, isso não uma propriedade especial de grupos abelianos)
     % \item \textit{\textbf{Associatividade do produto}}: $\forall a, b, c \in A, (a \cdot b) \cdot c = a \cdot (b \cdot c)$
     % \item \textit{\textbf{Elemento neutro do produto:}} $\forall a \in A, \exists 1 \in A, (a \cdot 1 = 1 \cdot a)$ (semelhante a primeira condição, $1$ é um elemento quaisquer, e não necessariamente o número 1)
     % \item \textit{\textbf{Distributividade}}: $\forall a, b, c \in A, a \cdot (b + c) = a \cdot b + a \cdot c \land (b + c) \cdot a = b \cdot a + c \cdot a$
@@ -365,7 +368,7 @@ Definition ord0 := Ordinal (ltn0Sn n').
 ou seja, \lstinline[language = coq]{ord0} é sempre o elemento de \lstinline[language = coq]{'I_p} construído com \lstinline[language = coq]{m} sendo 0 (em que \lstinline[language = coq]{p} é um valor inferido pelo \textit{Coq}).
 
 A partir disso podem ser provados os lemas que tornam o conjunto \lstinline[language = coq]{'I_p} dotado das operações definidas com \lstinline[language = coq]{inZp} em um \textit{grupo abeliano} (conforme a definição em \cite[p.~41-46]{book:2399854}):
-% aqui acho que é só a página 46
+% aqui acho que é só a página \cite[p.~46] ou \cite[p.~41-42,46]
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma Zp_add0z : left_id Zp0 Zp_add.
 Lemma Zp_addNz : left_inverse Zp0 Zp_opp Zp_add.

@@ -52,7 +52,7 @@ Vale ressaltar que existem implementações sobre \textit{símbolo de Legendre} 
 
 Dentre os teoremas e lemas utilizados neste trabalho (dos quais a grande maioria são lemas simples da biblioteca Mathematical Components), existem dois que merecem destaque devido a complexidade para a prova dos mesmos. Este empecilho em suas respectivas provas ocorre pela dificuldade em se fazer uma formalização com base nas ideias de prova manual para os mesmos (ambas apresentadas neste trabalho).
 
-O primeiro lema a ser mencionado trata do caso \ref{item:caso3wilson} do Teorema \ref{teorema : wilson} e possui, na biblioteca, o seguinte enunciado:
+O primeiro lema foi provado na biblioteca Mathematical Components e trata do caso \ref{item:caso3wilson} do Teorema \ref{teorema : wilson} e possui, na biblioteca, o seguinte enunciado:
         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Theorem Wilson p : p > 1 -> prime p = (p %| ((p.-1)`!).+1).
         \end{lstlisting}
@@ -62,7 +62,7 @@ Theorem Wilson p : p > 1 -> prime p = (p %| ((p.-1)`!).+1).
                 p \mid (p-1)! + 1 \Longleftrightarrow (p-1)! \equiv -1 \pmod{p} 
         \end{equation}
 
-Quanto ao segundo item a ser mencionado, este trata do Lema \ref{lema : modp-1fat} provado por Laurent Théry durante o período de realização deste trabalho. A prova deste está disponível em \url{https://github.com/thery/mathcomp-extra/blob/master/euler.v} e tem a seguinte declaração:
+Quanto ao segundo item a ser mencionado, este trata do Lema \ref{lema : modp-1fat} provado por Laurent Théry durante o período de realização deste trabalho. A prova deste está em \cite{mathcomp-extra-euler} e tem a seguinte declaração:
         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma fact_sqr_exp a p :
         prime p -> ~~ (p %| a) -> ~~ res_quad p a -> (p.-1`!) = a ^ p.-1./2 %[mod p].
@@ -83,7 +83,7 @@ se há algum elemento da lista que satisfaz o predicado e \lstinline[language=co
 
 As dificuldades relacionadas às provas destas declarações em \textit{Coq}, se baseando nas ideias de provais manuais apresentadas neste trabalho, devem-se ao fato de que tais ideias sugerem a reorganização de todos os termos de produtórios com tamanho arbitrário. Tais provas não podem ser evitadas na implementação de \textit{símbolo de Legendre} em \textit{Coq} dado que tratam de conteúdos diretamente relacionados (principalmente ao se considerar o Teorema \ref{teorema:criteriodeeuler}).
 
-Devido a essa dificuldade, que pode vir a aparecer em diversas situações onde tem-se uma ideia de prova semelhante a ser formalizada, as implementações das provas do Teorema \ref{teorema : wilson} e do Lema \ref{lema : modp-1fat}, em \textit{Coq}, são interessantes de serem analisadas. A prova do Lema \ref{lema : modp-1fat} foi realiza por Laurent Théry e o código pode ser divido nas seguintes etapas:
+Devido a essa dificuldade, que pode vir a aparecer em diversas situações onde tem-se uma ideia de prova semelhante a ser formalizada, as implementações das provas do Teorema \ref{teorema : wilson} e do Lema \ref{lema : modp-1fat}, em \textit{Coq}, são interessantes de serem analisadas. A prova do Lema \ref{lema : modp-1fat} foi realiza por Laurent Théry em \cite{mathcomp-extra-euler} e o código pode ser divido nas seguintes etapas:
 
 % é de interesse se ter conhecimento de como as provas do Teorema \ref{teorema : wilson} e do Lema \ref{lema : modp-1fat} foram feitas em \textit{Coq}. Para satisfazer tal necessidade será aqui explicada em detalhe (com excessão da maioria dos \textit{subgoals} e outras partes triviais) o conteúdo da prova do Lema \ref{lema : modp-1fat} realizada por Laurent Théry. O código da prova pode-ser divido nas seguintes etapas:
 
@@ -594,12 +594,15 @@ case: ltngtP => // /eqP/val_eqP fiEi.                           @ \label{line:61
 
 \end{enumerate}
 
-        Com uso do lema \coqinline[]{fact_sqr_exp} e do teorema \coqinline[]{Wilson} foi provada, por Laurent Théry, a seguinte versão do \textit{Critério de Euler} (Teorema \ref{teorema:criteriodeeuler}) para números naturais:
-        \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+        Com uso do lema \coqinline[]{fact_sqr_exp} e do teorema \coqinline[]{Wilson} foi provada, por Laurent Théry em \cite{mathcomp-extra-euler}, a seguinte versão do \textit{Critério de Euler} (Teorema \ref{teorema:criteriodeeuler}) para números naturais:
+        % \begin{figure}[h]
+                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma euler_criterion a p : 
         prime p -> ~~ (p %| a) -> 
         a ^ p.-1./2 = (if res_quad p a then 1 else p.-1) %[mod p].
-        \end{lstlisting}
+                \end{lstlisting}
+        %         \caption{Versão do Critério de Euler implementada por Laurent Théry em \cite{mathcomp-extra-euler}.}
+        % \end{figure}
 
 % Alguns lemas, teoremas e definições que já haviam sido implementados na biblioteca, junto a um que foi implementado durante o período de realização deste trabalho (e portanto possívelmente, na data de publicação deste trabalho, ainda não está incluído na biblioteca) foram de grande importância para alcance dos objetivos estabelecidos. Sendo assim, é de interesse que sejam aqui mencionados.
 
@@ -699,7 +702,7 @@ Lemma legendre_symb_mul (p a b : int) (pL2 : (2 < p)%R) (pP : primez p):
                 ((legendre_symb pL2 pP a) * (legendre_symb pL2 pP b))%R.
                 \end{lstlisting}
         \end{enumerate}
-        Também foi provado o \textit{Critério de Euler} (Lema \ref{teorema:criteriodeeuler}), com enunciado idêntico ao apresentado em \cite[p.~87]{book:2399854}, utilizando a versão implementada por Laurent Théry para números naturais (\coqinline[]{euler_criterion}):
+        Também foi provado o \textit{Critério de Euler} (Lema \ref{teorema:criteriodeeuler}), com enunciado idêntico ao apresentado em \cite[p.~87]{book:2399854}, utilizando em sua prova a versão implementada por Laurent Théry para números naturais (\coqinline[]{euler_criterion}):
         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma eulerz_criterion {p : int} (pL2 : (2 < p)%R) (pP : primez p) (a : int):
     (a ^ ((p - 1) %/ 2)%Z = (legendre_symb pL2 pP a) %[mod p])%Z.

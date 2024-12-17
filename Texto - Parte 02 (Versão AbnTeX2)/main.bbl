@@ -98,6 +98,11 @@ Dispon{\'\i}vel em: \url{https://www.aimsciences.org/article/id/6212ee892d80b75a
 {TEAM, T. C.~D. \emph{The Coq Reference Manual}.
 France, 2024.}
 
+\bibitem[Th\'ery 2024]{mathcomp-extra-euler}
+\abntrefinfo{Th\'ery}{TH\'ERY}{2024}
+{TH\'ERY, L. \emph{euler.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/thery/mathcomp-extra/blob/02e0a574eba1361a8c55eb0c6f8d2343bfa8a204/euler.v}.}
+
 \bibitem[Tonelli 1891]{Tonelli1891}
 \abntrefinfo{Tonelli}{TONELLI}{1891}
 {TONELLI, A. Bemerkung über die auflösung quadratischer congruenzen.
