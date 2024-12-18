@@ -42,14 +42,14 @@
 \renewcommand *{\cftappendixname }{AP\^ENDICE \space }
 \setlength {\cftpartindent }{\cftlastnumwidth } \setlength {\cftpartnumwidth }{2em}
 \cftinsert {A}
-\contentsline {part}{\uppercase {Ap\^endices}}{76}{section*.16}%
+\contentsline {part}{\uppercase {Ap\^endices}}{77}{section*.16}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \cftinsert {A}
-\contentsline {appendix}{\chapternumberline {A}\MakeUppercase []{Algoritmo de Tonelli-Shanks (ou RESSOL)}}{77}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Descrição do Algoritmo}{77}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Prova Manual}{79}{section.A.2}%
+\contentsline {appendix}{\chapternumberline {A}\MakeUppercase []{Algoritmo de Tonelli-Shanks (ou RESSOL)}}{78}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Descrição do Algoritmo}{78}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Prova Manual}{80}{section.A.2}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \cftinsert {A}
-\contentsline {appendix}{\chapternumberline {B}\MakeUppercase []{Reciprocidade Quadrática}}{83}{appendix.B}%
+\contentsline {appendix}{\chapternumberline {B}\MakeUppercase []{Reciprocidade Quadrática}}{84}{appendix.B}%

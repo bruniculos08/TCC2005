@@ -203,7 +203,7 @@ As propriedade da relação de congruência serão usadas com muita frequência 
         % \end{equation*}
 \end{enumerate}
 
-Na biblioteca Mathematical Components, as relações de módulo são definidas pelas seguintes notações:
+Na biblioteca Mathematical Components, as relações de módulo são definidas pelas seguintes notações \cite{mathcomp-intdiv}:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Notation "m = n %[mod d ]" := (modz m d = modz n d) : int_scope.
 Notation "m == n %[mod d ]" := (modz m d == modz n d) : int_scope.
@@ -212,8 +212,7 @@ Notation "m != n %[mod d ]" := (modz m d != modz n d) : int_scope.
     \end{lstlisting}
 Deve-se observar que existem duas igualdades, sendo a primeira a de Leibniz e a segunda uma função booleana. O mesmo ocorre com as desigualdades (na mesma ordem).
 
-Tais definições são equivalentes a definição apresentada em \cite[p.~34]{book:2399854}, conforme é mostrado pelo lema \lstinline[language = coq]{eqz_mod_dvd} (no caso do tipo \coqinline[]{int}) implementado na biblioteca \footnote{O operador 
-\lstinline[language = coq]{\%Z} serve para indicar o escopo padrão como \lstinline[language=coq]|int_scope|.}:
+Tais definições são equivalentes a definição apresentada em \cite[p.~34]{book:2399854}, conforme é mostrado pelo lema \lstinline[language = coq]{eqz_mod_dvd} (no caso do tipo \coqinline[]{int}) implementado na biblioteca \footnote{O operador \lstinline[language = coq]{\%Z} serve para indicar o escopo padrão como \lstinline[language=coq]|int_scope|.}:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma eqz_mod_dvd d m n : (m == n %[mod d])%Z = (d %| m - n)%Z.
     \end{lstlisting}

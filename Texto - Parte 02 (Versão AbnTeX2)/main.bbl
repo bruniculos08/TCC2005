@@ -63,6 +63,16 @@ ISBN 978-3-642-39634-2.}
 {MAHESWARI, A.~U.; DURAIRAJ, P. An algorithm to find square roots of quadratic residues modulo p (p being an odd prime), p $\equiv$ 1 (mod 4).
 \emph{Global Journal of Pure and Applied Mathematics}, v.~13, n.~4, p. 1223--1239, 2017.}
 
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-intdiv}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024a}
+{{Mathematical Components Team}. \emph{intdiv.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/b6e6fee7e4338bd6de13806936f5e58b71c06242/mathcomp/algebra/intdiv.v}.}
+
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-hb-v1}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024b}
+{{Mathematical Components Team}. \emph{V1.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/hierarchy-builder/blob/47c19a60daec964abb4b95bfbb95ec81a64f9b47/examples/FSCD2020\_material/V1.v}.}
+
 \bibitem[Neeman 2002]{Neeman2002}
 \abntrefinfo{Neeman}{NEEMAN}{2002}
 {NEEMAN, A. A counterexample to a 1961 “theorem” in homological algebra.

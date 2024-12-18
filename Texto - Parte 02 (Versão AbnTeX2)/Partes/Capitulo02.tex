@@ -28,7 +28,7 @@ Inductive eq {A : Type} (x : A) : A -> Prop := eq_refl : eq x x.
 
 De maneira distinta, a biblioteca Mathematical Components, em suas definições e teoremas, utiliza com frequência predicados booleanos \cite{assia_mahboubi_2022_7118596}, que são basicamente funções cujo tipo de retorno é \lstinline[language = coq]!bool!, para então representar proposições da forma \lstinline[language = coq]$x = true$, onde \lstinline[language = coq]$x$ é uma expressão cujo retorno é do tipo \lstinline[language = coq]!bool!. Tais proposições são construídas pela função \lstinline[language = coq]$is_true$.No entanto, através do comando \lstinline[language = coq]$Coercion$ (que será explicado mais detalhadamente adiante neste documento) e por questões de legibilidade, tal função é omitida e o sistema de tipos de \textit{Coq} é capaz de inferir quando uma expressão deve ter tipo \lstinline[language = coq]$bool$ ou tipo \lstinline[language = coq]$Prop$ (e então há uma aplicação de \lstinline[language = coq]$is_true$ omitida). 
 
-Semelhantes aos teoremas existentes para proposição comuns, estão disponíveis diversos teoremas para proposições geradas com o uso de \lstinline[language = coq]$is_true$, como por exemplo o lema \lstinline[language = coq]$contraLR$. Esse é uma versão da contraposição utilizando predicados booleanos (junto à função \lstinline[language = coq]$is_true$) e sua definição é dada por:
+Semelhantes aos teoremas existentes para proposição comuns, estão disponíveis diversos teoremas para proposições geradas com o uso de \lstinline[language = coq]$is_true$, como por exemplo o lema \lstinline[language = coq]$contraLR$ apresentado em \cite{assia_mahboubi_2022_7118596}. Esse é uma versão da contraposição utilizando predicados booleanos (junto à função \lstinline[language = coq]$is_true$) e sua definição é dada por:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma contraLR (c b : bool) : (~~ c -> ~~ b) -> b -> c.
     \end{lstlisting}
@@ -37,9 +37,12 @@ onde \lstinline[language = coq]$~~$ é a operação de negação definida na bib
 Outra informação relevante ao se tratar do conteúdo da biblioteca é o tipo \lstinline[language = coq]$eqType$: para que seja construído qualquer habitante desse tipo é necessário um elemento \lstinline[language = coq]$T$ de tipo 
 \lstinline[language = coq]$Type$, uma função \lstinline[language = coq]$eq_op$ de tipo \lstinline[language = coq]$T -> T -> bool$
 e um elemento \lstinline[language = coq]$eqP$ cujo tipo é um teorema relacionando a igualdade de Leibniz com \lstinline[language = coq]$T$ e \lstinline[language = coq]$eq_op$. Esse último possui, na biblioteca, uma notação de nome \lstinline[language = coq]$eq_axiom$, e sua descrição é:
+%     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+% Definition eq_axiom: forall (T : Type) (e : rel T), forall x x0 : T, 
+%     reflect (x = x0) (e x x0)
+%     \end{lstlisting}
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Definition eq_axiom: forall (T : Type) (e : rel T), forall x x0 : T, 
-    reflect (x = x0) (e x x0)
+Definition eq_axiom T (e : rel T) := forall x y, reflect (x = y) (e x y).
     \end{lstlisting}
 onde \lstinline[language = coq]$rel T$ é equivalente ao tipo \lstinline[language = coq]$T -> T -> bool$.
 
@@ -47,11 +50,12 @@ Portanto, para que um tipo \lstinline[language = coq]$A$
 pertença ao primeiro campo mencionado, é necessário que se tenha uma prova da proposição \lstinline[language = coq]$eq_axiom A$, isto é, 
 a definição \lstinline[language = coq]$eq_axiom$ com 
 \lstinline[language = coq]$T$ igual a \lstinline[language = coq]$A$.
-Tal teorema indica que a igualdade sobre \lstinline[language = coq]$A$
-é decidível, o que fica claro pelo seguinte lema:
-    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Lemma decP: forall (P : Prop) (b : bool), reflect P b -> decidable P
-    \end{lstlisting}
+
+% Tal teorema indica que a igualdade sobre \lstinline[language = coq]$A$
+% é decidível, o que fica claro pelo seguinte lema:
+%     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+% Lemma decP: forall (P : Prop) (b : bool), reflect P b -> decidable P
+%     \end{lstlisting}
 
 A utilização de um tipo como \lstinline[language = coq]$eqType$ facilita que se provem teoremas genéricos, no sentido de que servem para diferentes tipos (pertencentes a \lstinline[language = coq]$Type$) desde que estes possuam uma relação de equivalência decidível. Existem outros tipos semelhantes a \lstinline[language = coq]$eqType$, no sentido de que servem como interfaces. Em grande parte, esses são implementados por meio do açúcar sintático \lstinline[language = coq]$Record$, qual será explicado na sessão seguinte.
 
@@ -107,7 +111,7 @@ o que nesse caso equivale a:
 Compute (eqn 2 2).
     \end{lstlisting}
 
-Entretanto, o objetivo de criar o tipo \lstinline[language = coq]$eqType$ não é estabelecer essa possibilidade de computação para relações de comparação, mas sim construir definições, funções e provas genéricas para todos os tipos que pertencem ao campo \lstinline[language = coq]$sort$ de algum habitante de \lstinline[language = coq]$eqType$ e estabelecer \textit{overloading} de notações. Para exemplo de como alcançar este último objetivo, se define uma notação da seguinte forma:
+Entretanto, o objetivo de criar o tipo \lstinline[language = coq]$eqType$ não é estabelecer essa possibilidade de computação para relações de comparação, mas sim construir definições, funções e provas genéricas para todos os tipos que pertencem ao campo \lstinline[language = coq]$sort$ de algum habitante de \lstinline[language = coq]$eqType$ e estabelecer \textit{overloading} de notações. Para exemplo de como alcançar este último objetivo, em \cite{assia_mahboubi_2022_7118596} se define uma notação da seguinte forma:
 
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Notation "x == y" := (@eq_op _ x y).
@@ -537,7 +541,7 @@ isto é, acrescentando \coqinline[]{#[short(type="nmodType")]} antes da chamada 
 
 Há também outra maneira de se resolver tal problema que é consideralvemente mais simples. Para tal será necessário trazer aqui um breve explicação sobre pelo menos uma das versões da hierarquia apresentada em \cite{cohen:hal-02478907}. A versão escolhida para ser tratada aqui é a chamada V1, que apesar de não abordar muitos conceitos sobre a linguagem $\mathcal{HB}$, é suficiente para o entendimento do leitor sobre como pesquisar e utilizar os lemas e teoremas disponíveis nas \textit{structures} geradas por tal linguagem.
 
-O exemplo a ser apresentado está disponível em \url{https://github.com/math-comp/hierarchy-builder/blob/master/examples/FSCD2020_material/V1.v}. O código deste exemplo pode ser divido nas seguintes partes:
+O exemplo a ser apresentado está disponível em \cite{mathcomp-hb-v1}. O código deste exemplo pode ser divido nas seguintes partes:
     \begin{enumerate}
         \item Importação dos módulos necessários e declaração de escopo:
         \begin{lstlisting}[language=coq, frame=single, tabsize=1]
