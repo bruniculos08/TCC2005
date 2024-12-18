@@ -63,15 +63,50 @@ ISBN 978-3-642-39634-2.}
 {MAHESWARI, A.~U.; DURAIRAJ, P. An algorithm to find square roots of quadratic residues modulo p (p being an odd prime), p $\equiv$ 1 (mod 4).
 \emph{Global Journal of Pure and Applied Mathematics}, v.~13, n.~4, p. 1223--1239, 2017.}
 
-\bibitem[{Mathematical Components Team} 2024]{mathcomp-intdiv}
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-binomial}
 \abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024a}
+{{Mathematical Components Team}. \emph{binomial.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/c99b88612a8ddec85095988ce3612608b578e231/mathcomp/ssreflect/binomial.v}.}
+
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-contributing}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024b}
+{{Mathematical Components Team}. \emph{CONTRIBUTING.md}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/f688fc7e10cb8c17e1ad644f517e0eda34b2c8e7/CONTRIBUTING.md}.}
+
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-div}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024c}
+{{Mathematical Components Team}. \emph{div.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/4c9ee2fc654eaa2869c987794da715b1b9405f84/mathcomp/ssreflect/div.v}.}
+
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-eqtype}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024d}
+{{Mathematical Components Team}. \emph{eqtype.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/4281254f5cdc9fe482f11a40011ed44247ddb626/mathcomp/ssreflect/eqtype.v}.}
+
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-intdiv}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024e}
 {{Mathematical Components Team}. \emph{intdiv.v}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/b6e6fee7e4338bd6de13806936f5e58b71c06242/mathcomp/algebra/intdiv.v}.}
 
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-prime}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024f}
+{{Mathematical Components Team}. \emph{prime.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/e78f4d2d617ec6e97a8e708adb44c70a8206c335/mathcomp/ssreflect/prime.v}.}
+
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-ssrnat}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024g}
+{{Mathematical Components Team}. \emph{ssrnat.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/383429c36702d3280fbeb87c20293ac48f12c560/mathcomp/ssreflect/ssrnat.v}.}
+
 \bibitem[{Mathematical Components Team} 2024]{mathcomp-hb-v1}
-\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024b}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024h}
 {{Mathematical Components Team}. \emph{V1.v}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/hierarchy-builder/blob/47c19a60daec964abb4b95bfbb95ec81a64f9b47/examples/FSCD2020\_material/V1.v}.}
+
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-zmodp}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024i}
+{{Mathematical Components Team}. \emph{zmodp.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/5fee02d9eff3a4089f1e023df2e9ed923a54a902/mathcomp/algebra/zmodp.v}.}
 
 \bibitem[Neeman 2002]{Neeman2002}
 \abntrefinfo{Neeman}{NEEMAN}{2002}

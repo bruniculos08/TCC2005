@@ -52,7 +52,7 @@ Vale ressaltar que existem implementações sobre \textit{símbolo de Legendre} 
 
 Dentre os teoremas e lemas utilizados neste trabalho (dos quais a grande maioria são lemas simples da biblioteca Mathematical Components), existem dois que merecem destaque devido a complexidade para a prova dos mesmos. Este empecilho em suas respectivas provas ocorre pela dificuldade em se fazer uma formalização com base nas ideias de prova manual para os mesmos (ambas apresentadas neste trabalho).
 
-O primeiro lema foi provado na biblioteca Mathematical Components e trata do caso \ref{item:caso3wilson} do Teorema \ref{teorema : wilson} e possui, na biblioteca, o seguinte enunciado:
+O primeiro lema foi provado na biblioteca Mathematical Components e trata do caso \ref{item:caso3wilson} do Teorema \ref{teorema : wilson} e possui, na biblioteca, em \cite{mathcomp-binomial}, o seguinte enunciado:
         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Theorem Wilson p : p > 1 -> prime p = (p %| ((p.-1)`!).+1).
         \end{lstlisting}
@@ -67,7 +67,7 @@ Quanto ao segundo item a ser mencionado, este trata do Lema \ref{lema : modp-1fa
 Lemma fact_sqr_exp a p :
         prime p -> ~~ (p %| a) -> ~~ res_quad p a -> (p.-1`!) = a ^ p.-1./2 %[mod p].
         \end{lstlisting}
-onde \lstinline[language=coq]!res_quad! tem a seguinte definição:
+onde, também em \cite{mathcomp-extra-euler}, \lstinline[language=coq]!res_quad! tem a seguinte definição:
         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition res_quad p a := has (fun i => i * i == a %[mod p]) (iota 0 p).
         \end{lstlisting}

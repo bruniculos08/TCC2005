@@ -95,17 +95,17 @@ Esse algoritmo se baseia no seguinte lema:
     % \end{proof}
 % \end{lema}
 
-O algoritmo \hyperref[algo:euclides]{\textsc{Euclides}} é implementado da seguinte forma \footnote{Pode-se observar nesta implementação e em outras apresentadas neste trabalho, o uso de notações como \codequotes\lstinline[language=coq-error]|_.+1|\codequotes, \codequotes\lstinline[language=coq]|_.-1|\codequotes, \codequotes\lstinline[language=coq]|_.+2|\codequotes, \codequotes\lstinline[language=coq]|_.-2|\codequotes, \codequotes\lstinline[language=coq]|_.*2|\codequotes\;e \codequotes\lstinline[language=coq]|_./2|\codequotes. Esse uso serve para indicar as respectivas operações, dadas por cada notação, com precedência maior sobre outras no restante da expressão.} na biblioteca Mathematical Components (em sua versão para números naturais):
+O algoritmo \hyperref[algo:euclides]{\textsc{Euclides}} é implementado da seguinte forma \footnote{Pode-se observar nesta implementação e em outras apresentadas neste trabalho, o uso de notações como \codequotes\lstinline[language=coq-error]|_.+1|\codequotes, \codequotes\lstinline[language=coq]|_.-1|\codequotes, \codequotes\lstinline[language=coq]|_.+2|\codequotes, \codequotes\lstinline[language=coq]|_.-2|\codequotes, \codequotes\lstinline[language=coq]|_.*2|\codequotes\;e \codequotes\lstinline[language=coq]|_./2|\codequotes. Esse uso serve para indicar as respectivas operações, dadas por cada notação, com precedência maior sobre outras no restante da expressão.} na biblioteca Mathematical Components (em sua versão para números naturais) dada em \cite{mathcomp-div}:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Fixpoint gcdn m n :=
     let n' := n %% m in if n' is 0 then m else
     if m - n'.-1 is m'.+1 then gcdn (m' %% n') n' else n'.
     \end{lstlisting}
-A versão para números inteiros é basicamente \lstinline[language = coq]{gcdn} aplicada sobre o valor absoluto dos números inteiros de entrada.
+A versão para números inteiros é basicamente \lstinline[language = coq]{gcdn} aplicada sobre o valor absoluto dos números inteiros de entrada e está implmentada em \cite{mathcomp-intdiv} com nome \coqinline[]{gcdz}.
 % \begin{lstlisting}[language = coq]
 %     Definition gcdz m n := (gcdn `|m| `|n|)%:Z.
 % \end{lstlisting}
-Sobre a notação \lstinline[language = coq]{%%} essa representa a operação de resto da divisão, que, para números naturais é definida por:
+Sobre a notação \lstinline[language = coq]{%%} essa representa a operação de resto da divisão, que, para números naturais é definida em \cite{mathcomp-div} por:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition modn_rec d := 
     fix loop m := if m - d is m'.+1 then loop m' else m.
@@ -113,7 +113,7 @@ Definition modn m d := if d > 0 then modn_rec d.-1 m else m.
 Notation "m %% d" := (modn m d) : nat_scope.
     \end{lstlisting}
 E utilizando a função 
-\lstinline[language = coq]{divz} para divisão entre números inteiros, é implementada da seguinte forma (para inteiros):
+\lstinline[language = coq]{divz}, definida em \cite{mathcomp-intdiv}, para divisão entre números inteiros, a operação de resto da divisão é implementada da seguinte forma (para inteiros):
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition modz (m d : int) : int := m - divz m d * d.
 Infix "%%" := modz : int_scope.
@@ -212,16 +212,16 @@ Notation "m != n %[mod d ]" := (modz m d != modz n d) : int_scope.
     \end{lstlisting}
 Deve-se observar que existem duas igualdades, sendo a primeira a de Leibniz e a segunda uma função booleana. O mesmo ocorre com as desigualdades (na mesma ordem).
 
-Tais definições são equivalentes a definição apresentada em \cite[p.~34]{book:2399854}, conforme é mostrado pelo lema \lstinline[language = coq]{eqz_mod_dvd} (no caso do tipo \coqinline[]{int}) implementado na biblioteca \footnote{O operador \lstinline[language = coq]{\%Z} serve para indicar o escopo padrão como \lstinline[language=coq]|int_scope|.}:
+Tais definições são equivalentes a definição apresentada em \cite[p.~34]{book:2399854}, conforme é mostrado pelo lema \lstinline[language = coq]{eqz_mod_dvd} (no caso do tipo \coqinline[]{int}) implementado na biblioteca \footnote{O operador \lstinline[language = coq]{\%Z} serve para indicar o escopo padrão como \lstinline[language=coq]|int_scope|.} em \cite{mathcomp-intdiv}:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma eqz_mod_dvd d m n : (m == n %[mod d])%Z = (d %| m - n)%Z.
     \end{lstlisting}
 
-Quanto a implementação das propriedades apresentadas nesta seção, a biblioteca não as implementa, apesar de fazer isso para lemas semelhantes a algumas destas propriedades. A exemplo tem-se:
+Quanto a implementação das propriedades apresentadas nesta seção, a biblioteca não as implementa, apesar de fazer isso para lemas semelhantes a algumas destas propriedades. A exemplo, ainda em \cite{mathcomp-intdiv}, tem-se:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma modzDm m n q : ((m %% q)%Z + (n %% q)%Z = m + n %[mod q])%Z.
     \end{lstlisting}
-Este lema se assemelha a propriedade de \textit{compatibilidade com a soma}, no sentido de que, considerando a existência do seguinte lema:
+Este lema se assemelha a propriedade de \textit{compatibilidade com a soma}, no sentido de que, considerando a existência do seguinte lema também em \cite{mathcomp-intdiv}:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma modz_mod m d : ((m %% d)%Z = m %[mod d])%Z.
     \end{lstlisting}
@@ -335,7 +335,7 @@ Notation "'I_' n" := (ordinal n).
 Coercion nat_of_ord n (i : 'I_n) := let: @Ordinal _ m _ := i in m.
     \end{lstlisting}
 % Com isso, para simular os \textit{inteiros módulo $n$} (ainda não tendo provadas as propriedades que fazem destes conjuntos \textit{anéis}), se utiliza o seguinte código:
-Com isso, para implementar operações sobre \textit{inteiros módulo $n$}, utiliza-se o seguinte código:
+Com isso, para implementar operações sobre \textit{inteiros módulo $n$}, é, segundo \cite{assia_mahboubi_2022_7118596}, utilizado o seguinte código:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Variable p' : nat.
 Local Notation p := p'.+1.
@@ -344,14 +344,16 @@ Definition inZp i := @Ordinal p (i %% p) (ltn_pmod i (ltn0Sn p')).
     \end{lstlisting}
 em que o comando \lstinline[language = coq]{Variable} declara uma variável no contexto de quaisquer declarações a partir daquela linha, o que é equivalente a utilizar nessas \lstinline[language = coq]{\forall (p' : nat)} (e é o que é considerado nas declarações fora da \lstinline[language = coq]{Section} em que foi declarada a variável). Sobre o comando \lstinline[language = coq]{Local Notation}, esse cria um notação válida apenas para o módulo em que ela é declarada (assim, importar o módulo não importará a notação), e quanto ao comando \lstinline[language = coq]{Implicit Types}, esse faz com que nas declarações a seguir, se forem utilizadas variáveis com tipos implícitos e de nome \lstinline[language = coq]{x}, \lstinline[language = coq]{y} ou \lstinline[language = coq]{z}, o \textit{Coq} infira como tipo dessas \lstinline[language = coq]{'I_p}.
 
-Em relação a definição \lstinline[language = coq]{InZp}, esta serve como maneira para converter números naturais em elementos do tipo \lstinline[language = coq]{'I_p}, e portanto, é útil para definir operações como soma e multiplicação sobre \lstinline[language = coq]{'I_p}. Tal definição utiliza $2$ lemas, cujas proposições são:
+Em relação a definição \lstinline[language = coq]{InZp}, esta serve como maneira para converter números naturais em elementos do tipo \lstinline[language = coq]{'I_p}, e portanto, é útil para definir operações como soma e multiplicação sobre \lstinline[language = coq]{'I_p}. Tal definição utiliza $2$ lemas de \cite{mathcomp-div} e \cite{mathcomp-ssrnat}, cujos enunciados são, respectivamente:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma ltn_pmod m d : 0 < d -> m %% d < d.
+    \end{lstlisting}
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma ltn0Sn n : 0 < n.+1.
     \end{lstlisting}
 Portanto note que a expressão \lstinline[language = coq]{ltn_pmod i (ltn0Sn p')} constrói uma prova de que \lstinline[language = coq]{i %% p < p}, assim construindo um objeto do tipo \lstinline[language = coq]{'I_p}. Por isso a definição de local da variável \lstinline[language = coq]{p} força que esta seja maior ou igual a 1 (não é possível construir um objeto do tipo \lstinline[language = coq]{'I_0}).
 
-São então definidas as classes de equivalência $\overline{0}$ e $\overline{1}$ e operações para instâncias de \lstinline[language = coq]{'I_p} da seguinte maneira:
+São então definidas, em \cite{mathcomp-zmodp}, as classes de equivalência $\overline{0}$ e $\overline{1}$ e operações para instâncias de \lstinline[language = coq]{'I_p} da seguinte maneira:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition Zp0 : 'I_p := ord0.
 Definition Zp1 := inZp 1.
@@ -366,7 +368,7 @@ Definition ord0 := Ordinal (ltn0Sn n').
     \end{lstlisting}
 ou seja, \lstinline[language = coq]{ord0} é sempre o elemento de \lstinline[language = coq]{'I_p} construído com \lstinline[language = coq]{m} sendo 0 (em que \lstinline[language = coq]{p} é um valor inferido pelo \textit{Coq}).
 
-A partir disso podem ser provados os lemas que tornam o conjunto \lstinline[language = coq]{'I_p} dotado das operações definidas com \lstinline[language = coq]{inZp} em um \textit{grupo abeliano} (conforme a definição em \cite[p.~41-46]{book:2399854}):
+A partir disso são provados, em \cite{mathcomp-zmodp}, os lemas que tornam o conjunto \lstinline[language = coq]{'I_p} dotado das operações definidas com \lstinline[language = coq]{inZp} em um \textit{grupo abeliano} (conforme a definição em \cite[p.~41-46]{book:2399854}):
 % aqui acho que é só a página \cite[p.~46] ou \cite[p.~41-42,46]
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma Zp_add0z : left_id Zp0 Zp_add.
@@ -374,7 +376,7 @@ Lemma Zp_addNz : left_inverse Zp0 Zp_opp Zp_add.
 Lemma Zp_addA : associative Zp_add.
 Lemma Zp_addC : commutative Zp_add.
     \end{lstlisting}
-e também podem ser então provados os lemas que farão de \lstinline[language = coq]{'I_p} um \textit{anel comutativo} (de acordo com \cite[p.~46-47]{book:2399854}), considereando as operações binárias \lstinline[language = coq]{Zp_add} e \lstinline[language = coq]{Zp_mul}:
+e também em \cite{mathcomp-zmodp} são então provados os lemas que farão de \lstinline[language = coq]{'I_p} um \textit{anel comutativo} (de acordo com \cite[p.~46-47]{book:2399854}), considereando as operações binárias \lstinline[language = coq]{Zp_add} e \lstinline[language = coq]{Zp_mul}:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma Zp_mulz1 : right_id Zp1 Zp_mul. (* Elemento neutro do produto a direita *)
 Lemma Zp_mulC : commutative Zp_mul. (* Comutatividade do produto *)
@@ -383,7 +385,7 @@ Lemma Zp_mulA : associative Zp_mul. (* Associatividade do produto *)
 Lemma Zp_mul_addr : right_distributive Zp_mul Zp_add. (* Distributividade a direita *)
 Lemma Zp_mul_addl : left_distributive Zp_mul Zp_add. (* Distributividade a esquerda *)
     \end{lstlisting}
-Por fim, dada a condição para que um \textit{anel comutativo} seja um \textit{domínio} e para que seja \textit{corpo}, as seguintes notações abragem os conjuntos \lstinline[language=coq]|'I_p| que se encaixam nas respectivas categorias (desconsiderando a necessidade dos lemas sobre tais notações):
+Por fim, dada a condição para que um \textit{anel comutativo} seja um \textit{domínio} e para que seja \textit{corpo}, as seguintes notações em \cite{mathcomp-zmodp} abragem os conjuntos \lstinline[language=coq]|'I_p| que se encaixam nas respectivas categorias (desconsiderando a necessidade dos lemas sobre tais notações):
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition Zp_trunc p := p.-2.
 
@@ -479,7 +481,7 @@ assim utilizando-se da propriedade descrita no Item \ref{item:propcong6-produto}
     \Longleftrightarrow a^{p} \equiv a \pmod{p}
 \end{align*} \qed
 
-Na biblioteca Mathematical Components, a função $\varphi$ de Euler é implementada da seguinte maneira:
+Na biblioteca Mathematical Components, em \cite{mathcomp-prime}, a função $\varphi$ de Euler é implementada, também em \cite{mathcomp-prime}, da seguinte maneira:
 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition totient n := 
     foldr add_totient_factor (n > 0) (prime_decomp n).
@@ -495,17 +497,17 @@ e \lstinline[language = coq]{prime_decomp} é uma função que recebe um número
     \end{equation*}
 ou seja, retorna a fatoração de $n$ em primos, o que é garantido pelo seguinte lema \lstinline[language = coq]{prime_decomp_correct} disponível na biblioteca (cuja proposição não será apresentada aqui devido a sua extensão).
 
-Além disso, tem-se na biblioteca, lemas sobre algumas das propriedades aqui expostas. Iniciando pela propriedade \ref{item:prop-phi-3}, tem-se:
+Além disso, tem-se na biblioteca, em \cite{mathcomp-prime}, lemas sobre algumas das propriedades aqui expostas. Iniciando pela propriedade \ref{item:prop-phi-3}, tem-se:
 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma totient_pfactor p e :
   prime p -> e > 0 -> totient (p ^ e) = p.-1 * p ^ e.-1.
 \end{lstlisting}
-Também há um lema equivalente a propriedade \ref{item:prop-phi-4} (em que a condição de maior divisor comum igual a $1$ é dada por \lstinline[language = coq]{coprime}, que é por sua vez uma função booleana que recebe dois números e retorna \lstinline[language = coq]{true} se o $\mdc$ desses for $1$ e \lstinline[language = coq]{false} caso contrário):
+Também em \cite{mathcomp-prime} há um lema equivalente a propriedade \ref{item:prop-phi-4} (em que a condição de maior divisor comum igual a $1$ é dada por \lstinline[language = coq]{coprime}, que é por sua vez uma função booleana que recebe dois números e retorna \lstinline[language = coq]{true} se o $\mdc$ desses for $1$ e \lstinline[language = coq]{false} caso contrário):
 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma totient_coprime m n :
     coprime m n -> totient (m * n) = totient m * totient n.
 \end{lstlisting}
-Por último, há também um lema que estabelece a equivalência entre a definição da função $\varphi$ de Euler exposta em \cite[p.~48]{book:2399854} (Definição \ref{def:phi}) e a definição da biblioteca baseada na Equação \ref{lema:phi-formula}\footnote{Vale aqui observar que novamente há uma \textit{coercion} de \lstinline[language = coq]{bool} para \lstinline[language = coq]{nat} sobre o retorna da função \lstinline[language = coq]{coprime} (a \textit{coercion} converte \lstinline[language = coq]{false} para $0$ e \lstinline[language = coq]{true} para $1$), dado que o somatório requer valores numéricos.}%colocar aqui q retorna 0 se false e 1 se true?
+Por último, em \cite{mathcomp-prime}, há também um lema que estabelece a equivalência entre a definição da função $\varphi$ de Euler exposta em \cite[p.~48]{book:2399854} (Definição \ref{def:phi}) e a definição da biblioteca baseada na Equação \ref{lema:phi-formula}\footnote{Vale aqui observar que novamente há uma \textit{coercion} de \lstinline[language = coq]{bool} para \lstinline[language = coq]{nat} sobre o retorna da função \lstinline[language = coq]{coprime} (a \textit{coercion} converte \lstinline[language = coq]{false} para $0$ e \lstinline[language = coq]{true} para $1$), dado que o somatório requer valores numéricos.}%colocar aqui q retorna 0 se false e 1 se true?
 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
     Lemma totient_count_coprime n : 
         totient n = \sum_(0 <= d < n) coprime n d.

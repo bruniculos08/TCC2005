@@ -26,9 +26,9 @@ Na maior parte dos teoremas das bibliotecas nativas de \textit{Coq}, usa-se uma 
 Inductive eq {A : Type} (x : A) : A -> Prop := eq_refl : eq x x.
     \end{lstlisting}
 
-De maneira distinta, a biblioteca Mathematical Components, em suas definições e teoremas, utiliza com frequência predicados booleanos \cite{assia_mahboubi_2022_7118596}, que são basicamente funções cujo tipo de retorno é \lstinline[language = coq]!bool!, para então representar proposições da forma \lstinline[language = coq]$x = true$, onde \lstinline[language = coq]$x$ é uma expressão cujo retorno é do tipo \lstinline[language = coq]!bool!. Tais proposições são construídas pela função \lstinline[language = coq]$is_true$.No entanto, através do comando \lstinline[language = coq]$Coercion$ (que será explicado mais detalhadamente adiante neste documento) e por questões de legibilidade, tal função é omitida e o sistema de tipos de \textit{Coq} é capaz de inferir quando uma expressão deve ter tipo \lstinline[language = coq]$bool$ ou tipo \lstinline[language = coq]$Prop$ (e então há uma aplicação de \lstinline[language = coq]$is_true$ omitida). 
+De maneira distinta, a biblioteca Mathematical Components, em suas definições e teoremas, utiliza com frequência predicados booleanos \cite{assia_mahboubi_2022_7118596}, que são basicamente funções cujo tipo de retorno é \lstinline[language = coq]!bool!, para então representar proposições da forma \lstinline[language = coq]$x = true$, onde \lstinline[language = coq]$x$ é uma expressão cujo retorno é do tipo \lstinline[language = coq]!bool!. Tais proposições são construídas pela função \lstinline[language = coq]$is_true$. No entanto, através do comando \lstinline[language = coq]$Coercion$ (que será explicado mais detalhadamente adiante neste documento) e por questões de legibilidade, tal função é omitida e o sistema de tipos de \textit{Coq} é capaz de inferir quando uma expressão deve ter tipo \lstinline[language = coq]$bool$ ou tipo \lstinline[language = coq]$Prop$ (e então há uma aplicação de \lstinline[language = coq]$is_true$ omitida). 
 
-Semelhantes aos teoremas existentes para proposição comuns, estão disponíveis diversos teoremas para proposições geradas com o uso de \lstinline[language = coq]$is_true$, como por exemplo o lema \lstinline[language = coq]$contraLR$ apresentado em \cite{assia_mahboubi_2022_7118596}. Esse é uma versão da contraposição utilizando predicados booleanos (junto à função \lstinline[language = coq]$is_true$) e sua definição é dada por:
+Semelhantes aos teoremas existentes para proposição comuns, estão disponíveis diversos teoremas para proposições geradas com o uso de \lstinline[language = coq]$is_true$, como por exemplo o lema \lstinline[language = coq]$contraLR$ apresentado em \cite{assia_mahboubi_2022_7118596}. Esse é uma versão da contraposição utilizando predicados booleanos (junto à função \lstinline[language = coq]$is_true$) e sua definição, conforme \cite{assia_mahboubi_2022_7118596}, é dada por:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma contraLR (c b : bool) : (~~ c -> ~~ b) -> b -> c.
     \end{lstlisting}
@@ -36,7 +36,7 @@ onde \lstinline[language = coq]$~~$ é a operação de negação definida na bib
 
 Outra informação relevante ao se tratar do conteúdo da biblioteca é o tipo \lstinline[language = coq]$eqType$: para que seja construído qualquer habitante desse tipo é necessário um elemento \lstinline[language = coq]$T$ de tipo 
 \lstinline[language = coq]$Type$, uma função \lstinline[language = coq]$eq_op$ de tipo \lstinline[language = coq]$T -> T -> bool$
-e um elemento \lstinline[language = coq]$eqP$ cujo tipo é um teorema relacionando a igualdade de Leibniz com \lstinline[language = coq]$T$ e \lstinline[language = coq]$eq_op$. Esse último possui, na biblioteca, uma notação de nome \lstinline[language = coq]$eq_axiom$, e sua descrição é:
+e um elemento \lstinline[language = coq]$eqP$ cujo tipo é um teorema relacionando a igualdade de Leibniz com \lstinline[language = coq]$T$ e \lstinline[language = coq]$eq_op$. Esse último possui, na biblioteca, uma notação de nome \lstinline[language = coq]$eq_axiom$, e sua descrição, dada em \cite{mathcomp-eqtype}, é:
 %     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 % Definition eq_axiom: forall (T : Type) (e : rel T), forall x x0 : T, 
 %     reflect (x = x0) (e x x0)
@@ -97,7 +97,7 @@ Observe que o uso de tipos dependentes ocorre nos campos \lstinline[language = c
 Theorem axiom_nat: eq_axiom eqn.
     \end{lstlisting}
 onde \lstinline[language = coq]$eqn$ é uma operação de comparação booleana entre números naturais.
-Tendo esta prova, podemos instanciar tal habitante
+Tendo esta prova, como feito em \cite{assia_mahboubi_2022_7118596}, podemos instanciar tal habitante
 da seguinte forma:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition natEqtype := Pack nat eqn axiom_nat.
@@ -128,7 +128,7 @@ expected to have type "sort ?e"
     \end{lstlisting}
 Isto ocorre pois o \textit{Coq} não é capaz de inferir o argumento implícito\footnote{Note que o comando \lstinline[language = coq]$Fail Check (3 == 2)$ é equivalente a \lstinline[language = coq]$Fail Check (@eq_op _ 3 2)$.}  (\lstinline[language = coq]$_$).
 
-Note que é mencionada uma variável \lstinline[language = coq]$?e$. Essa representa um elemento a ser inferido de modo que o tipo \lstinline[language = coq]$sort ?e$ seja igual ao tipo \lstinline[language = coq]$nat$. Como exposto em \cite{10.1007/978-3-642-39634-2_5} o algoritmo de inferência do \textit{Coq} não é capaz de descobrir o valor de tal variável por meio das regras de inferência que possui. Para resolver este problema 
+Note que é mencionada uma variável \lstinline[language = coq]$?e$. Essa representa um elemento a ser inferido de modo que o tipo \lstinline[language = coq]$sort ?e$ seja igual ao tipo \lstinline[language = coq]$nat$. Como exposto em \cite{10.1007/978-3-642-39634-2_5} o algoritmo de inferência do \textit{Coq} não é capaz de descobrir o valor de tal variável por meio das regras de inferência que possui. Para resolver este problema, conforme \cite{assia_mahboubi_2022_7118596}, 
 o \textit{Coq} permite que se adicione regras de inferência de tipo por meio do comando \lstinline[language = coq]$Canonical$ (que recebe um construtor de algum \lstinline[language = coq]$Record$ ou \lstinline[language = coq]$Structure$ aplicado aos seus argumentos). Assim, resolver esse problema é possível por meio do seguinte código:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Canonical natEqType.
@@ -496,7 +496,7 @@ forall s : nmodType,
     \end{lstlisting}
 Ou seja, de fato, pelo uso do mecanismo \textit{canonical}, há algum habitante do tipo \coqinline[]{nmodType} tal que, na expressão \coqinline[]{GRing.add 1%Z 1%Z} este habitante é inserido como o primeiro argumento de \coqinline[]{GRing.add} sendo implícito. Sendo assim, pode-se utilizar as propriedades contidas na estrutura \coqinline[]{nmodType} sobre elementos de tipo \coqinline[]{int} (assim como feito na Subseção \ref{sub:grupos}). 
 
-Conforme apresentado em \url{https://github.com/math-comp/math-comp/blob/master/CONTRIBUTING.md}, pode-se obter informações sobre uma estrutura por meio do comando \coqinline[]{HB.about}. Assim, usando:
+Conforme apresentado em \cite{mathcomp-contributing}, pode-se obter informações sobre uma estrutura por meio do comando \coqinline[]{HB.about}. Assim, usando:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 HB.about nmodType.
     \end{lstlisting}
@@ -743,7 +743,6 @@ HB: Ring is inherited by:
 % \textcolor{darkgreen}{\textbf{IDEIA}: jogar essa seção para o Capítulo 2.}
 % conforme apresentado em \cite{2023multipleinheritancehazardsdependentlytypedalgebraic}, são utilizadas para
 
-
 \subsection{Mantendo Informações de um Record ou Structure}
 
 Em meio as provas que envolvem tipos de \lstinline[language = coq]$Record$ ou \lstinline[language = coq]$Structure$, o usuário de \textit{Coq} pode se deparar com situações em que, ao se aplicar uma determinada função sobre uma variável relacionada a um desses comandos, que apresenta um determinado conjunto de propriedades, o resultado da computação dessa função irá retornar um dado do tipo definido pela \textit{coercion}. Em algumas dessas ocasiões, no entanto, a função aplicada retornará um dado com o qual se poderia construir uma nova variável do mesmo tipo de \lstinline[language = coq]$Record$ (ou \lstinline[language = coq]$Structure$) do elemento do qual o argumento da função foi extraído. Manter o tipo do resultado como o mesmo \lstinline[language = coq]$Record$ ou \lstinline[language = coq]$Structure$ pode ser útil em algumas provas, e fazer isso é possível através do comando \lstinline[language = coq]$Canonical$. A exemplo disso, retomando ao tipo \lstinline[language = coq]$multiple$, note que é possível provar os dois seguintes teoremas:
@@ -763,6 +762,7 @@ Note que, se tratando \lstinline[language = coq]!multiple n! como um conjunto de
 (((fun x => x + 2) a) * n)
     \end{lstlisting} 
 é divisível por \lstinline[language = coq]!n!. Entretanto, a reescrita desejada não é possível, pois ocorre um problema de unificação ao tentar se usar a tática \lstinline[language = coq]!rewrite exemplo_multiple_axiom!. Para obter-se uma melhor noção sobre este problema é possível utilizar o seguinte código fornecido por \cite{assia_mahboubi_2022_7118596} (sobre o qual a explicação de seu funcionamento vai além do escopo do presente trabalho):
+
     \begin{lstlisting}[language = coq,frame=single,tabsize=1]
 Notation "X (*...*)" :=
     (let x := X in let y := _ in x) (at level 100, format "X  (*...*)").
