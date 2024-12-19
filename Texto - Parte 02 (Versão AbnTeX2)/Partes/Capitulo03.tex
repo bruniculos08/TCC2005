@@ -143,7 +143,7 @@ A prova manual do Teorema \ref{teorema : bachetbezout} e as provas das consequê
 \section{Propriedades de Congruência}
 As propriedade da relação de congruência serão usadas com muita frequência (e de maneira implícita) no decorrer desse documento. Por essa razão, nesta seção será apresentada uma lista de propriedades semelhante à apresentada em \cite[p.~34]{book:2399854}, para qual a demonstração de maioria dessas propriedades se encontra em \cite[p.~34-35]{book:2399854}. Recomenda-se então ao leitor consultar o conteúdo aqui apresentado em caso de dúvidas no desenvolvimento de equações modulares.
     
-    Seguindo para as propriedades, para todo $a,b, c, d, n \in \mathbb{Z}$ têm-se:
+    Seguindo para as propriedades apresentadas em \cite{book:2399854}, para todo $a,b, c, d, n \in \mathbb{Z}$ vale que:
 \begin{enumerate}
     \item \textit{Reflexividade}: 
     \\
@@ -231,23 +231,23 @@ possuem a mesma utilidade.
 
 \section{Anel de Inteiros Módulo $n$}
 
-Uma estrutura que será utilizada no presente trabalho, e que pode ser implementada usando elementos disponíveis na biblioteca Mathcomp, são os anéis de inteiros módulo $n$. De acordo com \cite[p.~40]{book:2399854}, dada a relação $\sim$ sobre um conjunto $X$, se esta relação é uma relação de equivalência ela possui as seguintes propriedades:
+Uma estrutura que será utilizada no presente trabalho, e que pode ser implementada usando elementos disponíveis na biblioteca Mathcomp, são os anéis de inteiros módulo $n$. De acordo com \cite[p.~40]{book:2399854}, dada a relação $\sim$ sobre um conjunto $A$, se esta relação é uma relação de equivalência ela possui as seguintes propriedades:
 % acima era \cite[p.~40-41]{book:2399854} mas mudei para \cite[p.~40]{book:2399854}
 \begin{enumerate}
-    \item \textbf{\textit{reflexividade}}: $\forall x \in X, x \sim x$
-    \item \textbf{\textit{transitividade}}: $\forall x, y, z \in X, x \sim y \land y \sim z \rightarrow x \sim z$
-    \item \textbf{\textit{simetria}}: $\forall x y \in X, x \sim y \leftrightarrow y \sim x$
+    \item \textbf{\textit{reflexividade}}: $\forall x \in A, x \sim x$
+    \item \textbf{\textit{transitividade}}: $\forall x, y, z \in A, x \sim y \land y \sim z \rightarrow x \sim z$
+    \item \textbf{\textit{simetria}}: $\forall x, y \in A, x \sim y \leftrightarrow y \sim x$
 \end{enumerate}
-Como exposto em \cite[p.~40-41]{book:2399854}, estabelecer uma relação de equivalência sobre um conjunto $X$ é o mesmo que definir um partição sobre o mesmo, isto é, dividir $X$ em subconjuntos, em que, sendo cada subconjunto identificado como $X_\lambda$ onde $\lambda$ pertence a um conjunto $\Lambda$, então
+Como exposto em \cite[p.~40-41]{book:2399854}, estabelecer uma relação de equivalência sobre um conjunto $A$ é o mesmo que definir um partição sobre o mesmo, isto é, dividir $A$ em subconjuntos, em que, sendo cada subconjunto identificado como $A_i$ onde $i$ pertence a um conjunto $I$, então
 % acima era \cite[p.~40]{book:2399854} mas mudei para \cite[p.~40-41]{book:2399854}
 \begin{equation*}
-    X = \bigcup_{\lambda \in \Lambda} X_{\lambda}
+    A = \bigcup_{i \in I} A_{i}
 \end{equation*}
 Particionando $X$ por meio da relação $\sim$, tem-se que, dados $x, y \in X$, então $x, y \in X_\lambda$ se e somente se $x \sim y$. Além disso pode-se definir a \textit{classe de equivalência} $\overline{x}$ em que:
 \begin{equation*}
-    \overline{x} = \{y \in X \mid y \sim x \}
+    \overline{x} = \{y \in A \mid y \sim x \}
 \end{equation*}
-O conjunto de classes de equivalência $\{\overline{x} \mid x \in X\}$ é denominado quociente de $X$ por $\sim$ e é representado por $X/\sim$.
+O conjunto de classes de equivalência $\{\overline{x} \mid x \in A\}$ é denominado quociente de $A$ por $\sim$ e é representado por $A/\sim$.
 
 Particionando $\mathbb{Z}$ por meio da relação $\equiv \mod n$ para algum $n \in \mathbb{Z} - \{0\}$, tem-se um conjunto de \textit{classes de equivalência} denominado \textit{anel de inteiros módulo $n$}, que costuma ser representado por $\mathbb{Z}/(n)$, onde então:
 \begin{equation*}
@@ -509,8 +509,8 @@ Lemma totient_coprime m n :
 \end{lstlisting}
 Por último, em \cite{mathcomp-prime}, há também um lema que estabelece a equivalência entre a definição da função $\varphi$ de Euler exposta em \cite[p.~48]{book:2399854} (Definição \ref{def:phi}) e a definição da biblioteca baseada na Equação \ref{lema:phi-formula}\footnote{Vale aqui observar que novamente há uma \textit{coercion} de \lstinline[language = coq]{bool} para \lstinline[language = coq]{nat} sobre o retorna da função \lstinline[language = coq]{coprime} (a \textit{coercion} converte \lstinline[language = coq]{false} para $0$ e \lstinline[language = coq]{true} para $1$), dado que o somatório requer valores numéricos.}%colocar aqui q retorna 0 se false e 1 se true?
 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-    Lemma totient_count_coprime n : 
-        totient n = \sum_(0 <= d < n) coprime n d.
+Lemma totient_count_coprime n : 
+    totient n = \sum_(0 <= d < n) coprime n d.
 \end{lstlisting} 
 
 \section{Congruência de Grau 2 e Símbolo de Legendre}

@@ -63,7 +63,7 @@ e um elemento \lstinline[language = coq]$eqP$ cujo tipo é um teorema relacionan
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition eq_axiom T (e : rel T) := forall x y, reflect (x = y) (e x y).
     \end{lstlisting}
-    \footnotesize{Fonte: \citeauthor{mathcomp-eqtype}, \citeyear{mathcomp-eqtype}.
+    \footnotesize{Fonte: adaptado de \citeauthor{mathcomp-eqtype}, \citeyear{mathcomp-eqtype}.
     }
     \label{fig:definition-eqaxiom}
 \end{figure}
@@ -88,21 +88,25 @@ A utilização de um tipo como \lstinline[language = coq]$eqType$ facilita que s
 
 \lstinline[language = coq]$Structure$ e \lstinline[language = coq]$Record$ são comandos sinônimos para geração de tipos indutivos que possuem somente um construtor e cujo os campos são dependentemente tipados, isto é, o tipo de cada campo pode depender dos valores de campos anteriores, assim como nas definições indutivas \cite{assia_mahboubi_2022_7118596}. A vantagem do uso desses comandos é que por meio desses são geradas automaticamente funções para extrair valores dos argumentos do construtor do tipo declarado.
 
-Esses comandos são frequentemente utilizados na biblioteca Mathematical Components para definir interfaces (como o \lstinline[language = coq]$eqType$) e subtipos (ex.: tipo em que os habitantes são todos os números naturais menores que $8$). Para melhor entendimento do leitor, tem-se a seguir um exemplo semelhante ao tipo \lstinline[language = coq]$eqType$ definido na biblioteca, apresentado em \cite{assia_mahboubi_2022_7118596}:
-    \begin{figure}[h]        
+Esses comandos são frequentemente utilizados na biblioteca Mathematical Components para definir interfaces (como o \lstinline[language = coq]$eqType$) e subtipos (ex.: tipo em que os habitantes são todos os números naturais menores que $8$). Para melhor entendimento do leitor, tem-se a seguir um exemplo semelhante ao tipo \lstinline[language = coq]$eqType$ definido em \cite{assia_mahboubi_2022_7118596} porém que contém também o campo \coqinline[]{axiom}:
+    % \begin{figure}[h]
+    % \centering
+    % \caption{Código do lema \coqinline[]{contraLR}}
 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Record eqType : Type := Pack
-{
+Record eqType : Type := Pack {
     sort : Type;
     eq_op : sort -> sort -> bool;
-    axiom : eq_axiom eq_op
+    axiom : eq_axiom op
 }.
 \end{lstlisting}
-    \end{figure}
-\\Como explicado acima, essa declaração é equivalente a se fazer as seguintes declarações:
+    % \footnotesize{Fonte: o autor (2024).}
+    % \label{fig:record-eqType}
+    % \end{figure}
+% \\
+Como explicado acima, essa declaração é equivalente a se fazer as seguintes declarações:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Inductive eqType : Type :=
-    | Pack (sort : Type) (eq_op : sort -> sort -> bool) (axiom : eq_axiom eq_op).
+    | Pack (sort : Type) (op : sort -> sort -> bool) (axiom : eq_axiom eq_op).
     
 Definition sort (e : eqType) : Type :=
     match e with
@@ -118,7 +122,7 @@ Definition axiom (e : eqType) : (eq_axiom (eq_op e)) :=
     \end{lstlisting}
 Observe que o uso de tipos dependentes ocorre nos campos \lstinline[language = coq]{eq_op} e \lstinline[language = coq]{axiom}. No primeiro, o tipo do campo depende do valor do campo \lstinline[language = coq]{sort} e no segundo o tipo do campo depende do valor do campo \lstinline[language = coq]{eq_op} e portanto também do campo \lstinline[language = coq]{sort}.
 
-\subsection{Comando Canonical} Assim como apresentado em \cite{assia_mahboubi_2022_7118596}, para instanciar um habitante de \lstinline[language = coq]$eqType$ com campo \lstinline[language = coq]$sort$ igual a \lstinline[language = coq]$nat$, deve-se provar o seguinte teorema:
+\subsection{Comando Canonical} De modo semelhante ao apresentado em \cite{assia_mahboubi_2022_7118596}, para instanciar um habitante de \lstinline[language = coq]$eqType$ com campo \lstinline[language = coq]$sort$ igual a \lstinline[language = coq]$nat$, deve-se provar o seguinte teorema:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Theorem axiom_nat: eq_axiom eqn.
     \end{lstlisting}
@@ -137,15 +141,27 @@ o que nesse caso equivale a:
 Compute (eqn 2 2).
     \end{lstlisting}
 
-Entretanto, o objetivo de criar o tipo \lstinline[language = coq]$eqType$ não é estabelecer essa possibilidade de computação para relações de comparação, mas sim construir definições, funções e provas genéricas para todos os tipos que pertencem ao campo \lstinline[language = coq]$sort$ de algum habitante de \lstinline[language = coq]$eqType$ e estabelecer \textit{overloading} de notações. Para exemplo de como alcançar este último objetivo, em \cite{assia_mahboubi_2022_7118596} se define uma notação da seguinte forma:
-
-    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Entretanto, o objetivo de criar o tipo \lstinline[language = coq]$eqType$ não é estabelecer essa possibilidade de computação para relações de comparação, mas sim construir definições, funções e provas genéricas para todos os tipos que pertencem ao campo \lstinline[language = coq]$sort$ de algum habitante de \lstinline[language = coq]$eqType$ e estabelecer \textit{overloading} de notações. Para exemplo de como alcançar este último objetivo, em \cite{assia_mahboubi_2022_7118596} se define uma notação da seguinte forma exposta na Figura \ref{fig:notation-eqop}:
+\begin{figure}[ht]
+    \centering
+    \caption{Código da notação ``\coqinline[]{==}''}
+\begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Notation "x == y" := (@eq_op _ x y).
-    \end{lstlisting}
-porém havendo apenas esta definição, caso executado o comando \lstinline[language = coq]$Check (3 == 2)$ tem-se um falha. Ao se executar:
+\end{lstlisting}
+    \footnotesize{Fonte: adaptado de \citeauthor{assia_mahboubi_2022_7118596}, \citeyear{assia_mahboubi_2022_7118596}.
+    }
+    \label{fig:notation-eqop}
+\end{figure}
+%     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+% Notation "x == y" := (@eq_op _ x y).
+%     \end{lstlisting}
+\\
+
+\noindent porém havendo apenas esta definição, caso executado o comando \lstinline[language = coq]$Check (3 == 2)$ tem-se um falha. Ao se executar:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Fail Check (3 == 2).
+Fail Check (3 == 11).
     \end{lstlisting}
+% Fail Check (3 == 2).
 a seguinte mensagem é apresentada:
     \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
 The command has indeed failed with message:
@@ -188,20 +204,26 @@ em que a notação $\sim$ representa uma chamada do algoritmo de unificação \c
 \end{equation*}
 Retornando ao comando \lstinline[language = coq]$Check$, se agora esse for executado da mesma maneira feita anteriormente (porém sem o \lstinline[language = coq]$Fail$):
     \begin{lstlisting}[language = coq,frame=single,tabsize=1]
-Check (3 == 2).
+Check (3 == 11).
     \end{lstlisting}
 tem-se o seguinte resultado:
     \begin{lstlisting}[language = coq-error,frame=single,tabsize=1]
-3 == 2
+3 == 11
     : bool
     \end{lstlisting}
 
 Como mencionado previamente o tipo \lstinline[language = coq]$eqType$ serve para diversas generalizações. Para exemplo disso, adiante se apresenta a definição de uma comparação entre valores do tipo \lstinline[language = coq]$option$. Antes desse exemplo, vale aqui relembrar o leitor da definição deste tipo:
+\begin{figure}[h]
+    \centering
+    \caption{Código do lema \coqinline[]{contraLR}}
     \begin{lstlisting}[language = coq,frame=single,tabsize=1]
 Inductive option (A : Type) : Type :=
     | None : option A
     | Some : A -> option A.
     \end{lstlisting}
+\footnotesize{Fonte: adaptado de \citeauthor{coqteam2022manual}, \citeyear{coqteam2022manual}.}
+    \label{fig:inductive-option}
+    \end{figure}
 A função de comparação a ser declarada irá considerar que o argumento \lstinline[language = coq]$A$ pertence ao campo \lstinline[language = coq]$sort$ de algum habitante de \lstinline[language = coq]$eqType$. Tem-se então a definição dessa função:
     \begin{lstlisting}[language = coq,frame=single,tabsize=1]
 Definition cmp_option (e : eqType) (o1 o2 : option (sort e)) :=
@@ -227,9 +249,9 @@ Com esta prova pode-se construir a seguinte definição:
 Definition optionEqType (e : eqType) := 
     Pack (option (sort e)) (cmp_option e) (axiom_option e).
     \end{lstlisting}
-Visto que ainda não foi executado o comando \lstinline[language = coq]$Canonical$ com esta definição, se executado o comando \lstinline[language = coq]$Check (Some 1 == Some 2)$, esse irá falhar, logo, ao se executar:
+Visto que ainda não foi executado o comando \lstinline[language = coq]$Canonical$ com esta definição, se executado o comando \lstinline[language = coq]$Check (Some 1 == Some 11)$, esse irá falhar, logo, ao se executar:
     \begin{lstlisting}[language = coq,frame=single,tabsize=1]
-Fail Check (Some 1 == Some 2).
+Fail Check (Some 1 == Some 11).
     \end{lstlisting}
 É apresentada a seguinte mensagem:
     \begin{lstlisting}[language = coq-error,frame=single,tabsize=1]
@@ -284,11 +306,11 @@ Assim note que no problema de inferência acima, ocorre a seguinte (sub)sequênc
 \end{equation*}
 Agora, com o comando:
     \begin{lstlisting}[language = coq,frame=single,tabsize=1]
-Check (Some 1 == Some 2).
+Check (Some 1 == Some 11).
     \end{lstlisting}
 tem-se a mensagem:
     \begin{lstlisting}[language = coq-error,frame=single,tabsize=1]
-Some 1 == Some 2
+Some 1 == Some 11
     : bool
     \end{lstlisting}
 
@@ -413,7 +435,7 @@ Tal prova exemplifica como o uso dos mecanismos em \textit{Coq}, que foram apres
 
 \subsection{Mecanismo para Hierarquias entre Estruturas Algébricas}
 
-Para organizar estruturas algébricas semelhantes a apresentada na Subseção \ref{sub:grupos}, a biblioteca Mathematical Components utiliza uma linguagem chamada $\mathcal{HB}$. Esta é disponibilizada em \textit{Coq} por meio do \textit{addon} \coqinline!hierarchy-builder! e a motivação por trás de seu uso é facilitar aos usuários a criação, manutenção e padronização destas estruturas. Caso o leitor deseje um aprofundamento nestes assuntos recomenda-se a publicação \cite{cohen:hal-02478907} e o vídeo \cite{youtuCohen}, uma vez que o sistema por trás do gerenciamento de tais estruturas não faz parte do escopo deste trabalho. Nesta subseção se busca apenas mostrar como o usuário pode pesquisar propriedades provadas sobre um determinado tipo por meio de estruturas com a qual o tipo está ``equipado'', expressão cujo significado será explicado adiante.
+Para organizar estruturas algébricas semelhantes a apresentada na Subseção \ref{sub:grupos}, a biblioteca Mathematical Components utiliza uma linguagem chamada $\mathcal{HB}$. Esta é disponibilizada em \textit{Coq} por meio do \textit{addon} \coqinline!hierarchy-builder! e a motivação por trás de seu uso é facilitar aos usuários a criação, manutenção e padronização destas estruturas. Caso o leitor deseje um aprofundamento nestes assuntos recomenda-se a publicação e o vídeo nos quais esta subseção é baseada que são eles \cite{cohen:hal-02478907} e \cite{youtuCohen} respectivamente. Se faz esta recomendação pois o sistema por trás do gerenciamento de tais estruturas não faz parte do escopo deste trabalho. Nesta subseção se busca apenas mostrar como o usuário pode pesquisar propriedades provadas sobre um determinado tipo por meio de estruturas com a qual o tipo está ``equipado'', expressão cujo significado será explicado adiante.
 
 % Diversas estruturas como as algébricas, que guardam predicados sobre tipos, são utilizadas na biblioteca Mathematical, e suas declarações seguem um padrão chamado de 
 
@@ -515,7 +537,7 @@ GRing.Nmodule.sort s -> GRing.Nmodule.sort s -> GRing.Nmodule.sort s
 
 Arguments GRing.add {s} (_ _)%ring_scope
     \end{lstlisting}
-pois agora são impressas todas as coerções, e então pode-se ver que o tipo de \coqinline[]{GRing.add} é:
+pois agora são impressas todas as coerções, e então pode-se ver, na mensagem, que o tipo de \coqinline[]{GRing.add} é:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 forall s : nmodType, 
     GRing.Nmodule.sort s -> GRing.Nmodule.sort s -> GRing.Nmodule.sort s
