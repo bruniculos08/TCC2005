@@ -1702,6 +1702,8 @@ INPUT PreTextual/Sumario.tex
 INPUT ./main.lof
 INPUT main.lof
 INPUT main.lof
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmr10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmtt10.tfm
 INPUT ./main.loa
 INPUT main.loa
 INPUT main.loa
@@ -1739,8 +1741,6 @@ INPUT ./Figuras/ssreflect.png
 INPUT Figuras/ssreflect.png
 INPUT ./Figuras/ssreflect.png
 INPUT ./Figuras/ssreflect.png
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmr10.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmtt10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/rm-lmr10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmmi10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmsy10.tfm

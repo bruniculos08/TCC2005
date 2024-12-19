@@ -182,7 +182,7 @@ have -> : \prod_(i in 'F_p | i != 0%R) i =                      @ \label{line:21
                         \prod_{j \in \mathbb{F}_p \mid j < f(j)} \left( \prod_{i \in (\mathbb{F}_p - \{0\}) \mid can(i)= j} i \right)
                         \end{equation*}
 
-                \item[\textbf{(\ref{line:24-item3})}] Código da prova do \textit{subgoal} gerado na linha \ref{line:21-item3} - este código não será apresentado aqui, no entanto, pode-se dizer que tal subprova se baseia na utilização do lema \lstinline[language=coq]|partition_big|, que tem a seguinte declaração:
+                \item[\textbf{(\ref{line:24-item3})}] Código da prova do \textit{subgoal} gerado na linha \ref{line:21-item3} - este código não será apresentado aqui, no entanto, pode-se dizer que tal subprova se baseia na utilização do lema \lstinline[language=coq]|partition_big|, que tem a seguinte declaração em \cite{mathcomp-bigop}:
                 
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma partition_big {R : Type} {idx : R} {op : Monoid.com_law idx} 
@@ -199,7 +199,7 @@ Lemma partition_big {R : Type} {idx : R} {op : Monoid.com_law idx}
 Definition bigop R I idx op r (P : pred I) (F : I -> R) : R :=
         foldr (fun i x => if P i then op (F i) x else x) idx r.
                         \end{lstlisting}
-                e dentre as notações para o uso desta função tem-se:
+                e dentre as notações para o uso desta função (dadas em \cite{mathcomp-bigop}) é mostrada em \cite{assia_mahboubi_2022_7118596} a seguinte:
 
                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Notation "\big [ op / idx ]_ ( i <- r | P ) F" :=
@@ -294,7 +294,7 @@ Lemma eq_bigr r (P : pred I) F1 F2 : (forall i, P i -> F1 i = F2 i) ->
                                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i = j * f j
                                 \end{lstlisting}
-                        Este lema basicamente retira um elemento de dentro da aplicação do operador \lstinline[language=coq]|bigop| (nesse caso o elemento \lstinline[language=coq]|j| pois foi este o argumento passado ao lema), no entanto deve-se demonstrar que tal elemento realmente ocorre em alguma das iterações, por isto é então gerado um \textit{subgoal}. Esse \textit{subgoal} normalmente deveria ser resolvido após a resolução do \textit{goal} principal, mas devido ao uso de \lstinline[language=coq]|last first| tal \textit{subgoal} deve ser resolvido antes do \textit{goal} principal.
+                        Este lema basicamente retira um elemento de dentro da aplicação do operador \lstinline[language=coq]|bigop| (nesse caso o elemento \lstinline[language=coq]|j| pois foi este o argumento passado ao lema) conforme \cite{mathcomp-bigop}, no entanto deve-se demonstrar que tal elemento realmente ocorre em alguma das iterações, por isto é então gerado um \textit{subgoal}. Esse \textit{subgoal} normalmente deveria ser resolvido após a resolução do \textit{goal} principal, mas devido ao uso de \lstinline[language=coq]|last first| tal \textit{subgoal} deve ser resolvido antes do \textit{goal} principal.
                         
                         \item[\textbf{(\ref{line:30-item4-a})}] Comando adicionado apenas para tornar o \textit{goal} mais legível (não é algo que estava na prova original feita por Laurent), e nesse caso, após a execução dos comandos da linha 3 e deste comando, o \textit{goal} se torna:
                         
@@ -314,7 +314,7 @@ j * ssrnat_muln__canonical__SemiGroup_ComLaw (f j)
                                 \end{lstlisting}
                         onde \lstinline[language=coq]|ssrnat_muln__canonical__SemiGroup_ComLaw| é a operação de multiplicação entre naturais.
                         
-                        \item[\textbf{(\ref{line:33-item4-a})}] Reescrita do produtório ainda presente no \textit{goal} como 1 (elemento neutro) por meio do lema \lstinline[language=coq]|big1|, que por sua vez tem o seguinte enunciado:
+                        \item[\textbf{(\ref{line:33-item4-a})}] Reescrita do produtório ainda presente no \textit{goal} como 1 (elemento neutro) por meio do lema \lstinline[language=coq]|big1|, que por sua vez tem o seguinte enunciado \cite{mathcomp-bigop}:
                         
                                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma big1 {R : Type} {idx : R} {op : Monoid.law idx} I r (P : pred I) F :
@@ -325,7 +325,7 @@ Lemma big1 {R : Type} {idx : R} {op : Monoid.law idx} I r (P : pred I) F :
                                 
                         Este \textit{subgoal} aberto consiste em provar que o termo geral é sempre igual a 1 ou que as condições do produtório nunca serão atendidas (que é o caso desta prova) e portanto o produtório retorna apenas 1. 
                         
-                        Após a prova deste \textit{subgoal} resta então apenas o segundo \textit{goal} gerado na aplicação da tática \lstinline[language=coq]|etrans|.
+                        Após a prova deste \textit{subgoal} resta então apenas o segundo \textit{goal} gerado na aplicação da tática \lstinline[language=coq]|etrans| \cite{coq-ssrfun}.
                 
                 \end{enumerate}
 
@@ -372,7 +372,7 @@ apply: eq_bigr => i /andP[_ iLfi].                      @ \label{line:38-item4b-
                         
                                 \item[\textbf{(\ref{line:37-item4b-item1})}] Remoção da aplicação de $\bmod \; p$ em ambos os lados da equação.
                         
-                                \item[\textbf{(\ref{line:38-item4b-item1})}] aplicação do lema \lstinline[language=coq]|eq_bigr|, que por sua vez tem o seguinte enunciado:
+                                \item[\textbf{(\ref{line:38-item4b-item1})}] aplicação do lema \lstinline[language=coq]|eq_bigr|, que por sua vez tem o seguinte enunciado \cite{mathcomp-bigop}:
                         
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma eq_bigr r (P : pred I) F1 F2 : (\forall i, P i -> F1 i = F2 i) ->
@@ -417,7 +417,7 @@ rewrite !inE.                                           @ \label{line:66-item4b-
 
                                 \item[\textbf{(\ref{line:40-item4b-item2})}] Remoção da aplicação de $\bmod \; p$ em ambos os lados da equação.
 
-                                \item[\textbf{(\ref{line:41-item4b-item2})}] Reescrita utilizando \lstinline[language=coq]|prod_nat_const|, lema este que possui o seguinte enunciado:
+                                \item[\textbf{(\ref{line:41-item4b-item2})}] Reescrita utilizando \lstinline[language=coq]|prod_nat_const|, lema este que possui o seguinte enunciado \cite{mathcomp-bigop}:
                                 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma prod_nat_const n : \prod_(i in A) n = n ^ #|A|.
@@ -455,25 +455,26 @@ eqn (i.+1 - f i) 0
 
                                 \item[\textbf{(\ref{line:44-item4b-item2})}] Reescrita de \lstinline[language=coq]|p| como \lstinline[language=coq]!#|'F_p|! no lado direito da equação.
                                 
-                                \item[\textbf{(\ref{line:45-item4b-item2})}] Reescrita de \lstinline[language=coq]!#|'F_p|! como \lstinline[language=coq]!(0%R  \in 'F_p) + #|[predD1 'F_p & 0%R]|! em que \lstinline[language=coq]![predD1 'F_p & 0%R]! é uma notação para o seguinte:
+                                \item[\textbf{(\ref{line:45-item4b-item2})}] Reescrita de \lstinline[language=coq]!#|'F_p|! como \lstinline[language=coq]!(0%R  \in 'F_p) + #|[predD1 'F_p & 0%R]|! em que \lstinline[language=coq]![predD1 'F_p & 0%R]!, conforme \cite{mathcomp-eqtype}, é uma notação para o seguinte:
                                 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 [fun x =>  (x != 0%R) && (x  \in 'F_p)]
                                         \end{lstlisting}
                                 ou seja, \lstinline[language=coq]![predD1 'F_p & 0%R]! é o conjunto $\mathbb{F}_p - \{0\}$.
 
-                                \item[\textbf{(\ref{line:46-item4b-item2})}] Reescrita de \lstinline[language=coq]!(0%R  \in 'F_p)! como \lstinline[language=coq]!true!, por meio da tupla \lstinline[language=coq]!inE! (\lstinline[language=coq]!inE! é uma tupla de lemas e portanto quando usada para reescrita o \textit{Coq} tenta realizar a reescrita usando cada um dos membros da tupla). O resultado desta reescrita é então convertido para 1 (devido a \textit{coercion} de \lstinline[language=coq]!bool! para \lstinline[language=coq]!nat!); reescrita da soma de 1 à esquerda na forma da notação \lstinline[language=coq]!_.+1! (pelo lema \lstinline[language=coq]!add1n!); cancelamento da adição de 1 com a subtração de 1 (pelo lema \lstinline[language=coq]!pred_Sn!, onde o uso de \lstinline[language=coq]|-| antes do nome do lema indica a direção contrária a usual da rescrita, isto é, do padrão do lado direito para o padrão do lado esquerdo). Com estas reescritas o \textit{goal} se torna:
+                                \item[\textbf{(\ref{line:46-item4b-item2})}] Reescrita de \lstinline[language=coq]!(0%R  \in 'F_p)! como \lstinline[language=coq]!true!, por meio da tupla \lstinline[language=coq]!inE! (\lstinline[language=coq]!inE! é uma tupla de lemas e portanto quando usada para reescrita o \textit{Coq} tenta realizar a reescrita usando cada um dos membros da tupla) definida em \cite{mathcomp-finset}. O resultado desta reescrita é então convertido para 1 (devido a \textit{coercion} de \lstinline[language=coq]!bool! para \lstinline[language=coq]!nat!); reescrita da soma de 1 à esquerda na forma da notação \lstinline[language=coq]!_.+1! (pelo lema \lstinline[language=coq]!add1n!); cancelamento da adição de 1 com a subtração de 1 (pelo lema \lstinline[language=coq]!pred_Sn!, onde o uso de \lstinline[language=coq]|-| antes do nome do lema indica a direção contrária a usual da rescrita, isto é, do padrão do lado direito para o padrão do lado esquerdo). Com estas reescritas o \textit{goal} se torna:
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 #|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = #|[predD1 'F_p & 0%R]|./2
                                         \end{lstlisting}
                                 
-                                \item[\textbf{(\ref{line:47-item4b-item2})}] Introducão do \textit{alias} \lstinline[language=coq]|A| para o conjunto \lstinline[language=coq]|[predD1 'F_p & 0%R]|.
+                                \item[\textbf{(\ref{line:47-item4b-item2})}] Introducão do \textit{alias} \lstinline[language=coq]|A| para o conjunto \lstinline[language=coq]|[predD1 'F_p & 0%R]| \cite{coqteam2022manual}.
                                 
-                                \item[\textbf{(\ref{line:48-item4b-item2})}] Introducão do \textit{alias} \lstinline[language=coq]|B| para o conjunto \lstinline[language=coq]![pred i |  (i : 'F_p) < f i]! (a diferença do uso de \lstinline[language=coq]|set| e \lstinline[language=coq]|pose| é que o primeiro realiza substituição da expressão pelo \textit{alias} no \textit{goal}).
+                                \item[\textbf{(\ref{line:48-item4b-item2})}] Introducão do \textit{alias} \lstinline[language=coq]|B| para o conjunto \lstinline[language=coq]![pred i |  (i : 'F_p) < f i]! (tendo como base a descrição em \cite{coq-ssrbool})
+                                 (uma diferença do uso de \lstinline[language=coq]|set| e \lstinline[language=coq]|pose| é que o primeiro realiza substituição da expressão pelo \textit{alias} no \textit{goal} \cite{coqteam2022manual}).
                                 
                                 \item[\textbf{(\ref{line:49-item4b-item2})}] Reescrita da cardinalidade de \lstinline[language=coq]!A! como a cardinalidade da intersecção entre \lstinline[language=coq]!A! e \lstinline[language=coq]!B! somada a cardinalidade de \lstinline[language=coq]!A! menos \lstinline[language=coq]!B! (por meio do lema \lstinline[language=coq]!cardID!); em termos das notações mais comuns usadas em Teoria dos Conjunto faz-se a substituição de $|A|$ por $|A \bigcap B| + |A - B|$.
                                 
-                                \item[\textbf{(\ref{line:50-item4b-item2})}] Substituição de \lstinline[language=coq]!#|[predD A & B]|! por \lstinline[language=coq]!#|image f [predI A & B]|! (que é printada como \lstinline[language=coq]!#|[seq f x  | x in [predI A & B]]!) em que está ultima expressão indica a imagem de \lstinline[language=coq]!f! tendo \lstinline[language=coq]!#|[predD A & B]|! como domínio. 
+                                \item[\textbf{(\ref{line:50-item4b-item2})}] Substituição de \lstinline[language=coq]!#|[predD A & B]|! por \lstinline[language=coq]!#|image f [predI A & B]|! (que é printada como \lstinline[language=coq]!#|[seq f x  | x in [predI A & B]]!) em que está ultima expressão indica a imagem de \lstinline[language=coq]!f! tendo \lstinline[language=coq]!#|[predD A & B]|! como domínio, conforme \cite{mathcomp-fintype}. 
                                 
                                 Tal substituição abre um \textit{subgoal} que é resolvido em seguida, conforme indicado no comentário da linha 12 e com isso o \textit{goal} se torna:
                                 % \textcolor{red}{vou colocar aqui a resolução desse \textit{subgoal} por que ele não é trivial e é bem importante para a prova}. 
@@ -529,7 +530,8 @@ case: ltngtP => // /eqP/val_eqP fiEi.                           @ \label{line:61
                                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 (f i  \in enum [predI A & B]) = [&& ~~ (i < f i),  i != 0%R  & true]
                                                         \end{lstlisting}
-                                                onde \lstinline[language=coq]|enum| é uma função que retorna os elementos do tipo finito que atende a proposição booleana passada como argumento (o tipo finito é inferido pelo tipo do argumento de tais proposições), conforme consta na documentação da biblioteca\footnote{\url{https://math-comp.github.io/htmldoc_2_2_0/mathcomp.ssreflect.fintype.html}}.
+                                                onde \lstinline[language=coq]|enum| é uma função que retorna os elementos do tipo finito que atende a proposição booleana passada como argumento (o tipo finito é inferido pelo tipo do argumento de tais proposições), conforme consta em \cite{mathcomp-fintype}.
+                                                % conforme consta na documentação da biblioteca\footnote{\url{https://math-comp.github.io/htmldoc_2_2_0/mathcomp.ssreflect.fintype.html}} ou no código em \cite{mathcomp-fintype}.
 
                                                 \item[\textbf{(\ref{line:55-item4b-item2})}] Reescrita de \lstinline[language=coq]|(f i  \in enum [predI A & B])| como \lstinline[language=coq]|(f i  \in [predI A & B])|.
                                                 
@@ -554,7 +556,7 @@ case: ltngtP => // /eqP/val_eqP fiEi.                           @ \label{line:61
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 #|[seq f x  | x in [predI A & B]]|
                                         \end{lstlisting}
-                                como \lstinline[language=coq]!#|[predI A & B]|!. Em termos de notações comumente usadas em Teoria dos Conjuntos, substitui-se $|Im(f, A \bigcap B)|$ por $|A \bigcap B|$ (o que é possível por $f$ é injetora). Com isso o \textit{goal} se torna:
+                                como \lstinline[language=coq]!#|[predI A & B]|!. Em termos de notações comumente usadas em Teoria dos Conjuntos, substitui-se $|Im(f, A \bigcap B)|$ por $|A \bigcap B|$ (o que é possível por $f$ é injetora), conforme se entende pela descrição em \cite{coq-ssrbool}. Com isso o \textit{goal} se torna:
                                 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 #|(fun i : 'F_p => eqn (i.+1 - f i) 0)| = 
@@ -574,7 +576,7 @@ case: ltngtP => // /eqP/val_eqP fiEi.                           @ \label{line:61
 (i \in (fun i0 : 'F_p => eqn (i0.+1 - f i0) 0)) = (i \in [predI A & B])
                                         \end{lstlisting}
 
-                                \item[\textbf{(\ref{line:66-item4b-item2})}] Ambas as expressões da igualdade podem ser simplificadas com o uso da tupla \lstinline[language=coq]|inE| diversas vezes, por isso para realizar o máximo de reescritas possíveis é utilizado ``\lstinline[language=coq]|!|'' antes do nome da tupla. Obtêm-se então a seguinte expressão no \textit{goal}:
+                                \item[\textbf{(\ref{line:66-item4b-item2})}] Ambas as expressões da igualdade podem ser simplificadas com o uso da tupla \lstinline[language=coq]|inE| diversas vezes, por isso para realizar o máximo de reescritas possíveis é utilizado ``\lstinline[language=coq]|!|'' \cite{assia_mahboubi_2022_7118596} antes do nome da tupla. Obtêm-se então a seguinte expressão no \textit{goal}:
                                 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 (i < f i) = (i != 0%R) && true && (i < f i)

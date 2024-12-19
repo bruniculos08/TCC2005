@@ -1,3 +1,6 @@
 \babel@toc {brazil}{}\relax 
 \babel@toc {brazil}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Grafo do módulo \textit {ssreflect}}}{17}{figure.2.1}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Print de parte do grafo dos módulos da biblioteca Mathematical Components}}{17}{figure.2.1}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Código da proposição indutiva para igualdade}}{18}{figure.2.2}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Código do lema \coqinline []{contraLR}}}{18}{figure.2.3}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Código da definição \coqinline []{eq_axiom}}}{19}{figure.2.4}%

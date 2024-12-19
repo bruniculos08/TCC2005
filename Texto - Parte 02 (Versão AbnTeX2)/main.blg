@@ -21,9 +21,9 @@ Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Database file #1: abntex2-options.bib
 Database file #2: referencias.bib
 Warning--entry type for "johndcookQuadraticReciprocity" isn't style-file defined
---line 242 of file referencias.bib
+--line 316 of file referencias.bib
 Warning--entry type for "kumar2021algorithm" isn't style-file defined
---line 409 of file referencias.bib
+--line 483 of file referencias.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=200001) to 20 items from 10.
@@ -33,45 +33,45 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 33 entries,
+You've used 39 entries,
             6714 wiz_defined-function locations,
-            1413 strings with 15304 characters,
-and the built_in function-call counts, 57098 in all, are:
-= -- 7222
-> -- 691
-< -- 1768
-+ -- 2043
-- -- 217
-* -- 3354
-:= -- 6877
-add.period$ -- 157
-call.type$ -- 33
-change.case$ -- 270
-chr.to.int$ -- 49
-cite$ -- 32
-duplicate$ -- 6339
-empty$ -- 2049
-format.name$ -- 1025
-if$ -- 11060
-int.to.chr$ -- 8
+            1433 strings with 15995 characters,
+and the built_in function-call counts, 68079 in all, are:
+= -- 8669
+> -- 781
+< -- 2163
++ -- 2473
+- -- 247
+* -- 3963
+:= -- 8187
+add.period$ -- 183
+call.type$ -- 39
+change.case$ -- 310
+chr.to.int$ -- 50
+cite$ -- 38
+duplicate$ -- 7682
+empty$ -- 2377
+format.name$ -- 1163
+if$ -- 13083
+int.to.chr$ -- 13
 int.to.str$ -- 0
-missing$ -- 569
-newline$ -- 169
-num.names$ -- 162
-pop$ -- 750
+missing$ -- 665
+newline$ -- 199
+num.names$ -- 192
+pop$ -- 871
 preamble$ -- 1
-purify$ -- 110
+purify$ -- 128
 quote$ -- 0
-skip$ -- 6423
+skip$ -- 7784
 stack$ -- 1
-substring$ -- 2638
-swap$ -- 2272
-text.length$ -- 42
+substring$ -- 3147
+swap$ -- 2729
+text.length$ -- 46
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 8
 warning$ -- 0
-while$ -- 235
+while$ -- 275
 width$ -- 0
-write$ -- 524
+write$ -- 612
 (There were 2 warnings)

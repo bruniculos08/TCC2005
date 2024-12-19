@@ -18,11 +18,19 @@
 \backcite {gonthier:hal-04034866}{{14}{1}{equation.1.0.1}}
 \backcite {assia_mahboubi_2022_7118596}{{17}{2}{chapter.2}}
 \backcite {assia_mahboubi_2022_7118596}{{17}{2.1}{section.2.1}}
+\backcite {grafo-ssreflect}{{17}{1}{figure.2.1}}
+\backcite {grafo-ssreflect}{{17}{1}{figure.2.1}}
 \backcite {coqteam2022manual}{{18}{2.2}{section.2.2}}
-\backcite {assia_mahboubi_2022_7118596}{{18}{2.2}{lstnumber.-1.1}}
-\backcite {assia_mahboubi_2022_7118596}{{18}{2.2}{lstnumber.-1.1}}
-\backcite {assia_mahboubi_2022_7118596}{{18}{2.2}{lstnumber.-1.1}}
+\backcite {coqteam2022manual}{{18}{2}{lstnumber.-1.2}}
+\backcite {coqteam2022manual}{{18}{2}{lstnumber.-1.2}}
+\backcite {assia_mahboubi_2022_7118596}{{18}{2.2}{lstnumber.-1.2}}
+\backcite {assia_mahboubi_2022_7118596}{{18}{2.2}{lstnumber.-1.2}}
+\backcite {assia_mahboubi_2022_7118596}{{18}{2.2}{lstnumber.-1.2}}
+\backcite {assia_mahboubi_2022_7118596}{{18}{3}{lstnumber.-2.1}}
+\backcite {assia_mahboubi_2022_7118596}{{18}{3}{lstnumber.-2.1}}
 \backcite {mathcomp-eqtype}{{18}{2.2}{lstnumber.-2.1}}
+\backcite {mathcomp-eqtype}{{19}{4}{lstnumber.-3.1}}
+\backcite {mathcomp-eqtype}{{19}{4}{lstnumber.-3.1}}
 \backcite {assia_mahboubi_2022_7118596}{{19}{2.3}{section.2.3}}
 \backcite {assia_mahboubi_2022_7118596}{{19}{2.3}{section.2.3}}
 \backcite {assia_mahboubi_2022_7118596}{{20}{2.3.1}{subsection.2.3.1}}
@@ -39,8 +47,8 @@
 \backcite {mathcomp-contributing}{{30}{2.3.4}{lstnumber.-56.2}}
 \backcite {cohen:hal-02478907}{{31}{2.3.4}{lstnumber.-63.2}}
 \backcite {mathcomp-hb-v1}{{31}{2.3.4}{lstnumber.-63.2}}
-\backcite {cohen:hal-02478907}{{33}{9}{lstnumber.-74.7}}
-\backcite {assia_mahboubi_2022_7118596}{{35}{2.3.5}{lstnumber.-81.1}}
+\backcite {cohen:hal-02478907}{{34}{9}{lstnumber.-74.7}}
+\backcite {assia_mahboubi_2022_7118596}{{36}{2.3.5}{lstnumber.-81.1}}
 \backcite {book:2399854}{{38}{3}{chapter.3}}
 \backcite {mathcomp-div}{{40}{4}{lema.2}}
 \backcite {mathcomp-intdiv}{{40}{4}{lstnumber.-93.3}}
@@ -82,7 +90,24 @@
 \backcite {mathcomp-extra-euler}{{59}{4.1}{equation.4.1.1}}
 \backcite {mathcomp-extra-euler}{{59}{4.1}{lstnumber.-115.2}}
 \backcite {mathcomp-extra-euler}{{59}{4.1}{lstnumber.-116.1}}
+\backcite {mathcomp-bigop}{{61}{{{\textbf {iii.}}}}{lstnumber.-122.24}}
 \backcite {assia_mahboubi_2022_7118596}{{61}{{{\textbf {iii.}}}}{lstnumber.-123.6}}
+\backcite {mathcomp-bigop}{{61}{{{\textbf {iii.}}}}{lstnumber.-124.2}}
+\backcite {assia_mahboubi_2022_7118596}{{61}{{{\textbf {iii.}}}}{lstnumber.-124.2}}
+\backcite {mathcomp-bigop}{{63}{{{\textbf {iv.(a)}}}}{Item.63}}
+\backcite {mathcomp-bigop}{{64}{{{\textbf {iv.(a)}}}}{lstnumber.-137.4}}
+\backcite {coq-ssrfun}{{64}{{{\textbf {iv.(a)}}}}{lstnumber.-138.3}}
+\backcite {mathcomp-bigop}{{65}{{{\textbf {(b.1)}}}}{lstnumber.-142.40}}
+\backcite {mathcomp-bigop}{{66}{{{\textbf {(b.2)}}}}{lstnumber.-146.66}}
+\backcite {mathcomp-eqtype}{{67}{{{\textbf {(b.2)}}}}{Item.77}}
+\backcite {mathcomp-finset}{{67}{{{\textbf {(b.2)}}}}{Item.78}}
+\backcite {coqteam2022manual}{{67}{{{\textbf {(b.2)}}}}{Item.79}}
+\backcite {coq-ssrbool}{{67}{{{\textbf {(b.2)}}}}{Item.79}}
+\backcite {coqteam2022manual}{{67}{{{\textbf {(b.2)}}}}{Item.79}}
+\backcite {mathcomp-fintype}{{67}{{{\textbf {(b.2)}}}}{Item.79}}
+\backcite {mathcomp-fintype}{{69}{{{\textbf {(b.2)}}}}{lstnumber.-161.1}}
+\backcite {coq-ssrbool}{{69}{{{\textbf {(b.2)}}}}{Item.94}}
+\backcite {assia_mahboubi_2022_7118596}{{70}{{{\textbf {(b.2)}}}}{Item.97}}
 \backcite {mathcomp-extra-euler}{{70}{4.1}{Item.98}}
 \backcite {book:2399854}{{71}{4.2}{lstnumber.-173.12}}
 \backcite {book:2399854}{{72}{4.2}{lstnumber.-177.3}}

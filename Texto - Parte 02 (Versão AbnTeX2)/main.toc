@@ -19,7 +19,7 @@
 \contentsline {subsection}{\numberline {2.3.1}Comando Canonical}{20}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Comando Coercion}{23}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}Exemplo de Implementação de Grupos}{25}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Mecanismo para Hierarquias entre Estruturas Algébricas}{26}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.4}Mecanismo para Hierarquias entre Estruturas Algébricas}{27}{subsection.2.3.4}%
 \contentsline {subsection}{\numberline {2.3.5}Mantendo Informações de um Record ou Structure}{35}{subsection.2.3.5}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {3}\MakeUppercase []{Base Teórica}}{38}{chapter.3}%

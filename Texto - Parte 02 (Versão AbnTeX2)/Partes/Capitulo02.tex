@@ -11,40 +11,64 @@ de tais módulos. A Figura \ref{fig:graph-mathcomp} apresenta uma parte desse gr
 
 \begin{figure}[h]
     \centering
-    \caption{Grafo do módulo \textit{ssreflect}}
+    \caption{Print de parte do grafo dos módulos da biblioteca Mathematical Components}
     \includegraphics[width=0.6\textwidth]{Figuras/ssreflect.png}\\
-    \footnotesize{Disponível em: \url{https://math-comp.github.io/htmldoc_2_2_0/libgraph.html}.
-    Acesso em: 18 de maio de 2024.}
+    \footnotesize{Fonte: adaptado de \citeauthor{grafo-ssreflect}, \citeyear{grafo-ssreflect}.
+    %Acesso em: 18 de maio de 2024.
+    }
     \label{fig:graph-mathcomp}
 \end{figure}
 
 % Os módulos principais para o desenvolvimento da prova sobre o algoritmo Tonelli-Shanks (com base no conteúdo de Teoria dos Números que sustenta a lógica do mesmo) são: \textit{all\_ssreflect} (que contém diversos outros módulos), \textit{ring\_quotient}, \textit{zmodp} e \textit{intdiv}.
 
 \section{Igualdades}
-Na maior parte dos teoremas das bibliotecas nativas de \textit{Coq}, usa-se uma definição indutiva de igualdade, que é por sua vez equivalente a igualdade de Leibniz (isto pode ser provado). Por sua vez, essa definição de igualdade é dada pela seguinte proposição indutiva (de acordo com a documentação\footnote{\url{https://coq.inria.fr/doc/V8.18.0/refman/proofs/writing-proofs/equality.html}} \cite{coqteam2022manual}):
-    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Inductive eq {A : Type} (x : A) : A -> Prop := eq_refl : eq x x.
-    \end{lstlisting}
+Na maior parte dos teoremas das bibliotecas nativas de \textit{Coq}, usa-se uma definição indutiva de igualdade, que é por sua vez equivalente a igualdade de Leibniz (isto pode ser provado). Por sua vez, essa definição de igualdade é dada pela seguinte proposição indutiva (de acordo com a documentação \cite{coqteam2022manual}) na Figura \ref{fig:inductive-eq}:
+    \begin{figure}[h]
+    \centering
+    \caption{Código da proposição indutiva para igualdade}
+\begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Inductive eq (A : Type) (x : A) : A -> Prop := 
+    eq_refl : eq A x x.
+\end{lstlisting}
+    \footnotesize{Fonte: adaptado de \citeauthor{coqteam2022manual}, \citeyear{coqteam2022manual}.
+    }
+    \label{fig:inductive-eq}
+    \end{figure}
 
 De maneira distinta, a biblioteca Mathematical Components, em suas definições e teoremas, utiliza com frequência predicados booleanos \cite{assia_mahboubi_2022_7118596}, que são basicamente funções cujo tipo de retorno é \lstinline[language = coq]!bool!, para então representar proposições da forma \lstinline[language = coq]$x = true$, onde \lstinline[language = coq]$x$ é uma expressão cujo retorno é do tipo \lstinline[language = coq]!bool!. Tais proposições são construídas pela função \lstinline[language = coq]$is_true$. No entanto, através do comando \lstinline[language = coq]$Coercion$ (que será explicado mais detalhadamente adiante neste documento) e por questões de legibilidade, tal função é omitida e o sistema de tipos de \textit{Coq} é capaz de inferir quando uma expressão deve ter tipo \lstinline[language = coq]$bool$ ou tipo \lstinline[language = coq]$Prop$ (e então há uma aplicação de \lstinline[language = coq]$is_true$ omitida). 
 
-Semelhantes aos teoremas existentes para proposição comuns, estão disponíveis diversos teoremas para proposições geradas com o uso de \lstinline[language = coq]$is_true$, como por exemplo o lema \lstinline[language = coq]$contraLR$ apresentado em \cite{assia_mahboubi_2022_7118596}. Esse é uma versão da contraposição utilizando predicados booleanos (junto à função \lstinline[language = coq]$is_true$) e sua definição, conforme \cite{assia_mahboubi_2022_7118596}, é dada por:
+Semelhantes aos teoremas existentes para proposição comuns, estão disponíveis diversos teoremas para proposições geradas com o uso de \lstinline[language = coq]$is_true$, como por exemplo o lema \lstinline[language = coq]$contraLR$ apresentado em \cite{assia_mahboubi_2022_7118596}. Esse é uma versão da contraposição utilizando predicados booleanos (junto à função \lstinline[language = coq]$is_true$) e sua definição, conforme \cite{assia_mahboubi_2022_7118596}, é dada na Figura \ref{fig:lemma-contraLR}:
+\begin{figure}[h]
+    \centering
+    \caption{Código do lema \coqinline[]{contraLR}}
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma contraLR (c b : bool) : (~~ c -> ~~ b) -> b -> c.
     \end{lstlisting}
-onde \lstinline[language = coq]$~~$ é a operação de negação definida na biblioteca Mathematical Components.
+    \footnotesize{Fonte: adaptado de \citeauthor{assia_mahboubi_2022_7118596}, \citeyear{assia_mahboubi_2022_7118596}.
+    }
+    \label{fig:lemma-contraLR}
+\end{figure}
+\\onde \lstinline[language = coq]$~~$ é a operação de negação definida na biblioteca Mathematical Components.
 
 Outra informação relevante ao se tratar do conteúdo da biblioteca é o tipo \lstinline[language = coq]$eqType$: para que seja construído qualquer habitante desse tipo é necessário um elemento \lstinline[language = coq]$T$ de tipo 
 \lstinline[language = coq]$Type$, uma função \lstinline[language = coq]$eq_op$ de tipo \lstinline[language = coq]$T -> T -> bool$
-e um elemento \lstinline[language = coq]$eqP$ cujo tipo é um teorema relacionando a igualdade de Leibniz com \lstinline[language = coq]$T$ e \lstinline[language = coq]$eq_op$. Esse último possui, na biblioteca, uma notação de nome \lstinline[language = coq]$eq_axiom$, e sua descrição, dada em \cite{mathcomp-eqtype}, é:
+e um elemento \lstinline[language = coq]$eqP$ cujo tipo é um teorema relacionando a igualdade de Leibniz com \lstinline[language = coq]$T$ e \lstinline[language = coq]$eq_op$. Esse último possui, na biblioteca, uma notação de nome \lstinline[language = coq]$eq_axiom$, e sua descrição, dada em \cite{mathcomp-eqtype}, é apresentada na Figura \ref{fig:definition-eqaxiom} (onde \lstinline[language = coq]$rel T$ é equivalente ao tipo \lstinline[language = coq]$T -> T -> bool$):
 %     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 % Definition eq_axiom: forall (T : Type) (e : rel T), forall x x0 : T, 
 %     reflect (x = x0) (e x x0)
 %     \end{lstlisting}
+\begin{figure}[ht]
+    \centering
+    \caption{Código da definição \coqinline[]{eq_axiom}}
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition eq_axiom T (e : rel T) := forall x y, reflect (x = y) (e x y).
     \end{lstlisting}
-onde \lstinline[language = coq]$rel T$ é equivalente ao tipo \lstinline[language = coq]$T -> T -> bool$.
+    \footnotesize{Fonte: \citeauthor{mathcomp-eqtype}, \citeyear{mathcomp-eqtype}.
+    }
+    \label{fig:definition-eqaxiom}
+\end{figure}
+\\
+% \\onde \lstinline[language = coq]$rel T$ é equivalente ao tipo \lstinline[language = coq]$T -> T -> bool$.
 
 Portanto, para que um tipo \lstinline[language = coq]$A$
 pertença ao primeiro campo mencionado, é necessário que se tenha uma prova da proposição \lstinline[language = coq]$eq_axiom A$, isto é, 
@@ -65,15 +89,17 @@ A utilização de um tipo como \lstinline[language = coq]$eqType$ facilita que s
 \lstinline[language = coq]$Structure$ e \lstinline[language = coq]$Record$ são comandos sinônimos para geração de tipos indutivos que possuem somente um construtor e cujo os campos são dependentemente tipados, isto é, o tipo de cada campo pode depender dos valores de campos anteriores, assim como nas definições indutivas \cite{assia_mahboubi_2022_7118596}. A vantagem do uso desses comandos é que por meio desses são geradas automaticamente funções para extrair valores dos argumentos do construtor do tipo declarado.
 
 Esses comandos são frequentemente utilizados na biblioteca Mathematical Components para definir interfaces (como o \lstinline[language = coq]$eqType$) e subtipos (ex.: tipo em que os habitantes são todos os números naturais menores que $8$). Para melhor entendimento do leitor, tem-se a seguir um exemplo semelhante ao tipo \lstinline[language = coq]$eqType$ definido na biblioteca, apresentado em \cite{assia_mahboubi_2022_7118596}:
-    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+    \begin{figure}[h]        
+\begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Record eqType : Type := Pack
 {
     sort : Type;
     eq_op : sort -> sort -> bool;
     axiom : eq_axiom eq_op
 }.
-    \end{lstlisting}
-Como explicado acima, essa declaração é equivalente a se fazer as seguintes declarações:
+\end{lstlisting}
+    \end{figure}
+\\Como explicado acima, essa declaração é equivalente a se fazer as seguintes declarações:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Inductive eqType : Type :=
     | Pack (sort : Type) (eq_op : sort -> sort -> bool) (axiom : eq_axiom eq_op).
