@@ -13,7 +13,7 @@ de tais módulos. A Figura \ref{fig:graph-mathcomp} apresenta uma parte desse gr
     \centering
     \caption{Print de parte do grafo dos módulos da biblioteca Mathematical Components}
     \includegraphics[width=0.6\textwidth]{Figuras/ssreflect.png}\\
-    \footnotesize{Fonte: adaptado de \citeauthor{grafo-ssreflect}, \citeyear{grafo-ssreflect}.
+    \footnotesize{Fonte:\citeauthor{grafo-ssreflect}, \citeyear{grafo-ssreflect}.
     %Acesso em: 18 de maio de 2024.
     }
     \label{fig:graph-mathcomp}
@@ -580,7 +580,7 @@ No entanto, apesar de já solucionado o problema inicial há um detalhe que deve
     \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
 Notation nmodType := GRing.Nmodule.type
     \end{lstlisting}
-ou seja, \coqinline[]{nmodType} é uma notação que gerada pelo \textit{addon} \coqinline[]{hierarchy-builder}, no arquivo \textit{ssralg} da biblioteca, por meio do seguinte comando:
+ou seja, \coqinline[]{nmodType} é uma notação que gerada pelo \textit{addon} \coqinline[]{hierarchy-builder}, no arquivo \cite{math} da biblioteca, por meio do seguinte comando:
     \begin{lstlisting}[language=coq, frame=single, tabsize=1]
 #[short(type="nmodType")]
 HB.structure Definition Nmodule := {V of isNmodule V & Choice V}.
