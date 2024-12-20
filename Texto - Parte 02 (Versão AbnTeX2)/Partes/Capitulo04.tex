@@ -67,12 +67,12 @@ Quanto ao segundo item a ser mencionado, este trata do Lema \ref{lema : modp-1fa
 Lemma fact_sqr_exp a p :
         prime p -> ~~ (p %| a) -> ~~ res_quad p a -> (p.-1`!) = a ^ p.-1./2 %[mod p].
         \end{lstlisting}
-onde, também em \cite{mathcomp-extra-euler}, \lstinline[language=coq]!res_quad! tem a seguinte definição:
+onde \lstinline[language=coq]!res_quad!, de acordo com \cite{mathcomp-extra-euler}, é uma função para obter o resíduo quadrático módulo $p$ e tem a seguinte definição:
         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition res_quad p a := has (fun i => i * i == a %[mod p]) (iota 0 p).
         \end{lstlisting}
-em que, a função \lstinline[language=coq]!has! recebe um predicado booleano e uma lista, e então retorna \lstinline[language=coq]!true!
-se há algum elemento da lista que satisfaz o predicado e \lstinline[language=coq]!false! caso contrário. Já a função \lstinline[language=coq]!iota! recebe dois números naturais $m$ e $n$ e retorna uma lista crescente de todos os naturais de $m$ até $n-1+m$. Sendo assim, a função \lstinline[language=coq]!res_quad! é um método exaustivo para verificar se há um valor $r$ tal que $r^{2} \equiv a \pmod{p}$.
+em que, a função \lstinline[language=coq]!has!, conforme \cite{mathcomp-seq}, recebe um predicado booleano e uma lista, e então retorna \lstinline[language=coq]!true!
+se há algum elemento da lista que satisfaz o predicado e \lstinline[language=coq]!false! caso contrário. Já a função \lstinline[language=coq]!iota!, também conforme \cite{mathcomp-seq} recebe dois números naturais $m$ e $n$ e retorna uma lista crescente de todos os naturais de $m$ até $n-1+m$. Sendo assim, a função \lstinline[language=coq]!res_quad! é um método exaustivo para verificar se há um valor $r$ tal que $r^{2} \equiv a \pmod{p}$.
 
 % O lema \coqinline[]{fact_sqr_exp} foi usado por Laurent Théry na prova da seguinte versão do \textit{Critério de Euler} (Lema \ref{teorema:criteriodeeuler}):
 %         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
@@ -83,7 +83,7 @@ se há algum elemento da lista que satisfaz o predicado e \lstinline[language=co
 
 As dificuldades relacionadas às provas destas declarações em \textit{Coq}, se baseando nas ideias de provais manuais apresentadas neste trabalho, devem-se ao fato de que tais ideias sugerem a reorganização de todos os termos de produtórios com tamanho arbitrário. Tais provas não podem ser evitadas na implementação de \textit{símbolo de Legendre} em \textit{Coq} dado que tratam de conteúdos diretamente relacionados (principalmente ao se considerar o Teorema \ref{teorema:criteriodeeuler}).
 
-Devido a essa dificuldade, que pode vir a aparecer em diversas situações onde tem-se uma ideia de prova semelhante a ser formalizada, as implementações das provas do Teorema \ref{teorema : wilson} e do Lema \ref{lema : modp-1fat}, em \textit{Coq}, são interessantes de serem analisadas. A prova do Lema \ref{lema : modp-1fat} foi realiza por Laurent Théry em \cite{mathcomp-extra-euler} e o código pode ser divido nas seguintes etapas:
+Devido a essa dificuldade, que pode vir a aparecer em diversas situações onde tem-se uma ideia de prova semelhante a ser formalizada, as implementações das provas do Teorema \ref{teorema : wilson} e do Lema \ref{lema : modp-1fat}, em \textit{Coq}, são interessantes de serem analisadas. A prova do Lema \ref{lema : modp-1fat} foi realizada por Laurent Théry em \cite{mathcomp-extra-euler} e o código, com alguns trechos adaptados e comentários adicionados (ambos para fins didáticos) aqui, pode ser divido nas seguintes etapas:
 
 % é de interesse se ter conhecimento de como as provas do Teorema \ref{teorema : wilson} e do Lema \ref{lema : modp-1fat} foram feitas em \textit{Coq}. Para satisfazer tal necessidade será aqui explicada em detalhe (com excessão da maioria dos \textit{subgoals} e outras partes triviais) o conteúdo da prova do Lema \ref{lema : modp-1fat} realizada por Laurent Théry. O código da prova pode-ser divido nas seguintes etapas:
 
@@ -92,7 +92,7 @@ Devido a essa dificuldade, que pode vir a aparecer em diversas situações onde 
         % Parte 01:
 
         \item Inicialmente tem-se o seguinte \textit{goal}:
-                \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+                \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
 prime p -> ~~ (p %| a) -> ~~ res_quad p a -> (p.-1`!) = a ^ p.-1./2 %[mod p]
                 \end{lstlisting}
         Introduz-se então todas as hipóteses e se reescreve $(p-1)!$:
@@ -243,7 +243,7 @@ apply: etrans (_ : \prod_(j in 'F_p | j < f j) (j * f j) = _ %[mod p]). @ \label
         (*... prova do goal 2...*)      @ \Suppressnumber @
                         @\footnotesize \rvdots \Reactivatenumber \setcounter{lstnumber}{25}@
                 \end{lstlisting}
-        A tática então aplicada na linha \ref{line:25-item4} utiliza da transitividade da igualdade por meio do lema \lstinline[language=coq]|etrans| junto a um argumento que permite que o \textit{Coq} infira o termo médio desta transitividade. Este argumento é uma prova de igualdade, a qual, por não existir nas hipóteses, irá gerar 2 \textit{goals} no lugar do \textit{goal} atual:
+        A tática então aplicada na linha \ref{line:25-item4} utiliza da transitividade da igualdade por meio do lema \lstinline[language=coq]|etrans|, definido em \cite{coqteam2022manual}, junto a um argumento que permite que o \textit{Coq} infira o termo médio desta transitividade. Este argumento é uma prova de igualdade, a qual, por não existir nas hipóteses, irá gerar 2 \textit{goals} no lugar do \textit{goal} atual:
 
         \begin{enumerate}[label=\textbf{\roman{enumi}.(\alph*)}]
                 \item Primeiro \textit{goal}:
@@ -273,19 +273,19 @@ rewrite big1 /= ?muln1 // => i.         $\label{line:33-item4-a}$
                 
                         \item[\textbf{(\ref{line:26-item4-a})}] Retirada da aplicação de $\bmod \; p$ em ambos os lados da equação.
                 
-                        \item[\textbf{(\ref{line:27-item4-a})}] Aplicação do lema \lstinline[language=coq]|eq_bigr| junto à eliminação do $\forall$ e introdução da hipótese gerada por tal aplicação; é interessante ao leitor não acostumado com as táticas da linguagem \textit{SSReflect} notar que, sabendo que o lema \lstinline[language=coq]|eq_bigr| tem o seguinte enunciado:
+                        \item[\textbf{(\ref{line:27-item4-a})}] Aplicação do lema \lstinline[language=coq]|eq_bigr| junto à eliminação do $\forall$ e introdução da hipótese gerada por tal aplicação; é interessante ao leitor não acostumado com as táticas da linguagem \textit{SSReflect} notar, sabendo que o lema \lstinline[language=coq]|eq_bigr|, conforme \cite{mathcomp-bigop}, tem o seguinte enunciado:
         
                                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma eq_bigr r (P : pred I) F1 F2 : (forall i, P i -> F1 i = F2 i) ->
         \big[op/idx]_(i <- r | P i) F1 i = \big[op/idx]_(i <- r | P i) F2 i.
                                 \end{lstlisting}
-                        após a aplicação do lema e eliminação do $\forall$, o \textit{goal} se torna:
+                        que após a aplicação desse lema e eliminação do $\forall$, o \textit{goal} se torna:
                         
                                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 (j  \in 'F_p) && (j < f j) -> 
         \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i = j * f j
                                 \end{lstlisting}
-                        mas nesse caso também é feita a introdução do precedente com \lstinline[language=coq]|/andP[jF jLfj]|, que torna, em tal hipótese, a expressão com operador \lstinline[language=coq]|&&| (conjunção booleana) em uma expressão equivalente com \lstinline[language=coq]|/\| (conjunção proposicional) que é então separada nas hipóteses \lstinline[language=coq]|jF| e \lstinline[language=coq]|jLfj|.
+                        mas nesse caso também é feita a introdução do precedente com \lstinline[language=coq]|/andP[jF jLfj]|, que torna, em tal hipótese, a expressão com operador \lstinline[language=coq]|&&| (conjunção booleana) em uma expressão equivalente com \lstinline[language=coq]|/\| (conjunção proposicional) que é então separada nas hipóteses \lstinline[language=coq]|jF| e \lstinline[language=coq]|jLfj| \cite{assia_mahboubi_2022_7118596}.
                         
                         Pode-se notar portanto que a partir da aplicação do lema \lstinline[language=coq]|eq_bigr| o \textit{goal} consiste em provar que o termo geral dos produtórios é igual.
                         
@@ -294,7 +294,7 @@ Lemma eq_bigr r (P : pred I) F1 F2 : (forall i, P i -> F1 i = F2 i) ->
                                 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 \prod_(i in 'F_p | (i != 0%R) && (can i == j)) i = j * f j
                                 \end{lstlisting}
-                        Este lema basicamente retira um elemento de dentro da aplicação do operador \lstinline[language=coq]|bigop| (nesse caso o elemento \lstinline[language=coq]|j| pois foi este o argumento passado ao lema) conforme \cite{mathcomp-bigop}, no entanto deve-se demonstrar que tal elemento realmente ocorre em alguma das iterações, por isto é então gerado um \textit{subgoal}. Esse \textit{subgoal} normalmente deveria ser resolvido após a resolução do \textit{goal} principal, mas devido ao uso de \lstinline[language=coq]|last first| tal \textit{subgoal} deve ser resolvido antes do \textit{goal} principal.
+                        Este lema basicamente retira um elemento de dentro da aplicação do operador \lstinline[language=coq]|bigop| (nesse caso o elemento \lstinline[language=coq]|j| pois foi este o argumento passado ao lema) conforme \cite{mathcomp-bigop}, no entanto deve-se demonstrar que tal elemento realmente ocorre em alguma das iterações, por isto é então gerado um \textit{subgoal}. Esse \textit{subgoal} normalmente deveria ser resolvido após a resolução do \textit{goal} principal, mas devido ao uso de \lstinline[language=coq]|last first| tal \textit{subgoal} deve ser resolvido antes do \textit{goal} principal \cite{assia_mahboubi_2022_7118596}.
                         
                         \item[\textbf{(\ref{line:30-item4-a})}] Comando adicionado apenas para tornar o \textit{goal} mais legível (não é algo que estava na prova original feita por Laurent), e nesse caso, após a execução dos comandos da linha 3 e deste comando, o \textit{goal} se torna:
                         
@@ -417,7 +417,7 @@ rewrite !inE.                                           @ \label{line:66-item4b-
 
                                 \item[\textbf{(\ref{line:40-item4b-item2})}] Remoção da aplicação de $\bmod \; p$ em ambos os lados da equação.
 
-                                \item[\textbf{(\ref{line:41-item4b-item2})}] Reescrita utilizando \lstinline[language=coq]|prod_nat_const|, lema este que possui o seguinte enunciado \cite{mathcomp-bigop}:
+                                \item[\textbf{(\ref{line:41-item4b-item2})}] Reescrita utilizando \lstinline[language=coq]|prod_nat_const|, lema este que possui o seguinte enunciado em \cite{mathcomp-bigop}:
                                 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma prod_nat_const n : \prod_(i in A) n = n ^ #|A|.
@@ -576,7 +576,7 @@ case: ltngtP => // /eqP/val_eqP fiEi.                           @ \label{line:61
 (i \in (fun i0 : 'F_p => eqn (i0.+1 - f i0) 0)) = (i \in [predI A & B])
                                         \end{lstlisting}
 
-                                \item[\textbf{(\ref{line:66-item4b-item2})}] Ambas as expressões da igualdade podem ser simplificadas com o uso da tupla \lstinline[language=coq]|inE| diversas vezes, por isso para realizar o máximo de reescritas possíveis é utilizado ``\lstinline[language=coq]|!|'' \cite{assia_mahboubi_2022_7118596} antes do nome da tupla. Obtêm-se então a seguinte expressão no \textit{goal}:
+                                \item[\textbf{(\ref{line:66-item4b-item2})}] Ambas as expressões da igualdade podem ser simplificadas com o uso da tupla \lstinline[language=coq]|inE| diversas vezes, por isso para realizar o máximo de reescritas possíveis é utilizado ``\lstinline[language=coq]|!|'' antes do nome da tupla \cite{assia_mahboubi_2022_7118596}. Obtêm-se então a seguinte expressão no \textit{goal}:
                                 
                                         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 (i < f i) = (i != 0%R) && true && (i < f i)
@@ -621,7 +621,7 @@ Definition legendre_symb {p : int} (pL2 : (2 < p)%R) (pP : primez p)
         then 1%Z
         else (-1)%Z.
         \end{lstlisting}
-onde \lstinline[language=coq]|resz_quad| é a uma versão da função \lstinline[language=coq]|res_quad| (mencionado na Seção \ref{sec:implementacoes}), porém que recebe como argumento valores de tipo \lstinline[language=coq]|int|. A sua definição é:
+onde \lstinline[language=coq]|resz_quad| é a uma versão da função \lstinline[language=coq]|res_quad|, definida em \cite{mathcomp-extra-euler} e mencionada na Seção \ref{sec:implementacoes}, porém que recebe como argumento valores de tipo \lstinline[language=coq]|int|. A sua definição é:
         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition resz_quad p a := has (fun i => ((i * i)%:Z  == a %[mod p])%Z) (iota 0 `|p|).
         \end{lstlisting}
@@ -632,7 +632,8 @@ Compute (legendre_symb (_ : 2 < 7)%R (_ : primez 7) 2).
 que neste caso irá retornar $1$.
 
 % Havendo a definição de \textit{símbolo de Legendre} resta então provar as suas principais propriedades, que podem vir a ser úteis em trabalhos futuros. Se baseando em \cite{book:2399854}, as principais propriedades do \textit{símbolo de Legendre}, considerando um número primo $p > 2$, são, para todo $a, b \in \mathbb{Z}$:
-Havendo a definição de \textit{símbolo de Legendre} provou-se então a corretude da função que o implementa, qual foi feita utilizando o tipo indutivo \coqinline[]{reflect} pois teoremas sobre a habitantes desse tipo podem são usados em táticas da linguagem \textit{SSReflect}. Esse tipo tem a seguinte definição:
+Havendo a definição de \textit{símbolo de Legendre} provou-se então a corretude da função que o implementa, qual foi feita utilizando o tipo indutivo \coqinline[]{reflect} pois teoremas sobre a habitantes desse tipo podem são usados em táticas da linguagem \textit{SSReflect} \cite{assia_mahboubi_2022_7118596}. Esse tipo tem a seguinte definição conforme \cite{coq-bool}:
+% Esse tipo tem a seguinte definição conforme \cite{coq-ssrbool} e \cite{coq-bool}:
         \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Inductive reflect (P : Prop) : bool -> Set :=
         | ReflectT : P -> reflect P true
@@ -643,16 +644,17 @@ A corretude foi então separada em 2 enunciados para melhor usabilidade em outra
 Theorem legendre_symbP {p : int} (pL2 : (2 < p)%R) (pP : primez p) (a : int):
     reflect (exists x, x^2 = a %[mod p]) (if (p %| a)%Z then
         ((legendre_symb pL2 pP a) == 0) else ((legendre_symb pL2 pP a) == 1)).
-Proof.
-@ \rvdots @
-Qed.
-
+        \end{lstlisting}
+% Proof.
+% @ \rvdots @
+% Qed.
+        \begin{lstlisting}[language=coq,frame=single,tabsize=1, escapechar=@]
 Theorem legendre_symbPn {p : int} (pL2 : (2 < p)%R) (pP : primez p) (a : int):
     reflect (~ exists x, x^2 = a %[mod p]) ((legendre_symb pL2 pP a) == -1).
-Proof.
-@ \rvdots @
-Qed.
-        \end{lstlisting}
+\end{lstlisting}
+% Proof.
+% @ \rvdots @
+% Qed.
         
 Foram também provadas as principais propriedades apresentadas em \cite[p.~87-88]{book:2399854} sobre \textit{símbolo de Legendre}. Listando os enunciados dessas propriedades, para um número primo $p > 2$, são, para todo $a, b \in \mathbb{Z}$:
 % 87 é onde está o critério de Euler 
@@ -710,9 +712,12 @@ Lemma eulerz_criterion {p : int} (pL2 : (2 < p)%R) (pP : primez p) (a : int):
     (a ^ ((p - 1) %/ 2)%Z = (legendre_symb pL2 pP a) %[mod p])%Z.
         \end{lstlisting}
 
-        Nas provas destes itens foram utilizadas implementações da biblioteca Mathematical Components (sendo importados os módulos \textit{all\_ssreflect} e \textit{all\_algebra}), do repositório \textit{mathcomp-extra} (disponível em \url{https://github.com/thery/mathcomp-extra} e que contém os conteúdos apresentados na Seção \ref{sec:implementacoes}) e por fim o módulo \textit{primez} disponível no repositório disponibilizado neste trabalho.
+        % Nas provas destes itens foram utilizadas implementações da biblioteca Mathematical Components (sendo importados os arquivos \textit{all\_ssreflect} e \textit{all\_algebra} disponíveis em \cite{mathcomp-allssreflect} e \cite{mathcomp-allalgebra} respectivamente), do repositório \textit{mathcomp-extra} (disponível em \url{https://github.com/thery/mathcomp-extra} e que contém os conteúdos apresentados na Seção \ref{sec:implementacoes}) e por fim o módulo \textit{primez} disponível no repositório disponibilizado neste trabalho.
+        Nas provas destes itens foram utilizadas implementações da biblioteca Mathematical Components, sendo importados os arquivos \cite{mathcomp-allssreflect}, \cite{mathcomp-allalgebra} e  do arquivo \cite{mathcomp-extra-euler}.
+        
+        % que contém os conteúdos apresentados na Seção \ref{sec:implementacoes}) e por fim o módulo \textit{primez} disponível no repositório disponibilizado neste trabalho.
 
-        Apesar de longas, as provas realizadas para tais lemas não são de uma complexidade que torne oportuno tratar sobre estas aqui. No entanto convém relatar que, justamente pelo tamanho de tais provas e outros detalhes relacionados a boas práticas para contribuições na biblioteca Mathematical Components (assunto tratado em \url{https://github.com/math-comp/math-comp/blob/master/CONTRIBUTING.md}), essas implementações provavelmente deverão ser refatoradas para que possam ser incluídas na biblioteca.
+        Apesar de longas, as provas realizadas para tais lemas não são de uma complexidade que torne oportuno tratar sobre estas aqui. No entanto convém relatar que, justamente pelo tamanho de tais provas e outros detalhes relacionados a boas práticas para contribuições na biblioteca Mathematical Components, assunto tratado em \cite{mathcomp-contributing}, essas implementações provavelmente deverão ser refatoradas para que possam ser incluídas na biblioteca.
 
 % A formalização (isto é, prova) de todos estes lemas está disponível em: \url{https://github.com/bruniculos08/TCC2005/blob/main/C\'{o}digo - Parte 02/InversoMultiplicativo.v}.
 

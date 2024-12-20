@@ -3,9 +3,9 @@
 
 Outro conteúdo sobre o qual trabalhos futuros podem tratar, tendo como base o presente trabalho, será apresentado neste Capítulo e se trata da \textit{Lei de Reciprocidade Quadrática}. Como motivação, esta lei permite tornar mais eficiente o algoritmo \textit{RESSOL} \cite{johndcookQuadraticReciprocity} e também possui outras aplicações como \textit{zero-knowledge proofs} \cite{Wright2016}. O conteúdo apresentado nesse Capítulo é baseado em \cite[p.~89-93]{book:2399854} e em \cite{youtuQuadraticReciprocity}.
 % No livro do BROCHERO et al 2013 a lei de reciprocidade com as duas demonstrações (a segunda é a demonstração trigonométrica) são da página 89 até a 97 mas da primeira demonstração é somente da 89 até a 93 (mas a citação poderia ir até a página 94 talvez onde é discutido o símbolo de Jacobi; minto, melhor ir até 93 mesmo; a partir da 94 é discutida a prova trigonométrica da Lei de Reciprocidade Quadrática)
-O Teorema conhecido como Lei de Reciprocidade Quadrática possui a seguinte descrição:
+O Teorema conhecido como \textit{Lei de Reciprocidade Quadrática} possui a seguinte descrição:
 
-\begin{teorema}[\textit{Reciprocidade Quadrática}] Sejam $p$ e $q$ primos ímpares (maiores que $2$) distintos, então:
+\begin{teorema}[\textit{Reciprocidade Quadrática}] Se $p$ e $q$ são primos ímpares (maiores que $2$) distintos, então:
 \label{teorema:reciprocidadequad}
     \begin{enumerate}
         \item \label{item:recipquad1} $\left(\frac{p}{q} \right) \cdot \left(\frac{q}{p} \right) = (-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}}$
@@ -68,7 +68,7 @@ Dado que para todo $m_j$ tem-se que $m_j \cdot \epsilon_j \bmod{p} > \frac{p-1}{
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 Outro teorema que deve-se provar é o seguinte:
-\begin{teorema} \label{teorema:somatorio-grafico}Seja m$p$ e $q$ números primos ímpares, então:
+\begin{teorema} \label{teorema:somatorio-grafico}Sejam $p$ e $q$ números primos ímpares, então:
     \begin{equation} \label{eq:pointsnum}
     \frac{p-1}{2} \cdot \frac{q-1}{2} = \sum_{i = 1}^{\frac{p-1}{2}} \floor*{\frac{q \cdot i}{p}} + \sum_{j = 1}^{\frac{q-1}{2}} \floor*{\frac{p \cdot j}{q}}
     \end{equation}

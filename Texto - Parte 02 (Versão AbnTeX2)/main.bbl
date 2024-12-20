@@ -40,15 +40,17 @@ Dispon{\'\i}vel em: \url{https://www.johndcook.com/blog/2023/01/01/quadratic-rec
 {{IJCAR-FSCD 2020}. \emph{Cyril Cohen: Hierarchy Builder: algebraic hierarchies made easy in Coq with Elpi (FSCD B)}. 2020. Youtube.
 Dispon{\'\i}vel em: \url{https://youtu.be/F6iRaTlQrlo?si=hvvWFH4WSAfHsd9X}.}
 
-\bibitem[INRIA n.d.]{coq-ssrbool}
-\abntrefinfo{INRIA}{INRIA}{n.d.a}
-{INRIA. \emph{Library Coq.ssr.ssrbool}.
-[S.l.], n.d.}
+\bibitem[INRIA s.d.]{coq-bool}
+\abntrefinfo{INRIA}{INRIA}{s.d.a}
+{INRIA. \emph{Library Coq.Bool.Bool}. s.d. \url{https://coq.inria.fr/doc/V8.10.2/stdlib/Coq.Bool.Bool.html}.}
 
-\bibitem[INRIA n.d.]{coq-ssrfun}
-\abntrefinfo{INRIA}{INRIA}{n.d.b}
-{INRIA. \emph{Library Coq.ssr.ssrfun}.
-[S.l.], n.d.}
+\bibitem[INRIA s.d.]{coq-ssrbool}
+\abntrefinfo{INRIA}{INRIA}{s.d.b}
+{INRIA. \emph{Library Coq.ssr.ssrbool}. s.d. \url{https://coq.inria.fr/doc/V8.10.2/stdlib/Coq.ssr.ssrbool.html}.}
+
+\bibitem[INRIA s.d.]{coq-ssrfun}
+\abntrefinfo{INRIA}{INRIA}{s.d.c}
+{INRIA. \emph{Library Coq.ssr.ssrfun}. s.d. \url{https://coq.inria.fr/doc/v8.9/stdlib/Coq.ssr.ssrfun.html}.}
 
 \bibitem[Kumar 2020]{kumar2021algorithm}
 \abntrefinfo{Kumar}{KUMAR}{2020}
@@ -73,68 +75,93 @@ ISBN 978-3-642-39634-2.}
 {MAHESWARI, A.~U.; DURAIRAJ, P. An algorithm to find square roots of quadratic residues modulo p (p being an odd prime), p $\equiv$ 1 (mod 4).
 \emph{Global Journal of Pure and Applied Mathematics}, v.~13, n.~4, p. 1223--1239, 2017.}
 
-\bibitem[{Mathematical Components Team} 2024]{mathcomp-bigop}
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-allalgebra}
 \abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024a}
+{{Mathematical Components Team}. \emph{all\_algebra.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/a0d310fef7b4023793e74af103955e2dd8832faf/mathcomp/ssreflect/all\_ssreflect.v}.}
+
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-allssreflect}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024b}
+{{Mathematical Components Team}. \emph{all\_ssreflect.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/a0d310fef7b4023793e74af103955e2dd8832faf/mathcomp/ssreflect/all\_ssreflect.v}.}
+
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-bigop}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024c}
 {{Mathematical Components Team}. \emph{bigop.v}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/27149d11ac33b01462ae2ee6dc58dfa6e2c4988e/mathcomp/ssreflect/bigop.v}.}
 
 \bibitem[{Mathematical Components Team} 2024]{mathcomp-binomial}
-\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024b}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024d}
 {{Mathematical Components Team}. \emph{binomial.v}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/c99b88612a8ddec85095988ce3612608b578e231/mathcomp/ssreflect/binomial.v}.}
 
 \bibitem[{Mathematical Components Team} 2024]{mathcomp-contributing}
-\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024c}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024e}
 {{Mathematical Components Team}. \emph{CONTRIBUTING.md}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/f688fc7e10cb8c17e1ad644f517e0eda34b2c8e7/CONTRIBUTING.md}.}
 
 \bibitem[{Mathematical Components Team} 2024]{mathcomp-div}
-\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024d}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024f}
 {{Mathematical Components Team}. \emph{div.v}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/4c9ee2fc654eaa2869c987794da715b1b9405f84/mathcomp/ssreflect/div.v}.}
 
 \bibitem[{Mathematical Components Team} 2024]{mathcomp-eqtype}
-\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024e}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024g}
 {{Mathematical Components Team}. \emph{eqtype.v}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/4281254f5cdc9fe482f11a40011ed44247ddb626/mathcomp/ssreflect/eqtype.v}.}
 
 \bibitem[{Mathematical Components Team} 2024]{mathcomp-finset}
-\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024f}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024h}
 {{Mathematical Components Team}. \emph{finset.v}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/936a3fd89c621caec7bae631147234f2e4d389f7/mathcomp/ssreflect/finset.v}.}
 
 \bibitem[{Mathematical Components Team} 2024]{mathcomp-fintype}
-\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024g}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024i}
 {{Mathematical Components Team}. \emph{fintype.v}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/5ee3a7ca55ec56f7dda33f91fdc06a0643e444e2/mathcomp/ssreflect/fintype.v}.}
 
 \bibitem[{Mathematical Components Team} 2024]{mathcomp-intdiv}
-\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024h}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024j}
 {{Mathematical Components Team}. \emph{intdiv.v}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/b6e6fee7e4338bd6de13806936f5e58b71c06242/mathcomp/algebra/intdiv.v}.}
 
 \bibitem[{Mathematical Components Team} 2024]{grafo-ssreflect}
-\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024i}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024k}
 {{Mathematical Components Team}. \emph{libgraph.html}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://math-comp.github.io/htmldoc\_2\_2\_0/libgraph.html}.}
 
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-github}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024l}
+{{Mathematical Components Team}. \emph{Mathematical Components}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp}.}
+
 \bibitem[{Mathematical Components Team} 2024]{mathcomp-prime}
-\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024j}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024m}
 {{Mathematical Components Team}. \emph{prime.v}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/e78f4d2d617ec6e97a8e708adb44c70a8206c335/mathcomp/ssreflect/prime.v}.}
 
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-seq}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024n}
+{{Mathematical Components Team}. \emph{seq.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/c56cff59b06d0f29995ce8e886312186bbe73e4a/mathcomp/ssreflect/seq.v}.}
+
+\bibitem[{Mathematical Components Team} 2024]{mathcomp-ssralg}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024o}
+{{Mathematical Components Team}. \emph{ssralg.v}. 2024. Github.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/e9cdaadfad9e625f9e5b4062450ab62459e7e835/mathcomp/algebra/ssralg.v}.}
+
 \bibitem[{Mathematical Components Team} 2024]{mathcomp-ssrnat}
-\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024k}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024p}
 {{Mathematical Components Team}. \emph{ssrnat.v}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/383429c36702d3280fbeb87c20293ac48f12c560/mathcomp/ssreflect/ssrnat.v}.}
 
 \bibitem[{Mathematical Components Team} 2024]{mathcomp-hb-v1}
-\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024l}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024q}
 {{Mathematical Components Team}. \emph{V1.v}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/hierarchy-builder/blob/47c19a60daec964abb4b95bfbb95ec81a64f9b47/examples/FSCD2020\_material/V1.v}.}
 
 \bibitem[{Mathematical Components Team} 2024]{mathcomp-zmodp}
-\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024m}
+\abntrefinfo{{Mathematical Components Team}}{{Mathematical Components Team}}{2024r}
 {{Mathematical Components Team}. \emph{zmodp.v}. 2024. Github.
 Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/5fee02d9eff3a4089f1e023df2e9ed923a54a902/mathcomp/algebra/zmodp.v}.}
 

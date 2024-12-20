@@ -1,7 +1,7 @@
 \chapter{Biblioteca Mathematical Components}
 \label{cap:mathcomp}
 
-Nos capítulos seguintes será usada uma série de itens disponíveis na biblioteca Mathematical Components e outros implementados com uso da biblioteca. Todavia é necessário, por parte do leitor, um conhecimento básico sobre essa biblioteca, e para isso, neste capítulo serão explicados elementos que foram considerados mais essenciais de acordo com o tema definido. Todo o conteúdo a seguir se baseia em \cite{assia_mahboubi_2022_7118596}.
+Nos capítulos seguintes será usada uma série de itens disponíveis na biblioteca Mathematical Components e outros implementados com uso da biblioteca. Todavia é necessário, por parte do leitor, um conhecimento básico sobre essa biblioteca, e para isso, neste capítulo serão explicados elementos que foram considerados mais essenciais de acordo com o tema definido. Todo o conteúdo a seguir se baseia em \cite{assia_mahboubi_2022_7118596} e também nos códigos do repositório da biblioteca Mathematical Components em \cite{mathcomp-github}.
 
 Ademais, é importante ressaltar que, na apresentação dos conteúdos deste capítulo, se assume que o leitor possui um conhecimento básico sobre \textit{Coq}, e em caso contrário recomenda-se que o leitor acesse o material disponível em: \url{https://softwarefoundations.cis.upenn.edu/lf-current/index.html}
 
@@ -12,7 +12,7 @@ de tais módulos. A Figura \ref{fig:graph-mathcomp} apresenta uma parte desse gr
 \begin{figure}[h]
     \centering
     \caption{Print de parte do grafo dos módulos da biblioteca Mathematical Components}
-    \includegraphics[width=0.6\textwidth]{Figuras/ssreflect.png}\\
+    \includegraphics[width=0.5\textwidth]{Figuras/ssreflect.png}\\
     \footnotesize{Fonte:\citeauthor{grafo-ssreflect}, \citeyear{grafo-ssreflect}.
     %Acesso em: 18 de maio de 2024.
     }
@@ -22,53 +22,59 @@ de tais módulos. A Figura \ref{fig:graph-mathcomp} apresenta uma parte desse gr
 % Os módulos principais para o desenvolvimento da prova sobre o algoritmo Tonelli-Shanks (com base no conteúdo de Teoria dos Números que sustenta a lógica do mesmo) são: \textit{all\_ssreflect} (que contém diversos outros módulos), \textit{ring\_quotient}, \textit{zmodp} e \textit{intdiv}.
 
 \section{Igualdades}
-Na maior parte dos teoremas das bibliotecas nativas de \textit{Coq}, usa-se uma definição indutiva de igualdade, que é por sua vez equivalente a igualdade de Leibniz (isto pode ser provado). Por sua vez, essa definição de igualdade é dada pela seguinte proposição indutiva (de acordo com a documentação \cite{coqteam2022manual}) na Figura \ref{fig:inductive-eq}:
-    \begin{figure}[h]
-    \centering
-    \caption{Código da proposição indutiva para igualdade}
+Na maior parte dos teoremas das bibliotecas nativas de \textit{Coq}, usa-se uma definição indutiva de igualdade, que é por sua vez equivalente a igualdade de Leibniz (isto pode ser provado). Por sua vez, essa definição de igualdade é dada pela seguinte proposição indutiva conforme \cite{coqteam2022manual}:
+% (de acordo com a documentação \cite{coqteam2022manual}) na Figura \ref{fig:inductive-eq}:
+    % \begin{figure}[h]
+    % \centering
+    % \caption{Código da proposição indutiva para igualdade}
 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Inductive eq (A : Type) (x : A) : A -> Prop := 
     eq_refl : eq A x x.
 \end{lstlisting}
-    \footnotesize{Fonte: adaptado de \citeauthor{coqteam2022manual}, \citeyear{coqteam2022manual}.
-    }
-    \label{fig:inductive-eq}
-    \end{figure}
+    % \footnotesize{Fonte: adaptado de \citeauthor{coqteam2022manual}, \citeyear{coqteam2022manual}.
+    % }
+    % \label{fig:inductive-eq}
+    % \end{figure}
 
 De maneira distinta, a biblioteca Mathematical Components, em suas definições e teoremas, utiliza com frequência predicados booleanos \cite{assia_mahboubi_2022_7118596}, que são basicamente funções cujo tipo de retorno é \lstinline[language = coq]!bool!, para então representar proposições da forma \lstinline[language = coq]$x = true$, onde \lstinline[language = coq]$x$ é uma expressão cujo retorno é do tipo \lstinline[language = coq]!bool!. Tais proposições são construídas pela função \lstinline[language = coq]$is_true$. No entanto, através do comando \lstinline[language = coq]$Coercion$ (que será explicado mais detalhadamente adiante neste documento) e por questões de legibilidade, tal função é omitida e o sistema de tipos de \textit{Coq} é capaz de inferir quando uma expressão deve ter tipo \lstinline[language = coq]$bool$ ou tipo \lstinline[language = coq]$Prop$ (e então há uma aplicação de \lstinline[language = coq]$is_true$ omitida). 
 
-Semelhantes aos teoremas existentes para proposição comuns, estão disponíveis diversos teoremas para proposições geradas com o uso de \lstinline[language = coq]$is_true$, como por exemplo o lema \lstinline[language = coq]$contraLR$ apresentado em \cite{assia_mahboubi_2022_7118596}. Esse é uma versão da contraposição utilizando predicados booleanos (junto à função \lstinline[language = coq]$is_true$) e sua definição, conforme \cite{assia_mahboubi_2022_7118596}, é dada na Figura \ref{fig:lemma-contraLR}:
-\begin{figure}[h]
-    \centering
-    \caption{Código do lema \coqinline[]{contraLR}}
+Semelhantes aos teoremas existentes para proposição comuns, estão disponíveis diversos teoremas para proposições geradas com o uso de \lstinline[language = coq]$is_true$, como por exemplo o lema \lstinline[language = coq]$contraLR$ apresentado em \cite{assia_mahboubi_2022_7118596}. Esse é uma versão da contraposição utilizando predicados booleanos (junto à função \lstinline[language = coq]$is_true$) e sua definição, conforme \cite{assia_mahboubi_2022_7118596}, é: 
+% dada na Figura \ref{fig:lemma-contraLR}:
+% \begin{figure}[h]
+%     \centering
+%     \caption{Código do lema \coqinline[]{contraLR}}
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma contraLR (c b : bool) : (~~ c -> ~~ b) -> b -> c.
     \end{lstlisting}
-    \footnotesize{Fonte: adaptado de \citeauthor{assia_mahboubi_2022_7118596}, \citeyear{assia_mahboubi_2022_7118596}.
-    }
-    \label{fig:lemma-contraLR}
-\end{figure}
-\\onde \lstinline[language = coq]$~~$ é a operação de negação definida na biblioteca Mathematical Components.
+%     \footnotesize{Fonte: adaptado de \citeauthor{assia_mahboubi_2022_7118596}, \citeyear{assia_mahboubi_2022_7118596}.
+%     }
+%     \label{fig:lemma-contraLR}
+% \end{figure}
+% \\
+onde \lstinline[language = coq]$~~$ é a operação de negação booleana.
+% definida na biblioteca Mathematical Components.
 
 Outra informação relevante ao se tratar do conteúdo da biblioteca é o tipo \lstinline[language = coq]$eqType$: para que seja construído qualquer habitante desse tipo é necessário um elemento \lstinline[language = coq]$T$ de tipo 
 \lstinline[language = coq]$Type$, uma função \lstinline[language = coq]$eq_op$ de tipo \lstinline[language = coq]$T -> T -> bool$
-e um elemento \lstinline[language = coq]$eqP$ cujo tipo é um teorema relacionando a igualdade de Leibniz com \lstinline[language = coq]$T$ e \lstinline[language = coq]$eq_op$. Esse último possui, na biblioteca, uma notação de nome \lstinline[language = coq]$eq_axiom$, e sua descrição, dada em \cite{mathcomp-eqtype}, é apresentada na Figura \ref{fig:definition-eqaxiom} (onde \lstinline[language = coq]$rel T$ é equivalente ao tipo \lstinline[language = coq]$T -> T -> bool$):
+e um elemento \lstinline[language = coq]$eqP$ cujo tipo é um teorema relacionando a igualdade de Leibniz com \lstinline[language = coq]$T$ e \lstinline[language = coq]$eq_op$. Esse último possui, na biblioteca, uma notação de nome \lstinline[language = coq]$eq_axiom$, e sua descrição, dada em \cite{mathcomp-eqtype} é:
+% apresentada na Figura \ref{fig:definition-eqaxiom} (onde \lstinline[language = coq]$rel T$ é equivalente ao tipo \lstinline[language = coq]$T -> T -> bool$):
 %     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 % Definition eq_axiom: forall (T : Type) (e : rel T), forall x x0 : T, 
 %     reflect (x = x0) (e x x0)
 %     \end{lstlisting}
-\begin{figure}[ht]
-    \centering
-    \caption{Código da definição \coqinline[]{eq_axiom}}
+% \begin{figure}[ht]
+%     \centering
+%     \caption{Código da definição \coqinline[]{eq_axiom}}
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition eq_axiom T (e : rel T) := forall x y, reflect (x = y) (e x y).
     \end{lstlisting}
-    \footnotesize{Fonte: adaptado de \citeauthor{mathcomp-eqtype}, \citeyear{mathcomp-eqtype}.
-    }
-    \label{fig:definition-eqaxiom}
-\end{figure}
-\\
-% \\onde \lstinline[language = coq]$rel T$ é equivalente ao tipo \lstinline[language = coq]$T -> T -> bool$.
+%     \footnotesize{Fonte: adaptado de \citeauthor{mathcomp-eqtype}, \citeyear{mathcomp-eqtype}.
+%     }
+%     \label{fig:definition-eqaxiom}
+% \end{figure}
+% \\
+% \\
+onde \lstinline[language = coq]$rel T$ é equivalente ao tipo \lstinline[language = coq]$T -> T -> bool$.
 
 Portanto, para que um tipo \lstinline[language = coq]$A$
 pertença ao primeiro campo mencionado, é necessário que se tenha uma prova da proposição \lstinline[language = coq]$eq_axiom A$, isto é, 
@@ -141,23 +147,24 @@ o que nesse caso equivale a:
 Compute (eqn 2 2).
     \end{lstlisting}
 
-Entretanto, o objetivo de criar o tipo \lstinline[language = coq]$eqType$ não é estabelecer essa possibilidade de computação para relações de comparação, mas sim construir definições, funções e provas genéricas para todos os tipos que pertencem ao campo \lstinline[language = coq]$sort$ de algum habitante de \lstinline[language = coq]$eqType$ e estabelecer \textit{overloading} de notações. Para exemplo de como alcançar este último objetivo, em \cite{assia_mahboubi_2022_7118596} se define uma notação da seguinte forma exposta na Figura \ref{fig:notation-eqop}:
-\begin{figure}[ht]
-    \centering
-    \caption{Código da notação ``\coqinline[]{==}''}
+Entretanto, o objetivo de criar o tipo \lstinline[language = coq]$eqType$ não é estabelecer essa possibilidade de computação para relações de comparação, mas sim construir definições, funções e provas genéricas para todos os tipos que pertencem ao campo \lstinline[language = coq]$sort$ de algum habitante de \lstinline[language = coq]$eqType$ e estabelecer \textit{overloading} de notações. Para exemplo de como alcançar este último objetivo, em \cite{assia_mahboubi_2022_7118596} se define a seguinte notação:
+% uma notação da seguinte forma exposta na Figura \ref{fig:notation-eqop}:
+% \begin{figure}[ht]
+%     \centering
+%     \caption{Código da notação ``\coqinline[]{==}''}
 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Notation "x == y" := (@eq_op _ x y).
 \end{lstlisting}
-    \footnotesize{Fonte: adaptado de \citeauthor{assia_mahboubi_2022_7118596}, \citeyear{assia_mahboubi_2022_7118596}.
-    }
-    \label{fig:notation-eqop}
-\end{figure}
+%     \footnotesize{Fonte: adaptado de \citeauthor{assia_mahboubi_2022_7118596}, \citeyear{assia_mahboubi_2022_7118596}.
+%     }
+%     \label{fig:notation-eqop}
+% \end{figure}
 %     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 % Notation "x == y" := (@eq_op _ x y).
 %     \end{lstlisting}
-\\
-
-\noindent porém havendo apenas esta definição, caso executado o comando \lstinline[language = coq]$Check (3 == 2)$ tem-se um falha. Ao se executar:
+% \\
+% \noindent 
+porém havendo apenas esta definição, caso executado o comando \lstinline[language = coq]$Check (3 == 2)$ tem-se um falha. Ao se executar:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Fail Check (3 == 11).
     \end{lstlisting}
@@ -168,10 +175,10 @@ The command has indeed failed with message:
 The term "3" has type "nat" while it is 
 expected to have type "sort ?e"
     \end{lstlisting}
-Isto ocorre pois o \textit{Coq} não é capaz de inferir o argumento implícito\footnote{Note que o comando \lstinline[language = coq]$Fail Check (3 == 2)$ é equivalente a \lstinline[language = coq]$Fail Check (@eq_op _ 3 2)$.}  (\lstinline[language = coq]$_$).
+Isto ocorre pois o \textit{Coq} não é capaz de inferir o argumento implícito\footnote{Note que o comando \lstinline[language = coq]$Fail Check (3 == 2)$ é equivalente a \lstinline[language = coq]$Fail Check (@eq_op _ 3 2)$.}  (\lstinline[language = coq]$_$) \cite{assia_mahboubi_2022_7118596}.
 
 Note que é mencionada uma variável \lstinline[language = coq]$?e$. Essa representa um elemento a ser inferido de modo que o tipo \lstinline[language = coq]$sort ?e$ seja igual ao tipo \lstinline[language = coq]$nat$. Como exposto em \cite{10.1007/978-3-642-39634-2_5} o algoritmo de inferência do \textit{Coq} não é capaz de descobrir o valor de tal variável por meio das regras de inferência que possui. Para resolver este problema, conforme \cite{assia_mahboubi_2022_7118596}, 
-o \textit{Coq} permite que se adicione regras de inferência de tipo por meio do comando \lstinline[language = coq]$Canonical$ (que recebe um construtor de algum \lstinline[language = coq]$Record$ ou \lstinline[language = coq]$Structure$ aplicado aos seus argumentos). Assim, resolver esse problema é possível por meio do seguinte código:
+o \textit{Coq} permite que se adicione regras de inferência de tipo por meio do comando \lstinline[language = coq]$Canonical$ (que recebe um construtor de algum \lstinline[language = coq]$Record$ ou \lstinline[language = coq]$Structure$ aplicado aos seus argumentos). Assim, resolver esse problema é possível, de maneira análoga a feita em \cite{assia_mahboubi_2022_7118596}, por meio do seguinte código:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Canonical natEqType.
     \end{lstlisting}
@@ -212,19 +219,19 @@ tem-se o seguinte resultado:
     : bool
     \end{lstlisting}
 
-Como mencionado previamente o tipo \lstinline[language = coq]$eqType$ serve para diversas generalizações. Para exemplo disso, adiante se apresenta a definição de uma comparação entre valores do tipo \lstinline[language = coq]$option$. Antes desse exemplo, vale aqui relembrar o leitor da definição deste tipo:
-\begin{figure}[h]
-    \centering
-    \caption{Código do lema \coqinline[]{contraLR}}
+Como mencionado previamente o tipo \lstinline[language = coq]$eqType$ serve para diversas generalizações. Para exemplo disso, adiante se apresenta a definição de uma comparação entre valores do tipo \lstinline[language = coq]$option$. Antes desse exemplo, vale aqui relembrar o leitor da definição deste tipo conforme exposto em \cite{coqteam2022manual}:
+% \begin{figure}[h]
+%     \centering
+%     \caption{Código do lema \coqinline[]{contraLR}}
     \begin{lstlisting}[language = coq,frame=single,tabsize=1]
 Inductive option (A : Type) : Type :=
     | None : option A
     | Some : A -> option A.
     \end{lstlisting}
-\footnotesize{Fonte: adaptado de \citeauthor{coqteam2022manual}, \citeyear{coqteam2022manual}.}
-    \label{fig:inductive-option}
-    \end{figure}
-A função de comparação a ser declarada irá considerar que o argumento \lstinline[language = coq]$A$ pertence ao campo \lstinline[language = coq]$sort$ de algum habitante de \lstinline[language = coq]$eqType$. Tem-se então a definição dessa função:
+% \footnotesize{Fonte: adaptado de \citeauthor{coqteam2022manual}, \citeyear{coqteam2022manual}.}
+%     \label{fig:inductive-option}
+%     \end{figure}
+Se baseando em \cite{assia_mahboubi_2022_7118596}, a função de comparação a ser declarada irá considerar que o argumento \lstinline[language = coq]$A$ pertence ao campo \lstinline[language = coq]$sort$ de algum habitante de \lstinline[language = coq]$eqType$. Tem-se então a definição dessa função:
     \begin{lstlisting}[language = coq,frame=single,tabsize=1]
 Definition cmp_option (e : eqType) (o1 o2 : option (sort e)) :=
     match o1, o2 with
@@ -580,14 +587,14 @@ No entanto, apesar de já solucionado o problema inicial há um detalhe que deve
     \begin{lstlisting}[language=coq-error,frame=single,tabsize=1]
 Notation nmodType := GRing.Nmodule.type
     \end{lstlisting}
-ou seja, \coqinline[]{nmodType} é uma notação que gerada pelo \textit{addon} \coqinline[]{hierarchy-builder}, no arquivo \cite{math} da biblioteca, por meio do seguinte comando:
+ou seja, \coqinline[]{nmodType} é uma notação que gerada pelo \textit{addon} \coqinline[]{hierarchy-builder}, no arquivo \cite{mathcomp-ssralg} da biblioteca Mathematical Components, por meio do seguinte comando:
     \begin{lstlisting}[language=coq, frame=single, tabsize=1]
 #[short(type="nmodType")]
 HB.structure Definition Nmodule := {V of isNmodule V & Choice V}.
     \end{lstlisting}
 isto é, acrescentando \coqinline[]{#[short(type="nmodType")]} antes da chamada do comando \coqinline[]{HB.structure} que gera a \textit{structure} \coqinline[]{GRing.Nmodule.type}, de maneira análoga ao exemplo que será explicado com maiores detalhes a seguir nesta Subseção.
 
-Há também outra maneira de se resolver tal problema que é consideralvemente mais simples. Para tal será necessário trazer aqui um breve explicação sobre pelo menos uma das versões da hierarquia apresentada em \cite{cohen:hal-02478907}. A versão escolhida para ser tratada aqui é a chamada V1, que apesar de não abordar muitos conceitos sobre a linguagem $\mathcal{HB}$, é suficiente para o entendimento do leitor sobre como pesquisar e utilizar os lemas e teoremas disponíveis nas \textit{structures} geradas por tal linguagem.
+Há também outra maneira de se resolver tal problema que é consideralvemente mais simples. Para tal será necessário trazer aqui um breve explicação sobre pelo menos uma das versões da hierarquia tendo como base \cite{cohen:hal-02478907}. A versão escolhida para ser tratada aqui é a chamada V1, que apesar de não abordar muitos conceitos sobre a linguagem $\mathcal{HB}$, é suficiente para o entendimento do leitor sobre como pesquisar e utilizar os lemas e teoremas disponíveis nas \textit{structures} geradas por tal linguagem.
 
 O exemplo a ser apresentado está disponível em \cite{mathcomp-hb-v1}. O código deste exemplo pode ser divido nas seguintes partes:
     \begin{enumerate}
@@ -603,7 +610,7 @@ Open Scope hb_scope.
     
         \item \label{item:mixin-monoid} Declação de um \textit{mixin} por meio do comando \coqinline[]{HB.mixin}; este comando recebe um \textit{record} que deve possuir um parâmetro de tipo \coqinline[]{Type} junto com uma lista possivelmente vazia de dependências 
         % como outros \textit{mixins} ou \textit{factories} aplicados cada um no primeiro parâmetro (este último tem um forma de declaração semelhante a de um \textit{mixin} porém não será discutido neste trabalho pois não aparece neste exemplo):
-        aplicadas cada uma no primeiro parâmetro:
+        aplicadas cada uma no primeiro parâmetro \cite{cohen:hal-02478907}:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1, numbers=left]
 HB.mixin Record Monoid_of_Type M := {
   zero : M;
@@ -613,13 +620,13 @@ HB.mixin Record Monoid_of_Type M := {
   addr0 : right_id zero add;
 }.
             \end{lstlisting}
-        Note que este \textit{record} encapsula as propriedades necessárias para que um tipo \coqinline[]{S} seja um monoide. Além disso não é definido na declaração o nome do construtor do \textit{record}, com isso o \textit{Coq} define automaticamente um nome para o construtor (nesse caso, se houvesse somente a declaração do \textit{record} sem o comando \coqinline[]{HB.mixin} \coqinline[]{Build_Monoid_of_Type}).
+        Note que este \textit{record} encapsula as propriedades necessárias para que um tipo \coqinline[]{S} seja um monoide. Além disso não é definido na declaração o nome do construtor do \textit{record}, com isso o \textit{Coq} define automaticamente um nome para o construtor (nesse caso, se houvesse somente a declaração do \textit{record} sem o comando \coqinline[]{HB.mixin} \coqinline[]{Build_Monoid_of_Type}) \cite{cohen:hal-02478907}.
 
-        \item Declaração de uma \textit{structure} por meio do comando \coqinline[]{HB.structure}; este comando recebe uma \textit{definition} que contém um tipo (elemento de tipo \coqinline[]{Type}) e uma lista não-vazia de \textit{mixins} ou \textit{factories}:
+        \item Declaração de uma \textit{structure} por meio do comando \coqinline[]{HB.structure}; este comando recebe uma \textit{definition} que contém um tipo (elemento de tipo \coqinline[]{Type}) e uma lista não-vazia de \textit{mixins} ou \textit{factories} \cite{cohen:hal-02478907}:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
 HB.structure Definition Monoid := { M of Monoid_of_Type M }.
             \end{lstlisting}
-        Com esta declaração, o mecanismo do \textit{addon} \coqinline[]{hierarchy-builder} irá gerar uma \textit{record} em um módulo de nome \coqinline[]{Monoid}; podemos verificar esse \textit{record} por meio do comando:
+        Com esta declaração, o mecanismo do \textit{addon} \coqinline[]{hierarchy-builder} irá gerar uma \textit{record} em um módulo de nome \coqinline[]{Monoid} e podemos verificar esse \textit{record} por meio do comando \cite{cohen:hal-02478907}:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
 Print Monoid.type.   
             \end{lstlisting}
@@ -629,16 +636,16 @@ Record type : Type := Pack { sort : Type; class : Monoid.axioms_ sort }.
 
 Arguments Monoid.Pack sort%type_scope class
             \end{lstlisting}
-        Neste \textit{record} estão encapsuladas as propriedades declaradas no \textit{record} do item \ref{item:mixin-monoid}
+        Neste \textit{record} estão encapsuladas as propriedades declaradas no \textit{record} do item \ref{item:mixin-monoid} \cite{cohen:hal-02478907}.
         %  e toda a parte de projeções é cuidada pelo \textit{addon} \coqinline[]{hierarchy-builder} (projeções são as funções que retiram campos específicos de \textit{structures} ou \textit{records})
     
-        \item Como toda a parte de projeções é gerenciada pelo \textit{addon} \coqinline[]{hierarchy-builder} (projeções são as funções que retiram campos específicos de \textit{structures} ou \textit{records}) é possível trabalhar como se \coqinline[]{Monoid.type} fosse um \textit{record} simples (ignorando o fato de que os campos como \coqinline[]{add} estão encapsulados na \textit{class} \coqinline[]{Monoid.axioms_ sort}), como o apresentado na Subseção \ref{sub:grupos} e pode-se declarar então as seguintes notações:
+        \item Como toda a parte de projeções é gerenciada pelo \textit{addon} \coqinline[]{hierarchy-builder} (projeções são as funções que retiram campos específicos de \textit{structures} ou \textit{records}) é possível trabalhar como se \coqinline[]{Monoid.type} fosse um \textit{record} simples (ignorando o fato de que os campos como \coqinline[]{add} estão encapsulados na \textit{class} \coqinline[]{Monoid.axioms_ sort}), como o apresentado na Subseção \ref{sub:grupos} e pode-se declarar então as seguintes notações \cite{cohen:hal-02478907}:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
 Notation "0" := zero : hb_scope.
 Infix "+" := (@add _) : hb_scope.
             \end{lstlisting}
 
-        \item Continuando o exemplo tem-se a implementação de anéis a partir da implementação de monoide agora já realizada:
+        \item Continuando o exemplo tem-se a implementação de anéis a partir da implementação de monoide agora já realizada \cite{cohen:hal-02478907}:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
 HB.mixin Record Ring_of_Monoid R of Monoid R := {
     one : R;
@@ -653,14 +660,14 @@ HB.mixin Record Ring_of_Monoid R of Monoid R := {
     mulrDr : right_distributive mul add;
 }.
             \end{lstlisting}    
-        Note que na declaração do \textit{mixin} há uma \textit{dependencie} \coqinline[]{Monoid R}. Assim, as operações, propriedades e constantes de que tornam \coqinline[]{R} um monoide podem ser utilizadas para expressar os campos de \coqinline[]{Ring_of_Monoid}, qual por sua vez contém então as propriedades, operações e constantes para tornar um tipo que já é um monoide em um anel.
+        Note que na declaração do \textit{mixin} há uma \textit{dependencie} \coqinline[]{Monoid R}. Assim, as operações, propriedades e constantes de que tornam \coqinline[]{R} um monoide podem ser utilizadas para expressar os campos de \coqinline[]{Ring_of_Monoid}, qual por sua vez contém então as propriedades, operações e constantes para tornar um tipo que já é um monoide em um anel \cite{cohen:hal-02478907}.
         
         \item Define-se então a \textit{structure} para anéis:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
 HB.structure Definition Ring := { R of Monoid R & Ring_of_Monoid R }.
             \end{lstlisting}
         onde esta possui duas \textit{dependencies} e agora as propriedades
-        que caracterizam um monoide junto as que caracterizam um monoide como um anel estão encapsuladas em \coqinline[]{Ring.type}.
+        que caracterizam um monoide junto as que caracterizam um monoide como um anel estão encapsuladas em \coqinline[]{Ring.type} \cite{cohen:hal-02478907}.
 
         \item Em seguida defini-se novas notações: 
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
@@ -678,7 +685,7 @@ Proof.
 Qed.
             \end{lstlisting}
 
-        \item \label{item:inst} Para que se possam usar as propriedades de monoide e anéis sobre um tipo, como inteiros no caso deste exemplo, é necessário instanciar tal tipo como membro de cada uma das respectivas \textit{structures} por meio do comando \coqinline[]{HB.instance}:
+        \item \label{item:inst} Para que se possam usar as propriedades de monoide e anéis sobre um tipo, como inteiros no caso deste exemplo, é necessário instanciar tal tipo como membro de cada uma das respectivas \textit{structures} por meio do comando \coqinline[]{HB.instance} \cite{cohen:hal-02478907}:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
 HB.instance Definition Z_Monoid_axioms : Monoid_of_Type Z :=
    Monoid_of_Type.Build Z 0%Z Z.add Z.add_assoc Z.add_0_l Z.add_0_r.
@@ -691,7 +698,7 @@ HB.instance Definition Z_Ring_axioms : Ring_of_Monoid Z :=
 
         Note que na última instanciação não é necessário passar como argumento do construtor os argumentos para formação de um monoide. Isto ocorre pois estes construtores, conforme \cite{cohen:hal-02478907}, não são simplesmente construtores como os de \textit{records}, e o addon \coqinline[]{hierarchy-builder} infere estes argumentos automaticamente verificando a existência da instância declarada anteriormente com \coqinline[]{Z_Monoid_axioms}.
 
-        \item Com estas instanciações as propriedades das \textit{structures} \coqinline[]{Ring} e \coqinline[]{Monoid} podem ser utilizadas com inteiros e todas as \textit{coercions} e declarações com \textit{canonical} necessárias para tal já estão feitas automaticamente. Tal uso pode ser exemplificado com o a seguinte prova:
+        \item Com estas instanciações as propriedades das \textit{structures} \coqinline[]{Ring} e \coqinline[]{Monoid} podem ser utilizadas com inteiros e todas as \textit{coercions} e declarações com \textit{canonical} necessárias para tal já estão feitas automaticamente. Tal uso é exemplificado com o a seguinte prova:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
 Lemma exercise (m n : Z) : (n + m) - n * 1 = m.
 Proof. by rewrite mulr1 (addrC n) -(addrA m) addrN addr0. Qed.
@@ -809,7 +816,7 @@ Note que, se tratando \lstinline[language = coq]!multiple n! como um conjunto de
     \begin{lstlisting}[language = coq,frame=single,tabsize=1]
 (((fun x => x + 2) a) * n)
     \end{lstlisting} 
-é divisível por \lstinline[language = coq]!n!. Entretanto, a reescrita desejada não é possível, pois ocorre um problema de unificação ao tentar se usar a tática \lstinline[language = coq]!rewrite exemplo_multiple_axiom!. Para obter-se uma melhor noção sobre este problema é possível utilizar o seguinte código fornecido por \cite{assia_mahboubi_2022_7118596} (sobre o qual a explicação de seu funcionamento vai além do escopo do presente trabalho):
+é divisível por \lstinline[language = coq]!n!. Entretanto, a reescrita desejada não é possível, pois ocorre um problema de unificação ao tentar se usar a tática \lstinline[language = coq]!rewrite exemplo_multiple_axiom!. Para obter-se uma melhor noção sobre este problema é possível utilizar o seguinte código fornecido em \cite{assia_mahboubi_2022_7118596} (sobre o qual a explicação de seu funcionamento vai além do escopo do presente trabalho):
 
     \begin{lstlisting}[language = coq,frame=single,tabsize=1]
 Notation "X (*...*)" :=
@@ -821,14 +828,14 @@ Notation "[LHS 'of' equation ]" :=
 Notation "[unify X 'with' Y ]" := 
     (let unification := erefl _ : X = Y in True).
     \end{lstlisting} 
-Com isso, pode-se executar o seguinte comando:
+Com isso, de maneira análoga a feita em \cite{assia_mahboubi_2022_7118596}, pode-se executar o seguinte comando:
     \begin{lstlisting}[language = coq,frame=single,tabsize=1]
 Fail Check (forall n (a : multiple n) (f : nat -> nat),
     let LHS := [LHS of exemplo_multiple_axiom _] in
     let RDX := (n %| (f a) * n) in
     [unify LHS with RDX]).
     \end{lstlisting}
-Este comando irá apresentar uma mensagem de confirmação da falha, que em parte, apresenta o seguinte conteúdo:
+Este comando irá apresentar, de forma semelhante ao exposto em \cite{assia_mahboubi_2022_7118596}, uma mensagem de confirmação da falha, que em parte, apresenta o seguinte conteúdo:
     \begin{lstlisting}[language = coq-error,frame=single,tabsize=1]
 The command has indeed failed with message:
 In environment
@@ -841,7 +848,7 @@ RDX := n %| f (x n a) * n : bool
 The term "erefl LHS" has type "LHS = LHS"
 while it is expected to have type "LHS = RDX"
     \end{lstlisting} 
-Com isto, pode-se verificar que o problema de unificação encontrado é descobrir qual o valor da variável \lstinline[language = coq]!?a!. De modo mais específico, o problema está em encontrar um valor que torne equivalentes as seguintes expressões:
+Com isto, pode-se verificar que o problema de unificação encontrado é descobrir qual o valor da variável \lstinline[language = coq]!?a! \cite{assia_mahboubi_2022_7118596}. De modo mais específico, o problema está em encontrar um valor que torne equivalentes as seguintes expressões:
     \begin{lstlisting}[language = coq,frame=single,tabsize=1]
 n %| (x n ?a)
     \end{lstlisting} 

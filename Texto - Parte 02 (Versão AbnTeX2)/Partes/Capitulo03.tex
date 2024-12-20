@@ -327,7 +327,8 @@ Outro conceito importante originado a partir da definição de \textit{anéis de
     (\mathbb{Z}/(n))^{\times} = \{\overline{a} \in \mathbb{Z}/(n) | \mdc(a, n) = 1\}
 \end{equation}
 
-Sobre a implementação de \textit{anéis de inteiros módulo $n$} na biblioteca Mathematical Components, conforme é apresentado em \cite[p.~145]{assia_mahboubi_2022_7118596}, essa implementação envolve o tipo \lstinline[language = coq]{ordinal}. Este é declarado da seguinte forma (junto de sua notação e \textit{coercion} para \lstinline[language=coq]|nat|):
+Sobre a implementação de \textit{anéis de inteiros módulo $n$} na biblioteca Mathematical Components, segundo apresentado em \cite{assia_mahboubi_2022_7118596}, essa implementação envolve o tipo \lstinline[language = coq]{ordinal}. Este é, conforme \cite{assia_mahboubi_2022_7118596}, declarado da seguinte forma (junto de sua notação e \textit{coercion} para \lstinline[language=coq]|nat|):
+% \cite[p.~145]{assia_mahboubi_2022_7118596}
 % Este é idêntico ao \textit{record} \lstinline[language = coq]{smaller} (usado como exemplo na Subseção \ref{subsection:coercion}), porém é declarado da seguinte forma (junto de sua notação e \textit{coercion} relacionada):
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Inductive ordinal n := Ordinal m of m < n.
@@ -342,7 +343,7 @@ Local Notation p := p'.+1.
 Implicit Types x y z : 'I_p.
 Definition inZp i := @Ordinal p (i %% p) (ltn_pmod i (ltn0Sn p')).
     \end{lstlisting}
-em que o comando \lstinline[language = coq]{Variable} declara uma variável no contexto de quaisquer declarações a partir daquela linha, o que é equivalente a utilizar nessas \lstinline[language = coq]{\forall (p' : nat)} (e é o que é considerado nas declarações fora da \lstinline[language = coq]{Section} em que foi declarada a variável). Sobre o comando \lstinline[language = coq]{Local Notation}, esse cria um notação válida apenas para o módulo em que ela é declarada (assim, importar o módulo não importará a notação), e quanto ao comando \lstinline[language = coq]{Implicit Types}, esse faz com que nas declarações a seguir, se forem utilizadas variáveis com tipos implícitos e de nome \lstinline[language = coq]{x}, \lstinline[language = coq]{y} ou \lstinline[language = coq]{z}, o \textit{Coq} infira como tipo dessas \lstinline[language = coq]{'I_p}.
+em que o comando \lstinline[language = coq]{Variable} declara uma variável no contexto de quaisquer declarações a partir daquela linha, o que é equivalente a utilizar nessas \lstinline[language = coq]{\forall (p' : nat)} (e é o que é considerado nas declarações fora da \lstinline[language = coq]{Section} em que foi declarada a variável) \cite{coqteam2022manual}. Sobre o comando \lstinline[language = coq]{Local Notation}, esse cria um notação válida apenas para o módulo em que ela é declarada (assim, importar o módulo não importará a notação), e quanto ao comando \lstinline[language = coq]{Implicit Types}, esse faz com que nas declarações a seguir, se forem utilizadas variáveis com tipos implícitos e de nome \lstinline[language = coq]{x}, \lstinline[language = coq]{y} ou \lstinline[language = coq]{z}, o \textit{Coq} infira como tipo dessas \lstinline[language = coq]{'I_p} \cite{coqteam2022manual}.
 
 Em relação a definição \lstinline[language = coq]{InZp}, esta serve como maneira para converter números naturais em elementos do tipo \lstinline[language = coq]{'I_p}, e portanto, é útil para definir operações como soma e multiplicação sobre \lstinline[language = coq]{'I_p}. Tal definição utiliza $2$ lemas de \cite{mathcomp-div} e \cite{mathcomp-ssrnat}, cujos enunciados são, respectivamente:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
@@ -351,7 +352,7 @@ Lemma ltn_pmod m d : 0 < d -> m %% d < d.
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma ltn0Sn n : 0 < n.+1.
     \end{lstlisting}
-Portanto note que a expressão \lstinline[language = coq]{ltn_pmod i (ltn0Sn p')} constrói uma prova de que \lstinline[language = coq]{i %% p < p}, assim construindo um objeto do tipo \lstinline[language = coq]{'I_p}. Por isso a definição de local da variável \lstinline[language = coq]{p} força que esta seja maior ou igual a 1 (não é possível construir um objeto do tipo \lstinline[language = coq]{'I_0}).
+Portanto note que a expressão \lstinline[language = coq]{ltn_pmod i (ltn0Sn p')} constrói uma prova de que \lstinline[language = coq]{i %% p < p}, assim construindo um objeto do tipo \lstinline[language = coq]{'I_p}. Por isso a definição local da variável \lstinline[language = coq]{p} força que esta seja maior ou igual a 1 (não é possível construir um objeto do tipo \lstinline[language = coq]{'I_0}).
 
 São então definidas, em \cite{mathcomp-zmodp}, as classes de equivalência $\overline{0}$ e $\overline{1}$ e operações para instâncias de \lstinline[language = coq]{'I_p} da seguinte maneira:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
@@ -362,29 +363,57 @@ Definition Zp_add x y := inZp (x + y).
 Definition Zp_mul x y := inZp (x * y).
 Definition Zp_inv x := if coprime p x then inZp (egcdn x p).1 else x.
     \end{lstlisting}
-onde \lstinline[language = coq]{ord0} tem a seguinte definição:
+onde \lstinline[language = coq]{ord0} tem a seguinte definição em \cite{mathcomp-zmodp}:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition ord0 := Ordinal (ltn0Sn n').
     \end{lstlisting}
 ou seja, \lstinline[language = coq]{ord0} é sempre o elemento de \lstinline[language = coq]{'I_p} construído com \lstinline[language = coq]{m} sendo 0 (em que \lstinline[language = coq]{p} é um valor inferido pelo \textit{Coq}).
 
-A partir disso são provados, em \cite{mathcomp-zmodp}, os lemas que tornam o conjunto \lstinline[language = coq]{'I_p} dotado das operações definidas com \lstinline[language = coq]{inZp} em um \textit{grupo abeliano} (conforme a definição em \cite[p.~41-46]{book:2399854}):
+Após isso são provados, em \cite{mathcomp-zmodp}, os lemas que tornam o conjunto \lstinline[language = coq]{'I_p} dotado das operações definidas com \lstinline[language = coq]{inZp} em um \textit{grupo abeliano} (conforme a definição em \cite[p.~41-46]{book:2399854}):
 % aqui acho que é só a página \cite[p.~46] ou \cite[p.~41-42,46]
+%     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+% Lemma Zp_add0z : left_id Zp0 Zp_add.
+% Lemma Zp_addNz : left_inverse Zp0 Zp_opp Zp_add.
+% Lemma Zp_addA : associative Zp_add.
+% Lemma Zp_addC : commutative Zp_add.
+%     \end{lstlisting}
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma Zp_add0z : left_id Zp0 Zp_add.
+    \end{lstlisting}
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma Zp_addNz : left_inverse Zp0 Zp_opp Zp_add.
+    \end{lstlisting}
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma Zp_addA : associative Zp_add.
-Lemma Zp_addC : commutative Zp_add.
     \end{lstlisting}
 e também em \cite{mathcomp-zmodp} são então provados os lemas que farão de \lstinline[language = coq]{'I_p} um \textit{anel comutativo} (de acordo com \cite[p.~46-47]{book:2399854}), considereando as operações binárias \lstinline[language = coq]{Zp_add} e \lstinline[language = coq]{Zp_mul}:
+%     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+% Lemma Zp_mulz1 : right_id Zp1 Zp_mul. (* Elemento neutro do produto a direita *)
+% Lemma Zp_mulC : commutative Zp_mul. (* Comutatividade do produto *)
+% Lemma Zp_mul1z : left_id Zp1 Zp_mul. (* Elemento neutro do produto a esquerda *)
+% Lemma Zp_mulA : associative Zp_mul. (* Associatividade do produto *)
+% Lemma Zp_mul_addr : right_distributive Zp_mul Zp_add. (* Distributividade a direita *)
+% Lemma Zp_mul_addl : left_distributive Zp_mul Zp_add. (* Distributividade a esquerda *)
+%     \end{lstlisting}
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
-Lemma Zp_mulz1 : right_id Zp1 Zp_mul. (* Elemento neutro do produto a direita *)
-Lemma Zp_mulC : commutative Zp_mul. (* Comutatividade do produto *)
-Lemma Zp_mul1z : left_id Zp1 Zp_mul. (* Elemento neutro do produto a esquerda *)
-Lemma Zp_mulA : associative Zp_mul. (* Associatividade do produto *)
-Lemma Zp_mul_addr : right_distributive Zp_mul Zp_add. (* Distributividade a direita *)
-Lemma Zp_mul_addl : left_distributive Zp_mul Zp_add. (* Distributividade a esquerda *)
+Lemma Zp_mulz1 : right_id Zp1 Zp_mul.
     \end{lstlisting}
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma Zp_mulC : commutative Zp_mul.
+    \end{lstlisting}
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma Zp_mul1z : left_id Zp1 Zp_mul
+    \end{lstlisting}
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma Zp_mulA : associative Zp_mul.
+    \end{lstlisting}
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma Zp_mul_addr : right_distributive Zp_mul Zp_add.
+    \end{lstlisting}
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+Lemma Zp_mul_addl : left_distributive Zp_mul Zp_add.
+    \end{lstlisting}
+
 Por fim, dada a condição para que um \textit{anel comutativo} seja um \textit{domínio} e para que seja \textit{corpo}, as seguintes notações em \cite{mathcomp-zmodp} abragem os conjuntos \lstinline[language=coq]|'I_p| que se encaixam nas respectivas categorias (desconsiderando a necessidade dos lemas sobre tais notações):
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition Zp_trunc p := p.-2.
@@ -395,7 +424,7 @@ Notation "''Z_' p" := 'I_(Zp_trunc p).+2
 Notation "''F_' p" := 'Z_(pdiv p)
   (at level 8, p at level 2, format "''F_' p") : type_scope.
     \end{lstlisting}
-onde a notação \lstinline[language=coq]|'Z_p| sempre retorna um tipo \lstinline[language=coq]|'I_p| tal que $2 \leq p$, portanto é sempre um \textit{domínio}, e a notação \lstinline[language=coq]|'F_p| retorna um tipo \lstinline[language=coq]|'I_p| tal que $2 \leq p$ e $p$ é primo (pois a função \lstinline[language=coq]|pdiv| retorna o primeiro primo divisor do número passado como argumento), portanto é sempre um \textit{corpo}.
+onde a notação \lstinline[language=coq]|'Z_p| sempre retorna um tipo \lstinline[language=coq]|'I_p| tal que $2 \leq p$, portanto é sempre um \textit{domínio}, e a notação \lstinline[language=coq]|'F_p| retorna um tipo \lstinline[language=coq]|'I_p| tal que $2 \leq p$ e $p$ é primo (pois a função \lstinline[language=coq]|pdiv|, conforme \cite{mathcomp-prime}, retorna o primeiro primo divisor do número passado como argumento), portanto é sempre um \textit{corpo}.
 
     % Por fim, vale aqui ressaltar que o desenvolvimento deste tipo na biblioteca vai muito além do que foi apresentado aqui, envolvendo detalhes relacionados a interfaces de anéis e outros conceitos tratados na biblioteca.
 
@@ -464,7 +493,7 @@ $\forall a \in \mathbb{N} - \{0\}$, dado um número primo $p$, tem-se que:
 \end{teorema}
 
 \noindent
-\textit{Demonstração}: pelo Teorema \ref{eq : euler-fermat} tem-se que:
+\textit{Demonstração}: no caso em que $p \mid a$ a congraciência é válida (pois ambos os lados são congruentes a $0$), enquanto no caso em que $p \nmid a$, pelo Teorema \ref{eq : euler-fermat}, tem-se que:
 \begin{equation*}
     a^{\varphi(p)} \equiv 1 \pmod{p}
 \end{equation*}
@@ -481,17 +510,17 @@ assim utilizando-se da propriedade descrita no Item \ref{item:propcong6-produto}
     \Longleftrightarrow a^{p} \equiv a \pmod{p}
 \end{align*} \qed
 
-Na biblioteca Mathematical Components, em \cite{mathcomp-prime}, a função $\varphi$ de Euler é implementada, também em \cite{mathcomp-prime}, da seguinte maneira:
+Na biblioteca Mathematical Components, em \cite{mathcomp-prime}, a função $\varphi$ de Euler é implementada da seguinte maneira:
 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition totient n := 
     foldr add_totient_factor (n > 0) (prime_decomp n).
 \end{lstlisting}
-Em que por meio de uma \textit{coercion} de \lstinline[language = coq]{bool} para \lstinline[language = coq]{nat} o valor retornado por \lstinline[language = coq]{n > 0} é convertido para $0$ (se for \lstinline[language = coq]{false}) ou $1$ (se for \lstinline[language = coq]{true}) e a função \lstinline[language = coq]{add_totient_factor} é definida como:
+Em que por meio de uma \textit{coercion} de \lstinline[language = coq]{bool} para \lstinline[language = coq]{nat} o valor retornado por \lstinline[language = coq]{n > 0} é convertido para $0$ (se for \lstinline[language = coq]{false}) ou $1$ (se for \lstinline[language = coq]{true}) e a função \lstinline[language = coq]{add_totient_factor} é definida em \cite{mathcomp-prime} como:
 \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition add_totient_factor f m := 
     let: (p, e) := f in p.-1 * p ^ e.-1 * m.
 \end{lstlisting}
-e \lstinline[language = coq]{prime_decomp} é uma função que recebe um número $n$ qualquer e retorna uma lista de tuplas $k$ da forma $(p_i, e_i)$ em que:
+e \lstinline[language = coq]{prime_decomp} é uma função que, segundo \cite{mathcomp-prime}, recebe um número $n$ qualquer e retorna uma lista de tuplas $k$ da forma $(p_i, e_i)$ em que:
     \begin{equation*}
         n = p_1^{e_1} \cdot p_2^{e_2} \cdot ... \cdot p_k^{e_k}
     \end{equation*}
