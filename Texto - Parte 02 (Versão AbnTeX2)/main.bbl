@@ -190,6 +190,11 @@ Dispon{\'\i}vel em: \url{https://inria.hal.science/hal-01094195}.}
 {PENN, M. \emph{Quadratic Reciprocity proof -- Number Theory 23}. 2021. Youtube.
 Dispon{\'\i}vel em: \url{https://youtu.be/2UlqaUZiyZ8?si=iMU-yaCjPHWxIdQ8}.}
 
+\bibitem[Pierce et al. 2024]{logical-foundations}
+\abntrefinfo{Pierce et al.}{PIERCE et al.}{2024}
+{PIERCE, B.~C. et al. \emph{Logical Foundations}. 2024.
+Dispon{\'\i}vel em: \url{https://github.com/math-comp/math-comp/blob/535d72f0c4c53a4736e68fbfb03d67754f271bc8/mathcomp/algebra/ssrint.v}.}
+
 \bibitem[Sarkar 2024]{PalashSarkar2024AdvancesinMathematicsofCommunications}
 \abntrefinfo{Sarkar}{SARKAR}{2024}
 {SARKAR, P. Computing square roots faster than the tonelli-shanks/bernstein algorithm.

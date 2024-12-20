@@ -3,7 +3,8 @@
 
 Nos capítulos seguintes será usada uma série de itens disponíveis na biblioteca Mathematical Components e outros implementados com uso da biblioteca. Todavia é necessário, por parte do leitor, um conhecimento básico sobre essa biblioteca, e para isso, neste capítulo serão explicados elementos que foram considerados mais essenciais de acordo com o tema definido. Todo o conteúdo a seguir se baseia em \cite{assia_mahboubi_2022_7118596} e também nos códigos do repositório da biblioteca Mathematical Components em \cite{mathcomp-github}.
 
-Ademais, é importante ressaltar que, na apresentação dos conteúdos deste capítulo, se assume que o leitor possui um conhecimento básico sobre \textit{Coq}, e em caso contrário recomenda-se que o leitor acesse o material disponível em: \url{https://softwarefoundations.cis.upenn.edu/lf-current/index.html}
+Ademais, é importante ressaltar que, na apresentação dos conteúdos deste capítulo, se assume que o leitor possui um conhecimento básico sobre \textit{Coq}, e em caso contrário recomenda-se que o leitor acesse os materiais em \cite{logical-foundations}.
+% \footnote{\url{https://softwarefoundations.cis.upenn.edu/}}.
 
 \section{Módulos}
 A biblioteca Mathematical Components é divida em módulos, nos quais alguns são simplesmente a união de outros menores relacionados entre si. No site oficial da biblioteca\footnote{\url{https://math-comp.github.io/}} está disponível, além do livro utilizado como referência neste trabalho \cite{assia_mahboubi_2022_7118596}, um grafo
@@ -442,11 +443,11 @@ Tal prova exemplifica como o uso dos mecanismos em \textit{Coq}, que foram apres
 
 \subsection{Mecanismo para Hierarquias entre Estruturas Algébricas}
 
-Para organizar estruturas algébricas semelhantes a apresentada na Subseção \ref{sub:grupos}, a biblioteca Mathematical Components utiliza uma linguagem chamada $\mathcal{HB}$. Esta é disponibilizada em \textit{Coq} por meio do \textit{addon} \coqinline!hierarchy-builder! e a motivação por trás de seu uso é facilitar aos usuários a criação, manutenção e padronização destas estruturas. Caso o leitor deseje um aprofundamento nestes assuntos recomenda-se a publicação e o vídeo nos quais esta subseção é baseada que são eles \cite{cohen:hal-02478907} e \cite{youtuCohen} respectivamente. Se faz esta recomendação pois o sistema por trás do gerenciamento de tais estruturas não faz parte do escopo deste trabalho. Nesta subseção se busca apenas mostrar como o usuário pode pesquisar propriedades provadas sobre um determinado tipo por meio de estruturas com a qual o tipo está ``equipado'', expressão cujo significado será explicado adiante.
+Para organizar estruturas algébricas semelhantes a apresentada na Subseção \ref{sub:grupos}, a biblioteca Mathematical Components utiliza uma linguagem chamada $\mathcal{HB}$. Esta é disponibilizada em \textit{Coq} por meio do \textit{addon} \coqinline!hierarchy-builder! e a motivação por trás de seu uso é facilitar aos usuários a criação, manutenção e padronização destas estruturas. Caso o leitor deseje um aprofundamento nestes assuntos recomenda-se a publicação e o vídeo nos quais esta subseção é baseada (juntos \cite{assia_mahboubi_2022_7118596}) que são eles \cite{cohen:hal-02478907} e \cite{youtuCohen} respectivamente. Se faz esta recomendação pois o sistema por trás do gerenciamento de tais estruturas não faz parte do escopo deste trabalho. Nesta subseção se busca apenas mostrar como o usuário pode pesquisar propriedades provadas sobre um determinado tipo por meio de estruturas com a qual o tipo está ``equipado'', expressão cujo significado será explicado adiante.
 
 % Diversas estruturas como as algébricas, que guardam predicados sobre tipos, são utilizadas na biblioteca Mathematical, e suas declarações seguem um padrão chamado de 
 
-Ao se utilizar a biblioteca Mathematical Components pela primeira vez o usuário tende a necessitar corriqueiramente da ferramenta de busca de teoremas, lemas e definições. Isto tende acontecer pois em geral o usuário precisa aprender os nomes (e padrões destes) utilizados na biblioteca e como são implementados. Como exemplo, suponha que queira-se rescrever uma expressão com números naturais utilizando a propriedade de comutatividade. Para isso, o usuário pode utilizar o comando \coqinline|Search| junto a um padrão para pesquisa:
+Ao se utilizar a biblioteca Mathematical Components pela primeira vez o usuário tende a necessitar corriqueiramente da ferramenta de busca de teoremas, lemas e definições. Isto tende acontecer pois em geral o usuário precisa aprender os nomes (e padrões destes) utilizados na biblioteca e como são implementados. Como exemplo, suponha que queira-se rescrever uma expressão com números naturais utilizando a propriedade de comutatividade. Para isso, o usuário pode utilizar o comando \coqinline|Search| junto a um padrão para pesquisa \cite{assia_mahboubi_2022_7118596}:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Search (_ + _).
     \end{lstlisting}
@@ -477,7 +478,7 @@ addnC: commutative addn     @ \label{coqlema:addn} @
 maxnC: commutative maxn     @ \Suppressnumber @
     (*... continua...*)     @ \Reactivatenumber @
     \end{lstlisting}
-Portanto o lema \coqinline|addnC| tem a seguinte definição:
+Portanto o lema \coqinline|addnC| (conforme está em \cite{mathcomp-ssrnat}) tem a seguinte definição:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Lemma addnC : commutative addn.
     \end{lstlisting}
@@ -517,7 +518,7 @@ Notation "x + y" := (GRing.Add x y) : term_scope
 Notation "x + y" := (sum x y) : type_scope
 Notation "U + V" := (addv U V) : vspace_scope
     \end{lstlisting}
-Pode, por esta mensagem, se verificar que a notação serve para a função \coqinline|addn| tanto no escopo \coqinline|nat_scope| quanto como interpretação padrão (\textit{default interpretation}). Também pode-se notar que a notação serve para a função \coqinline|GRing.add| (do módulo \coqinline|GRing|) no escopo \coqinline|ring_scope|, mas em nenhum momento a função \coqinline|addz| é mencionada. Verificando-se então o tipo de \coqinline|GRing.add| tem-se:
+Pode, por esta mensagem, se verificar que a notação serve para a função \coqinline|addn| tanto no escopo \coqinline|nat_scope|, conforme \cite{mathcomp-ssrnat}, quanto como interpretação padrão (\textit{default interpretation}). Também pode-se notar que a notação serve para a função \coqinline|GRing.add| (do módulo \coqinline|GRing|) no escopo \coqinline|ring_scope|, de acordo com \cite{mathcomp-ssralg}, mas em nenhum momento a função \coqinline|addz| é mencionada. Verificando-se então o tipo de \coqinline|GRing.add| tem-se:
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Print GRing.add.
     \end{lstlisting}
