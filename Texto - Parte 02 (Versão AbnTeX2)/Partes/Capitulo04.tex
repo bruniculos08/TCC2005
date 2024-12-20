@@ -96,16 +96,16 @@ Devido a essa dificuldade, que pode vir a aparecer em diversas situações onde 
 prime p -> ~~ (p %| a) -> ~~ res_quad p a -> (p.-1`!) = a ^ p.-1./2 %[mod p]
                 \end{lstlisting}
         Introduz-se então todas as hipóteses e se reescreve $(p-1)!$:
-                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1,name=proof]
-move=> pP pNDa aR.
-have -> : p.-1`! = \prod_(i in 'F_p | i != 0%R) i.
-        (* ... prova do subgoal... *)
+                \begin{lstlisting}[language=coq,frame=single, numbers=left,stepnumber=1,tabsize=1,escapechar=@,name=proof]
+move=> pP pNDa aR.      @ \label{line:1-item1} @
+have -> : p.-1`! = \prod_(i in 'F_p | i != 0%R) i.      @ \label{line:2-item1} @
+        (* ... prova do subgoal... *)   @ \label{line:3-item1} @
                 \end{lstlisting}
         Explicando os comandos feitos em linhas específicas têm-se:
         \begin{enumerate}
-                \item[\textbf{(1)}] Introdução dos precedentes do \textit{goal} para hipóteses com os nomes \lstinline[language=coq]|pP|, \lstinline[language=coq]|pNDa| e \lstinline[language=coq]|aR| respectivamente.
+                \item[\textbf{(\ref{line:1-item1})}] Introdução dos precedentes do \textit{goal} para hipóteses com os nomes \lstinline[language=coq]|pP|, \lstinline[language=coq]|pNDa| e \lstinline[language=coq]|aR| respectivamente.
                 
-                \item[\textbf{(2)}] Reescrita de $(p-1)!$ como $\prod_{i \in (\mathbb{F}_p - \{0\})} i$ (o que abre um \textit{subgoal}, que é por sua vez trivial).
+                \item[\textbf{(\ref{line:2-item1})}] Reescrita de $(p-1)!$ como $\prod_{i \in (\mathbb{F}_p - \{0\})} i$ (o que abre um \textit{subgoal}, que é por sua vez trivial) onde as notações para operação de fatorial e produtório são descritas em \cite{mathcomp-ssrnat} e \cite{mathcomp-bigop}.
                 
                 % \item[\textbf{(3)}] resolução do \textit{subgoal} aberto na linha 2.
         \end{enumerate}

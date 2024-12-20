@@ -620,7 +620,7 @@ HB.mixin Record Monoid_of_Type M := {
   addr0 : right_id zero add;
 }.
             \end{lstlisting}
-        Note que este \textit{record} encapsula as propriedades necessárias para que um tipo \coqinline[]{S} seja um monoide. Além disso não é definido na declaração o nome do construtor do \textit{record}, com isso o \textit{Coq} define automaticamente um nome para o construtor (nesse caso, se houvesse somente a declaração do \textit{record} sem o comando \coqinline[]{HB.mixin} \coqinline[]{Build_Monoid_of_Type}) \cite{cohen:hal-02478907}.
+        Note que este \textit{record} encapsula as propriedades necessárias para que um tipo \coqinline[]{S} seja um monoide \cite{cohen:hal-02478907}. Além disso não é definido na declaração o nome do construtor do \textit{record}, com isso o \textit{Coq} define automaticamente um nome para o construtor (nesse caso, se houvesse somente a declaração do \textit{record} sem o comando \coqinline[]{HB.mixin} \coqinline[]{Build_Monoid_of_Type}) \cite{cohen:hal-02478907}.
 
         \item Declaração de uma \textit{structure} por meio do comando \coqinline[]{HB.structure}; este comando recebe uma \textit{definition} que contém um tipo (elemento de tipo \coqinline[]{Type}) e uma lista não-vazia de \textit{mixins} ou \textit{factories} \cite{cohen:hal-02478907}:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
@@ -636,7 +636,8 @@ Record type : Type := Pack { sort : Type; class : Monoid.axioms_ sort }.
 
 Arguments Monoid.Pack sort%type_scope class
             \end{lstlisting}
-        Neste \textit{record} estão encapsuladas as propriedades declaradas no \textit{record} do item \ref{item:mixin-monoid} \cite{cohen:hal-02478907}.
+        Neste \textit{record} estão encapsuladas as propriedades declaradas no \textit{record} do item \ref{item:mixin-monoid}.
+        % \cite{cohen:hal-02478907}.
         %  e toda a parte de projeções é cuidada pelo \textit{addon} \coqinline[]{hierarchy-builder} (projeções são as funções que retiram campos específicos de \textit{structures} ou \textit{records})
     
         \item Como toda a parte de projeções é gerenciada pelo \textit{addon} \coqinline[]{hierarchy-builder} (projeções são as funções que retiram campos específicos de \textit{structures} ou \textit{records}) é possível trabalhar como se \coqinline[]{Monoid.type} fosse um \textit{record} simples (ignorando o fato de que os campos como \coqinline[]{add} estão encapsulados na \textit{class} \coqinline[]{Monoid.axioms_ sort}), como o apresentado na Subseção \ref{sub:grupos} e pode-se declarar então as seguintes notações \cite{cohen:hal-02478907}:
@@ -645,7 +646,7 @@ Notation "0" := zero : hb_scope.
 Infix "+" := (@add _) : hb_scope.
             \end{lstlisting}
 
-        \item Continuando o exemplo tem-se a implementação de anéis a partir da implementação de monoide agora já realizada \cite{cohen:hal-02478907}:
+        \item Continuando o exemplo tem-se a implementação de anéis a partir da implementação de monoide agora já realizada:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
 HB.mixin Record Ring_of_Monoid R of Monoid R := {
     one : R;
@@ -660,7 +661,7 @@ HB.mixin Record Ring_of_Monoid R of Monoid R := {
     mulrDr : right_distributive mul add;
 }.
             \end{lstlisting}    
-        Note que na declaração do \textit{mixin} há uma \textit{dependencie} \coqinline[]{Monoid R}. Assim, as operações, propriedades e constantes de que tornam \coqinline[]{R} um monoide podem ser utilizadas para expressar os campos de \coqinline[]{Ring_of_Monoid}, qual por sua vez contém então as propriedades, operações e constantes para tornar um tipo que já é um monoide em um anel \cite{cohen:hal-02478907}.
+        Note que na declaração do \textit{mixin} há uma \textit{dependencie} \coqinline[]{Monoid R} \cite{cohen:hal-02478907}.. Assim, as operações, propriedades e constantes de que tornam \coqinline[]{R} um monoide podem ser utilizadas para expressar os campos de \coqinline[]{Ring_of_Monoid}, qual por sua vez contém então as propriedades, operações e constantes para tornar um tipo que já é um monoide em um anel \cite{cohen:hal-02478907}.
         
         \item Define-se então a \textit{structure} para anéis:
             \begin{lstlisting}[language=coq, frame=single, tabsize=1]
@@ -739,7 +740,7 @@ HB: Ring inherits from:
     - Monoid
 HB: Ring is inherited by:
             \end{lstlisting}
-    Atráves dessa mensagens pode-se verificar todas as propriedades (operações e axiomas) encapsulados em \coqinline[]{Ring.type} que podem ser usados sobre o tipo \coqinline[]{Z}, e além disso é indicado na mensagem que a \textit{structure}{structure} \coqinline[]{Ring} herda a \textit{structure} \coqinline[]{Monoid}. Também pode-se usar então o comando \coqinline[]{HB.about Monoid} para obter as informações sobre mais propriedades que podem ser utilizadas para elementos do tipo \coqinline[]{Z}.
+    Atráves dessa mensagens pode-se verificar todas as propriedades (operações e axiomas) encapsulados em \coqinline[]{Ring.type} que podem ser usados sobre o tipo \coqinline[]{Z}, e além disso é indicado na mensagem que a \textit{structure} \coqinline[]{Ring} herda a \textit{structure} \coqinline[]{Monoid}. Também pode-se usar então o comando \coqinline[]{HB.about Monoid} para obter as informações sobre mais propriedades que podem ser utilizadas para elementos do tipo \coqinline[]{Z} \cite{mathcomp-contributing}.
 
 
     \end{enumerate}

@@ -21,9 +21,9 @@ Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Database file #1: abntex2-options.bib
 Database file #2: referencias.bib
 Warning--entry type for "johndcookQuadraticReciprocity" isn't style-file defined
---line 420 of file referencias.bib
+--line 441 of file referencias.bib
 Warning--entry type for "kumar2021algorithm" isn't style-file defined
---line 587 of file referencias.bib
+--line 608 of file referencias.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=200001) to 20 items from 10.
@@ -33,45 +33,45 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 45 entries,
+You've used 46 entries,
             6714 wiz_defined-function locations,
-            1449 strings with 16581 characters,
-and the built_in function-call counts, 81143 in all, are:
-= -- 10432
-> -- 871
-< -- 2653
-+ -- 2999
-- -- 277
-* -- 4677
-:= -- 9696
-add.period$ -- 214
-call.type$ -- 45
-change.case$ -- 354
-chr.to.int$ -- 50
-cite$ -- 44
-duplicate$ -- 9324
-empty$ -- 2742
-format.name$ -- 1301
-if$ -- 15476
+            1454 strings with 16688 characters,
+and the built_in function-call counts, 82613 in all, are:
+= -- 10616
+> -- 886
+< -- 2699
++ -- 3050
+- -- 282
+* -- 4760
+:= -- 9878
+add.period$ -- 219
+call.type$ -- 46
+change.case$ -- 360
+chr.to.int$ -- 51
+cite$ -- 45
+duplicate$ -- 9487
+empty$ -- 2800
+format.name$ -- 1324
+if$ -- 15761
 int.to.chr$ -- 19
 int.to.str$ -- 0
-missing$ -- 773
-newline$ -- 226
-num.names$ -- 222
-pop$ -- 1025
+missing$ -- 789
+newline$ -- 231
+num.names$ -- 227
+pop$ -- 1044
 preamble$ -- 1
-purify$ -- 146
+purify$ -- 149
 quote$ -- 0
-skip$ -- 9447
+skip$ -- 9616
 stack$ -- 1
-substring$ -- 3760
-swap$ -- 3292
-text.length$ -- 51
+substring$ -- 3824
+swap$ -- 3349
+text.length$ -- 52
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 8
 warning$ -- 0
-while$ -- 316
+while$ -- 323
 width$ -- 0
-write$ -- 701
+write$ -- 716
 (There were 2 warnings)

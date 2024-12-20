@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.14)  20 DEC 2024 14:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.11.14)  20 DEC 2024 15:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1534,18 +1534,18 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 [42] [43{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [44] [45] [46]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 431.
+(hyperref)                removing `math shift' on input line 449.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\varphi' on input line 431.
+(hyperref)                removing `\varphi' on input line 449.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 431.
+(hyperref)                removing `math shift' on input line 449.
 
 [47] [48] [49] [50] [51] [52]
-Overfull \hbox (1.90671pt too wide) in paragraph at lines 692--694
+Overfull \hbox (1.90671pt too wide) in paragraph at lines 710--712
 []\T1/lmr/m/it/12 (-20) Dado um nú-mero primo
  []
 
@@ -1554,12 +1554,12 @@ Overfull \hbox (1.90671pt too wide) in paragraph at lines 692--694
 ]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 99.
  [59] [60] [61] [62
-pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-137.\\thelstnumber\040}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-142.\\thelstnumber\040}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.251 ...ing}[language=coq,frame=single,tabsize=1]
                                                   ] [63] [64] [65
-pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-147.\\thelstnumber\040}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.-152.\\thelstnumber\040}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.399 rewrite 
@@ -1656,13 +1656,13 @@ enddocument/afterlastpage: lastpage setting LastPage.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: 60FB939A15641331A1EF7ED6415206D5;8961.
+(rerunfilecheck)             Checksum: 6AB31A284DB36E8DAD8C0AFE88DF33AE;9221.
  ) 
 Here is how much of TeX's memory you used:
- 43225 strings out of 476041
- 819927 string characters out of 5793173
- 2154388 words of memory out of 6000000
- 61437 multiletter control sequences out of 15000+600000
+ 43243 strings out of 476041
+ 820276 string characters out of 5793173
+ 2153388 words of memory out of 6000000
+ 61449 multiletter control sequences out of 15000+600000
  650177 words of font info for 294 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
  93i,25n,99p,1481b,1786s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1670,10 +1670,10 @@ Here is how much of TeX's memory you used:
 pdfTeX warning (dest): name{https://github.com/thery/mathcomp-extra/} has been referenced but does not exist, replaced by a fixed one
 
 </usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (95 pages, 845446 bytes).
+Output written on main.pdf (95 pages, 847723 bytes).
 PDF statistics:
- 2685 PDF objects out of 2984 (max. 8388607)
- 2483 compressed objects within 25 object streams
- 1085 named destinations out of 1200 (max. 500000)
+ 2712 PDF objects out of 2984 (max. 8388607)
+ 2509 compressed objects within 26 object streams
+ 1091 named destinations out of 1200 (max. 500000)
  75754 words of extra memory for PDF output out of 89155 (max. 10000000)
 

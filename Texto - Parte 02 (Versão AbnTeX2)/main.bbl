@@ -52,6 +52,11 @@ Dispon{\'\i}vel em: \url{https://youtu.be/F6iRaTlQrlo?si=hvvWFH4WSAfHsd9X}.}
 \abntrefinfo{INRIA}{INRIA}{s.d.c}
 {INRIA. \emph{Library Coq.ssr.ssrfun}. s.d. \url{https://coq.inria.fr/doc/v8.9/stdlib/Coq.ssr.ssrfun.html}.}
 
+\bibitem[Koro 2013]{euler-crit-planet}
+\abntrefinfo{Koro}{KORO}{2013}
+{KORO. \emph{Euler's Criterion/Quadratic Residue}. 2013.
+Dispon{\'\i}vel em: \url{https://planetmath.org/proofofeulerscriterion}. Acesso em: 06 de jun. de 2024.}
+
 \bibitem[Kumar 2020]{kumar2021algorithm}
 \abntrefinfo{Kumar}{KUMAR}{2020}
 {KUMAR, R. \emph{An algorithm for finding square root modulo p}. 2020.

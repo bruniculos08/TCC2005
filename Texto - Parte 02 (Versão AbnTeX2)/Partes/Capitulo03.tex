@@ -3,7 +3,7 @@
 
 Para que se realizem as implementações serão necessários diversos teoremas, lemas e funções, dos quais, parte, já estão implementados na biblioteca Mathematical Components. Sendo assim, o presente capítulo busca trazer a descrição da maioria destes itens, colocando também suas respectivas implementações disponíveis na biblioteca (se houver). 
 
-A maior parte do conteúdo deste capítulo se baseia no livro \cite{book:2399854}, que foi amplamente estudado para realização deste trabalho. Sendo assim, as provas não apresentadas aqui se encontram nesse livro.
+A maior parte do conteúdo deste capítulo se baseia no livro \cite{book:2399854} e em \cite{euler-crit-planet}, que foi amplamente estudado para realização deste trabalho. Sendo assim, as provas não apresentadas aqui se encontram nesse livro.
 
 \section{Máximo Divisor Comum}
 Tendo sido apresentado os conceitos de módulo e divisibilidade, outro pilar fundamental da Teoria dos Números é o conceito de $\mdc$ (máximo divisor comum). A princípio, a definição seria auto-explicativa, mas parte de diversos teoremas importantes a utiliza e portanto é interessante que se tenha uma definição equivalente específica para facilitar provas futuras. Para se obter tal definição alternativa, observe que, formalmente, a definição de $\mdc$ é:
@@ -355,12 +355,30 @@ Lemma ltn0Sn n : 0 < n.+1.
 Portanto note que a expressão \lstinline[language = coq]{ltn_pmod i (ltn0Sn p')} constrói uma prova de que \lstinline[language = coq]{i %% p < p}, assim construindo um objeto do tipo \lstinline[language = coq]{'I_p}. Por isso a definição local da variável \lstinline[language = coq]{p} força que esta seja maior ou igual a 1 (não é possível construir um objeto do tipo \lstinline[language = coq]{'I_0}).
 
 São então definidas, em \cite{mathcomp-zmodp}, as classes de equivalência $\overline{0}$ e $\overline{1}$ e operações para instâncias de \lstinline[language = coq]{'I_p} da seguinte maneira:
+%     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
+% Definition Zp0 : 'I_p := ord0.
+% Definition Zp1 := inZp 1.
+% Definition Zp_opp x := inZp (p - x).
+% Definition Zp_add x y := inZp (x + y).
+% Definition Zp_mul x y := inZp (x * y).
+% Definition Zp_inv x := if coprime p x then inZp (egcdn x p).1 else x.
+%     \end{lstlisting}
     \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition Zp0 : 'I_p := ord0.
+    \end{lstlisting}
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition Zp1 := inZp 1.
+    \end{lstlisting}
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition Zp_opp x := inZp (p - x).
+    \end{lstlisting}
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition Zp_add x y := inZp (x + y).
+    \end{lstlisting}
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition Zp_mul x y := inZp (x * y).
+    \end{lstlisting}
+    \begin{lstlisting}[language=coq,frame=single,tabsize=1]
 Definition Zp_inv x := if coprime p x then inZp (egcdn x p).1 else x.
     \end{lstlisting}
 onde \lstinline[language = coq]{ord0} tem a seguinte definição em \cite{mathcomp-zmodp}:
