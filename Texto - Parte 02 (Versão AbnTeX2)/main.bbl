@@ -168,9 +168,9 @@ Dispon{\'\i}vel em: \url{https://www.aimsciences.org/article/id/6212ee892d80b75a
 \abntrefinfo{Shanks}{SHANKS}{1972}
 {SHANKS, D. Five number theoretical algorithms. In:  MANITOBA CONFERENCE ON NUMERICAL MATHEMATICS, 2. \emph{Proceedings of the Second Manitoba Conference on Numerical Mathematics}. Winnipeg: Utilitas Mathematica Pub., 1972.}
 
-\bibitem[Team 2024]{coqteam2022manual}
-\abntrefinfo{Team}{TEAM}{2024}
-{TEAM, T. C.~D. \emph{The Coq Reference Manual}.
+\bibitem[{The Coq Development Team} 2024]{coqteam2022manual}
+\abntrefinfo{{The Coq Development Team}}{{The Coq Development Team}}{2024}
+{{The Coq Development Team}. \emph{The Coq Reference Manual}.
 France, 2024.}
 
 \bibitem[Th\'ery 2024]{mathcomp-extra-euler}
