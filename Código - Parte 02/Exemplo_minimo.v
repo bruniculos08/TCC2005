@@ -3,13 +3,17 @@ From Coq Require Import Unicode.Utf8_core.
 Module withCoercions.
 From mathcomp Require Import all_ssreflect.
 From mathcomp Require Import ssreflect.ssrnat.
+
+
 Require Export Arith.
 Require Export Bool.
 Require Export PeanoNat.
 
+
 Unset Strict Implicit.
 Unset Printing Implicit Defensive.
 Set Printing Coercions.
+
 
 Record smaller (n : nat) : Type := Build
 {
@@ -339,7 +343,7 @@ Qed.
 
 (* Notation "x + y" := (addz x y). *)
 
-Theorem Ex10:
+(* Theorem Ex10:
     ∀ a b : int, (a ⊗ b) ⊗ 0%Z = (a ⊗ 0%Z) ⊗ b.
 Proof.
     move=> a b.
@@ -347,7 +351,7 @@ Proof.
     rewrite ?addzC.
     rewrite /(_ ⊗ _) //=.
     rewrite addzC.
-Qed.
+Qed. *)
 
 Check (Posz).
 

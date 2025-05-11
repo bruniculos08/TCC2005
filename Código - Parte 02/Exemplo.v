@@ -1,5 +1,6 @@
 From mathcomp Require Import all_ssreflect.
 From mathcomp Require Import ssreflect.ssrnat.
+From mathcomp Require Import intdiv.
 From HB Require Import structures.
 Require Export Arith.
 Require Export Bool.
@@ -8,6 +9,19 @@ Require Export PeanoNat.
 Unset Strict Implicit.
 Unset Printing Implicit Defensive.
 Set Printing Coercions.
+
+Search decP.
+Print eq_axiom.
+Search ltn0Sn.
+Search ltn_pmod.
+Print gcdz.
+Print modn.
+Print divz.
+Print prod_nat_const.
+Print inE.
+Print etrans.
+Check Some.
+Check (forall _ _ , [predI _ & _] = image _ [predD _ & _]).
 
 Record multiple (n : nat) : Type := Build
 {       

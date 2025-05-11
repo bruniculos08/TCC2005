@@ -698,6 +698,11 @@ Module inversezmodp.
     by apply: (xxE (Ordinal iI)).
     Qed.
 
+    Check (0`! = 1).
+    Locate "`!".
+    Check factorial.
+    Check (reflect _ _).
+
     (*  O lema a seguir foi obtido em:
         https://github.com/thery/mathcomp-extra/blob/master/euler.v *)
     Lemma fact_sqr_exp a p :
